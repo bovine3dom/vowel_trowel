@@ -15,6 +15,15 @@ import {
   type PromptSlot,
 } from "./training/session";
 import {
+  canSubmitSortingPrompt,
+  createSortingPlacements,
+  gradeSortingPrompt,
+  selectNextSortingPrompt,
+  type SortingGroup,
+  type SortingPlacements,
+  type SortingPrompt,
+} from "./training/sort";
+import {
   getLanguageProgress,
   getTopConfusions,
   loadProgress,
@@ -24,15 +33,25 @@ import {
 } from "./storage/progress";
 
 const dataset = frenchDataset;
+type TrainingMode = "match" | "sort";
 
 export default function App() {
   const initialProgress = loadProgress();
   const initialPrompt = createNextPrompt(initialProgress);
+  const initialSortingPrompt = selectNextSortingPrompt(dataset, initialProgress);
+  const [mode, setMode] = createSignal<TrainingMode>("match");
   const [progress, setProgress] = createSignal(initialProgress);
   const [prompt, setPrompt] = createSignal<MatchingPrompt | undefined>(initialPrompt);
   const [selections, setSelections] = createSignal(createPromptSelections(initialPrompt));
   const [selectedSlotId, setSelectedSlotId] = createSignal<string | null>(null);
   const [result, setResult] = createSignal<PromptResult | null>(null);
+  const [sortingPrompt, setSortingPrompt] = createSignal<SortingPrompt | undefined>(initialSortingPrompt);
+  const [sortingPlacements, setSortingPlacements] = createSignal(
+    createSortingPlacements(initialSortingPrompt),
+  );
+  const [selectedSortingTermId, setSelectedSortingTermId] = createSignal<string | null>(null);
+  const [draggedSortingTermId, setDraggedSortingTermId] = createSignal<string | null>(null);
+  const [sortingResult, setSortingResult] = createSignal<PromptResult | null>(null);
   const [audioError, setAudioError] = createSignal<string | null>(null);
 
   const languageProgress = createMemo(() => getLanguageProgress(progress(), dataset.id));
@@ -89,6 +108,16 @@ export default function App() {
     }
   };
 
+  const playWord = async (term: MinimalPairTerm) => {
+    setAudioError(null);
+
+    try {
+      await playTermAudio(term, dataset.defaultSpeechLang);
+    } catch (error) {
+      setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
+    }
+  };
+
   const submit = () => {
     const activePrompt = prompt();
 
@@ -118,6 +147,64 @@ export default function App() {
     setAudioError(null);
   };
 
+  const selectSortingWord = async (term: MinimalPairTerm) => {
+    if (!sortingResult()) {
+      setSelectedSortingTermId(term.id);
+    }
+
+    await playWord(term);
+  };
+
+  const placeSortingWord = (termId: string, phonemeId: PhonemeId | null) => {
+    if (sortingResult()) {
+      return;
+    }
+
+    setSortingPlacements((current) => ({ ...current, [termId]: phonemeId }));
+    setSelectedSortingTermId(null);
+    setDraggedSortingTermId(null);
+  };
+
+  const placeSelectedSortingWord = (phonemeId: PhonemeId | null) => {
+    const termId = selectedSortingTermId() ?? draggedSortingTermId();
+
+    if (!termId) {
+      return;
+    }
+
+    placeSortingWord(termId, phonemeId);
+  };
+
+  const submitSorting = () => {
+    const activePrompt = sortingPrompt();
+
+    if (!activePrompt || !canSubmitSortingPrompt(sortingPlacements(), activePrompt)) {
+      return;
+    }
+
+    const graded = gradeSortingPrompt(dataset.id, activePrompt, sortingPlacements());
+
+    if (!graded) {
+      return;
+    }
+
+    const nextProgress = recordPromptResult(progress(), graded);
+    saveProgress(nextProgress);
+    setProgress(nextProgress);
+    setSortingResult(graded);
+  };
+
+  const nextSorting = () => {
+    const nextPrompt = selectNextSortingPrompt(dataset, progress());
+
+    setSortingPrompt(nextPrompt);
+    setSortingPlacements(createSortingPlacements(nextPrompt));
+    setSelectedSortingTermId(null);
+    setDraggedSortingTermId(null);
+    setSortingResult(null);
+    setAudioError(null);
+  };
+
   const clearProgress = () => {
     if (!window.confirm("Reset all local training progress?")) {
       return;
@@ -125,12 +212,18 @@ export default function App() {
 
     const emptyProgress = resetProgress();
     const nextPrompt = createNextPrompt(emptyProgress);
+    const nextSortingPrompt = selectNextSortingPrompt(dataset, emptyProgress);
 
     setProgress(emptyProgress);
     setPrompt(nextPrompt);
     setSelections(createPromptSelections(nextPrompt));
+    setSortingPrompt(nextSortingPrompt);
+    setSortingPlacements(createSortingPlacements(nextSortingPrompt));
     setSelectedSlotId(null);
+    setSelectedSortingTermId(null);
+    setDraggedSortingTermId(null);
     setResult(null);
+    setSortingResult(null);
   };
 
   return (
@@ -151,21 +244,59 @@ export default function App() {
         </div>
       </section>
 
+      <nav class="mode-tabs" aria-label="Training mode">
+        <button
+          class={mode() === "match" ? "mode-tab selected" : "mode-tab"}
+          type="button"
+          onClick={() => setMode("match")}
+        >
+          Match sounds
+        </button>
+        <button
+          class={mode() === "sort" ? "mode-tab selected" : "mode-tab"}
+          type="button"
+          onClick={() => setMode("sort")}
+        >
+          Sort words
+        </button>
+      </nav>
+
       <section class="workspace-grid">
-        <Show when={prompt()} fallback={<EmptyDataset />}>
-          {(activePrompt) => (
-            <TrainingPanel
-              prompt={activePrompt()}
-              selections={selections()}
-              selectedSlotId={selectedSlotId()}
-              result={result()}
-              audioError={audioError()}
-              onSoundClick={selectSound}
-              onWordClick={chooseWord}
-              onSubmit={submit}
-              onNext={next}
-            />
-          )}
+        <Show when={mode() === "match"} fallback={
+          <Show when={sortingPrompt()} fallback={<EmptyDataset />}>
+            {(activePrompt) => (
+              <SortingPanel
+                prompt={activePrompt()}
+                placements={sortingPlacements()}
+                selectedTermId={selectedSortingTermId()}
+                result={sortingResult()}
+                audioError={audioError()}
+                onWordClick={selectSortingWord}
+                onPlaceWord={placeSortingWord}
+                onPlaceSelected={placeSelectedSortingWord}
+                onDragStart={setDraggedSortingTermId}
+                onDragEnd={() => setDraggedSortingTermId(null)}
+                onSubmit={submitSorting}
+                onNext={nextSorting}
+              />
+            )}
+          </Show>
+        }>
+          <Show when={prompt()} fallback={<EmptyDataset />}>
+            {(activePrompt) => (
+              <TrainingPanel
+                prompt={activePrompt()}
+                selections={selections()}
+                selectedSlotId={selectedSlotId()}
+                result={result()}
+                audioError={audioError()}
+                onSoundClick={selectSound}
+                onWordClick={chooseWord}
+                onSubmit={submit}
+                onNext={next}
+              />
+            )}
+          </Show>
         </Show>
 
         <aside class="progress-panel">
@@ -275,7 +406,13 @@ function TrainingPanel(props: {
 
               return (
                 <button
-                  class={soundButtonClass(slot, props.selections, props.result, props.selectedSlotId)}
+                  class={soundButtonClass(
+                    slot,
+                    props.prompt,
+                    props.selections,
+                    props.result,
+                    props.selectedSlotId,
+                  )}
                   type="button"
                   onClick={() => props.onSoundClick(slot)}
                 >
@@ -386,6 +523,213 @@ function TrainingPanel(props: {
   );
 }
 
+function SortingPanel(props: {
+  prompt: SortingPrompt;
+  placements: SortingPlacements;
+  selectedTermId: string | null;
+  result: PromptResult | null;
+  audioError: string | null;
+  onWordClick: (term: MinimalPairTerm) => void;
+  onPlaceWord: (termId: string, phonemeId: PhonemeId | null) => void;
+  onPlaceSelected: (phonemeId: PhonemeId | null) => void;
+  onDragStart: (termId: string) => void;
+  onDragEnd: () => void;
+  onSubmit: () => void;
+  onNext: () => void;
+}) {
+  const contrast = createMemo(() =>
+    dataset.contrasts.find((candidate) => candidate.id === props.prompt.contrastId),
+  );
+  const selectedTerm = createMemo(() =>
+    props.prompt.wordCards.find((term) => term.id === props.selectedTermId),
+  );
+  const unplacedTerms = () =>
+    props.prompt.wordCards.filter((term) => !props.placements[term.id]);
+  const termsForGroup = (group: SortingGroup) =>
+    props.prompt.wordCards.filter((term) => props.placements[term.id] === group.phonemeId);
+  const dropOnGroup = (event: DragEvent, phonemeId: PhonemeId | null) => {
+    event.preventDefault();
+    const termId = event.dataTransfer?.getData("text/plain");
+
+    if (termId) {
+      props.onPlaceWord(termId, phonemeId);
+    }
+  };
+
+  return (
+    <section class="training-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Sort words</p>
+        <h2>{contrast()?.label ?? props.prompt.contrastId}</h2>
+      </div>
+      <p class="instructions">
+        Put each written word into the group for the phoneme it contains. Tap a word to hear
+        it; drag it into a group, or tap a word and then tap a group.
+      </p>
+      <p class="interaction-hint">
+        <Show when={selectedTerm()} fallback="Tap or drag a word from the bag.">
+          {(term) => <>Selected {term().word.written}. Choose a phoneme group.</>}
+        </Show>
+      </p>
+
+      <Show when={props.audioError}>
+        {(message) => <p class="error-message">{message()}</p>}
+      </Show>
+
+      <section
+        class="sort-bag"
+        onDragOver={(event) => event.preventDefault()}
+        onDrop={(event) => dropOnGroup(event, null)}
+      >
+        <div class="column-title">
+          <h3>Word bag</h3>
+          <span>IPA appears after checking</span>
+        </div>
+        <div class="sort-word-grid">
+          <Show when={unplacedTerms().length > 0} fallback={<p class="muted">All words placed.</p>}>
+            <For each={unplacedTerms()}>
+              {(term) => (
+                <SortWordCard
+                  term={term}
+                  prompt={props.prompt}
+                  placements={props.placements}
+                  selectedTermId={props.selectedTermId}
+                  result={props.result}
+                  showIpa={Boolean(props.result)}
+                  onWordClick={props.onWordClick}
+                  onDragStart={props.onDragStart}
+                  onDragEnd={props.onDragEnd}
+                />
+              )}
+            </For>
+          </Show>
+        </div>
+      </section>
+
+      <div class="sort-groups">
+        <For each={props.prompt.groups}>
+          {(group) => (
+            <section
+              class={sortGroupClass(props.prompt, group, props.selectedTermId, props.result)}
+              onClick={() => props.onPlaceSelected(group.phonemeId)}
+              onDragOver={(event) => event.preventDefault()}
+              onDrop={(event) => dropOnGroup(event, group.phonemeId)}
+            >
+              <div class="sort-group-title">
+                <span>{group.label}</span>
+              </div>
+              <div class="sort-word-grid">
+                <Show
+                  when={termsForGroup(group).length > 0}
+                  fallback={<p class="muted">Drop words here.</p>}
+                >
+                  <For each={termsForGroup(group)}>
+                    {(term) => (
+                      <SortWordCard
+                        term={term}
+                        prompt={props.prompt}
+                        placements={props.placements}
+                        selectedTermId={props.selectedTermId}
+                        result={props.result}
+                        showIpa={Boolean(props.result)}
+                        onWordClick={props.onWordClick}
+                        onDragStart={props.onDragStart}
+                        onDragEnd={props.onDragEnd}
+                      />
+                    )}
+                  </For>
+                </Show>
+              </div>
+            </section>
+          )}
+        </For>
+      </div>
+
+      <Show when={props.result}>
+        {(graded) => (
+          <div class={graded().correct ? "result-card correct" : "result-card incorrect"}>
+            <strong>{graded().correct ? "Correct" : "Not quite"}</strong>
+            <For each={graded().answers}>
+              {(answer) => {
+                const term = props.prompt.wordCards.find(
+                  (candidate) => candidate.id === answer.heardTermId,
+                );
+
+                return (
+                  <p>
+                    {term?.word.written}: {phonemeLabel(answer.heardPhonemeId)} word placed in{" "}
+                    {phonemeLabel(answer.chosenPhonemeId)}
+                  </p>
+                );
+              }}
+            </For>
+          </div>
+        )}
+      </Show>
+
+      <div class="action-row">
+        <Show
+          when={props.result}
+          fallback={
+            <button
+              class="primary-button"
+              type="button"
+              onClick={props.onSubmit}
+              disabled={!canSubmitSortingPrompt(props.placements, props.prompt)}
+            >
+              Check answer
+            </button>
+          }
+        >
+          <button class="primary-button" type="button" onClick={props.onNext}>
+            Next sort
+          </button>
+        </Show>
+      </div>
+    </section>
+  );
+}
+
+function SortWordCard(props: {
+  term: MinimalPairTerm;
+  prompt: SortingPrompt;
+  placements: SortingPlacements;
+  selectedTermId: string | null;
+  result: PromptResult | null;
+  showIpa: boolean;
+  onWordClick: (term: MinimalPairTerm) => void;
+  onDragStart: (termId: string) => void;
+  onDragEnd: () => void;
+}) {
+  return (
+    <button
+      class={sortWordCardClass(
+        props.term,
+        props.prompt,
+        props.placements,
+        props.result,
+        props.selectedTermId,
+      )}
+      type="button"
+      draggable={!props.result}
+      onClick={(event) => {
+        event.stopPropagation();
+        props.onWordClick(props.term);
+      }}
+      onDragStart={(event) => {
+        event.dataTransfer?.setData("text/plain", props.term.id);
+        props.onDragStart(props.term.id);
+      }}
+      onDragEnd={props.onDragEnd}
+    >
+      <span class="word-text">{props.term.word.written}</span>
+      <Show when={props.showIpa}>
+        <span class="word-ipa">{props.term.word.ipa}</span>
+      </Show>
+    </button>
+  );
+}
+
 function Metric(props: { label: string; value: string }) {
   return (
     <div class="metric-card">
@@ -424,6 +768,7 @@ function getAssignedSlotForTerm(
 
 function soundButtonClass(
   slot: PromptSlot,
+  prompt: MatchingPrompt,
   selections: PromptSelections,
   result: PromptResult | null,
   selectedSlotId: string | null,
@@ -439,6 +784,10 @@ function soundButtonClass(
 
   if (matched) {
     classes.push("matched");
+  }
+
+  if (selected || matched || answer) {
+    classes.push(slotPairClass(prompt, slot.id));
   }
 
   if (answer) {
@@ -467,6 +816,7 @@ function wordButtonClass(
 
   if (assignedSlot) {
     classes.push("matched");
+    classes.push(slotPairClass(prompt, assignedSlot.id));
   }
 
   if (answer) {
@@ -474,6 +824,63 @@ function wordButtonClass(
   }
 
   return classes.join(" ");
+}
+
+function sortGroupClass(
+  prompt: SortingPrompt,
+  group: SortingGroup,
+  selectedTermId: string | null,
+  result: PromptResult | null,
+): string {
+  const classes = ["sort-group", groupPairClass(prompt, group.phonemeId)];
+
+  if (selectedTermId && !result) {
+    classes.push("ready");
+  }
+
+  return classes.join(" ");
+}
+
+function sortWordCardClass(
+  term: MinimalPairTerm,
+  prompt: SortingPrompt,
+  placements: SortingPlacements,
+  result: PromptResult | null,
+  selectedTermId: string | null,
+): string {
+  const classes = ["sort-word-card"];
+  const placement = placements[term.id];
+  const answer = result?.answers.find((candidate) => candidate.heardTermId === term.id);
+
+  if (placement) {
+    classes.push("placed", groupPairClass(prompt, placement));
+  }
+
+  if (selectedTermId === term.id) {
+    classes.push("selected");
+  }
+
+  if (answer) {
+    classes.push(answer.correct ? "correct" : "incorrect");
+  }
+
+  return classes.join(" ");
+}
+
+function slotPairClass(prompt: MatchingPrompt, slotId: string): string {
+  const index = prompt.slots.findIndex((slot) => slot.id === slotId);
+
+  return pairClass(index);
+}
+
+function groupPairClass(prompt: SortingPrompt, phonemeId: PhonemeId): string {
+  const index = prompt.groups.findIndex((group) => group.phonemeId === phonemeId);
+
+  return pairClass(index);
+}
+
+function pairClass(index: number): string {
+  return `pair-${index >= 0 ? (index % 6) + 1 : 1}`;
 }
 
 function phonemeLabel(phonemeId: PhonemeId): string {
