@@ -4,6 +4,8 @@ node_modules
 # output
 out
 dist
+reports
+public/audio/fr/wiktionary
 *.tgz
 
 # code coverage

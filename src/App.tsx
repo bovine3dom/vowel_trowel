@@ -1,6 +1,11 @@
-import { For, Show, createMemo, createSignal } from "solid-js";
+import { For, Show, createMemo, createSignal, onCleanup, onMount } from "solid-js";
 
-import { playTermAudio } from "./audio/playback";
+import {
+  getAvailableSpeechVoices,
+  playAudioSources,
+  playTermAudio,
+  selectSpeechVoice,
+} from "./audio/playback";
 import { frenchDataset } from "./languages/fr";
 import type { MinimalPairTerm, PhonemeId } from "./languages/types";
 import {
@@ -33,6 +38,7 @@ import {
 } from "./storage/progress";
 
 const dataset = frenchDataset;
+const SPEECH_VOICE_STORAGE_KEY = "vowel-trowel:tts-voice-uri";
 type TrainingMode = "match" | "sort";
 
 export default function App() {
@@ -52,6 +58,8 @@ export default function App() {
   const [selectedSortingTermId, setSelectedSortingTermId] = createSignal<string | null>(null);
   const [draggedSortingTermId, setDraggedSortingTermId] = createSignal<string | null>(null);
   const [sortingResult, setSortingResult] = createSignal<PromptResult | null>(null);
+  const [speechVoices, setSpeechVoices] = createSignal<SpeechSynthesisVoice[]>([]);
+  const [selectedVoiceURI, setSelectedVoiceURI] = createSignal(loadSpeechVoiceURI());
   const [audioError, setAudioError] = createSignal<string | null>(null);
 
   const languageProgress = createMemo(() => getLanguageProgress(progress(), dataset.id));
@@ -61,6 +69,28 @@ export default function App() {
     return stats
       ? Object.values(stats.itemStats).reduce((total, item) => total + item.attempts, 0)
       : 0;
+  });
+  const speechSettings = createMemo(() => ({
+    fallbackLang: dataset.defaultSpeechLang,
+    preferredLangs: dataset.speechLangs,
+    voiceURI: selectedVoiceURI(),
+  }));
+  const frenchSpeechVoices = createMemo(() =>
+    speechVoices().filter((voice) => voice.lang.toLowerCase().startsWith("fr")),
+  );
+  const activeSpeechVoice = createMemo(() => selectSpeechVoice(speechVoices(), speechSettings()));
+
+  onMount(() => {
+    const refreshVoices = () => setSpeechVoices(getAvailableSpeechVoices());
+
+    refreshVoices();
+
+    if (!("speechSynthesis" in window)) {
+      return;
+    }
+
+    window.speechSynthesis.addEventListener("voiceschanged", refreshVoices);
+    onCleanup(() => window.speechSynthesis.removeEventListener("voiceschanged", refreshVoices));
   });
 
   const selectSound = async (slot: PromptSlot) => {
@@ -102,7 +132,7 @@ export default function App() {
     setAudioError(null);
 
     try {
-      await playTermAudio(slot.term, dataset.defaultSpeechLang);
+      await playTermAudio(slot.term, speechSettings());
     } catch (error) {
       setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
     }
@@ -112,7 +142,7 @@ export default function App() {
     setAudioError(null);
 
     try {
-      await playTermAudio(term, dataset.defaultSpeechLang);
+      await playTermAudio(term, speechSettings());
     } catch (error) {
       setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
     }
@@ -205,6 +235,23 @@ export default function App() {
     setAudioError(null);
   };
 
+  const playSortingGroup = async (group: SortingGroup) => {
+    const phoneme = dataset.phonemes.find((candidate) => candidate.id === group.phonemeId);
+
+    setAudioError(null);
+
+    try {
+      if (phoneme?.audio?.length) {
+        await playAudioSources(phoneme.audio, group.label, speechSettings());
+        return;
+      }
+
+      await playTermAudio(group.exampleTerm, speechSettings());
+    } catch (error) {
+      setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
+    }
+  };
+
   const clearProgress = () => {
     if (!window.confirm("Reset all local training progress?")) {
       return;
@@ -226,6 +273,13 @@ export default function App() {
     setSortingResult(null);
   };
 
+  const chooseSpeechVoice = (voiceURI: string) => {
+    const nextVoiceURI = voiceURI || null;
+
+    setSelectedVoiceURI(nextVoiceURI);
+    saveSpeechVoiceURI(nextVoiceURI);
+  };
+
   return (
     <main class="app-shell">
       <section class="hero-panel">
@@ -240,7 +294,7 @@ export default function App() {
         <div class="language-card" aria-label="Current language">
           <span>Training</span>
           <strong>{dataset.name}</strong>
-          <small>{dataset.minimalPairs.length} starter pairs</small>
+          <small>{minimalPairCount()} starter pairs</small>
         </div>
       </section>
 
@@ -274,6 +328,7 @@ export default function App() {
                 onWordClick={selectSortingWord}
                 onPlaceWord={placeSortingWord}
                 onPlaceSelected={placeSelectedSortingWord}
+                onGroupPlay={playSortingGroup}
                 onDragStart={setDraggedSortingTermId}
                 onDragEnd={() => setDraggedSortingTermId(null)}
                 onSubmit={submitSorting}
@@ -308,6 +363,13 @@ export default function App() {
             <Metric label="Attempts" value={String(totalAttempts())} />
             <Metric label="Contrasts" value={String(dataset.contrasts.length)} />
           </div>
+          <VoicePanel
+            voices={frenchSpeechVoices()}
+            activeVoice={activeSpeechVoice()}
+            selectedVoiceURI={selectedVoiceURI()}
+            preferredLangs={dataset.speechLangs ?? [dataset.defaultSpeechLang]}
+            onSelect={chooseSpeechVoice}
+          />
           <div class="confusion-list">
             <h3>Top confusions</h3>
             <Show
@@ -532,6 +594,7 @@ function SortingPanel(props: {
   onWordClick: (term: MinimalPairTerm) => void;
   onPlaceWord: (termId: string, phonemeId: PhonemeId | null) => void;
   onPlaceSelected: (phonemeId: PhonemeId | null) => void;
+  onGroupPlay: (group: SortingGroup) => void;
   onDragStart: (termId: string) => void;
   onDragEnd: () => void;
   onSubmit: () => void;
@@ -564,7 +627,8 @@ function SortingPanel(props: {
       </div>
       <p class="instructions">
         Put each written word into the group for the phoneme it contains. Tap a word to hear
-        it; drag it into a group, or tap a word and then tap a group.
+        it; tap a phoneme heading to hear an example; drag a word into a group, or tap a word
+        and then tap a group.
       </p>
       <p class="interaction-hint">
         <Show when={selectedTerm()} fallback="Tap or drag a word from the bag.">
@@ -615,9 +679,17 @@ function SortingPanel(props: {
               onDragOver={(event) => event.preventDefault()}
               onDrop={(event) => dropOnGroup(event, group.phonemeId)}
             >
-              <div class="sort-group-title">
+              <button
+                class="sort-group-title"
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  props.onGroupPlay(group);
+                }}
+              >
                 <span>{group.label}</span>
-              </div>
+                <small>{phonemeHasAudio(group.phonemeId) ? "Play sound" : "Play example"}</small>
+              </button>
               <div class="sort-word-grid">
                 <Show
                   when={termsForGroup(group).length > 0}
@@ -727,6 +799,51 @@ function SortWordCard(props: {
         <span class="word-ipa">{props.term.word.ipa}</span>
       </Show>
     </button>
+  );
+}
+
+function VoicePanel(props: {
+  voices: readonly SpeechSynthesisVoice[];
+  activeVoice: SpeechSynthesisVoice | undefined;
+  selectedVoiceURI: string | null;
+  preferredLangs: readonly string[];
+  onSelect: (voiceURI: string) => void;
+}) {
+  return (
+    <section class="voice-panel">
+      <h3>TTS voice</h3>
+      <p>
+        Auto prefers {props.preferredLangs.join(", ")}. If your browser exposes Belgian or
+        Swiss French, select it here.
+      </p>
+      <Show
+        when={props.voices.length > 0}
+        fallback={<p class="muted">No French browser voices detected yet.</p>}
+      >
+        <label class="voice-select-label">
+          <span>Browser voice</span>
+          <select
+            value={props.selectedVoiceURI ?? ""}
+            onInput={(event) => props.onSelect(event.currentTarget.value)}
+          >
+            <option value="">Auto regional preference</option>
+            <For each={props.voices}>
+              {(voice) => (
+                <option value={voice.voiceURI}>
+                  {voice.name} ({voice.lang})
+                </option>
+              )}
+            </For>
+          </select>
+        </label>
+      </Show>
+      <p class="voice-current">
+        Current: {props.activeVoice ? `${props.activeVoice.name} (${props.activeVoice.lang})` : "browser default"}
+      </p>
+      <p class="muted">
+        For contrasts like brun/brin, real recordings are still more reliable than TTS.
+      </p>
+    </section>
   );
 }
 
@@ -885,6 +1002,35 @@ function pairClass(index: number): string {
 
 function phonemeLabel(phonemeId: PhonemeId): string {
   return dataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.ipa ?? phonemeId;
+}
+
+function phonemeHasAudio(phonemeId: PhonemeId): boolean {
+  return Boolean(dataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.audio?.length);
+}
+
+function minimalPairCount(): number {
+  return dataset.contrasts.reduce((total, contrast) => total + contrast.minimalPairs.length, 0);
+}
+
+function loadSpeechVoiceURI(): string | null {
+  if (typeof localStorage === "undefined") {
+    return null;
+  }
+
+  return localStorage.getItem(SPEECH_VOICE_STORAGE_KEY);
+}
+
+function saveSpeechVoiceURI(voiceURI: string | null): void {
+  if (typeof localStorage === "undefined") {
+    return;
+  }
+
+  if (voiceURI) {
+    localStorage.setItem(SPEECH_VOICE_STORAGE_KEY, voiceURI);
+    return;
+  }
+
+  localStorage.removeItem(SPEECH_VOICE_STORAGE_KEY);
 }
 
 function createNextPrompt(currentProgress: ReturnType<typeof loadProgress>): MatchingPrompt | undefined {

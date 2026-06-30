@@ -6,7 +6,10 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "audio:wiktionary": "bun run scripts/wiktionary-audio-report.ts",
+    "audio:review": "bun run scripts/review-audio-candidates.ts",
+    "audio:apply-reviewed": "bun run scripts/apply-reviewed-audio.ts"
   },
   "dependencies": {
     "solid-js": "latest"

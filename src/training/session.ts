@@ -4,7 +4,9 @@ import type {
   MinimalPairTerm,
   PhonemeId,
 } from "../languages/types";
+import { getResolvedMinimalPairs } from "../languages/resolve";
 import type { AppProgress } from "../storage/progress";
+import { lockTermAudio } from "./audio";
 
 const MS_PER_HOUR = 60 * 60 * 1000;
 
@@ -60,7 +62,7 @@ export function selectNextMinimalPair(
 ): MinimalPairItem | undefined {
   let best: { item: MinimalPairItem; score: number } | undefined;
 
-  for (const item of dataset.minimalPairs) {
+  for (const item of getResolvedMinimalPairs(dataset)) {
     const score = scoreMinimalPair(dataset.id, item, progress, now);
 
     if (!best || score > best.score) {
@@ -72,7 +74,9 @@ export function selectNextMinimalPair(
 }
 
 export function createMatchingPrompt(item: MinimalPairItem): MatchingPrompt {
-  const terms = shuffleArray(item.terms);
+  const lockedTerms = item.terms.map(lockTermAudio) as [MinimalPairTerm, MinimalPairTerm];
+  const lockedItem: MinimalPairItem = { ...item, terms: lockedTerms };
+  const terms = shuffleArray(lockedItem.terms);
   const slots = terms.map((term, index) => ({
     id: createSlotId(index),
     label: createSlotLabel(index),
@@ -81,10 +85,10 @@ export function createMatchingPrompt(item: MinimalPairItem): MatchingPrompt {
 
   return {
     id: `${item.id}:${Date.now()}:${Math.random().toString(36).slice(2)}`,
-    item,
+    item: lockedItem,
     slots,
     displaySlots: shuffleArray(slots),
-    wordCards: shuffleArray(item.terms),
+    wordCards: shuffleArray(lockedItem.terms),
   };
 }
 
