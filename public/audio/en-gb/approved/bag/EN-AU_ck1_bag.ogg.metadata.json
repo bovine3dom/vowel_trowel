@@ -1,0 +1,102 @@
+{
+  "downloadedAt": "2026-07-01T17:19:08.746Z",
+  "word": {
+    "id": "en-gb-word-bag",
+    "written": "bag",
+    "ipa": "/bæɡ/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-trap",
+      "en-gb-g"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:EN-AU ck1 bag.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/EN-AU_ck1_bag.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_bag.ogg",
+    "mime": "application/ogg",
+    "size": 16836,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"bag\". Male, Australian accent.",
+    "key": "en-gb-word-bag|File%3AEN-AU%20ck1%20bag.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEN-AU_ck1_bag.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bag",
+        "fileTitle": "File:EN-AU ck1 bag.ogg",
+        "languageCode": "en",
+        "ipa": "/bæɡ/",
+        "normalizedIpa": "bæɡ",
+        "context": "** {{IPA|en|/bæɡ/|a=RP,GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bag",
+        "fileTitle": "File:EN-AU ck1 bag.ogg",
+        "languageCode": "en",
+        "ipa": "/baɡ/",
+        "normalizedIpa": "baɡ",
+        "context": "** {{IPA|en|/baɡ/|/baːɡ/|a=SSB|a2=bad-lad split}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bag",
+        "fileTitle": "File:EN-AU ck1 bag.ogg",
+        "languageCode": "en",
+        "ipa": "/baːɡ/",
+        "normalizedIpa": "baːɡ",
+        "context": "** {{IPA|en|/baɡ/|/baːɡ/|a=SSB|a2=bad-lad split}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bag",
+        "fileTitle": "File:EN-AU ck1 bag.ogg",
+        "languageCode": "en",
+        "ipa": "/bæːɡ/",
+        "normalizedIpa": "bæːɡ",
+        "context": "** {{IPA|en|/bæːɡ/|a=AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/bæɡ/",
+      "claimed": [
+        "/bæɡ/",
+        "/baɡ/",
+        "/baːɡ/",
+        "/bæːɡ/"
+      ],
+      "matched": [
+        "/bæɡ/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /bæɡ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bag/EN-AU_ck1_bag.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_bag.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bag/EN-AU_ck1_bag.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bag/EN-AU_ck1_bag.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bag/EN-AU_ck1_bag.ogg"
+  }
+}

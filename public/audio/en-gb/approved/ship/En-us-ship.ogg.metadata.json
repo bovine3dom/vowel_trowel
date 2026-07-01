@@ -1,0 +1,50 @@
+{
+  "downloadedAt": "2026-07-01T13:15:43.298Z",
+  "word": {
+    "id": "en-gb-word-ship",
+    "written": "ship",
+    "ipa": "/ʃɪp/",
+    "phonemeIds": [
+      "en-gb-sh",
+      "en-gb-kit",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-ship.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/En-us-ship.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-ship.ogg",
+    "mime": "application/ogg",
+    "size": 13563,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-ship|File%3AEn-us-ship.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-ship.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-ship/En-us-ship.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-ship.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-ship/En-us-ship.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-ship/En-us-ship.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-ship/En-us-ship.ogg"
+  }
+}

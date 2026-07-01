@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-01T17:20:49.404Z",
+  "word": {
+    "id": "en-gb-word-cut",
+    "written": "cut",
+    "ipa": "/kʌt/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-strut",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:EN-AU ck1 cut.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/EN-AU_ck1_cut.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_cut.ogg",
+    "mime": "application/ogg",
+    "size": 17888,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"cut\". Male, Australian accent.",
+    "key": "en-gb-word-cut|File%3AEN-AU%20ck1%20cut.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEN-AU_ck1_cut.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cut",
+        "fileTitle": "File:EN-AU ck1 cut.ogg",
+        "languageCode": "en",
+        "ipa": "/kʌt/",
+        "normalizedIpa": "kʌt",
+        "context": "* {{IPA|en|/kʌt/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kʌt/",
+      "claimed": [
+        "/kʌt/"
+      ],
+      "matched": [
+        "/kʌt/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /kʌt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-cut/EN-AU_ck1_cut.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_cut.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-cut/EN-AU_ck1_cut.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-cut/EN-AU_ck1_cut.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-cut/EN-AU_ck1_cut.ogg"
+  }
+}

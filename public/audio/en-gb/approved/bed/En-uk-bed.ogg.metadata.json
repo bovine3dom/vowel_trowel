@@ -1,0 +1,56 @@
+{
+  "downloadedAt": "2026-07-01T13:16:51.184Z",
+  "word": {
+    "id": "en-gb-word-bed",
+    "written": "bed",
+    "ipa": "/bed/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-dress",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-bed.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/En-uk-bed.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-bed.ogg",
+    "mime": "application/ogg",
+    "size": 13961,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"bed\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-bed|File%3AEn-uk-bed.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-bed.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "score": 21,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bed/En-uk-bed.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-bed.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bed/En-uk-bed.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bed/En-uk-bed.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bed/En-uk-bed.ogg"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "downloadedAt": "2026-07-01T17:20:48.718Z",
+  "word": {
+    "id": "en-gb-word-cut",
+    "written": "cut",
+    "ipa": "/kʌt/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-strut",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-cut.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/LL-Q1860_%28eng%29-Vealhurl-cut.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-cut.wav",
+    "mime": "audio/wav",
+    "size": 76588,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-cut|File%3ALL-Q1860%20(eng)-Vealhurl-cut.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Vealhurl-cut.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cut",
+        "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-cut.wav",
+        "languageCode": "en",
+        "ipa": "/kʌt/",
+        "normalizedIpa": "kʌt",
+        "context": "* {{IPA|en|/kʌt/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kʌt/",
+      "claimed": [
+        "/kʌt/"
+      ],
+      "matched": [
+        "/kʌt/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /kʌt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-cut/LL-Q1860__eng_-Vealhurl-cut.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-cut.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-cut/LL-Q1860__eng_-Vealhurl-cut.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-cut/LL-Q1860__eng_-Vealhurl-cut.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-cut/LL-Q1860__eng_-Vealhurl-cut.wav"
+  }
+}

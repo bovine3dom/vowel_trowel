@@ -1,0 +1,102 @@
+{
+  "downloadedAt": "2026-07-01T17:24:16.870Z",
+  "word": {
+    "id": "en-gb-word-could",
+    "written": "could",
+    "ipa": "/kʊd/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-foot",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-could.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/En-us-could.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-could.ogg",
+    "mime": "application/ogg",
+    "size": 11663,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-could|File%3AEn-us-could.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-could.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "could",
+        "fileTitle": "File:En-us-could.ogg",
+        "languageCode": "en",
+        "ipa": "/kəd/",
+        "normalizedIpa": "kəd",
+        "context": "* {{IPA|en|/kəd/|[kʰəd]|a=weak form}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "could",
+        "fileTitle": "File:En-us-could.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰəd]",
+        "normalizedIpa": "kʰəd",
+        "context": "* {{IPA|en|/kəd/|[kʰəd]|a=weak form}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "could",
+        "fileTitle": "File:En-us-could.ogg",
+        "languageCode": "en",
+        "ipa": "/kʊd/",
+        "normalizedIpa": "kʊd",
+        "context": "* {{IPA| en|/kʊd/|[kʰʊd]|a=RP,GA,AU,strong form}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "could",
+        "fileTitle": "File:En-us-could.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰʊd]",
+        "normalizedIpa": "kʰʊd",
+        "context": "* {{IPA| en|/kʊd/|[kʰʊd]|a=RP,GA,AU,strong form}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kʊd/",
+      "claimed": [
+        "/kəd/",
+        "[kʰəd]",
+        "/kʊd/",
+        "[kʰʊd]"
+      ],
+      "matched": [
+        "/kʊd/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /kʊd/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-could/En-us-could.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-could.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-could/En-us-could.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-could/En-us-could.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-could/En-us-could.ogg"
+  }
+}

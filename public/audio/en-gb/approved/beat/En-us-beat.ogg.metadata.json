@@ -1,0 +1,50 @@
+{
+  "downloadedAt": "2026-07-01T13:16:06.304Z",
+  "word": {
+    "id": "en-gb-word-beat",
+    "written": "beat",
+    "ipa": "/biːt/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-fleece",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-beat.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/En-us-beat.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-beat.ogg",
+    "mime": "application/ogg",
+    "size": 10781,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-beat|File%3AEn-us-beat.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-beat.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-beat/En-us-beat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-beat.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-beat/En-us-beat.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-beat/En-us-beat.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-beat/En-us-beat.ogg"
+  }
+}

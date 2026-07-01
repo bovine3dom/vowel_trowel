@@ -1,0 +1,73 @@
+{
+  "downloadedAt": "2026-07-01T17:21:36.306Z",
+  "word": {
+    "id": "en-gb-word-don",
+    "written": "Don",
+    "ipa": "/dɒn/",
+    "phonemeIds": [
+      "en-gb-d",
+      "en-gb-lot",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-Don.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/LL-Q1860_%28eng%29-Vealhurl-Don.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Don.wav",
+    "mime": "audio/wav",
+    "size": 90668,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-don|File%3ALL-Q1860%20(eng)-Vealhurl-Don.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Vealhurl-Don.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "Don",
+        "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-Don.wav",
+        "languageCode": "en",
+        "ipa": "/dɒn/",
+        "normalizedIpa": "dɒn",
+        "context": "* {{IPA|en|/dɒn/|a=UK}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/dɒn/",
+      "claimed": [
+        "/dɒn/"
+      ],
+      "matched": [
+        "/dɒn/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /dɒn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-don/LL-Q1860__eng_-Vealhurl-Don.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Don.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-don/LL-Q1860__eng_-Vealhurl-Don.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-don/LL-Q1860__eng_-Vealhurl-Don.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-don/LL-Q1860__eng_-Vealhurl-Don.wav"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-01T17:21:19.204Z",
+  "word": {
+    "id": "en-gb-word-bud",
+    "written": "bud",
+    "ipa": "/bʌd/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-strut",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-bud.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ad/En-us-bud.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-bud.ogg",
+    "mime": "application/ogg",
+    "size": 15762,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Neskaya",
+    "credit": "Self, recorded using the program 'Shtooka'.",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'bud' in United States English.",
+    "key": "en-gb-word-bud|File%3AEn-us-bud.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-bud.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bud",
+        "fileTitle": "File:En-us-bud.ogg",
+        "languageCode": "en",
+        "ipa": "/bʌd/",
+        "normalizedIpa": "bʌd",
+        "context": "* {{enPR|bŭd}}, {{IPA|en|/bʌd/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/bʌd/",
+      "claimed": [
+        "/bʌd/"
+      ],
+      "matched": [
+        "/bʌd/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /bʌd/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bud/En-us-bud.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Neskaya",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bud.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bud/En-us-bud.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bud/En-us-bud.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bud/En-us-bud.ogg"
+  }
+}

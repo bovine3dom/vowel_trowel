@@ -1,0 +1,78 @@
+{
+  "downloadedAt": "2026-07-01T17:24:29.567Z",
+  "word": {
+    "id": "en-gb-word-late",
+    "written": "late",
+    "ipa": "/leɪt/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-face",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-late.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/En-uk-late.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-late.ogg",
+    "mime": "application/ogg",
+    "size": 16075,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"late\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-late|File%3AEn-uk-late.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-late.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "late",
+        "fileTitle": "File:En-uk-late.ogg",
+        "languageCode": "en",
+        "ipa": "/leɪt/",
+        "normalizedIpa": "leɪt",
+        "context": "* {{IPA|en|/leɪt/|a=RP,GA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/leɪt/",
+      "claimed": [
+        "/leɪt/"
+      ],
+      "matched": [
+        "/leɪt/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /leɪt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-late/En-uk-late.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-late.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-late/En-uk-late.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-late/En-uk-late.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-late/En-uk-late.ogg"
+  }
+}

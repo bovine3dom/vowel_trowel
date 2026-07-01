@@ -1,0 +1,102 @@
+{
+  "downloadedAt": "2026-07-01T17:24:30.498Z",
+  "word": {
+    "id": "en-gb-word-mate",
+    "written": "mate",
+    "ipa": "/meɪt/",
+    "phonemeIds": [
+      "en-gb-m",
+      "en-gb-face",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-mate.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/En-au-mate.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-mate.ogg",
+    "mime": "application/ogg",
+    "size": 16964,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"mate\". Male, Australian accent.",
+    "key": "en-gb-word-mate|File%3AEn-au-mate.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-mate.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "mate",
+        "fileTitle": "File:En-au-mate.ogg",
+        "languageCode": "en",
+        "ipa": "/meɪt/",
+        "normalizedIpa": "meɪt",
+        "context": "* {{IPA|en|/meɪt/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "mate",
+        "fileTitle": "File:En-au-mate.ogg",
+        "languageCode": "en",
+        "ipa": "[mɛjt]",
+        "normalizedIpa": "mɛjt",
+        "context": "** {{IPA|en|[mɛjt]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "mate",
+        "fileTitle": "File:En-au-mate.ogg",
+        "languageCode": "en",
+        "ipa": "[meːt]",
+        "normalizedIpa": "meːt",
+        "context": "** {{IPA|en|[meːt]|a=CA,Scotland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "mate",
+        "fileTitle": "File:En-au-mate.ogg",
+        "languageCode": "en",
+        "ipa": "[mæɪt]",
+        "normalizedIpa": "mæɪt",
+        "context": "** {{IPA|en|[mæɪt]|a=AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/meɪt/",
+      "claimed": [
+        "/meɪt/",
+        "[mɛjt]",
+        "[meːt]",
+        "[mæɪt]"
+      ],
+      "matched": [
+        "/meɪt/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /meɪt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-mate/En-au-mate.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-mate.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-mate/En-au-mate.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-mate/En-au-mate.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-mate/En-au-mate.ogg"
+  }
+}

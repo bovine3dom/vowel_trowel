@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-01T17:21:18.283Z",
+  "word": {
+    "id": "en-gb-word-lark",
+    "written": "lark",
+    "ipa": "/lɑːk/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-palm",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-lark.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/En-us-lark.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-lark.ogg",
+    "mime": "application/ogg",
+    "size": 12970,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Self, recorded using the program Shtooka .",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'lark' in United States English.",
+    "key": "en-gb-word-lark|File%3AEn-us-lark.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-lark.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "lark",
+        "fileTitle": "File:En-us-lark.ogg",
+        "languageCode": "en",
+        "ipa": "/lɑːk/",
+        "normalizedIpa": "lɑːk",
+        "context": "* {{enPR|läk|a=RP}}, {{IPA|en|/lɑːk/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "lark",
+        "fileTitle": "File:En-us-lark.ogg",
+        "languageCode": "en",
+        "ipa": "/lɑɹk/",
+        "normalizedIpa": "lɑɹk",
+        "context": "* {{enPR|lärk|a=GA}}, {{IPA|en|/lɑɹk/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/lɑːk/",
+      "claimed": [
+        "/lɑːk/",
+        "/lɑɹk/"
+      ],
+      "matched": [
+        "/lɑːk/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /lɑːk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-lark/En-us-lark.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-lark.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-lark/En-us-lark.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-lark/En-us-lark.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-lark/En-us-lark.ogg"
+  }
+}

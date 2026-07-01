@@ -1,0 +1,57 @@
+{
+  "downloadedAt": "2026-07-01T13:16:37.301Z",
+  "word": {
+    "id": "en-gb-word-sleep",
+    "written": "sleep",
+    "ipa": "/sliːp/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-l",
+      "en-gb-fleece",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-to sleep.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/En-uk-to_sleep.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_sleep.ogg",
+    "mime": "application/ogg",
+    "size": 18105,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of \"to sleep\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-sleep|File%3AEn-uk-to%20sleep.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-to_sleep.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "score": 21,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-sleep/En-uk-to_sleep.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_sleep.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-sleep/En-uk-to_sleep.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-sleep/En-uk-to_sleep.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-sleep/En-uk-to_sleep.ogg"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "downloadedAt": "2026-07-01T17:21:17.684Z",
+  "word": {
+    "id": "en-gb-word-luck",
+    "written": "luck",
+    "ipa": "/lʌk/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-strut",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Back ache-luck.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/LL-Q1860_%28eng%29-Back_ache-luck.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-luck.wav",
+    "mime": "audio/wav",
+    "size": 92972,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Back ache Recorder: Back ache",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-luck|File%3ALL-Q1860%20(eng)-Back%20ache-luck.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Back_ache-luck.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "luck",
+        "fileTitle": "File:LL-Q1860 (eng)-Back ache-luck.wav",
+        "languageCode": "en",
+        "ipa": "/lʌk/",
+        "normalizedIpa": "lʌk",
+        "context": "* {{IPA|en|/lʌk/|[lɐk]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "luck",
+        "fileTitle": "File:LL-Q1860 (eng)-Back ache-luck.wav",
+        "languageCode": "en",
+        "ipa": "[lɐk]",
+        "normalizedIpa": "lɐk",
+        "context": "* {{IPA|en|/lʌk/|[lɐk]|a=RP}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/lʌk/",
+      "claimed": [
+        "/lʌk/",
+        "[lɐk]"
+      ],
+      "matched": [
+        "/lʌk/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /lʌk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-luck/LL-Q1860__eng_-Back_ache-luck.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-luck.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-luck/LL-Q1860__eng_-Back_ache-luck.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-luck/LL-Q1860__eng_-Back_ache-luck.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-luck/LL-Q1860__eng_-Back_ache-luck.wav"
+  }
+}

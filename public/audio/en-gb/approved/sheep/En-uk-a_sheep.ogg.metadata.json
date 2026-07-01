@@ -1,0 +1,56 @@
+{
+  "downloadedAt": "2026-07-01T13:15:43.980Z",
+  "word": {
+    "id": "en-gb-word-sheep",
+    "written": "sheep",
+    "ipa": "/ʃiːp/",
+    "phonemeIds": [
+      "en-gb-sh",
+      "en-gb-fleece",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-a sheep.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/En-uk-a_sheep.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_sheep.ogg",
+    "mime": "application/ogg",
+    "size": 17727,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of \"a sheep\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-sheep|File%3AEn-uk-a%20sheep.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-a_sheep.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "score": 21,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-sheep/En-uk-a_sheep.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_sheep.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-sheep/En-uk-a_sheep.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-sheep/En-uk-a_sheep.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-sheep/En-uk-a_sheep.ogg"
+  }
+}

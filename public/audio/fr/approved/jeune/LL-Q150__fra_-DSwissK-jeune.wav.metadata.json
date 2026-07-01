@@ -1,0 +1,57 @@
+{
+  "downloadedAt": "2026-06-30T21:37:46.120Z",
+  "word": {
+    "id": "fr-word-jeune",
+    "written": "jeune",
+    "ipa": "/ʒœn/",
+    "phonemeIds": [
+      "fr-oe",
+      "fr-zh"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-DSwissK-jeune.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/LL-Q150_%28fra%29-DSwissK-jeune.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-DSwissK-jeune.wav",
+    "mime": "audio/wav",
+    "size": 92972,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: DSwissK Recorder: DSwissK",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-jeune|File%3ALL-Q150%20(fra)-DSwissK-jeune.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-DSwissK-jeune.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "Swiss French"
+    ],
+    "score": 21,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on French Wiktionary page",
+      "regional keyword: Swiss French",
+      "audio MIME audio/wav"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-jeune/LL-Q150__fra_-DSwissK-jeune.wav",
+      "kind": "wiktionary",
+      "accent": "Swiss French",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: DSwissK Recorder: DSwissK",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-DSwissK-jeune.wav",
+      "notes": "Regional candidate: Swiss French"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Swiss French"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-jeune/LL-Q150__fra_-DSwissK-jeune.wav",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-jeune/LL-Q150__fra_-DSwissK-jeune.wav.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-jeune/LL-Q150__fra_-DSwissK-jeune.wav"
+  }
+}

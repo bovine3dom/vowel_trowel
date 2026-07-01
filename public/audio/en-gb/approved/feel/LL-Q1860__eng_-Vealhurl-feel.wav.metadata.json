@@ -1,0 +1,51 @@
+{
+  "downloadedAt": "2026-07-01T13:16:21.128Z",
+  "word": {
+    "id": "en-gb-word-feel",
+    "written": "feel",
+    "ipa": "/fiːl/",
+    "phonemeIds": [
+      "en-gb-f",
+      "en-gb-fleece",
+      "en-gb-l"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-feel.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/LL-Q1860_%28eng%29-Vealhurl-feel.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-feel.wav",
+    "mime": "audio/wav",
+    "size": 76332,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-feel|File%3ALL-Q1860%20(eng)-Vealhurl-feel.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Vealhurl-feel.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 11,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-feel/LL-Q1860__eng_-Vealhurl-feel.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-feel.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-feel/LL-Q1860__eng_-Vealhurl-feel.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-feel/LL-Q1860__eng_-Vealhurl-feel.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-feel/LL-Q1860__eng_-Vealhurl-feel.wav"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "downloadedAt": "2026-07-01T13:15:44.802Z",
+  "word": {
+    "id": "en-gb-word-sheep",
+    "written": "sheep",
+    "ipa": "/ʃiːp/",
+    "phonemeIds": [
+      "en-gb-sh",
+      "en-gb-fleece",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-sheep.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/En-us-sheep.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-sheep.ogg",
+    "mime": "application/ogg",
+    "size": 14393,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-sheep|File%3AEn-us-sheep.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-sheep.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-sheep/En-us-sheep.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sheep.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-sheep/En-us-sheep.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-sheep/En-us-sheep.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-sheep/En-us-sheep.ogg"
+  }
+}

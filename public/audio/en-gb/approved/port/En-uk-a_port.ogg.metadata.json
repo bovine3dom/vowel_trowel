@@ -1,0 +1,78 @@
+{
+  "downloadedAt": "2026-07-01T17:21:55.627Z",
+  "word": {
+    "id": "en-gb-word-port",
+    "written": "port",
+    "ipa": "/pɔːt/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-thought",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-a port.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9f/En-uk-a_port.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_port.ogg",
+    "mime": "application/ogg",
+    "size": 16002,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of \"a port\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-port|File%3AEn-uk-a%20port.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-a_port.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "port",
+        "fileTitle": "File:En-uk-a port.ogg",
+        "languageCode": "en",
+        "ipa": "/pɔːt/",
+        "normalizedIpa": "pɔːt",
+        "context": "* {{IPA|en|/pɔːt/|a=RP}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/pɔːt/",
+      "claimed": [
+        "/pɔːt/"
+      ],
+      "matched": [
+        "/pɔːt/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /pɔːt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-port/En-uk-a_port.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_port.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-port/En-uk-a_port.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-port/En-uk-a_port.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-port/En-uk-a_port.ogg"
+  }
+}

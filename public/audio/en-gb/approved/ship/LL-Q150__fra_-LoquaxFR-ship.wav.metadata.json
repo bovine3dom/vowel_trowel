@@ -1,0 +1,51 @@
+{
+  "downloadedAt": "2026-07-01T13:15:43.686Z",
+  "word": {
+    "id": "en-gb-word-ship",
+    "written": "ship",
+    "ipa": "/ʃɪp/",
+    "phonemeIds": [
+      "en-gb-sh",
+      "en-gb-kit",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-LoquaxFR-ship.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/LL-Q150_%28fra%29-LoquaxFR-ship.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-ship.wav",
+    "mime": "audio/wav",
+    "size": 61484,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: LoquaxFR Recorder: LoquaxFR",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-ship|File%3ALL-Q150%20(fra)-LoquaxFR-ship.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-LoquaxFR-ship.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 1,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests non-English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-ship/LL-Q150__fra_-LoquaxFR-ship.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: LoquaxFR Recorder: LoquaxFR",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-ship.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-ship/LL-Q150__fra_-LoquaxFR-ship.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-ship/LL-Q150__fra_-LoquaxFR-ship.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-ship/LL-Q150__fra_-LoquaxFR-ship.wav"
+  }
+}

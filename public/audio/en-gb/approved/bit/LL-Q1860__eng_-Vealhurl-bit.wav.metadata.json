@@ -1,0 +1,51 @@
+{
+  "downloadedAt": "2026-07-01T13:16:05.221Z",
+  "word": {
+    "id": "en-gb-word-bit",
+    "written": "bit",
+    "ipa": "/bɪt/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-kit",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-bit.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/LL-Q1860_%28eng%29-Vealhurl-bit.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-bit.wav",
+    "mime": "audio/wav",
+    "size": 68396,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-bit|File%3ALL-Q1860%20(eng)-Vealhurl-bit.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Vealhurl-bit.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 11,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bit/LL-Q1860__eng_-Vealhurl-bit.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-bit.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bit/LL-Q1860__eng_-Vealhurl-bit.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bit/LL-Q1860__eng_-Vealhurl-bit.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bit/LL-Q1860__eng_-Vealhurl-bit.wav"
+  }
+}

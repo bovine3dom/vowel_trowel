@@ -1,0 +1,78 @@
+{
+  "downloadedAt": "2026-07-01T17:21:20.431Z",
+  "word": {
+    "id": "en-gb-word-heart",
+    "written": "heart",
+    "ipa": "/hɑːt/",
+    "phonemeIds": [
+      "en-gb-h",
+      "en-gb-palm",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-heart.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/En-uk-heart.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-heart.ogg",
+    "mime": "application/ogg",
+    "size": 16032,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"heart\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-heart|File%3AEn-uk-heart.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-heart.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "heart",
+        "fileTitle": "File:En-uk-heart.ogg",
+        "languageCode": "en",
+        "ipa": "/hɑːt/",
+        "normalizedIpa": "hɑːt",
+        "context": "* {{IPA|en|/hɑːt/|a=RP}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/hɑːt/",
+      "claimed": [
+        "/hɑːt/"
+      ],
+      "matched": [
+        "/hɑːt/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /hɑːt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-heart/En-uk-heart.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-heart.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-heart/En-uk-heart.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-heart/En-uk-heart.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-heart/En-uk-heart.ogg"
+  }
+}

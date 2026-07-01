@@ -1,0 +1,78 @@
+{
+  "downloadedAt": "2026-07-01T17:19:07.310Z",
+  "word": {
+    "id": "en-gb-word-cup",
+    "written": "cup",
+    "ipa": "/kʌp/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-strut",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-a cup.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/En-uk-a_cup.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_cup.ogg",
+    "mime": "application/ogg",
+    "size": 15274,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of \"a cup\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-cup|File%3AEn-uk-a%20cup.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-a_cup.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cup",
+        "fileTitle": "File:En-uk-a cup.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈkʌp/",
+        "normalizedIpa": "kʌp",
+        "context": "* {{IPA|en|/ˈkʌp/|a=RP,GA,CA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kʌp/",
+      "claimed": [
+        "/ˈkʌp/"
+      ],
+      "matched": [
+        "/ˈkʌp/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /kʌp/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-cup/En-uk-a_cup.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_cup.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-cup/En-uk-a_cup.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-cup/En-uk-a_cup.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-cup/En-uk-a_cup.ogg"
+  }
+}

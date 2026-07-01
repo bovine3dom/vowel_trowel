@@ -1,0 +1,102 @@
+{
+  "downloadedAt": "2026-07-01T17:24:14.821Z",
+  "word": {
+    "id": "en-gb-word-pull",
+    "written": "pull",
+    "ipa": "/pʊl/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-foot",
+      "en-gb-l"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-pull.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/En-au-pull.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-pull.ogg",
+    "mime": "application/ogg",
+    "size": 16966,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"pull\". Male, Australian accent.",
+    "key": "en-gb-word-pull|File%3AEn-au-pull.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-pull.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pull",
+        "fileTitle": "File:En-au-pull.ogg",
+        "languageCode": "en",
+        "ipa": "/pʊl/",
+        "normalizedIpa": "pʊl",
+        "context": "* {{enPR|po͝ol|a=RP,GA}}; {{IPA|en|/pʊl/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pull",
+        "fileTitle": "File:En-au-pull.ogg",
+        "languageCode": "en",
+        "ipa": "/pəl/",
+        "normalizedIpa": "pəl",
+        "context": "* {{IPA|en|/pəl/|a=Central England,Southern England,RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pull",
+        "fileTitle": "File:En-au-pull.ogg",
+        "languageCode": "en",
+        "ipa": "/pʉl/",
+        "normalizedIpa": "pʉl",
+        "context": "* {{IPA|en|/pʉl/|a=Scotland,Northern Ireland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pull",
+        "fileTitle": "File:En-au-pull.ogg",
+        "languageCode": "en",
+        "ipa": "/puːl/",
+        "normalizedIpa": "puːl",
+        "context": "* {{IPA|en|/puːl/|a=full-fool<!--''[[full]]–[[fool]]'' merger-->}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/pʊl/",
+      "claimed": [
+        "/pʊl/",
+        "/pəl/",
+        "/pʉl/",
+        "/puːl/"
+      ],
+      "matched": [
+        "/pʊl/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /pʊl/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-pull/En-au-pull.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-pull.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-pull/En-au-pull.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-pull/En-au-pull.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-pull/En-au-pull.ogg"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "downloadedAt": "2026-07-01T17:24:17.690Z",
+  "word": {
+    "id": "en-gb-word-luke",
+    "written": "Luke",
+    "ipa": "/luːk/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-goose",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-Luke.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/38/LL-Q1860_%28eng%29-Vealhurl-Luke.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Luke.wav",
+    "mime": "audio/wav",
+    "size": 84780,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-luke|File%3ALL-Q1860%20(eng)-Vealhurl-Luke.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Vealhurl-Luke.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "Luke",
+        "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-Luke.wav",
+        "languageCode": "en",
+        "ipa": "/luːk/",
+        "normalizedIpa": "luːk",
+        "context": "* {{IPA|en|/luːk/|a=RP}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/luːk/",
+      "claimed": [
+        "/luːk/"
+      ],
+      "matched": [
+        "/luːk/"
+      ]
+    },
+    "score": 30,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /luːk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-luke/LL-Q1860__eng_-Vealhurl-Luke.wav",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Luke.wav",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-luke/LL-Q1860__eng_-Vealhurl-Luke.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-luke/LL-Q1860__eng_-Vealhurl-Luke.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-luke/LL-Q1860__eng_-Vealhurl-Luke.wav"
+  }
+}

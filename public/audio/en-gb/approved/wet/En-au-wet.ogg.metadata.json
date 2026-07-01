@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-01T17:24:31.820Z",
+  "word": {
+    "id": "en-gb-word-wet",
+    "written": "wet",
+    "ipa": "/wet/",
+    "phonemeIds": [
+      "en-gb-w",
+      "en-gb-dress",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-wet.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/8/88/En-au-wet.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-wet.ogg",
+    "mime": "application/ogg",
+    "size": 17209,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"wet\". Male, Australian accent.",
+    "key": "en-gb-word-wet|File%3AEn-au-wet.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-wet.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "wet",
+        "fileTitle": "File:En-au-wet.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈwɛt/",
+        "normalizedIpa": "wɛt",
+        "context": "* {{IPA|en|/ˈwɛt/|[ˈwɛt]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "wet",
+        "fileTitle": "File:En-au-wet.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈwet/",
+        "normalizedIpa": "wet",
+        "context": "* {{IPA|en|/ˈwet/|[ˈwet]|a=AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/wet/",
+      "claimed": [
+        "/ˈwɛt/",
+        "/ˈwet/"
+      ],
+      "matched": [
+        "/ˈwet/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /wet/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-wet/En-au-wet.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-wet.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-wet/En-au-wet.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-wet/En-au-wet.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-wet/En-au-wet.ogg"
+  }
+}

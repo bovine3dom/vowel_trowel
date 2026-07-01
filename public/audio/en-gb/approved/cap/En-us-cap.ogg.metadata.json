@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-01T17:19:06.900Z",
+  "word": {
+    "id": "en-gb-word-cap",
+    "written": "cap",
+    "ipa": "/kæp/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-trap",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-cap.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/En-us-cap.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-cap.ogg",
+    "mime": "application/ogg",
+    "size": 10898,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-cap|File%3AEn-us-cap.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-cap.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cap",
+        "fileTitle": "File:En-us-cap.ogg",
+        "languageCode": "en",
+        "ipa": "/kæp/",
+        "normalizedIpa": "kæp",
+        "context": "* {{IPA|en|/kæp/|[kʰæp]|a=RP,US,CA,AU}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cap",
+        "fileTitle": "File:En-us-cap.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰæp]",
+        "normalizedIpa": "kʰæp",
+        "context": "* {{IPA|en|/kæp/|[kʰæp]|a=RP,US,CA,AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kæp/",
+      "claimed": [
+        "/kæp/",
+        "[kʰæp]"
+      ],
+      "matched": [
+        "/kæp/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /kæp/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-cap/En-us-cap.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cap.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-cap/En-us-cap.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-cap/En-us-cap.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-cap/En-us-cap.ogg"
+  }
+}

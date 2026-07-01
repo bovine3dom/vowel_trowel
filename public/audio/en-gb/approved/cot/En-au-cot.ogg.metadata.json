@@ -1,0 +1,81 @@
+{
+  "downloadedAt": "2026-07-01T17:21:33.334Z",
+  "word": {
+    "id": "en-gb-word-cot",
+    "written": "cot",
+    "ipa": "/kɒt/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-lot",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-cot.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/En-au-cot.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-cot.ogg",
+    "mime": "application/ogg",
+    "size": 11339,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": "No machine-readable author provided. Stuart H assumed (based on copyright claims).",
+    "credit": "No machine-readable source provided. Own work assumed (based on copyright claims).",
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-cot|File%3AEn-au-cot.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-cot.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cot",
+        "fileTitle": "File:En-au-cot.ogg",
+        "languageCode": "en",
+        "ipa": "/kɒt/",
+        "normalizedIpa": "kɒt",
+        "context": "* {{IPA|en|/kɒt/|a=RP,NZ,CA,Boston}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cot",
+        "fileTitle": "File:En-au-cot.ogg",
+        "languageCode": "en",
+        "ipa": "/kɔt/",
+        "normalizedIpa": "kɔt",
+        "context": "* {{IPA|en|/kɔt/|a=SSB,AU,Scotland}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kɒt/",
+      "claimed": [
+        "/kɒt/",
+        "/kɔt/"
+      ],
+      "matched": [
+        "/kɒt/"
+      ]
+    },
+    "score": 14,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /kɒt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-cot/En-au-cot.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "attribution": "No machine-readable author provided. Stuart H assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-cot.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-cot/En-au-cot.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-cot/En-au-cot.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-cot/En-au-cot.ogg"
+  }
+}

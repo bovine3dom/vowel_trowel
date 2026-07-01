@@ -1,0 +1,103 @@
+{
+  "downloadedAt": "2026-07-01T17:21:58.295Z",
+  "word": {
+    "id": "en-gb-word-fool",
+    "written": "fool",
+    "ipa": "/fuːl/",
+    "phonemeIds": [
+      "en-gb-f",
+      "en-gb-goose",
+      "en-gb-l"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Nattes à chat-fool.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/LL-Q1860_%28eng%29-Nattes_%C3%A0_chat-fool.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Nattes_%C3%A0_chat-fool.wav",
+    "mime": "audio/wav",
+    "size": 99604,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Nattes à chat Recorder: Nattes à chat",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-fool|File%3ALL-Q1860%20(eng)-Nattes%20%C3%A0%20chat-fool.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Nattes_%25C3%25A0_chat-fool.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fool",
+        "fileTitle": "File:LL-Q1860 (eng)-Nattes à chat-fool.wav",
+        "languageCode": "en",
+        "ipa": "/fuːl/",
+        "normalizedIpa": "fuːl",
+        "context": "* {{IPA|en|/fuːl/|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fool",
+        "fileTitle": "File:LL-Q1860 (eng)-Nattes à chat-fool.wav",
+        "languageCode": "en",
+        "ipa": "/fʉwl/",
+        "normalizedIpa": "fʉwl",
+        "context": "* {{IPA|en|/fʉwl/|[fʊwl]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fool",
+        "fileTitle": "File:LL-Q1860 (eng)-Nattes à chat-fool.wav",
+        "languageCode": "en",
+        "ipa": "[fʊwl]",
+        "normalizedIpa": "fʊwl",
+        "context": "* {{IPA|en|/fʉwl/|[fʊwl]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fool",
+        "fileTitle": "File:LL-Q1860 (eng)-Nattes à chat-fool.wav",
+        "languageCode": "en",
+        "ipa": "/foːl/",
+        "normalizedIpa": "foːl",
+        "context": "** {{IPA|en|/foːl/|a=fool-fall}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/fuːl/",
+      "claimed": [
+        "/fuːl/",
+        "/fʉwl/",
+        "[fʊwl]",
+        "/foːl/"
+      ],
+      "matched": [
+        "/fuːl/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /fuːl/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-fool/LL-Q1860__eng_-Nattes___chat-fool.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Nattes à chat Recorder: Nattes à chat",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Nattes_%C3%A0_chat-fool.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-fool/LL-Q1860__eng_-Nattes___chat-fool.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-fool/LL-Q1860__eng_-Nattes___chat-fool.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-fool/LL-Q1860__eng_-Nattes___chat-fool.wav"
+  }
+}

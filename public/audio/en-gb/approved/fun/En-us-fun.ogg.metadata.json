@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-01T17:20:09.264Z",
+  "word": {
+    "id": "en-gb-word-fun",
+    "written": "fun",
+    "ipa": "/fʌn/",
+    "phonemeIds": [
+      "en-gb-f",
+      "en-gb-strut",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-fun.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/En-us-fun.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-fun.ogg",
+    "mime": "application/ogg",
+    "size": 11224,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-fun|File%3AEn-us-fun.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-fun.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fun",
+        "fileTitle": "File:En-us-fun.ogg",
+        "languageCode": "en",
+        "ipa": "/fʌn/",
+        "normalizedIpa": "fʌn",
+        "context": "* {{enPR|fŭn|a=US,RP}}, {{IPA|en|/fʌn/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fun",
+        "fileTitle": "File:En-us-fun.ogg",
+        "languageCode": "en",
+        "ipa": "/fʊn/",
+        "normalizedIpa": "fʊn",
+        "context": "* {{IPA|en|/fʊn/|a=North England,Ireland}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/fʌn/",
+      "claimed": [
+        "/fʌn/",
+        "/fʊn/"
+      ],
+      "matched": [
+        "/fʌn/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /fʌn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-fun/En-us-fun.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-fun.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-fun/En-us-fun.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-fun/En-us-fun.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-fun/En-us-fun.ogg"
+  }
+}

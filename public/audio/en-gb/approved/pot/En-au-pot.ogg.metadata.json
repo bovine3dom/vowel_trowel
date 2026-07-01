@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-01T17:21:55.167Z",
+  "word": {
+    "id": "en-gb-word-pot",
+    "written": "pot",
+    "ipa": "/pɒt/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-lot",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-pot.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/En-au-pot.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-pot.ogg",
+    "mime": "application/ogg",
+    "size": 25775,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"pot\". Male, Australian accent.",
+    "key": "en-gb-word-pot|File%3AEn-au-pot.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-pot.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pot",
+        "fileTitle": "File:En-au-pot.ogg",
+        "languageCode": "en",
+        "ipa": "/pɒt/",
+        "normalizedIpa": "pɒt",
+        "context": "* {{enPR|pŏt|a=UK}}, {{IPA|en|/pɒt/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pot",
+        "fileTitle": "File:En-au-pot.ogg",
+        "languageCode": "en",
+        "ipa": "/pɑt/",
+        "normalizedIpa": "pɑt",
+        "context": "* {{enPR|pät|a=US}}, {{IPA|en|/pɑt/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/pɒt/",
+      "claimed": [
+        "/pɒt/",
+        "/pɑt/"
+      ],
+      "matched": [
+        "/pɒt/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /pɒt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-pot/En-au-pot.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-pot.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-pot/En-au-pot.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-pot/En-au-pot.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-pot/En-au-pot.ogg"
+  }
+}

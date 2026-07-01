@@ -1,0 +1,123 @@
+{
+  "downloadedAt": "2026-07-01T17:21:32.698Z",
+  "word": {
+    "id": "en-gb-word-barn",
+    "written": "barn",
+    "ipa": "/bɑːn/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-palm",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-barn.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7f/LL-Q1860_%28eng%29-Vealhurl-barn.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-barn.wav",
+    "mime": "audio/wav",
+    "size": 101164,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-barn|File%3ALL-Q1860%20(eng)-Vealhurl-barn.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Vealhurl-barn.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "barn",
+        "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-barn.wav",
+        "languageCode": "en",
+        "ipa": "[ˈbɑɹn]",
+        "normalizedIpa": "bɑɹn",
+        "context": "* {{IPA|en|[ˈbɑɹn]|[ˈbɑɻn]|a=GA,CA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "barn",
+        "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-barn.wav",
+        "languageCode": "en",
+        "ipa": "[ˈbɑɻn]",
+        "normalizedIpa": "bɑɻn",
+        "context": "* {{IPA|en|[ˈbɑɹn]|[ˈbɑɻn]|a=GA,CA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "barn",
+        "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-barn.wav",
+        "languageCode": "en",
+        "ipa": "[ˈbaɹn]",
+        "normalizedIpa": "baɹn",
+        "context": "* {{IPA|en|[ˈbaɹn]|a=Scotland,Ireland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "barn",
+        "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-barn.wav",
+        "languageCode": "en",
+        "ipa": "[ˈbɒən]",
+        "normalizedIpa": "bɒən",
+        "context": "** {{IPA|en|[ˈbɒən]|a=non-rhotic}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "barn",
+        "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-barn.wav",
+        "languageCode": "en",
+        "ipa": "[ˈbɒɹn]",
+        "normalizedIpa": "bɒɹn",
+        "context": "** {{IPA|en|[ˈbɒɹn]|a=rhotic}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "barn",
+        "fileTitle": "File:LL-Q1860 (eng)-Vealhurl-barn.wav",
+        "languageCode": "en",
+        "ipa": "[ˈbɑːn]",
+        "normalizedIpa": "bɑːn",
+        "context": "* {{IPA|en|[ˈbɑːn]|a=RP,ZA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/bɑːn/",
+      "claimed": [
+        "[ˈbɑɹn]",
+        "[ˈbɑɻn]",
+        "[ˈbaɹn]",
+        "[ˈbɒən]",
+        "[ˈbɒɹn]",
+        "[ˈbɑːn]"
+      ],
+      "matched": [
+        "[ˈbɑːn]"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /bɑːn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-barn/LL-Q1860__eng_-Vealhurl-barn.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-barn.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-barn/LL-Q1860__eng_-Vealhurl-barn.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-barn/LL-Q1860__eng_-Vealhurl-barn.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-barn/LL-Q1860__eng_-Vealhurl-barn.wav"
+  }
+}

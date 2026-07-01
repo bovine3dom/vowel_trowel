@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-01T17:21:56.994Z",
+  "word": {
+    "id": "en-gb-word-full",
+    "written": "full",
+    "ipa": "/fʊl/",
+    "phonemeIds": [
+      "en-gb-f",
+      "en-gb-foot",
+      "en-gb-l"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-full.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/En-us-full.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-full.ogg",
+    "mime": "application/ogg",
+    "size": 15575,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-full|File%3AEn-us-full.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-full.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "full",
+        "fileTitle": "File:En-us-full.ogg",
+        "languageCode": "en",
+        "ipa": "/fʊl/",
+        "normalizedIpa": "fʊl",
+        "context": "* {{enPR|fo͝ol}}, {{IPA|en|/fʊl/|[fʊɫ]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "full",
+        "fileTitle": "File:En-us-full.ogg",
+        "languageCode": "en",
+        "ipa": "[fʊɫ]",
+        "normalizedIpa": "fʊɫ",
+        "context": "* {{enPR|fo͝ol}}, {{IPA|en|/fʊl/|[fʊɫ]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/fʊl/",
+      "claimed": [
+        "/fʊl/",
+        "[fʊɫ]"
+      ],
+      "matched": [
+        "/fʊl/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /fʊl/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-full/En-us-full.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-full.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-full/En-us-full.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-full/En-us-full.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-full/En-us-full.ogg"
+  }
+}

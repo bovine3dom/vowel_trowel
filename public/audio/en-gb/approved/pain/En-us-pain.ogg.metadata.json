@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-01T17:24:31.308Z",
+  "word": {
+    "id": "en-gb-word-pain",
+    "written": "pain",
+    "ipa": "/peɪn/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-face",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-pain.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/En-us-pain.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-pain.ogg",
+    "mime": "application/ogg",
+    "size": 13605,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-pain|File%3AEn-us-pain.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-pain.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pain",
+        "fileTitle": "File:En-us-pain.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈpeɪ̯n/",
+        "normalizedIpa": "peɪn",
+        "context": "* {{IPA|en|/ˈpeɪ̯n/|[ˈpʰeɪ̯n]|a=GA,RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pain",
+        "fileTitle": "File:En-us-pain.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈpʰeɪ̯n]",
+        "normalizedIpa": "pʰeɪn",
+        "context": "* {{IPA|en|/ˈpeɪ̯n/|[ˈpʰeɪ̯n]|a=GA,RP}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/peɪn/",
+      "claimed": [
+        "/ˈpeɪ̯n/",
+        "[ˈpʰeɪ̯n]"
+      ],
+      "matched": [
+        "/ˈpeɪ̯n/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /peɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-pain/En-us-pain.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-pain.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-pain/En-us-pain.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-pain/En-us-pain.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-pain/En-us-pain.ogg"
+  }
+}

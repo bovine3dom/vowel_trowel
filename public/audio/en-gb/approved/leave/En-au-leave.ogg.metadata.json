@@ -1,0 +1,50 @@
+{
+  "downloadedAt": "2026-07-01T13:16:34.662Z",
+  "word": {
+    "id": "en-gb-word-leave",
+    "written": "leave",
+    "ipa": "/liːv/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-fleece",
+      "en-gb-v"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-leave.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/8/84/En-au-leave.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-leave.ogg",
+    "mime": "application/ogg",
+    "size": 17124,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"leave\". Male, Australian accent.",
+    "key": "en-gb-word-leave|File%3AEn-au-leave.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-leave.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-leave/En-au-leave.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-leave.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-leave/En-au-leave.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-leave/En-au-leave.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-leave/En-au-leave.ogg"
+  }
+}

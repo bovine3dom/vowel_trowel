@@ -1,0 +1,107 @@
+{
+  "downloadedAt": "2026-07-01T17:21:33.646Z",
+  "word": {
+    "id": "en-gb-word-caught",
+    "written": "caught",
+    "ipa": "/kɔːt/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-thought",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-caught.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/En-uk-caught.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-caught.ogg",
+    "mime": "application/ogg",
+    "size": 25252,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": "No machine-readable author provided. Celestianpower assumed (based on copyright claims).",
+    "credit": "No machine-readable source provided. Own work assumed (based on copyright claims).",
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-caught|File%3AEn-uk-caught.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-caught.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "caught",
+        "fileTitle": "File:En-uk-caught.ogg",
+        "languageCode": "en",
+        "ipa": "/kɔːt/",
+        "normalizedIpa": "kɔːt",
+        "context": "* {{IPA|en|/kɔːt/|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "caught",
+        "fileTitle": "File:En-uk-caught.ogg",
+        "languageCode": "en",
+        "ipa": "/koːt/",
+        "normalizedIpa": "koːt",
+        "context": "* {{IPA|en|/koːt/|[kʰo̞ːt]|[kʰo̞ːʔ]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "caught",
+        "fileTitle": "File:En-uk-caught.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰo̞ːt]",
+        "normalizedIpa": "kʰo̞ːt",
+        "context": "* {{IPA|en|/koːt/|[kʰo̞ːt]|[kʰo̞ːʔ]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "caught",
+        "fileTitle": "File:En-uk-caught.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰo̞ːʔ]",
+        "normalizedIpa": "kʰo̞ːʔ",
+        "context": "* {{IPA|en|/koːt/|[kʰo̞ːt]|[kʰo̞ːʔ]|a=SSB}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kɔːt/",
+      "claimed": [
+        "/kɔːt/",
+        "/koːt/",
+        "[kʰo̞ːt]",
+        "[kʰo̞ːʔ]"
+      ],
+      "matched": [
+        "/kɔːt/"
+      ]
+    },
+    "score": 25,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /kɔːt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-caught/En-uk-caught.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "Public domain",
+      "attribution": "No machine-readable author provided. Celestianpower assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-caught.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-caught/En-uk-caught.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-caught/En-uk-caught.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-caught/En-uk-caught.ogg"
+  }
+}

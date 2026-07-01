@@ -1,0 +1,50 @@
+{
+  "downloadedAt": "2026-07-01T13:16:51.579Z",
+  "word": {
+    "id": "en-gb-word-bed",
+    "written": "bed",
+    "ipa": "/bed/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-dress",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-bed.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/En-us-bed.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-bed.ogg",
+    "mime": "application/ogg",
+    "size": 15441,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-bed|File%3AEn-us-bed.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-bed.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bed/En-us-bed.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bed.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bed/En-us-bed.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bed/En-us-bed.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bed/En-us-bed.ogg"
+  }
+}

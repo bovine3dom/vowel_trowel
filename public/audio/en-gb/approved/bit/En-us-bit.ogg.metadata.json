@@ -1,0 +1,50 @@
+{
+  "downloadedAt": "2026-07-01T13:16:05.517Z",
+  "word": {
+    "id": "en-gb-word-bit",
+    "written": "bit",
+    "ipa": "/bɪt/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-kit",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-bit.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/de/En-us-bit.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-bit.ogg",
+    "mime": "application/ogg",
+    "size": 10524,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-bit|File%3AEn-us-bit.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-bit.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bit/En-us-bit.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bit.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bit/En-us-bit.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bit/En-us-bit.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bit/En-us-bit.ogg"
+  }
+}

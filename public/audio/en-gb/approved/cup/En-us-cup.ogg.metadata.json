@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-01T17:19:08.018Z",
+  "word": {
+    "id": "en-gb-word-cup",
+    "written": "cup",
+    "ipa": "/kʌp/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-strut",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-cup.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/57/En-us-cup.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-cup.ogg",
+    "mime": "application/ogg",
+    "size": 15602,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-cup|File%3AEn-us-cup.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-cup.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cup",
+        "fileTitle": "File:En-us-cup.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈkʌp/",
+        "normalizedIpa": "kʌp",
+        "context": "* {{IPA|en|/ˈkʌp/|a=RP,GA,CA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kʌp/",
+      "claimed": [
+        "/ˈkʌp/"
+      ],
+      "matched": [
+        "/ˈkʌp/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /kʌp/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-cup/En-us-cup.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cup.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-cup/En-us-cup.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-cup/En-us-cup.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-cup/En-us-cup.ogg"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "downloadedAt": "2026-07-01T13:16:35.491Z",
+  "word": {
+    "id": "en-gb-word-slip",
+    "written": "slip",
+    "ipa": "/slɪp/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-l",
+      "en-gb-kit",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-slip.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/En-au-slip.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-slip.ogg",
+    "mime": "application/ogg",
+    "size": 23001,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"slip\". Male, Australian accent.",
+    "key": "en-gb-word-slip|File%3AEn-au-slip.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-slip.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-slip/En-au-slip.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-slip.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-slip/En-au-slip.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-slip/En-au-slip.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-slip/En-au-slip.ogg"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "downloadedAt": "2026-07-01T13:16:21.449Z",
+  "word": {
+    "id": "en-gb-word-feel",
+    "written": "feel",
+    "ipa": "/fiːl/",
+    "phonemeIds": [
+      "en-gb-f",
+      "en-gb-fleece",
+      "en-gb-l"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-feel.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6d/En-us-feel.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-feel.ogg",
+    "mime": "application/ogg",
+    "size": 10629,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-feel|File%3AEn-us-feel.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-feel.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-feel/En-us-feel.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-feel.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-feel/En-us-feel.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-feel/En-us-feel.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-feel/En-us-feel.ogg"
+  }
+}
