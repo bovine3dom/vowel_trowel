@@ -7,7 +7,7 @@ import {
   selectSpeechVoice,
 } from "./audio/playback";
 import { frenchDataset } from "./languages/fr";
-import type { MinimalPairTerm, PhonemeId } from "./languages/types";
+import type { AudioSource, MinimalPairTerm, PhonemeId } from "./languages/types";
 import {
   canSubmitPrompt,
   createMatchingPrompt,
@@ -38,8 +38,15 @@ import {
 } from "./storage/progress";
 
 const dataset = frenchDataset;
+const audioCredits = collectAudioCredits();
 const SPEECH_VOICE_STORAGE_KEY = "vowel-trowel:tts-voice-uri";
 type TrainingMode = "match" | "sort";
+
+interface AudioCredit {
+  key: string;
+  labels: string[];
+  source: AudioSource;
+}
 
 export default function App() {
   const initialProgress = loadProgress();
@@ -410,6 +417,7 @@ export default function App() {
             )}
           </For>
         </div>
+        <AudioCreditsPanel credits={audioCredits} />
       </section>
     </main>
   );
@@ -856,6 +864,49 @@ function Metric(props: { label: string; value: string }) {
   );
 }
 
+function AudioCreditsPanel(props: { credits: readonly AudioCredit[] }) {
+  return (
+    <details class="audio-credits">
+      <summary>Audio credits</summary>
+      <Show
+        when={props.credits.length > 0}
+        fallback={<p class="muted">No local or external recording files are enabled yet. Browser TTS may be used as a fallback.</p>}
+      >
+        <div class="audio-credit-list">
+          <For each={props.credits}>
+            {(credit) => (
+              <article class="audio-credit-card">
+                <strong>{credit.labels.join(", ")}</strong>
+                <p>
+                  {credit.source.license ?? "License unknown"}
+                  <Show when={credit.source.accent}>
+                    {(accent) => <> · {accent()}</>}
+                  </Show>
+                </p>
+                <Show when={credit.source.attribution}>
+                  {(attribution) => <p>{attribution()}</p>}
+                </Show>
+                <p>
+                  <Show
+                    when={credit.source.sourceUrl}
+                    fallback={<span class="muted">Source: {credit.source.src}</span>}
+                  >
+                    {(sourceUrl) => (
+                      <a href={sourceUrl()} target="_blank" rel="noreferrer">
+                        Source file
+                      </a>
+                    )}
+                  </Show>
+                </p>
+              </article>
+            )}
+          </For>
+        </div>
+      </Show>
+    </details>
+  );
+}
+
 function EmptyDataset() {
   return (
     <section class="training-panel">
@@ -1010,6 +1061,45 @@ function phonemeHasAudio(phonemeId: PhonemeId): boolean {
 
 function minimalPairCount(): number {
   return dataset.contrasts.reduce((total, contrast) => total + contrast.minimalPairs.length, 0);
+}
+
+function collectAudioCredits(): AudioCredit[] {
+  const credits = new Map<string, AudioCredit>();
+
+  for (const word of dataset.words) {
+    for (const source of word.audio) {
+      addAudioCredit(credits, `${word.written} ${word.ipa}`, source);
+    }
+  }
+
+  for (const phoneme of dataset.phonemes) {
+    for (const source of phoneme.audio ?? []) {
+      addAudioCredit(credits, `${phoneme.ipa} sound`, source);
+    }
+  }
+
+  return [...credits.values()].sort((left, right) =>
+    (left.labels[0] ?? "").localeCompare(right.labels[0] ?? "")
+  );
+}
+
+function addAudioCredit(credits: Map<string, AudioCredit>, label: string, source: AudioSource): void {
+  if (!source.src || source.kind === "tts") {
+    return;
+  }
+
+  const key = source.sourceUrl ?? source.src;
+  const existing = credits.get(key);
+
+  if (existing) {
+    if (!existing.labels.includes(label)) {
+      existing.labels.push(label);
+    }
+
+    return;
+  }
+
+  credits.set(key, { key, labels: [label], source });
 }
 
 function loadSpeechVoiceURI(): string | null {

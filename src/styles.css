@@ -323,7 +323,8 @@ h3 {
 .sort-word-card:focus-visible,
 .mode-tab:focus-visible,
 .primary-button:focus-visible,
-.text-button:focus-visible {
+.text-button:focus-visible,
+.audio-credits summary:focus-visible {
   outline: 3px solid #866118;
   outline-offset: 3px;
 }
@@ -583,6 +584,53 @@ h3 {
   line-height: 1.5;
 }
 
+.audio-credits {
+  margin-top: 18px;
+  border-top: 1px solid #d6cec2;
+  padding-top: 14px;
+}
+
+.audio-credits summary {
+  cursor: pointer;
+  color: #3f3c37;
+  font-weight: 750;
+}
+
+.audio-credit-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.audio-credit-card {
+  border: 1px solid #d6cec2;
+  background: #fbfaf7;
+  padding: 12px;
+}
+
+.audio-credit-card strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.audio-credit-card p {
+  margin: 0 0 6px;
+  color: #5f584f;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.audio-credit-card p:last-child {
+  margin-bottom: 0;
+}
+
+.audio-credit-card a {
+  color: #202020;
+  font-weight: 650;
+  text-underline-offset: 3px;
+}
+
 @media (max-width: 900px) {
   .hero-panel,
   .mode-tabs,
@@ -592,6 +640,10 @@ h3 {
 
   .contrast-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .audio-credit-list {
+    grid-template-columns: 1fr;
   }
 }
 
