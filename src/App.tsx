@@ -7,6 +7,7 @@ import {
   playTermAudio,
   selectSpeechVoice,
   subscribePlaybackVisualization,
+  type PrecomputedSpectrogram,
   type PlaybackVisualizationState,
 } from "./audio/playback";
 import { getLanguageDataset, languageDatasets, sameLanguageId } from "./languages";
@@ -44,6 +45,7 @@ import {
 
 const dataset = getInitialDataset();
 const SPEECH_VOICE_STORAGE_KEY = "vowel-trowel:tts-voice-uri";
+const renderedSpectrograms = new WeakMap<PrecomputedSpectrogram, HTMLCanvasElement>();
 type TrainingMode = "match" | "sort";
 type CatalogTab = "phonemes" | "contrasts";
 type PhonemePair = readonly [PhonemeId, PhonemeId];
@@ -1356,7 +1358,9 @@ function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) 
   let canvas: HTMLCanvasElement | undefined;
   let stopSpectrogram: (() => void) | undefined;
   let paintedStateId: number | undefined;
+  let paintedExpanded = false;
   let revealedColumn = 0;
+  const [expanded, setExpanded] = createSignal(false);
 
   const stopDrawing = () => {
     stopSpectrogram?.();
@@ -1365,6 +1369,7 @@ function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) 
 
   createEffect(() => {
     const visualization = props.visualization;
+    const isExpanded = expanded();
 
     if (!canvas) {
       return;
@@ -1372,39 +1377,70 @@ function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) 
 
     const isNewSelection = paintedStateId !== visualization.id;
 
-    if (isNewSelection) {
+    if (isNewSelection || paintedExpanded !== isExpanded) {
       paintedStateId = visualization.id;
+      paintedExpanded = isExpanded;
       revealedColumn = 0;
       paintSpectrogramBase(canvas, visualization);
     }
 
     stopDrawing();
 
-    if (visualization.status === "playing" && visualization.analyser) {
-      stopSpectrogram = drawDurationScaledSpectrogram(canvas, visualization, {
+    if (visualization.status === "playing" && visualization.spectrogram) {
+      stopSpectrogram = drawPrecomputedSpectrogram(canvas, visualization, {
         get: () => revealedColumn,
         set: (column) => { revealedColumn = column; },
       });
       return;
     }
 
-    if (visualization.status === "ended" && visualization.analyser) {
+    if (visualization.status === "ended" && visualization.spectrogram) {
       revealedColumn = paintSpectrogramToProgress(canvas, visualization, 1, revealedColumn);
     }
+  });
+
+  createEffect(() => {
+    if (!expanded()) {
+      return;
+    }
+
+    const originalOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setExpanded(false);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    onCleanup(() => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    });
   });
 
   onCleanup(stopDrawing);
 
   return (
-    <section class="spectrogram-panel" aria-label="Spectrogram display">
+    <section class={expanded() ? "spectrogram-panel expanded" : "spectrogram-panel"} aria-label="Spectrogram display">
       <div class="spectrogram-heading">
         <div>
           <p class="eyebrow">Sound picture</p>
           <h3>Spectrogram</h3>
         </div>
-        <span class={`spectrogram-status ${props.visualization.status}`}>
-          {spectrogramStatusLabel(props.visualization)}
-        </span>
+        <div class="spectrogram-heading-actions">
+          <span class={`spectrogram-status ${props.visualization.status}`}>
+            {spectrogramStatusLabel(props.visualization)}
+          </span>
+          <button
+            class="text-button compact spectrogram-maximise"
+            type="button"
+            onClick={() => setExpanded((current) => !current)}
+            aria-expanded={expanded()}
+          >
+            {expanded() ? "Close" : "Maximise"}
+          </button>
+        </div>
       </div>
       <div class="spectrogram-frame">
         <canvas
@@ -1458,7 +1494,7 @@ function paintSpectrogramBase(canvas: HTMLCanvasElement, visualization: Playback
     return;
   }
 
-  if (visualization.mode === "recording" && !visualization.analyser) {
+  if (visualization.mode === "recording" && !visualization.spectrogram) {
     paintUnavailablePattern(ctx, width, height);
     return;
   }
@@ -1468,7 +1504,7 @@ function paintSpectrogramBase(canvas: HTMLCanvasElement, visualization: Playback
   }
 }
 
-function drawDurationScaledSpectrogram(
+function drawPrecomputedSpectrogram(
   canvas: HTMLCanvasElement,
   visualization: PlaybackVisualizationState,
   revealedColumn: { get: () => number; set: (column: number) => void },
@@ -1514,7 +1550,7 @@ function paintSpectrogramToProgress(
   progress: number,
   currentColumn: number,
 ): number {
-  if (!visualization.analyser) {
+  if (!visualization.spectrogram) {
     return currentColumn;
   }
 
@@ -1526,30 +1562,82 @@ function paintSpectrogramToProgress(
     return currentColumn;
   }
 
-  const data = new Uint8Array(visualization.analyser.frequencyBinCount);
-  visualization.analyser.getByteFrequencyData(data);
-  paintSpectrogramColumns(ctx, currentColumn, targetColumn, height, data);
+  paintSpectrogramSlice(ctx, width, currentColumn, targetColumn, height, visualization.spectrogram);
 
   return targetColumn;
 }
 
-function paintSpectrogramColumns(
+function paintSpectrogramSlice(
   ctx: CanvasRenderingContext2D,
+  width: number,
   fromX: number,
   toX: number,
   height: number,
-  data: Uint8Array,
+  spectrogram: PrecomputedSpectrogram,
 ): void {
-  const columnWidth = Math.max(1, toX - fromX);
+  const image = getRenderedSpectrogram(spectrogram);
+  const sourceStart = Math.floor((fromX / Math.max(1, width)) * image.width);
+  const sourceEnd = Math.max(sourceStart + 1, Math.ceil((toX / Math.max(1, width)) * image.width));
+  const sourceWidth = Math.min(image.width - sourceStart, sourceEnd - sourceStart);
+  const targetWidth = Math.max(1, toX - fromX);
 
-  for (let y = 0; y < height; y += 1) {
-    const normalizedY = 1 - y / Math.max(1, height - 1);
-    const bin = Math.min(data.length - 1, Math.floor(normalizedY ** 2.4 * (data.length - 1)));
-    const value = (data[bin] ?? 0) / 255;
-
-    ctx.fillStyle = spectrogramColor(value);
-    ctx.fillRect(fromX, y, columnWidth, 1);
+  if (sourceWidth <= 0) {
+    return;
   }
+
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(
+    image,
+    sourceStart,
+    0,
+    sourceWidth,
+    image.height,
+    fromX,
+    0,
+    targetWidth,
+    height,
+  );
+}
+
+function getRenderedSpectrogram(spectrogram: PrecomputedSpectrogram): HTMLCanvasElement {
+  const cached = renderedSpectrograms.get(spectrogram);
+
+  if (cached) {
+    return cached;
+  }
+
+  const canvas = document.createElement("canvas");
+  canvas.width = spectrogram.columnCount;
+  canvas.height = spectrogram.binCount;
+
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx) {
+    throw new Error("Could not create spectrogram image context.");
+  }
+
+  const image = ctx.createImageData(canvas.width, canvas.height);
+
+  for (let x = 0; x < canvas.width; x += 1) {
+    for (let y = 0; y < canvas.height; y += 1) {
+      const normalizedY = 1 - y / Math.max(1, canvas.height - 1);
+      const bin = Math.min(spectrogram.binCount - 1, Math.floor(normalizedY ** 2.4 * (spectrogram.binCount - 1)));
+      const value = (spectrogram.data[x * spectrogram.binCount + bin] ?? 0) / 255;
+      const [red, green, blue] = spectrogramRgb(value);
+      const pixelIndex = (y * canvas.width + x) * 4;
+
+      image.data[pixelIndex] = red;
+      image.data[pixelIndex + 1] = green;
+      image.data[pixelIndex + 2] = blue;
+      image.data[pixelIndex + 3] = 255;
+    }
+  }
+
+  ctx.putImageData(image, 0, 0);
+  renderedSpectrograms.set(spectrogram, canvas);
+
+  return canvas;
 }
 
 function getSpectrogramProgress(visualization: PlaybackVisualizationState, startedAt: number): number {
@@ -1569,7 +1657,9 @@ function prepareSpectrogramCanvas(canvas: HTMLCanvasElement): {
   resized: boolean;
 } {
   const rect = canvas.getBoundingClientRect();
-  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const expanded = Boolean(canvas.closest(".spectrogram-panel.expanded"));
+  const deviceRatio = window.devicePixelRatio || 1;
+  const ratio = Math.min(deviceRatio * (expanded ? 2.5 : 1.75), expanded ? 4 : 3);
   const cssWidth = Math.max(280, Math.floor(rect.width || 420));
   const cssHeight = Math.max(120, Math.floor(rect.height || 150));
   const width = Math.floor(cssWidth * ratio);
@@ -1667,17 +1757,23 @@ function paintUnavailablePattern(ctx: CanvasRenderingContext2D, width: number, h
 }
 
 function spectrogramColor(value: number): string {
+  const [red, green, blue] = spectrogramRgb(value);
+
+  return `rgb(${red}, ${green}, ${blue})`;
+}
+
+function spectrogramRgb(value: number): readonly [number, number, number] {
   const clamped = Math.max(0, Math.min(1, value));
 
   if (clamped < 0.35) {
-    return mixColor([244, 241, 234], [214, 206, 194], clamped / 0.35);
+    return mixRgb([244, 241, 234], [214, 206, 194], clamped / 0.35);
   }
 
   if (clamped < 0.72) {
-    return mixColor([214, 206, 194], [138, 104, 20], (clamped - 0.35) / 0.37);
+    return mixRgb([214, 206, 194], [138, 104, 20], (clamped - 0.35) / 0.37);
   }
 
-  return mixColor([138, 104, 20], [38, 79, 135], (clamped - 0.72) / 0.28);
+  return mixRgb([138, 104, 20], [38, 79, 135], (clamped - 0.72) / 0.28);
 }
 
 function mixColor(
@@ -1685,12 +1781,22 @@ function mixColor(
   end: readonly [number, number, number],
   amount: number,
 ): string {
+  const [red, green, blue] = mixRgb(start, end, amount);
+
+  return `rgb(${red}, ${green}, ${blue})`;
+}
+
+function mixRgb(
+  start: readonly [number, number, number],
+  end: readonly [number, number, number],
+  amount: number,
+): readonly [number, number, number] {
   const clamped = Math.max(0, Math.min(1, amount));
   const [red, green, blue] = start.map((channel, index) =>
     Math.round(channel + ((end[index] ?? channel) - channel) * clamped)
-  );
+  ) as [number, number, number];
 
-  return `rgb(${red}, ${green}, ${blue})`;
+  return [red, green, blue];
 }
 
 function AudioCreditsPanel(props: { credits: readonly AudioCredit[] }) {

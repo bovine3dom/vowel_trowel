@@ -32,6 +32,8 @@ interface CliOptions {
   downloadDir: string;
   reviewStatePath: string;
   forceDownloadReviewed: boolean;
+  includeIpaMismatches: boolean;
+  progress: boolean;
 }
 
 interface SourceWiki {
@@ -44,6 +46,17 @@ interface WikiPageAudio {
   pageTitle: string;
   missing: boolean;
   files: string[];
+  audioIpaClaims: WikiAudioIpaClaim[];
+}
+
+interface WikiAudioIpaClaim {
+  wiki: string;
+  pageTitle: string;
+  fileTitle: string;
+  languageCode: string;
+  ipa: string;
+  normalizedIpa: string;
+  context: string;
 }
 
 interface CommonsAudioInfo {
@@ -64,6 +77,8 @@ interface AudioCandidate extends CommonsAudioInfo {
   key: string;
   sourceWikis: string[];
   regions: string[];
+  wiktionaryIpaClaims: WikiAudioIpaClaim[];
+  ipaCheck: IpaCheck;
   score: number;
   reasons: string[];
   suggestedAudioSource: AudioSource;
@@ -71,6 +86,13 @@ interface AudioCandidate extends CommonsAudioInfo {
   localPath?: string;
   metadataPath?: string;
   datasetSrc?: string;
+}
+
+interface IpaCheck {
+  status: "match" | "mismatch" | "unknown";
+  expected: string;
+  claimed: string[];
+  matched: string[];
 }
 
 interface DownloadedCandidatePaths {
@@ -115,7 +137,15 @@ interface QueryPage {
     descriptionurl?: string;
     mime?: string;
     size?: number;
-    extmetadata?: Record<string, { value?: string }>;
+  extmetadata?: Record<string, { value?: string }>;
+  }>;
+  revisions?: Array<{
+    content?: string;
+    slots?: {
+      main?: {
+        content?: string;
+      };
+    };
   }>;
 }
 
@@ -128,6 +158,81 @@ const DEFAULT_ENGLISH_SOURCE_WIKIS: SourceWiki[] = [
 ];
 const AUDIO_EXTENSIONS = new Set(["oga", "ogg", "opus", "mp3", "wav", "webm", "flac", "m4a"]);
 const AUDIO_MIME_PREFIX = "audio/";
+
+class ProgressBar {
+  private current = 0;
+  private detailText = "";
+  private lastRenderedLength = 0;
+  private done = false;
+  private renderedCompleteLine = false;
+
+  constructor(
+    private readonly label: string,
+    private readonly total: number,
+    private readonly enabled: boolean,
+  ) {
+    this.render();
+  }
+
+  tick(detail?: string): void {
+    this.current = Math.min(this.total, this.current + 1);
+    this.detailText = detail ?? this.detailText;
+    this.render();
+  }
+
+  detail(detail: string): void {
+    this.detailText = detail;
+    this.render();
+  }
+
+  finish(): void {
+    if (this.done) {
+      return;
+    }
+
+    this.current = this.total;
+    this.done = true;
+    this.render(true);
+  }
+
+  private render(done = false): void {
+    if (!this.enabled || this.total <= 0) {
+      return;
+    }
+
+    const width = 24;
+    const ratio = Math.max(0, Math.min(1, this.current / this.total));
+    const filled = Math.round(ratio * width);
+    const bar = `${"#".repeat(filled)}${"-".repeat(width - filled)}`;
+    const detail = this.detailText ? ` ${this.detailText}` : "";
+    const line = `${this.label} [${bar}] ${this.current}/${this.total}${detail}`;
+
+    if (process.stderr.isTTY) {
+      const padding = " ".repeat(Math.max(0, this.lastRenderedLength - line.length));
+      process.stderr.write(`\r${line}${padding}`);
+      this.lastRenderedLength = line.length;
+
+      if (done) {
+        process.stderr.write("\n");
+        this.lastRenderedLength = 0;
+      }
+
+      return;
+    }
+
+    if (done && this.renderedCompleteLine) {
+      return;
+    }
+
+    if (done || this.current === 0 || this.current === this.total || this.current % 5 === 0) {
+      process.stderr.write(`${line}\n`);
+
+      if (this.current === this.total) {
+        this.renderedCompleteLine = true;
+      }
+    }
+  }
+}
 
 const options = parseArgs(process.argv.slice(2));
 const dataset = getLanguageDataset(options.languageId);
@@ -153,9 +258,11 @@ async function buildReport(
 ): Promise<AudioReport> {
   const pagesByWord = new Map<string, WikiPageAudio[]>();
   const fileSourcesByWord = new Map<string, Map<string, Set<string>>>();
+  const fileIpaClaimsByWord = new Map<string, Map<string, WikiAudioIpaClaim[]>>();
+  const pageProgress = new ProgressBar("Wiktionary pages", opts.sourceWikis.length * Math.ceil(words.length / 25), opts.progress);
 
   for (const sourceWiki of opts.sourceWikis) {
-    const pages = await fetchPagesForWords(sourceWiki, words, opts, ua);
+    const pages = await fetchPagesForWords(sourceWiki, words, opts, ua, pageProgress);
 
     for (const [wordId, page] of pages) {
       pagesByWord.set(wordId, [...(pagesByWord.get(wordId) ?? []), page]);
@@ -168,9 +275,19 @@ async function buildReport(
         fileSources.set(fileTitle, sources);
       }
 
+      const ipaClaims = fileIpaClaimsByWord.get(wordId) ?? new Map<string, WikiAudioIpaClaim[]>();
+
+      for (const claim of page.audioIpaClaims) {
+        ipaClaims.set(claim.fileTitle, [...(ipaClaims.get(claim.fileTitle) ?? []), claim]);
+      }
+
+      fileIpaClaimsByWord.set(wordId, ipaClaims);
+
       fileSourcesByWord.set(wordId, fileSources);
     }
   }
+
+  pageProgress.finish();
 
   const allFileTitles = new Set<string>();
 
@@ -180,12 +297,18 @@ async function buildReport(
     }
   }
 
-  const commonsInfo = await fetchCommonsInfo([...allFileTitles], opts, ua);
+  const commonsInfo = await fetchCommonsInfo([...allFileTitles], opts, ua, new ProgressBar(
+    "Commons metadata",
+    Math.ceil(allFileTitles.size / 25),
+    opts.progress,
+  ));
   const wordReports: WordAudioReport[] = [];
+  const wordProgress = new ProgressBar("Scoring and downloading", words.length, opts.progress);
   let downloadedCandidates = 0;
 
   for (const word of words) {
     const fileSources = fileSourcesByWord.get(word.id) ?? new Map<string, Set<string>>();
+    const fileIpaClaims = fileIpaClaimsByWord.get(word.id) ?? new Map<string, WikiAudioIpaClaim[]>();
     const candidates = [...fileSources.entries()]
       .flatMap(([fileTitle, sources]) => {
         const info = commonsInfo.get(fileTitle);
@@ -194,7 +317,13 @@ async function buildReport(
           return [];
         }
 
-        return [applyStoredReview(word, scoreCandidate(word, info, [...sources], opts.languageId), reviewState)];
+        const candidate = scoreCandidate(word, info, [...sources], opts.languageId, fileIpaClaims.get(fileTitle) ?? []);
+
+        if (candidate.ipaCheck.status === "mismatch" && !opts.includeIpaMismatches) {
+          return [];
+        }
+
+        return [applyStoredReview(word, candidate, reviewState)];
       })
       .sort((left, right) => right.score - left.score)
       .slice(0, opts.maxCandidatesPerWord);
@@ -212,6 +341,8 @@ async function buildReport(
         if (candidate.review.status !== "pending" && !opts.forceDownloadReviewed) {
           continue;
         }
+
+        wordProgress.detail(`Downloading ${word.written}: ${candidate.fileTitle}`);
 
         const paths = await downloadCandidate(word, candidate, opts, ua);
 
@@ -234,7 +365,10 @@ async function buildReport(
       pages: pagesByWord.get(word.id) ?? [],
       candidates,
     });
+    wordProgress.tick(word.written);
   }
+
+  wordProgress.finish();
 
   return {
     generatedAt: new Date().toISOString(),
@@ -262,6 +396,7 @@ async function fetchPagesForWords(
   words: readonly WordEntry[],
   opts: CliOptions,
   ua: string,
+  progress: ProgressBar,
 ): Promise<Map<string, WikiPageAudio>> {
   const result = new Map<string, WikiPageAudio>();
 
@@ -273,8 +408,10 @@ async function fetchPagesForWords(
       format: "json",
       formatversion: "2",
       redirects: "1",
-      prop: "images",
+      prop: "images|revisions",
       imlimit: "max",
+      rvprop: "content",
+      rvslots: "main",
       titles: batch.map((word) => word.written).join("|"),
     }, opts, ua);
 
@@ -287,17 +424,24 @@ async function fetchPagesForWords(
         continue;
       }
 
+      const wikitext = getPageWikitext(page);
+      const targetAudioFiles = extractTargetAudioFiles(wikitext, opts.languageId);
+      const fallbackAudioFiles = (page.images ?? [])
+        .map((image) => image.title)
+        .filter((title): title is string => Boolean(title))
+        .filter(isAudioFileTitle)
+        .map(canonicalizeFileTitle);
+
       result.set(word.id, {
         wiki: sourceWiki.host,
         pageTitle: title,
         missing: Boolean(page.missing),
-        files: (page.images ?? [])
-          .map((image) => image.title)
-          .filter((title): title is string => Boolean(title))
-          .filter(isAudioFileTitle)
-          .map(canonicalizeFileTitle),
+        files: targetAudioFiles.length > 0 ? targetAudioFiles : fallbackAudioFiles,
+        audioIpaClaims: extractAudioIpaClaims(wikitext, sourceWiki.host, title, opts.languageId),
       });
     }
+
+    progress.tick(`${sourceWiki.host}: ${batch.map((word) => word.written).join(", ")}`);
   }
 
   for (const word of words) {
@@ -306,6 +450,7 @@ async function fetchPagesForWords(
       pageTitle: word.written,
       missing: true,
       files: [],
+      audioIpaClaims: [],
     });
   }
 
@@ -316,6 +461,7 @@ async function fetchCommonsInfo(
   fileTitles: readonly string[],
   opts: CliOptions,
   ua: string,
+  progress: ProgressBar,
 ): Promise<Map<string, CommonsAudioInfo>> {
   const result = new Map<string, CommonsAudioInfo>();
 
@@ -358,9 +504,217 @@ async function fetchCommonsInfo(
 
       result.set(canonicalizeFileTitle(title), info);
     }
+
+    progress.tick(`${batch.length} files`);
   }
 
+  progress.finish();
+
   return result;
+}
+
+function getPageWikitext(page: QueryPage): string {
+  const revision = page.revisions?.[0];
+
+  return revision?.slots?.main?.content ?? revision?.content ?? "";
+}
+
+function extractAudioIpaClaims(
+  wikitext: string,
+  wiki: string,
+  pageTitle: string,
+  languageId: string,
+): WikiAudioIpaClaim[] {
+  if (!wikitext) {
+    return [];
+  }
+
+  const targetCodes = targetWiktionaryLanguageCodes(languageId);
+  const claims: WikiAudioIpaClaim[] = [];
+  const recentIpaClaims: Array<{ ipa: string; normalizedIpa: string; languageCode: string; context: string; lineIndex: number }> = [];
+  const lines = wikitext.split("\n");
+
+  lines.forEach((line, lineIndex) => {
+    const ipaClaims = extractIpaClaimsFromLine(line, targetCodes);
+
+    for (const ipaClaim of ipaClaims) {
+      recentIpaClaims.push({ ...ipaClaim, context: cleanWikitextLine(line), lineIndex });
+    }
+
+    while (recentIpaClaims.length > 0 && lineIndex - (recentIpaClaims[0]?.lineIndex ?? lineIndex) > 6) {
+      recentIpaClaims.shift();
+    }
+
+    const audioFiles = extractAudioFilesFromLine(line, targetCodes);
+
+    if (audioFiles.length === 0) {
+      return;
+    }
+
+    const nearbyClaims = ipaClaims.length > 0
+      ? ipaClaims.map((claim) => ({ ...claim, context: cleanWikitextLine(line), lineIndex }))
+      : recentIpaClaims;
+
+    for (const fileTitle of audioFiles) {
+      for (const ipaClaim of nearbyClaims) {
+        claims.push({
+          wiki,
+          pageTitle,
+          fileTitle,
+          languageCode: ipaClaim.languageCode,
+          ipa: ipaClaim.ipa,
+          normalizedIpa: ipaClaim.normalizedIpa,
+          context: ipaClaim.context,
+        });
+      }
+    }
+  });
+
+  return dedupeIpaClaims(claims);
+}
+
+function extractTargetAudioFiles(wikitext: string, languageId: string): string[] {
+  if (!wikitext) {
+    return [];
+  }
+
+  const targetCodes = targetWiktionaryLanguageCodes(languageId);
+
+  return dedupeBy(
+    wikitext.split("\n").flatMap((line) => extractAudioFilesFromLine(line, targetCodes)),
+    (fileTitle) => fileTitle,
+  );
+}
+
+function extractAudioFilesFromLine(line: string, targetCodes: ReadonlySet<string>): string[] {
+  return extractTemplates(line, "audio")
+    .flatMap((params) => {
+      const languageCode = normalizeLanguageCode(params[0]);
+      const fileName = params[1]?.trim();
+
+      if (!languageCode || !targetCodes.has(languageCode) || !fileName || !isAudioFileTitle(fileName)) {
+        return [];
+      }
+
+      return [canonicalizeFileTitle(fileName.startsWith("File:") || fileName.startsWith("Fichier:") ? fileName : `File:${fileName}`)];
+    });
+}
+
+function extractIpaClaimsFromLine(
+  line: string,
+  targetCodes: ReadonlySet<string>,
+): Array<{ ipa: string; normalizedIpa: string; languageCode: string }> {
+  const claims: Array<{ ipa: string; normalizedIpa: string; languageCode: string }> = [];
+
+  for (const params of extractTemplates(line, "IPA")) {
+    const languageCode = normalizeLanguageCode(params[0]);
+
+    if (!languageCode || !targetCodes.has(languageCode)) {
+      continue;
+    }
+
+    for (const value of params.slice(1).filter(isIpaValue)) {
+      claims.push({ ipa: value, normalizedIpa: normalizeIpa(value), languageCode });
+    }
+  }
+
+  for (const params of extractTemplates(line, "pron")) {
+    const languageCode = normalizeLanguageCode(params[1]);
+    const value = params[0]?.trim();
+
+    if (!languageCode || !targetCodes.has(languageCode) || !value) {
+      continue;
+    }
+
+    claims.push({ ipa: value, normalizedIpa: normalizeIpa(value), languageCode });
+  }
+
+  return dedupeBy(claims, (claim) => `${claim.languageCode}:${claim.normalizedIpa}`);
+}
+
+function extractTemplates(line: string, templateName: string): string[][] {
+  const escaped = templateName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(`\\{\\{\\s*${escaped}\\s*\\|([^{}]*)\\}\\}`, "gi");
+  const templates: string[][] = [];
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(line))) {
+    templates.push((match[1] ?? "").split("|").map((part) => part.trim()));
+  }
+
+  return templates;
+}
+
+function createIpaCheck(expectedIpa: string, claims: readonly WikiAudioIpaClaim[]): IpaCheck {
+  const expected = normalizeIpa(expectedIpa);
+  const claimed = dedupeBy(claims.map((claim) => claim.ipa), normalizeIpa);
+  const matched = claimed.filter((ipa) => normalizeIpa(ipa) === expected);
+
+  if (claimed.length === 0) {
+    return { status: "unknown", expected: expectedIpa, claimed: [], matched: [] };
+  }
+
+  return {
+    status: matched.length > 0 ? "match" : "mismatch",
+    expected: expectedIpa,
+    claimed,
+    matched,
+  };
+}
+
+function normalizeIpa(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\/\[\]().ˈˌ\s]/g, "")
+    .replace(/[\u032F\u0311\u035C\u0361]/g, "")
+    .normalize("NFC")
+    .toLowerCase();
+}
+
+function isIpaValue(value: string | undefined): value is string {
+  if (!value) {
+    return false;
+  }
+
+  const trimmed = value.trim();
+
+  return (/^[\/\[].+[\/\]]$/.test(trimmed) || /^\/.+\/$/.test(trimmed)) && !trimmed.includes("=");
+}
+
+function normalizeLanguageCode(value: string | undefined): string | null {
+  const normalized = value?.trim().toLowerCase();
+
+  return normalized || null;
+}
+
+function targetWiktionaryLanguageCodes(languageId: string): ReadonlySet<string> {
+  return new Set(sameLanguageId(languageId, "fr") ? ["fr"] : ["en"]);
+}
+
+function cleanWikitextLine(line: string): string {
+  return line.replace(/\s+/g, " ").trim().slice(0, 220);
+}
+
+function dedupeIpaClaims(claims: readonly WikiAudioIpaClaim[]): WikiAudioIpaClaim[] {
+  return dedupeBy(claims, (claim) => `${claim.fileTitle}:${claim.normalizedIpa}:${claim.wiki}`);
+}
+
+function dedupeBy<T>(items: readonly T[], keyFor: (item: T) => string): T[] {
+  const seen = new Set<string>();
+  const deduped: T[] = [];
+
+  for (const item of items) {
+    const key = keyFor(item);
+
+    if (seen.has(key)) {
+      continue;
+    }
+
+    seen.add(key);
+    deduped.push(item);
+  }
+
+  return deduped;
 }
 
 function scoreCandidate(
@@ -368,6 +722,7 @@ function scoreCandidate(
   info: CommonsAudioInfo,
   sourceWikis: string[],
   languageId: string,
+  wiktionaryIpaClaims: WikiAudioIpaClaim[],
 ): AudioCandidate {
   const haystack = normalizeSearchText([
     info.fileTitle,
@@ -382,6 +737,7 @@ function scoreCandidate(
   const normalizedWord = normalizeSearchText(word.written);
   const regions = detectRegions(haystack);
   const reasons: string[] = [];
+  const ipaCheck = createIpaCheck(word.ipa, wiktionaryIpaClaims);
   let score = 0;
 
   if (haystack.includes(normalizedWord)) {
@@ -419,11 +775,23 @@ function scoreCandidate(
     reasons.push(`audio MIME ${info.mime}`);
   }
 
+  if (ipaCheck.status === "match") {
+    score += 8;
+    reasons.push(`Wiktionary IPA matches ${ipaCheck.expected}`);
+  } else if (ipaCheck.status === "mismatch") {
+    score -= 50;
+    reasons.push(`Wiktionary IPA mismatch: expected ${ipaCheck.expected}, claimed ${ipaCheck.claimed.join(", ")}`);
+  } else {
+    reasons.push("no nearby Wiktionary IPA claim found for this audio file");
+  }
+
   return {
     ...info,
     key: createCandidateKey({ wordId: word.id, fileTitle: info.fileTitle, commonsUrl: info.commonsUrl }),
     sourceWikis,
     regions,
+    wiktionaryIpaClaims,
+    ipaCheck,
     score,
     reasons,
     suggestedAudioSource: {
@@ -672,6 +1040,7 @@ function mergeQueryPages(existing: QueryPage | undefined, incoming: QueryPage): 
     ...incoming,
     images: images.size > 0 ? [...images.values()] : incoming.images ?? existing.images,
     imageinfo: incoming.imageinfo ?? existing.imageinfo,
+    revisions: incoming.revisions ?? existing.revisions,
   };
 }
 
@@ -738,6 +1107,8 @@ function parseArgs(args: string[]): CliOptions {
     downloadDir: getLast(values, "download-dir") ?? defaults.downloadDir,
     reviewStatePath: getLast(values, "review-state") ?? defaults.reviewState,
     forceDownloadReviewed: values.has("force-download-reviewed"),
+    includeIpaMismatches: values.has("include-ipa-mismatches"),
+    progress: !values.has("no-progress"),
   };
 }
 
@@ -917,6 +1288,7 @@ function renderMarkdown(report: AudioReport): string {
       lines.push(`  License: ${candidate.licenseShortName ?? candidate.license ?? "unknown"}`);
       lines.push(`  Attribution: ${candidate.attribution ?? candidate.artist ?? candidate.credit ?? "unknown"}`);
       lines.push(`  Regions: ${candidate.regions.length ? candidate.regions.join(", ") : "none detected"}`);
+      lines.push(`  IPA check: ${renderIpaCheck(candidate.ipaCheck)}`);
       lines.push(`  Score: ${candidate.score} (${candidate.reasons.join("; ")})`);
 
       if (candidate.localPath) {
@@ -938,6 +1310,14 @@ function renderMarkdown(report: AudioReport): string {
   }
 
   return `${lines.join("\n")}\n`;
+}
+
+function renderIpaCheck(check: IpaCheck): string {
+  if (check.status === "unknown") {
+    return `unknown; expected ${check.expected}`;
+  }
+
+  return `${check.status}; expected ${check.expected}; Wiktionary claimed ${check.claimed.join(", ")}`;
 }
 
 function printSummary(report: AudioReport, opts: CliOptions): void {

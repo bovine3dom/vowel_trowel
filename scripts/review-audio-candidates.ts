@@ -57,6 +57,18 @@ interface ReviewedCandidate {
   artist?: string | null;
   credit?: string | null;
   regions?: string[];
+  wiktionaryIpaClaims?: Array<{
+    ipa?: string;
+    wiki?: string;
+    pageTitle?: string;
+    context?: string;
+  }>;
+  ipaCheck?: {
+    status?: string;
+    expected?: string;
+    claimed?: string[];
+    matched?: string[];
+  };
   sourceWikis?: string[];
   score?: number;
   reasons?: string[];
@@ -610,10 +622,21 @@ function printCandidate(item: ReviewItem, index: number, total: number): void {
   console.log(`License: ${candidate.licenseShortName ?? candidate.license ?? "unknown"}`);
   console.log(`Attribution: ${candidate.attribution ?? candidate.artist ?? candidate.credit ?? "unknown"}`);
   console.log(`Regions: ${candidate.regions?.length ? candidate.regions.join(", ") : "none detected"}`);
+  console.log(`IPA check: ${formatCandidateIpaCheck(candidate)}`);
 
   if (candidate.score !== undefined) {
     console.log(`Score: ${candidate.score}${candidate.reasons?.length ? ` (${candidate.reasons.join("; ")})` : ""}`);
   }
+}
+
+function formatCandidateIpaCheck(candidate: ReviewedCandidate): string {
+  const check = candidate.ipaCheck;
+
+  if (!check || check.status === "unknown") {
+    return `unknown${check?.expected ? `; expected ${check.expected}` : ""}`;
+  }
+
+  return `${check.status}; expected ${check.expected ?? "unknown"}; Wiktionary claimed ${check.claimed?.join(", ") || "unknown"}`;
 }
 
 async function playCandidate(player: PlayerSpec, localPath: string): Promise<void> {

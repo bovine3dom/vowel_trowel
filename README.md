@@ -43,6 +43,8 @@ bun run audio:wizard
 
 By default it picks the first 12 words in French that do not have approved recordings, downloads up to 4 candidates per word, opens the terminal reviewer, then applies approved recordings to the app.
 
+The discovery step prints progress bars for Wiktionary page fetches, Commons metadata fetches, and downloads. It also checks nearby Wiktionary IPA claims for each audio template. Candidates with an explicit IPA mismatch are skipped by default, which helps avoid homograph mistakes such as English `live` /lɪv/ versus /laɪv/.
+
 Focused examples:
 
 ```bash
@@ -50,6 +52,8 @@ bun run audio:wizard -- --words=brun,brin,jeune,jeûne
 bun run audio:wizard -- --language=en-GB --words=ship,sheep
 bun run audio:wizard -- --language=en-GB --limit=20 --max-candidates-per-word=6
 ```
+
+Use `--include-ipa-mismatches` only when you intentionally want to inspect files that Wiktionary appears to mark with a different pronunciation. Use `--no-progress` for quieter logs.
 
 Review controls are single-key: `a` approve, `r` reject, `s` skip, `p` play again, `u` undo the last decision, `w` skip the rest of the current word, and `q` quit.
 
@@ -76,6 +80,8 @@ Generate a candidate report without the wizard:
 ```bash
 bun run audio:wiktionary -- --words=brun,brin --download=all
 ```
+
+The candidate report includes an `ipaCheck` field and the Markdown report shows the expected IPA versus nearby Wiktionary IPA claims when available.
 
 Review downloaded candidates:
 

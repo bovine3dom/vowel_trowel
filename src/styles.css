@@ -564,11 +564,36 @@ h3 {
   border-top: 1px solid #d6cec2;
 }
 
+.spectrogram-panel.expanded {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  align-content: start;
+  margin: 0;
+  padding: 28px;
+  border: 0;
+  box-shadow: none;
+  background: #fffdfa;
+  overflow: auto;
+}
+
 .spectrogram-heading {
   display: flex;
   gap: 12px;
   align-items: start;
   justify-content: space-between;
+}
+
+.spectrogram-heading-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.spectrogram-maximise {
+  margin-top: 0;
 }
 
 .spectrogram-status {
@@ -632,7 +657,11 @@ h3 {
 .spectrogram-frame canvas {
   display: block;
   width: 100%;
-  height: 150px;
+  height: 180px;
+}
+
+.spectrogram-panel.expanded .spectrogram-frame canvas {
+  height: min(72vh, 760px);
 }
 
 .spectrogram-meta {
@@ -1035,5 +1064,13 @@ h3 {
 
   .spectrogram-meta {
     grid-template-columns: 1fr;
+  }
+
+  .spectrogram-panel.expanded {
+    padding: 16px;
+  }
+
+  .spectrogram-panel.expanded .spectrogram-frame canvas {
+    height: 62vh;
   }
 }

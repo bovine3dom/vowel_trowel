@@ -1,8 +1,6 @@
 import type { AudioSource, MinimalPairTerm } from "../languages/types";
 
 let activeAudio: HTMLAudioElement | undefined;
-let activeSourceNode: MediaElementAudioSourceNode | undefined;
-let activeAnalyser: AnalyserNode | undefined;
 let sharedAudioContext: AudioContext | undefined;
 let playbackSessionId = 0;
 
@@ -15,9 +13,19 @@ export interface PlaybackVisualizationState {
   status: PlaybackVisualizationStatus;
   label: string;
   detail?: string;
-  analyser?: AnalyserNode;
+  spectrogram?: PrecomputedSpectrogram;
   getTiming?: () => PlaybackTiming;
   replay?: () => Promise<void>;
+}
+
+export interface PrecomputedSpectrogram {
+  data: Uint8Array;
+  columnCount: number;
+  binCount: number;
+  duration: number;
+  sampleRate: number;
+  fftSize: number;
+  hopSize: number;
 }
 
 export interface PlaybackTiming {
@@ -30,6 +38,11 @@ interface PlaybackRequest {
   fallbackText: string;
   speech: SpeechSettings;
 }
+
+const SPECTROGRAM_FFT_SIZE = 512;
+const SPECTROGRAM_HOP_SIZE = 64;
+const SPECTROGRAM_DYNAMIC_RANGE_DB = 70;
+const spectrogramCache = new Map<string, Promise<PrecomputedSpectrogram>>();
 
 const visualizationListeners = new Set<(state: PlaybackVisualizationState) => void>();
 let visualizationState: PlaybackVisualizationState = {
@@ -88,10 +101,12 @@ async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
   stopCurrentPlayback();
 
   if (source) {
-    activeAudio = new Audio(resolveAudioSource(source.src));
+    const audioUrl = resolveAudioSource(source.src);
+    activeAudio = new Audio(audioUrl);
     activeAudio.preload = "auto";
     const sessionId = nextPlaybackSessionId();
-    const getTiming = () => getAudioTiming(activeAudio);
+    let durationHint: number | null = null;
+    const getTiming = () => getAudioTiming(activeAudio, durationHint);
     const replay = () => playPlaybackRequest(request);
 
     activeAudio.addEventListener("ended", () => {
@@ -99,7 +114,8 @@ async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
     }, { once: true });
 
     try {
-      const analyser = await connectAudioAnalyser(activeAudio);
+      const spectrogram = await getPrecomputedSpectrogram(audioUrl);
+      durationHint = spectrogram.duration;
 
       publishVisualization({
         id: sessionId,
@@ -107,7 +123,7 @@ async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
         status: "playing",
         label: fallbackText,
         detail: describeAudioSource(source),
-        analyser,
+        spectrogram,
         getTiming,
         replay,
       });
@@ -210,39 +226,176 @@ function stopCurrentPlayback(): void {
     activeAudio = undefined;
   }
 
-  if (activeSourceNode) {
-    activeSourceNode.disconnect();
-    activeSourceNode = undefined;
-  }
-
-  if (activeAnalyser) {
-    activeAnalyser.disconnect();
-    activeAnalyser = undefined;
-  }
-
   if ("speechSynthesis" in window) {
     window.speechSynthesis.cancel();
   }
 }
 
-async function connectAudioAnalyser(audio: HTMLAudioElement): Promise<AnalyserNode> {
+async function getPrecomputedSpectrogram(audioUrl: string): Promise<PrecomputedSpectrogram> {
+  const cached = spectrogramCache.get(audioUrl);
+
+  if (cached) {
+    return cached;
+  }
+
+  const promise = createPrecomputedSpectrogram(audioUrl);
+  spectrogramCache.set(audioUrl, promise);
+
+  try {
+    return await promise;
+  } catch (error) {
+    spectrogramCache.delete(audioUrl);
+    throw error;
+  }
+}
+
+async function createPrecomputedSpectrogram(audioUrl: string): Promise<PrecomputedSpectrogram> {
   const context = getAudioContext();
 
   if (context.state === "suspended") {
     await context.resume();
   }
 
-  const sourceNode = context.createMediaElementSource(audio);
-  const analyser = context.createAnalyser();
+  const response = await fetch(audioUrl);
 
-  analyser.fftSize = 2048;
-  analyser.smoothingTimeConstant = 0.72;
-  sourceNode.connect(analyser);
-  analyser.connect(context.destination);
-  activeSourceNode = sourceNode;
-  activeAnalyser = analyser;
+  if (!response.ok) {
+    throw new Error(`Could not fetch audio for spectrogram: HTTP ${response.status}`);
+  }
 
-  return analyser;
+  const audioBuffer = await context.decodeAudioData(await response.arrayBuffer());
+
+  return computeSpectrogram(audioBuffer, SPECTROGRAM_FFT_SIZE, SPECTROGRAM_HOP_SIZE);
+}
+
+function computeSpectrogram(
+  audioBuffer: AudioBuffer,
+  fftSize: number,
+  hopSize: number,
+): PrecomputedSpectrogram {
+  const samples = mixAudioBufferToMono(audioBuffer);
+  const columnCount = Math.max(1, Math.ceil(samples.length / hopSize));
+  const binCount = fftSize / 2;
+  const magnitudes = new Float32Array(columnCount * binCount);
+  const window = createHannWindow(fftSize);
+  let maxDb = -Infinity;
+
+  for (let column = 0; column < columnCount; column += 1) {
+    const start = column * hopSize;
+    const real = new Float32Array(fftSize);
+    const imaginary = new Float32Array(fftSize);
+
+    for (let index = 0; index < fftSize; index += 1) {
+      real[index] = (samples[start + index] ?? 0) * (window[index] ?? 0);
+    }
+
+    fft(real, imaginary);
+
+    for (let bin = 0; bin < binCount; bin += 1) {
+      const magnitude = Math.hypot(real[bin] ?? 0, imaginary[bin] ?? 0) / fftSize;
+      const db = 20 * Math.log10(magnitude + 1e-8);
+
+      magnitudes[column * binCount + bin] = db;
+      maxDb = Math.max(maxDb, db);
+    }
+  }
+
+  const floorDb = maxDb - SPECTROGRAM_DYNAMIC_RANGE_DB;
+  const data = new Uint8Array(magnitudes.length);
+
+  for (let index = 0; index < magnitudes.length; index += 1) {
+    data[index] = Math.round(
+      Math.max(0, Math.min(1, ((magnitudes[index] ?? floorDb) - floorDb) / SPECTROGRAM_DYNAMIC_RANGE_DB)) * 255,
+    );
+  }
+
+  return {
+    data,
+    columnCount,
+    binCount,
+    duration: audioBuffer.duration,
+    sampleRate: audioBuffer.sampleRate,
+    fftSize,
+    hopSize,
+  };
+}
+
+function mixAudioBufferToMono(audioBuffer: AudioBuffer): Float32Array {
+  const samples = new Float32Array(audioBuffer.length);
+  const channels = Math.max(1, audioBuffer.numberOfChannels);
+
+  for (let channel = 0; channel < channels; channel += 1) {
+    const data = audioBuffer.getChannelData(channel);
+
+    for (let index = 0; index < samples.length; index += 1) {
+      samples[index] = (samples[index] ?? 0) + (data[index] ?? 0) / channels;
+    }
+  }
+
+  return samples;
+}
+
+function createHannWindow(size: number): Float32Array {
+  const window = new Float32Array(size);
+
+  for (let index = 0; index < size; index += 1) {
+    window[index] = 0.5 * (1 - Math.cos((2 * Math.PI * index) / Math.max(1, size - 1)));
+  }
+
+  return window;
+}
+
+function fft(real: Float32Array, imaginary: Float32Array): void {
+  const size = real.length;
+  let reversed = 0;
+
+  for (let index = 1; index < size; index += 1) {
+    let bit = size >> 1;
+
+    for (; reversed & bit; bit >>= 1) {
+      reversed ^= bit;
+    }
+
+    reversed ^= bit;
+
+    if (index < reversed) {
+      const realValue = real[index] ?? 0;
+      real[index] = real[reversed] ?? 0;
+      real[reversed] = realValue;
+
+      const imaginaryValue = imaginary[index] ?? 0;
+      imaginary[index] = imaginary[reversed] ?? 0;
+      imaginary[reversed] = imaginaryValue;
+    }
+  }
+
+  for (let length = 2; length <= size; length <<= 1) {
+    const angle = (-2 * Math.PI) / length;
+    const wLengthReal = Math.cos(angle);
+    const wLengthImaginary = Math.sin(angle);
+
+    for (let index = 0; index < size; index += length) {
+      let wReal = 1;
+      let wImaginary = 0;
+
+      for (let offset = 0; offset < length / 2; offset += 1) {
+        const evenIndex = index + offset;
+        const oddIndex = evenIndex + length / 2;
+        const oddReal = (real[oddIndex] ?? 0) * wReal - (imaginary[oddIndex] ?? 0) * wImaginary;
+        const oddImaginary = (real[oddIndex] ?? 0) * wImaginary + (imaginary[oddIndex] ?? 0) * wReal;
+        const evenReal = real[evenIndex] ?? 0;
+        const evenImaginary = imaginary[evenIndex] ?? 0;
+
+        real[evenIndex] = evenReal + oddReal;
+        imaginary[evenIndex] = evenImaginary + oddImaginary;
+        real[oddIndex] = evenReal - oddReal;
+        imaginary[oddIndex] = evenImaginary - oddImaginary;
+
+        const nextWReal = wReal * wLengthReal - wImaginary * wLengthImaginary;
+        wImaginary = wReal * wLengthImaginary + wImaginary * wLengthReal;
+        wReal = nextWReal;
+      }
+    }
+  }
 }
 
 function getAudioContext(): AudioContext {
@@ -262,14 +415,14 @@ function getAudioContext(): AudioContext {
   return sharedAudioContext;
 }
 
-function getAudioTiming(audio: HTMLAudioElement | undefined): PlaybackTiming {
+function getAudioTiming(audio: HTMLAudioElement | undefined, durationHint: number | null): PlaybackTiming {
   if (!audio) {
-    return { currentTime: 0, duration: null };
+    return { currentTime: 0, duration: durationHint };
   }
 
   return {
     currentTime: Number.isFinite(audio.currentTime) ? audio.currentTime : 0,
-    duration: Number.isFinite(audio.duration) && audio.duration > 0 ? audio.duration : null,
+    duration: Number.isFinite(audio.duration) && audio.duration > 0 ? audio.duration : durationHint,
   };
 }
 

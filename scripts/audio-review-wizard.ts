@@ -16,6 +16,8 @@ interface CliOptions {
   apply: boolean;
   play: boolean;
   includeReviewed: boolean;
+  includeIpaMismatches: boolean;
+  progress: boolean;
   email: string | null;
   dryRun: boolean;
 }
@@ -48,17 +50,19 @@ if (options.dryRun) {
 const wordsArg = selectedWords.map((word) => word.written).join(",");
 
 if (options.download !== "none") {
-  runStep("Finding and downloading candidate recordings", "scripts/wiktionary-audio-report.ts", compactArgs([
+  runStep(1, 3, "Finding and downloading candidate recordings", "scripts/wiktionary-audio-report.ts", compactArgs([
     `--language=${dataset.id}`,
     `--words=${wordsArg}`,
     `--download=${options.download}`,
     `--max-candidates-per-word=${options.maxCandidatesPerWord}`,
+    options.includeIpaMismatches ? "--include-ipa-mismatches" : null,
+    options.progress ? null : "--no-progress",
     options.email ? `--email=${options.email}` : null,
   ]));
 }
 
 if (options.review) {
-  runStep("Reviewing downloaded candidates", "scripts/review-audio-candidates.ts", compactArgs([
+  runStep(2, 3, "Reviewing downloaded candidates", "scripts/review-audio-candidates.ts", compactArgs([
     `--language=${dataset.id}`,
     `--words=${wordsArg}`,
     options.reviewLimit === null ? null : `--limit=${options.reviewLimit}`,
@@ -68,15 +72,15 @@ if (options.review) {
 }
 
 if (options.apply) {
-  runStep("Applying approved recordings", "scripts/apply-reviewed-audio.ts", [
+  runStep(3, 3, "Applying approved recordings", "scripts/apply-reviewed-audio.ts", [
     `--language=${dataset.id}`,
   ]);
 }
 
 console.log("Audio review workflow finished.");
 
-function runStep(label: string, scriptPath: string, args: readonly string[]): void {
-  console.log(`\n${label}`);
+function runStep(index: number, total: number, label: string, scriptPath: string, args: readonly string[]): void {
+  console.log(`\n[${index}/${total}] ${label}`);
 
   const result = spawnSync(process.execPath, ["run", scriptPath, ...args], { stdio: "inherit" });
 
@@ -119,6 +123,8 @@ function parseArgs(args: string[]): CliOptions {
     apply: !values.has("no-apply"),
     play: !values.has("no-play"),
     includeReviewed: values.has("include-reviewed"),
+    includeIpaMismatches: values.has("include-ipa-mismatches"),
+    progress: !values.has("no-progress"),
     email: getLast(values, "email") ?? null,
     dryRun: values.has("dry-run"),
   };
@@ -127,7 +133,7 @@ function parseArgs(args: string[]): CliOptions {
 function printUsage(): void {
   console.log("Usage: bun run audio:wizard -- [options]");
   console.log("Default: first 12 words missing recordings, download up to 4 candidates each, review, then apply approvals.");
-  console.log("Options: --language=en-GB --words=ship,sheep --limit=20 --all --download=all|regional|none --max-candidates-per-word=6 --review-limit=20 --no-play --no-review --no-apply --dry-run");
+  console.log("Options: --language=en-GB --words=ship,sheep --limit=20 --all --download=all|regional|none --max-candidates-per-word=6 --review-limit=20 --include-ipa-mismatches --no-progress --no-play --no-review --no-apply --dry-run");
 }
 
 function selectRequestedWords(words: readonly WordEntry[], requests: readonly string[]): WordEntry[] {

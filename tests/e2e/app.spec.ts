@@ -47,8 +47,8 @@ test.beforeEach(async ({ page }) => {
     }
 
     class MockAnalyser {
-      fftSize = 2048;
-      frequencyBinCount = 1024;
+      fftSize = 4096;
+      frequencyBinCount = 2048;
       smoothingTimeConstant = 0.72;
 
       connect() {}
@@ -64,6 +64,7 @@ test.beforeEach(async ({ page }) => {
     class MockAudioContext {
       destination = {};
       state = "running";
+      sampleRate = 16_000;
 
       createAnalyser() {
         return new MockAnalyser();
@@ -74,6 +75,25 @@ test.beforeEach(async ({ page }) => {
           connect() {},
           disconnect() {},
         };
+      }
+
+      decodeAudioData() {
+        const sampleRate = this.sampleRate;
+        const length = Math.floor(sampleRate * 1.4);
+        const channel = new Float32Array(length);
+
+        for (let index = 0; index < length; index += 1) {
+          channel[index] = Math.sin((2 * Math.PI * 220 * index) / sampleRate)
+            * Math.exp(-index / length);
+        }
+
+        return Promise.resolve({
+          duration: length / sampleRate,
+          getChannelData: () => channel,
+          length,
+          numberOfChannels: 1,
+          sampleRate,
+        });
       }
 
       resume() {
@@ -107,6 +127,7 @@ test("loads the French matching practice", async ({ page }) => {
   await expect(page.getByLabel("Spectrogram display")).toBeVisible();
   await expect(page.getByLabel("Spectrogram display").locator(".spectrogram-status")).toHaveText("Ready");
   await expect(page.getByLabel("Spectrogram display").getByRole("button", { name: "Replay" })).toBeDisabled();
+  await expect(page.getByLabel("Spectrogram display").getByRole("button", { name: "Maximise" })).toBeEnabled();
   await expect(page).toHaveURL(/lang=fr/);
   await expect(page).toHaveURL(/mode=match/);
 });
@@ -138,7 +159,7 @@ test("explores a sound and returns without adding an extra history entry", async
 
   await expect(page).toHaveURL(/explore=fr-u/);
   await expect(page.getByRole("heading", { name: "close back rounded vowel" })).toBeVisible();
-  await expect(page.getByText("roue")).toBeVisible();
+  await expect(page.locator(".phoneme-explorer").getByText("roue")).toBeVisible();
 
   await page.getByRole("button", { name: "Back to sounds" }).click();
 
@@ -182,6 +203,12 @@ test("updates the spectrogram when a reviewed recording plays", async ({ page })
   await expect(panel.getByText("Playing")).toBeVisible();
   await expect(panel.getByText("jeune")).toBeVisible();
   await expect(panel.getByText(/Swiss French|wiktionary/)).toBeVisible();
+
+  await panel.getByRole("button", { name: "Maximise" }).click();
+  await expect(panel).toHaveClass(/expanded/);
+  await expect(panel.getByRole("button", { name: "Close" })).toBeVisible();
+  await panel.getByRole("button", { name: "Close" }).click();
+  await expect(panel).not.toHaveClass(/expanded/);
 
   const replay = panel.getByRole("button", { name: "Replay" });
   await expect(replay).toBeEnabled();
