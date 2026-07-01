@@ -45,6 +45,17 @@ export function selectNextSortingPrompt(
   return undefined;
 }
 
+export function createSortingPromptForPhonemes(
+  dataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+): SortingPrompt | undefined {
+  const contrast = dataset.contrasts.find((candidate) => samePhonemePair(candidate.phonemeIds, phonemeIds));
+
+  return contrast
+    ? createSortingPrompt(dataset, contrast.id)
+    : createCustomSortingPrompt(dataset, phonemeIds);
+}
+
 export function createSortingPlacements(prompt?: SortingPrompt): SortingPlacements {
   if (!prompt) {
     return {};
@@ -94,7 +105,7 @@ export function gradeSortingPrompt(
   };
 }
 
-function createSortingPrompt(
+export function createSortingPrompt(
   dataset: LanguageDataset,
   contrastId: string,
 ): SortingPrompt | undefined {
@@ -150,6 +161,81 @@ function createSortingPrompt(
     groups,
     wordCards: shuffleArray(wordCards),
   };
+}
+
+function createCustomSortingPrompt(
+  dataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+): SortingPrompt | undefined {
+  const termsByPhoneme = new Map<PhonemeId, MinimalPairTerm[]>();
+
+  for (const phonemeId of phonemeIds) {
+    const otherPhonemeId = phonemeIds.find((candidate) => candidate !== phonemeId) ?? phonemeId;
+    const words = dataset.words.filter((word) =>
+      word.phonemeIds.includes(phonemeId) && !word.phonemeIds.includes(otherPhonemeId)
+    );
+    const fallbackWords = words.length > 0
+      ? words
+      : dataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
+
+    termsByPhoneme.set(phonemeId, fallbackWords.map((word) => ({
+      id: `${phonemeId}:${word.id}`,
+      wordId: word.id,
+      phonemeId,
+      word,
+    })));
+  }
+
+  const lockedTermsById = new Map<string, MinimalPairTerm>();
+
+  for (const terms of termsByPhoneme.values()) {
+    for (const term of terms) {
+      lockedTermsById.set(term.id, lockedTermsById.get(term.id) ?? lockTermAudio(term));
+    }
+  }
+
+  const groups = phonemeIds.flatMap((phonemeId) => {
+    const phoneme = dataset.phonemes.find((candidate) => candidate.id === phonemeId);
+    const exampleTerm = termsByPhoneme.get(phonemeId)?.[0];
+    const lockedExampleTerm = exampleTerm ? lockedTermsById.get(exampleTerm.id) : undefined;
+
+    if (!lockedExampleTerm) {
+      return [];
+    }
+
+    return [{
+      id: phonemeId,
+      phonemeId,
+      label: phoneme?.ipa ?? phonemeId,
+      exampleTerm: lockedExampleTerm,
+    }];
+  });
+  const wordCards = groups.flatMap((group) =>
+    uniqueTerms(termsByPhoneme.get(group.phonemeId) ?? [])
+      .map((term) => lockedTermsById.get(term.id))
+      .filter((term): term is MinimalPairTerm => Boolean(term)),
+  );
+
+  if (groups.length < 2 || wordCards.length < groups.length) {
+    return undefined;
+  }
+
+  return {
+    id: `sort:custom:${phonemeIds.join(":")}:${Date.now()}:${Math.random().toString(36).slice(2)}`,
+    contrastId: `custom:${phonemeIds[0]}:${phonemeIds[1]}`,
+    groups,
+    wordCards: shuffleArray(wordCards),
+  };
+}
+
+function samePhonemePair(
+  left: readonly PhonemeId[],
+  right: readonly [PhonemeId, PhonemeId],
+): boolean {
+  return left.length === 2
+    && left.includes(right[0])
+    && left.includes(right[1])
+    && right[0] !== right[1];
 }
 
 function uniqueTerms(terms: MinimalPairTerm[]): MinimalPairTerm[] {

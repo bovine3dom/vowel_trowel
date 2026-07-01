@@ -7,14 +7,17 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "check": "tsc --noEmit",
+    "test:e2e": "playwright test",
     "audio:wiktionary": "bun run scripts/wiktionary-audio-report.ts",
     "audio:review": "bun run scripts/review-audio-candidates.ts",
-    "audio:apply-reviewed": "bun run scripts/apply-reviewed-audio.ts"
+    "audio:apply-reviewed": "bun run scripts/apply-reviewed-audio.ts",
+    "audio:wizard": "bun run scripts/audio-review-wizard.ts"
   },
   "dependencies": {
     "solid-js": "latest"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@types/bun": "latest",
     "typescript": "latest",
     "vite": "latest",

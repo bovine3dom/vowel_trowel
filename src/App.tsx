@@ -1,19 +1,23 @@
-import { For, Show, createMemo, createSignal, onCleanup, onMount } from "solid-js";
+import { For, Show, createEffect, createMemo, createSignal, onCleanup, onMount } from "solid-js";
 
 import {
   getAvailableSpeechVoices,
+  getPlaybackVisualizationState,
   playAudioSources,
   playTermAudio,
   selectSpeechVoice,
+  subscribePlaybackVisualization,
+  type PlaybackVisualizationState,
 } from "./audio/playback";
-import { frenchDataset } from "./languages/fr";
-import type { AudioSource, MinimalPairTerm, PhonemeId } from "./languages/types";
+import { getLanguageDataset, languageDatasets, sameLanguageId } from "./languages";
+import type { AudioSource, LanguageDataset, MinimalPairTerm, Phoneme, PhonemeContrast, PhonemeId, WordEntry } from "./languages/types";
 import {
   canSubmitPrompt,
   createMatchingPrompt,
   createPromptSelections,
   gradeMatchingPrompt,
   selectNextMinimalPair,
+  selectNextMinimalPairForPhonemes,
   type MatchingPrompt,
   type PromptResult,
   type PromptSelections,
@@ -21,6 +25,7 @@ import {
 } from "./training/session";
 import {
   canSubmitSortingPrompt,
+  createSortingPromptForPhonemes,
   createSortingPlacements,
   gradeSortingPrompt,
   selectNextSortingPrompt,
@@ -37,10 +42,20 @@ import {
   saveProgress,
 } from "./storage/progress";
 
-const dataset = frenchDataset;
-const audioCredits = collectAudioCredits();
+const dataset = getInitialDataset();
 const SPEECH_VOICE_STORAGE_KEY = "vowel-trowel:tts-voice-uri";
 type TrainingMode = "match" | "sort";
+type CatalogTab = "phonemes" | "contrasts";
+type PhonemePair = readonly [PhonemeId, PhonemeId];
+type UrlHistoryMode = "push" | "replace";
+
+interface UrlState {
+  languageId: string;
+  mode: TrainingMode;
+  phonemePair: PhonemePair | null;
+  catalogTab: CatalogTab;
+  explorePhonemeId: PhonemeId | null;
+}
 
 interface AudioCredit {
   key: string;
@@ -49,10 +64,20 @@ interface AudioCredit {
 }
 
 export default function App() {
+  const initialUrlState = readUrlState();
   const initialProgress = loadProgress();
-  const initialPrompt = createNextPrompt(initialProgress);
-  const initialSortingPrompt = selectNextSortingPrompt(dataset, initialProgress);
-  const [mode, setMode] = createSignal<TrainingMode>("match");
+  const initialPrompt = createNextPrompt(initialProgress, initialUrlState.phonemePair);
+  const initialSortingPrompt = createNextSortingPrompt(initialProgress, initialUrlState.phonemePair);
+  const initialActivePhonemePair = initialUrlState.phonemePair
+    ?? (initialUrlState.mode === "sort"
+      ? phonemePairFromSortingPrompt(initialSortingPrompt)
+      : phonemePairFromMatchingPrompt(initialPrompt));
+  const [mode, setMode] = createSignal<TrainingMode>(initialUrlState.mode);
+  const [lockedPhonemePair, setLockedPhonemePair] = createSignal<PhonemePair | null>(initialUrlState.phonemePair);
+  const [activePhonemePair, setActivePhonemePair] = createSignal<PhonemePair | null>(initialActivePhonemePair);
+  const [draftPhonemeIds, setDraftPhonemeIds] = createSignal<readonly PhonemeId[]>(initialActivePhonemePair ?? []);
+  const [catalogTab, setCatalogTab] = createSignal<CatalogTab>(initialUrlState.catalogTab);
+  const [explorePhonemeId, setExplorePhonemeId] = createSignal<PhonemeId | null>(initialUrlState.explorePhonemeId);
   const [progress, setProgress] = createSignal(initialProgress);
   const [prompt, setPrompt] = createSignal<MatchingPrompt | undefined>(initialPrompt);
   const [selections, setSelections] = createSignal(createPromptSelections(initialPrompt));
@@ -68,6 +93,7 @@ export default function App() {
   const [speechVoices, setSpeechVoices] = createSignal<SpeechSynthesisVoice[]>([]);
   const [selectedVoiceURI, setSelectedVoiceURI] = createSignal(loadSpeechVoiceURI());
   const [audioError, setAudioError] = createSignal<string | null>(null);
+  const [playbackVisualization, setPlaybackVisualization] = createSignal(getPlaybackVisualizationState());
 
   const languageProgress = createMemo(() => getLanguageProgress(progress(), dataset.id));
   const topConfusions = createMemo(() => getTopConfusions(progress(), dataset.id));
@@ -82,10 +108,23 @@ export default function App() {
     preferredLangs: dataset.speechLangs,
     voiceURI: selectedVoiceURI(),
   }));
-  const frenchSpeechVoices = createMemo(() =>
-    speechVoices().filter((voice) => voice.lang.toLowerCase().startsWith("fr")),
+  const languageSpeechVoices = createMemo(() =>
+    speechVoices().filter((voice) =>
+      (dataset.speechLangs ?? [dataset.defaultSpeechLang]).some((lang) => voiceMatchesSpeechLang(voice, lang))
+    ),
   );
   const activeSpeechVoice = createMemo(() => selectSpeechVoice(speechVoices(), speechSettings()));
+  const currentAudioCredits = createMemo(() => {
+    const exploredPhonemeId = explorePhonemeId();
+
+    if (exploredPhonemeId) {
+      return collectWordAudioCredits(wordsForPhoneme(exploredPhonemeId));
+    }
+
+    return mode() === "sort"
+      ? collectTermAudioCredits(sortingPrompt()?.wordCards ?? [])
+      : collectTermAudioCredits(prompt()?.item.terms ?? []);
+  });
 
   onMount(() => {
     const refreshVoices = () => setSpeechVoices(getAvailableSpeechVoices());
@@ -99,6 +138,173 @@ export default function App() {
     window.speechSynthesis.addEventListener("voiceschanged", refreshVoices);
     onCleanup(() => window.speechSynthesis.removeEventListener("voiceschanged", refreshVoices));
   });
+
+  onMount(() => {
+    const unsubscribe = subscribePlaybackVisualization(setPlaybackVisualization);
+
+    onCleanup(unsubscribe);
+  });
+
+  onMount(() => {
+    const handlePopState = () => applyUrlState(readUrlState());
+
+    window.addEventListener("popstate", handlePopState);
+    onCleanup(() => window.removeEventListener("popstate", handlePopState));
+  });
+
+  const applyUrlState = (state: UrlState) => {
+    const nextPrompt = createNextPrompt(progress(), state.phonemePair);
+    const nextSortingPrompt = createNextSortingPrompt(progress(), state.phonemePair);
+    const nextActivePair = state.phonemePair
+      ?? (state.mode === "sort"
+        ? phonemePairFromSortingPrompt(nextSortingPrompt)
+        : phonemePairFromMatchingPrompt(nextPrompt));
+
+    setMode(state.mode);
+    setLockedPhonemePair(state.phonemePair);
+    setActivePhonemePair(nextActivePair);
+    setDraftPhonemeIds(nextActivePair ?? []);
+    setCatalogTab(state.catalogTab);
+    setExplorePhonemeId(state.explorePhonemeId);
+
+    setPrompt(nextPrompt);
+    setSelections(createPromptSelections(nextPrompt));
+    setSelectedSlotId(null);
+    setResult(null);
+    setSortingPrompt(nextSortingPrompt);
+    setSortingPlacements(createSortingPlacements(nextSortingPrompt));
+    setSelectedSortingTermId(null);
+    setDraggedSortingTermId(null);
+    setSortingResult(null);
+    setAudioError(null);
+  };
+
+  const updateUrl = (patch: Partial<UrlState>, historyMode: UrlHistoryMode = "push") => {
+    writeUrlState({
+      languageId: dataset.id,
+      mode: patch.mode ?? mode(),
+      phonemePair: patch.phonemePair === undefined ? activePhonemePair() : patch.phonemePair,
+      catalogTab: patch.catalogTab ?? catalogTab(),
+      explorePhonemeId: patch.explorePhonemeId === undefined ? explorePhonemeId() : patch.explorePhonemeId,
+    }, historyMode);
+  };
+
+  onMount(() => updateUrl({ phonemePair: activePhonemePair() }, "replace"));
+
+  const chooseMode = (nextMode: TrainingMode) => {
+    setMode(nextMode);
+    updateUrl({ mode: nextMode });
+  };
+
+  const chooseCatalogTab = (nextTab: CatalogTab) => {
+    const nextExplorePhonemeId = nextTab === "phonemes" ? explorePhonemeId() : null;
+
+    setCatalogTab(nextTab);
+    setExplorePhonemeId(nextExplorePhonemeId);
+    updateUrl({ catalogTab: nextTab, explorePhonemeId: nextExplorePhonemeId });
+  };
+
+  const explorePhoneme = (phonemeId: PhonemeId) => {
+    setCatalogTab("phonemes");
+    setExplorePhonemeId(phonemeId);
+    updateUrl({ catalogTab: "phonemes", explorePhonemeId: phonemeId });
+  };
+
+  const closePhonemeExplorer = () => {
+    setExplorePhonemeId(null);
+    updateUrl({ explorePhonemeId: null }, "replace");
+  };
+
+  const selectPhonemeForDraft = (phonemeId: PhonemeId) => {
+    const current = draftPhonemeIds();
+    const nextDraft = current.includes(phonemeId)
+      ? current.filter((candidate) => candidate !== phonemeId)
+      : current.length >= 2
+        ? [phonemeId]
+        : [...current, phonemeId];
+
+    setDraftPhonemeIds(nextDraft);
+
+    const nextPair = toPhonemePair(nextDraft);
+
+    if (nextPair) {
+      choosePhonemePair(nextPair);
+    }
+  };
+
+  const choosePhonemePair = (phonemePair: PhonemePair, nextMode = mode()) => {
+    const nextPrompt = createNextPrompt(progress(), phonemePair);
+    const nextSortingPrompt = createNextSortingPrompt(progress(), phonemePair);
+
+    setMode(nextMode);
+    setLockedPhonemePair(phonemePair);
+    setActivePhonemePair(phonemePair);
+    setDraftPhonemeIds(phonemePair);
+    setPrompt(nextPrompt);
+    setSelections(createPromptSelections(nextPrompt));
+    setSelectedSlotId(null);
+    setResult(null);
+    setSortingPrompt(nextSortingPrompt);
+    setSortingPlacements(createSortingPlacements(nextSortingPrompt));
+    setSelectedSortingTermId(null);
+    setDraggedSortingTermId(null);
+    setSortingResult(null);
+    setAudioError(null);
+    updateUrl({ mode: nextMode, phonemePair });
+  };
+
+  const clearPhonemePair = () => {
+    const nextPrompt = createNextPrompt(progress(), null);
+    const nextSortingPrompt = createNextSortingPrompt(progress(), null);
+    const nextActivePair = mode() === "sort"
+      ? phonemePairFromSortingPrompt(nextSortingPrompt)
+      : phonemePairFromMatchingPrompt(nextPrompt);
+
+    setLockedPhonemePair(null);
+    setActivePhonemePair(nextActivePair);
+    setDraftPhonemeIds(nextActivePair ?? []);
+    setPrompt(nextPrompt);
+    setSelections(createPromptSelections(nextPrompt));
+    setSelectedSlotId(null);
+    setResult(null);
+    setSortingPrompt(nextSortingPrompt);
+    setSortingPlacements(createSortingPlacements(nextSortingPrompt));
+    setSelectedSortingTermId(null);
+    setDraggedSortingTermId(null);
+    setSortingResult(null);
+    setAudioError(null);
+    updateUrl({ phonemePair: nextActivePair }, "replace");
+  };
+
+  const playWordRecording = async (word: WordEntry) => {
+    setAudioError(null);
+
+    try {
+      await playAudioSources(word.audio, word.speechText ?? word.written, speechSettings());
+    } catch (error) {
+      setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
+    }
+  };
+
+  const playWordTts = async (word: WordEntry) => {
+    setAudioError(null);
+
+    try {
+      await playAudioSources([], word.speechText ?? word.written, speechSettings());
+    } catch (error) {
+      setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
+    }
+  };
+
+  const playAudioTrack = async (word: WordEntry, source: AudioSource) => {
+    setAudioError(null);
+
+    try {
+      await playAudioSources([source], word.speechText ?? word.written, speechSettings());
+    } catch (error) {
+      setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
+    }
+  };
 
   const selectSound = async (slot: PromptSlot) => {
     if (!result()) {
@@ -175,13 +381,17 @@ export default function App() {
   };
 
   const next = () => {
-    const nextPrompt = createNextPrompt(progress());
+    const nextPrompt = createNextPrompt(progress(), lockedPhonemePair());
+    const nextActivePair = lockedPhonemePair() ?? phonemePairFromMatchingPrompt(nextPrompt);
 
     setPrompt(nextPrompt);
     setSelections(createPromptSelections(nextPrompt));
+    setActivePhonemePair(nextActivePair);
+    setDraftPhonemeIds(nextActivePair ?? []);
     setSelectedSlotId(null);
     setResult(null);
     setAudioError(null);
+    updateUrl({ phonemePair: nextActivePair }, "replace");
   };
 
   const selectSortingWord = async (term: MinimalPairTerm) => {
@@ -232,14 +442,18 @@ export default function App() {
   };
 
   const nextSorting = () => {
-    const nextPrompt = selectNextSortingPrompt(dataset, progress());
+    const nextPrompt = createNextSortingPrompt(progress(), lockedPhonemePair());
+    const nextActivePair = lockedPhonemePair() ?? phonemePairFromSortingPrompt(nextPrompt);
 
     setSortingPrompt(nextPrompt);
     setSortingPlacements(createSortingPlacements(nextPrompt));
+    setActivePhonemePair(nextActivePair);
+    setDraftPhonemeIds(nextActivePair ?? []);
     setSelectedSortingTermId(null);
     setDraggedSortingTermId(null);
     setSortingResult(null);
     setAudioError(null);
+    updateUrl({ phonemePair: nextActivePair }, "replace");
   };
 
   const playSortingGroup = async (group: SortingGroup) => {
@@ -265,8 +479,8 @@ export default function App() {
     }
 
     const emptyProgress = resetProgress();
-    const nextPrompt = createNextPrompt(emptyProgress);
-    const nextSortingPrompt = selectNextSortingPrompt(dataset, emptyProgress);
+    const nextPrompt = createNextPrompt(emptyProgress, lockedPhonemePair());
+    const nextSortingPrompt = createNextSortingPrompt(emptyProgress, lockedPhonemePair());
 
     setProgress(emptyProgress);
     setPrompt(nextPrompt);
@@ -287,21 +501,42 @@ export default function App() {
     saveSpeechVoiceURI(nextVoiceURI);
   };
 
+  const chooseLanguage = (languageId: string) => {
+    if (sameLanguageId(languageId, dataset.id) || typeof window === "undefined") {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    params.set("lang", languageId);
+    params.delete("phonemes");
+    params.delete("explore");
+
+    const query = params.toString();
+    window.location.assign(`${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
+  };
+
   return (
     <main class="app-shell">
       <section class="hero-panel">
         <div>
-          <p class="eyebrow">Client-side phoneme drills</p>
+          <p class="eyebrow">Listen and compare</p>
           <h1>Vowel Trowel</h1>
           <p class="hero-copy">
-            Hear two minimal-pair words, then match each recording to its spelling and IPA.
-            Progress is stored locally and scheduled by the sounds you confuse most.
+            Hear two words, choose what you heard, and practise the sounds that trip you up.
           </p>
         </div>
         <div class="language-card" aria-label="Current language">
-          <span>Training</span>
+          <span>Practising</span>
           <strong>{dataset.name}</strong>
-          <small>{minimalPairCount()} starter pairs</small>
+          <small>{minimalPairCount()} word pairs</small>
+          <label class="language-select-label">
+            <span>Language</span>
+            <select value={dataset.id} onInput={(event) => chooseLanguage(event.currentTarget.value)}>
+              <For each={languageDatasets}>
+                {(language) => <option value={language.id}>{language.name}</option>}
+              </For>
+            </select>
+          </label>
         </div>
       </section>
 
@@ -309,14 +544,14 @@ export default function App() {
         <button
           class={mode() === "match" ? "mode-tab selected" : "mode-tab"}
           type="button"
-          onClick={() => setMode("match")}
+          onClick={() => chooseMode("match")}
         >
           Match sounds
         </button>
         <button
           class={mode() === "sort" ? "mode-tab selected" : "mode-tab"}
           type="button"
-          onClick={() => setMode("sort")}
+          onClick={() => chooseMode("sort")}
         >
           Sort words
         </button>
@@ -363,32 +598,34 @@ export default function App() {
 
         <aside class="progress-panel">
           <div class="panel-heading">
-            <p class="eyebrow">Local progress</p>
-            <h2>Adaptive memory</h2>
+            <p class="eyebrow">Your progress</p>
+            <h2>Practice history</h2>
           </div>
           <div class="stat-grid">
-            <Metric label="Attempts" value={String(totalAttempts())} />
-            <Metric label="Contrasts" value={String(dataset.contrasts.length)} />
+            <Metric label="Tries" value={String(totalAttempts())} />
+            <Metric label="Sound pairs" value={String(dataset.contrasts.length)} />
           </div>
+          <SpectrogramPanel visualization={playbackVisualization()} />
           <VoicePanel
-            voices={frenchSpeechVoices()}
+            voices={languageSpeechVoices()}
             activeVoice={activeSpeechVoice()}
             selectedVoiceURI={selectedVoiceURI()}
+            languageName={dataset.name}
             preferredLangs={dataset.speechLangs ?? [dataset.defaultSpeechLang]}
             onSelect={chooseSpeechVoice}
           />
           <div class="confusion-list">
-            <h3>Top confusions</h3>
+            <h3>Tricky sounds</h3>
             <Show
               when={topConfusions().length > 0}
-              fallback={<p class="muted">Mistakes will appear here as heard phoneme {"->"} chosen phoneme.</p>}
+              fallback={<p class="muted">Patterns will appear here as you practise.</p>}
             >
               <For each={topConfusions()}>
                 {(confusion) => (
                   <div class="confusion-row">
                     <span>
-                      {phonemeLabel(confusion.heardPhonemeId)} {"->"}{" "}
-                      {phonemeLabel(confusion.chosenPhonemeId)}
+                      <span class="ipa-text">{phonemeLabel(confusion.heardPhonemeId)}</span> {"->"}{" "}
+                      <span class="ipa-text">{phonemeLabel(confusion.chosenPhonemeId)}</span>
                     </span>
                     <strong>{confusion.count}</strong>
                   </div>
@@ -404,20 +641,26 @@ export default function App() {
 
       <section class="content-panel">
         <div class="panel-heading">
-          <p class="eyebrow">Dataset sketch</p>
-          <h2>French starter inventory</h2>
+          <p class="eyebrow">Explore sounds</p>
+          <h2>{dataset.name} sound library</h2>
         </div>
-        <div class="contrast-grid">
-          <For each={dataset.contrasts}>
-            {(contrast) => (
-              <article class="contrast-card">
-                <strong>{contrast.label}</strong>
-                <p>{contrast.description}</p>
-              </article>
-            )}
-          </For>
-        </div>
-        <AudioCreditsPanel credits={audioCredits} />
+        <CatalogPanel
+          tab={catalogTab()}
+          activePhonemePair={activePhonemePair()}
+          draftPhonemeIds={draftPhonemeIds()}
+          explorePhonemeId={explorePhonemeId()}
+          audioError={audioError()}
+          onTabChange={chooseCatalogTab}
+          onPhonemeSelect={selectPhonemeForDraft}
+          onPhonemeExplore={explorePhoneme}
+          onExploreClose={closePhonemeExplorer}
+          onPairSelect={choosePhonemePair}
+          onPairClear={clearPhonemePair}
+          onWordRecordingPlay={playWordRecording}
+          onWordTtsPlay={playWordTts}
+          onTrackPlay={playAudioTrack}
+        />
+        <AudioCreditsPanel credits={currentAudioCredits()} />
       </section>
     </main>
   );
@@ -444,12 +687,11 @@ function TrainingPanel(props: {
   return (
     <section class="training-panel">
       <div class="panel-heading">
-        <p class="eyebrow">Current contrast</p>
-        <h2>{contrast()?.label ?? props.prompt.item.contrastId}</h2>
+        <p class="eyebrow">Listen for</p>
+        <h2 class="ipa-heading">{contrast()?.label ?? props.prompt.item.contrastId}</h2>
       </div>
       <p class="instructions">
-        Select a sound to play it, then choose the matching written form. Repeat until every
-        sound has one word.
+        Play each sample, then choose the word you heard.
       </p>
       <p class="interaction-hint">
         <Show
@@ -488,7 +730,7 @@ function TrainingPanel(props: {
                 >
                   <span class="sample-label">Sample {slot.label}</span>
                   <span class="sample-meta">
-                    {slot.term.word.audio.length ? "Recorded audio" : "TTS fallback"}
+                    {slot.term.word.audio.length ? "Recording" : "Browser voice"}
                   </span>
                   <span class="assignment-line">
                     <Show
@@ -560,8 +802,9 @@ function TrainingPanel(props: {
 
                 return (
                   <p>
-                    Sample {slot?.label}: heard {slot?.term.word.written} {slot?.term.word.ipa}, chose{" "}
-                    {chosen?.word.written} {chosen?.word.ipa}
+                    Sample {slot?.label}: heard {slot?.term.word.written}{" "}
+                    <span class="ipa-text">{slot?.term.word.ipa}</span>, chose {chosen?.word.written}{" "}
+                    <span class="ipa-text">{chosen?.word.ipa}</span>
                   </p>
                 );
               }}
@@ -631,16 +874,15 @@ function SortingPanel(props: {
     <section class="training-panel">
       <div class="panel-heading">
         <p class="eyebrow">Sort words</p>
-        <h2>{contrast()?.label ?? props.prompt.contrastId}</h2>
+        <h2 class="ipa-heading">{contrast()?.label ?? props.prompt.contrastId}</h2>
       </div>
       <p class="instructions">
-        Put each written word into the group for the phoneme it contains. Tap a word to hear
-        it; tap a phoneme heading to hear an example; drag a word into a group, or tap a word
-        and then tap a group.
+        Put each word under the sound it contains. Tap a word to hear it; tap a sound heading
+        to hear an example.
       </p>
       <p class="interaction-hint">
         <Show when={selectedTerm()} fallback="Tap or drag a word from the bag.">
-          {(term) => <>Selected {term().word.written}. Choose a phoneme group.</>}
+          {(term) => <>Selected {term().word.written}. Choose a sound group.</>}
         </Show>
       </p>
 
@@ -655,7 +897,7 @@ function SortingPanel(props: {
       >
         <div class="column-title">
           <h3>Word bag</h3>
-          <span>IPA appears after checking</span>
+          <span>Pronunciation appears after checking</span>
         </div>
         <div class="sort-word-grid">
           <Show when={unplacedTerms().length > 0} fallback={<p class="muted">All words placed.</p>}>
@@ -695,7 +937,7 @@ function SortingPanel(props: {
                   props.onGroupPlay(group);
                 }}
               >
-                <span>{group.label}</span>
+                <span class="ipa-text">{group.label}</span>
                 <small>{phonemeHasAudio(group.phonemeId) ? "Play sound" : "Play example"}</small>
               </button>
               <div class="sort-word-grid">
@@ -737,8 +979,8 @@ function SortingPanel(props: {
 
                 return (
                   <p>
-                    {term?.word.written}: {phonemeLabel(answer.heardPhonemeId)} word placed in{" "}
-                    {phonemeLabel(answer.chosenPhonemeId)}
+                    {term?.word.written}: <span class="ipa-text">{phonemeLabel(answer.heardPhonemeId)}</span>{" "}
+                    word placed under <span class="ipa-text">{phonemeLabel(answer.chosenPhonemeId)}</span>
                   </p>
                 );
               }}
@@ -810,23 +1052,269 @@ function SortWordCard(props: {
   );
 }
 
+function CatalogPanel(props: {
+  tab: CatalogTab;
+  activePhonemePair: PhonemePair | null;
+  draftPhonemeIds: readonly PhonemeId[];
+  explorePhonemeId: PhonemeId | null;
+  audioError: string | null;
+  onTabChange: (tab: CatalogTab) => void;
+  onPhonemeSelect: (phonemeId: PhonemeId) => void;
+  onPhonemeExplore: (phonemeId: PhonemeId) => void;
+  onExploreClose: () => void;
+  onPairSelect: (phonemePair: PhonemePair, mode?: TrainingMode) => void;
+  onPairClear: () => void;
+  onWordRecordingPlay: (word: WordEntry) => void;
+  onWordTtsPlay: (word: WordEntry) => void;
+  onTrackPlay: (word: WordEntry, source: AudioSource) => void;
+}) {
+  const exploredPhoneme = createMemo(() =>
+    props.explorePhonemeId
+      ? dataset.phonemes.find((phoneme) => phoneme.id === props.explorePhonemeId)
+      : undefined,
+  );
+
+  return (
+    <section class="catalog-panel">
+      <nav class="catalog-tabs" aria-label="Inventory view">
+        <button
+          class={props.tab === "phonemes" ? "catalog-tab selected" : "catalog-tab"}
+          type="button"
+          onClick={() => props.onTabChange("phonemes")}
+        >
+          Sounds
+        </button>
+        <button
+          class={props.tab === "contrasts" ? "catalog-tab selected" : "catalog-tab"}
+          type="button"
+          onClick={() => props.onTabChange("contrasts")}
+        >
+          Ready-made contrasts
+        </button>
+      </nav>
+
+      <Show
+        when={props.tab === "phonemes"}
+        fallback={
+          <PremadeContrastsPanel
+            activePhonemePair={props.activePhonemePair}
+            onPairSelect={props.onPairSelect}
+          />
+        }
+      >
+        <Show
+          when={exploredPhoneme()}
+          fallback={
+            <PhonemePicker
+              activePhonemePair={props.activePhonemePair}
+              draftPhonemeIds={props.draftPhonemeIds}
+              onPhonemeSelect={props.onPhonemeSelect}
+              onPhonemeExplore={props.onPhonemeExplore}
+              onPairSelect={props.onPairSelect}
+              onPairClear={props.onPairClear}
+            />
+          }
+        >
+          {(phoneme) => (
+            <PhonemeExplorer
+              phoneme={phoneme()}
+              audioError={props.audioError}
+              onBack={props.onExploreClose}
+              onWordRecordingPlay={props.onWordRecordingPlay}
+              onWordTtsPlay={props.onWordTtsPlay}
+              onTrackPlay={props.onTrackPlay}
+            />
+          )}
+        </Show>
+      </Show>
+    </section>
+  );
+}
+
+function PhonemePicker(props: {
+  activePhonemePair: PhonemePair | null;
+  draftPhonemeIds: readonly PhonemeId[];
+  onPhonemeSelect: (phonemeId: PhonemeId) => void;
+  onPhonemeExplore: (phonemeId: PhonemeId) => void;
+  onPairSelect: (phonemePair: PhonemePair, mode?: TrainingMode) => void;
+  onPairClear: () => void;
+}) {
+  return (
+    <>
+      <div class="phoneme-selection-bar">
+        <Show
+          when={props.activePhonemePair}
+          fallback={<p>Pick any two sounds to make your own practice round.</p>}
+        >
+          {(phonemePair) => (
+            <p>
+              Current practice: <strong class="ipa-text">{phonemePairLabel(phonemePair())}</strong>
+            </p>
+          )}
+        </Show>
+        <Show when={props.draftPhonemeIds.length === 1}>
+          <p class="muted">Selected <span class="ipa-text">{phonemeLabel(props.draftPhonemeIds[0] ?? "")}</span>. Pick one more.</p>
+        </Show>
+        <div class="selection-actions">
+          <Show when={props.activePhonemePair}>
+            {(phonemePair) => (
+              <>
+                <button class="small-button" type="button" onClick={() => props.onPairSelect(phonemePair(), "match")}>
+                  Match sounds
+                </button>
+                <button class="small-button" type="button" onClick={() => props.onPairSelect(phonemePair(), "sort")}>
+                  Sort words
+                </button>
+                <button class="text-button compact" type="button" onClick={props.onPairClear}>
+                  Back to mixed practice
+                </button>
+              </>
+            )}
+          </Show>
+        </div>
+      </div>
+
+      <div class="phoneme-grid">
+        <For each={dataset.phonemes}>
+          {(phoneme) => (
+            <article class={phonemeCardClass(phoneme, props.draftPhonemeIds, props.activePhonemePair)}>
+              <button class="phoneme-main" type="button" onClick={() => props.onPhonemeSelect(phoneme.id)}>
+                <span class="phoneme-ipa">{phoneme.ipa}</span>
+                <strong>{phoneme.label}</strong>
+                <small>{phoneme.category}</small>
+              </button>
+              <Show when={phoneme.notes}>
+                {(notes) => <p>{notes()}</p>}
+              </Show>
+              <button class="text-button compact" type="button" onClick={() => props.onPhonemeExplore(phoneme.id)}>
+                Explore words
+              </button>
+            </article>
+          )}
+        </For>
+      </div>
+    </>
+  );
+}
+
+function PremadeContrastsPanel(props: {
+  activePhonemePair: PhonemePair | null;
+  onPairSelect: (phonemePair: PhonemePair, mode?: TrainingMode) => void;
+}) {
+  return (
+    <div class="contrast-grid interactive">
+      <For each={dataset.contrasts}>
+        {(contrast) => (
+          <button
+            class={contrastCardClass(contrast, props.activePhonemePair)}
+            type="button"
+            onClick={() => props.onPairSelect(contrast.phonemeIds)}
+          >
+            <strong class="ipa-heading">{contrast.label}</strong>
+            <p>{contrast.description}</p>
+            <small>{contrast.minimalPairs.length} word pairs</small>
+          </button>
+        )}
+      </For>
+    </div>
+  );
+}
+
+function PhonemeExplorer(props: {
+  phoneme: Phoneme;
+  audioError: string | null;
+  onBack: () => void;
+  onWordRecordingPlay: (word: WordEntry) => void;
+  onWordTtsPlay: (word: WordEntry) => void;
+  onTrackPlay: (word: WordEntry, source: AudioSource) => void;
+}) {
+  const words = createMemo(() => wordsForPhoneme(props.phoneme.id));
+
+  return (
+    <section class="phoneme-explorer">
+      <button class="text-button compact" type="button" onClick={props.onBack}>
+        Back to sounds
+      </button>
+      <div class="phoneme-explorer-heading">
+        <span class="phoneme-ipa large">{props.phoneme.ipa}</span>
+        <div>
+          <h3>{props.phoneme.label}</h3>
+          <p>{props.phoneme.notes ?? `${words().length} words here use this sound.`}</p>
+        </div>
+      </div>
+
+      <Show when={props.audioError}>
+        {(message) => <p class="error-message">{message()}</p>}
+      </Show>
+
+      <div class="explore-word-list">
+        <For each={words()}>
+          {(word) => (
+            <article class="explore-word-card">
+              <div class="explore-word-heading">
+                <div>
+                  <strong>{word.written}</strong>
+                  <span class="ipa-text">{word.ipa}</span>
+                </div>
+                <div class="explore-actions">
+                  <button
+                    class="small-button"
+                    type="button"
+                    disabled={word.audio.length === 0}
+                    onClick={() => props.onWordRecordingPlay(word)}
+                  >
+                    Play recording
+                  </button>
+                  <button class="small-button" type="button" onClick={() => props.onWordTtsPlay(word)}>
+                    Browser voice
+                  </button>
+                </div>
+              </div>
+
+              <Show
+                when={word.audio.length > 0}
+                fallback={<p class="muted">No recording yet; browser voice is available.</p>}
+              >
+                <div class="track-list">
+                  <For each={word.audio}>
+                    {(source, index) => (
+                      <div class="track-row">
+                        <button class="text-button compact" type="button" onClick={() => props.onTrackPlay(word, source)}>
+                          Play track {index() + 1}
+                        </button>
+                        <span>
+                          {[source.accent, source.license].filter(Boolean).join(" · ") || source.kind}
+                        </span>
+                      </div>
+                    )}
+                  </For>
+                </div>
+              </Show>
+            </article>
+          )}
+        </For>
+      </div>
+    </section>
+  );
+}
+
 function VoicePanel(props: {
   voices: readonly SpeechSynthesisVoice[];
   activeVoice: SpeechSynthesisVoice | undefined;
   selectedVoiceURI: string | null;
+  languageName: string;
   preferredLangs: readonly string[];
   onSelect: (voiceURI: string) => void;
 }) {
   return (
     <section class="voice-panel">
-      <h3>TTS voice</h3>
+      <h3>Browser voice</h3>
       <p>
-        Auto prefers {props.preferredLangs.join(", ")}. If your browser exposes Belgian or
-        Swiss French, select it here.
+        If your browser offers a better {props.languageName} voice, select it here.
       </p>
       <Show
         when={props.voices.length > 0}
-        fallback={<p class="muted">No French browser voices detected yet.</p>}
+        fallback={<p class="muted">No matching browser voices detected yet.</p>}
       >
         <label class="voice-select-label">
           <span>Browser voice</span>
@@ -834,7 +1322,7 @@ function VoicePanel(props: {
             value={props.selectedVoiceURI ?? ""}
             onInput={(event) => props.onSelect(event.currentTarget.value)}
           >
-            <option value="">Auto regional preference</option>
+            <option value="">Automatic choice</option>
             <For each={props.voices}>
               {(voice) => (
                 <option value={voice.voiceURI}>
@@ -849,7 +1337,7 @@ function VoicePanel(props: {
         Current: {props.activeVoice ? `${props.activeVoice.name} (${props.activeVoice.lang})` : "browser default"}
       </p>
       <p class="muted">
-        For contrasts like brun/brin, real recordings are still more reliable than TTS.
+        Real recordings are still best for close sound contrasts.
       </p>
     </section>
   );
@@ -864,13 +1352,354 @@ function Metric(props: { label: string; value: string }) {
   );
 }
 
+function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) {
+  let canvas: HTMLCanvasElement | undefined;
+  let stopSpectrogram: (() => void) | undefined;
+  let paintedStateId: number | undefined;
+  let revealedColumn = 0;
+
+  const stopDrawing = () => {
+    stopSpectrogram?.();
+    stopSpectrogram = undefined;
+  };
+
+  createEffect(() => {
+    const visualization = props.visualization;
+
+    if (!canvas) {
+      return;
+    }
+
+    const isNewSelection = paintedStateId !== visualization.id;
+
+    if (isNewSelection) {
+      paintedStateId = visualization.id;
+      revealedColumn = 0;
+      paintSpectrogramBase(canvas, visualization);
+    }
+
+    stopDrawing();
+
+    if (visualization.status === "playing" && visualization.analyser) {
+      stopSpectrogram = drawDurationScaledSpectrogram(canvas, visualization, {
+        get: () => revealedColumn,
+        set: (column) => { revealedColumn = column; },
+      });
+      return;
+    }
+
+    if (visualization.status === "ended" && visualization.analyser) {
+      revealedColumn = paintSpectrogramToProgress(canvas, visualization, 1, revealedColumn);
+    }
+  });
+
+  onCleanup(stopDrawing);
+
+  return (
+    <section class="spectrogram-panel" aria-label="Spectrogram display">
+      <div class="spectrogram-heading">
+        <div>
+          <p class="eyebrow">Sound picture</p>
+          <h3>Spectrogram</h3>
+        </div>
+        <span class={`spectrogram-status ${props.visualization.status}`}>
+          {spectrogramStatusLabel(props.visualization)}
+        </span>
+      </div>
+      <div class="spectrogram-frame">
+        <canvas
+          ref={(element) => { canvas = element; }}
+          aria-label="Audio spectrogram"
+        />
+      </div>
+      <div class="spectrogram-meta">
+        <div>
+          <strong>{props.visualization.label}</strong>
+          <span>{props.visualization.detail}</span>
+        </div>
+        <button
+          class="small-button spectrogram-replay"
+          type="button"
+          disabled={!props.visualization.replay}
+          onClick={() => void props.visualization.replay?.().catch(() => undefined)}
+        >
+          Replay
+        </button>
+      </div>
+    </section>
+  );
+}
+
+function spectrogramStatusLabel(visualization: PlaybackVisualizationState): string {
+  if (visualization.status === "playing") {
+    return visualization.mode === "voice" ? "Voice" : "Playing";
+  }
+
+  if (visualization.status === "ended") {
+    return "Held";
+  }
+
+  if (visualization.status === "error") {
+    return "Error";
+  }
+
+  return "Ready";
+}
+
+function paintSpectrogramBase(canvas: HTMLCanvasElement, visualization: PlaybackVisualizationState): void {
+  const { ctx, width, height } = prepareSpectrogramCanvas(canvas);
+
+  ctx.fillStyle = "#f4f1ea";
+  ctx.fillRect(0, 0, width, height);
+  paintSpectrogramGrid(ctx, width, height);
+
+  if (visualization.mode === "voice") {
+    paintVoicePattern(ctx, width, height);
+    return;
+  }
+
+  if (visualization.mode === "recording" && !visualization.analyser) {
+    paintUnavailablePattern(ctx, width, height);
+    return;
+  }
+
+  if (visualization.status === "idle") {
+    paintIdlePattern(ctx, width, height);
+  }
+}
+
+function drawDurationScaledSpectrogram(
+  canvas: HTMLCanvasElement,
+  visualization: PlaybackVisualizationState,
+  revealedColumn: { get: () => number; set: (column: number) => void },
+): () => void {
+  let frameId: number | undefined;
+  let active = true;
+  const startedAt = performance.now();
+
+  const draw = () => {
+    if (!active) {
+      return;
+    }
+
+    const { resized } = prepareSpectrogramCanvas(canvas);
+
+    if (resized) {
+      revealedColumn.set(0);
+      paintSpectrogramBase(canvas, visualization);
+    }
+
+    const progress = getSpectrogramProgress(visualization, startedAt);
+    const nextColumn = paintSpectrogramToProgress(canvas, visualization, progress, revealedColumn.get());
+
+    revealedColumn.set(nextColumn);
+
+    frameId = requestAnimationFrame(draw);
+  };
+
+  frameId = requestAnimationFrame(draw);
+
+  return () => {
+    active = false;
+
+    if (frameId !== undefined) {
+      cancelAnimationFrame(frameId);
+    }
+  };
+}
+
+function paintSpectrogramToProgress(
+  canvas: HTMLCanvasElement,
+  visualization: PlaybackVisualizationState,
+  progress: number,
+  currentColumn: number,
+): number {
+  if (!visualization.analyser) {
+    return currentColumn;
+  }
+
+  const { ctx, width, height } = prepareSpectrogramCanvas(canvas);
+  const clampedProgress = Math.max(0, Math.min(1, progress));
+  const targetColumn = Math.max(currentColumn, Math.min(width, Math.ceil(clampedProgress * width)));
+
+  if (targetColumn <= currentColumn) {
+    return currentColumn;
+  }
+
+  const data = new Uint8Array(visualization.analyser.frequencyBinCount);
+  visualization.analyser.getByteFrequencyData(data);
+  paintSpectrogramColumns(ctx, currentColumn, targetColumn, height, data);
+
+  return targetColumn;
+}
+
+function paintSpectrogramColumns(
+  ctx: CanvasRenderingContext2D,
+  fromX: number,
+  toX: number,
+  height: number,
+  data: Uint8Array,
+): void {
+  const columnWidth = Math.max(1, toX - fromX);
+
+  for (let y = 0; y < height; y += 1) {
+    const normalizedY = 1 - y / Math.max(1, height - 1);
+    const bin = Math.min(data.length - 1, Math.floor(normalizedY ** 2.4 * (data.length - 1)));
+    const value = (data[bin] ?? 0) / 255;
+
+    ctx.fillStyle = spectrogramColor(value);
+    ctx.fillRect(fromX, y, columnWidth, 1);
+  }
+}
+
+function getSpectrogramProgress(visualization: PlaybackVisualizationState, startedAt: number): number {
+  const timing = visualization.getTiming?.();
+
+  if (timing?.duration) {
+    return timing.currentTime / timing.duration;
+  }
+
+  return Math.min(0.98, (performance.now() - startedAt) / 1600);
+}
+
+function prepareSpectrogramCanvas(canvas: HTMLCanvasElement): {
+  ctx: CanvasRenderingContext2D;
+  width: number;
+  height: number;
+  resized: boolean;
+} {
+  const rect = canvas.getBoundingClientRect();
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const cssWidth = Math.max(280, Math.floor(rect.width || 420));
+  const cssHeight = Math.max(120, Math.floor(rect.height || 150));
+  const width = Math.floor(cssWidth * ratio);
+  const height = Math.floor(cssHeight * ratio);
+
+  const resized = canvas.width !== width || canvas.height !== height;
+
+  if (resized) {
+    canvas.width = width;
+    canvas.height = height;
+  }
+
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx) {
+    throw new Error("Could not create spectrogram canvas context.");
+  }
+
+  return { ctx, width, height, resized };
+}
+
+function paintSpectrogramGrid(ctx: CanvasRenderingContext2D, width: number, height: number): void {
+  ctx.save();
+  ctx.strokeStyle = "rgba(32, 32, 32, 0.12)";
+  ctx.lineWidth = Math.max(1, Math.floor(width / 420));
+
+  for (let index = 1; index < 4; index += 1) {
+    const y = Math.floor((height / 4) * index) + 0.5;
+
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(width, y);
+    ctx.stroke();
+  }
+
+  for (let index = 1; index < 6; index += 1) {
+    const x = Math.floor((width / 6) * index) + 0.5;
+
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, height);
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+function paintIdlePattern(ctx: CanvasRenderingContext2D, width: number, height: number): void {
+  ctx.save();
+  ctx.strokeStyle = "rgba(138, 104, 20, 0.55)";
+  ctx.lineWidth = Math.max(2, Math.floor(width / 260));
+  ctx.beginPath();
+
+  for (let x = 0; x <= width; x += 6) {
+    const y = height * 0.55 + Math.sin(x / 24) * height * 0.08;
+
+    if (x === 0) {
+      ctx.moveTo(x, y);
+    } else {
+      ctx.lineTo(x, y);
+    }
+  }
+
+  ctx.stroke();
+  ctx.restore();
+}
+
+function paintVoicePattern(ctx: CanvasRenderingContext2D, width: number, height: number): void {
+  ctx.save();
+
+  for (let x = 0; x < width; x += Math.max(8, Math.floor(width / 36))) {
+    const strength = 0.25 + 0.45 * Math.abs(Math.sin(x / 31));
+    const barHeight = height * strength;
+
+    ctx.fillStyle = spectrogramColor(strength * 0.75);
+    ctx.fillRect(x, height - barHeight, Math.max(3, Math.floor(width / 120)), barHeight);
+  }
+
+  ctx.restore();
+}
+
+function paintUnavailablePattern(ctx: CanvasRenderingContext2D, width: number, height: number): void {
+  ctx.save();
+  ctx.strokeStyle = "rgba(47, 94, 158, 0.4)";
+  ctx.lineWidth = Math.max(2, Math.floor(width / 220));
+
+  for (let x = -height; x < width; x += Math.max(18, Math.floor(width / 24))) {
+    ctx.beginPath();
+    ctx.moveTo(x, height);
+    ctx.lineTo(x + height, 0);
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+function spectrogramColor(value: number): string {
+  const clamped = Math.max(0, Math.min(1, value));
+
+  if (clamped < 0.35) {
+    return mixColor([244, 241, 234], [214, 206, 194], clamped / 0.35);
+  }
+
+  if (clamped < 0.72) {
+    return mixColor([214, 206, 194], [138, 104, 20], (clamped - 0.35) / 0.37);
+  }
+
+  return mixColor([138, 104, 20], [38, 79, 135], (clamped - 0.72) / 0.28);
+}
+
+function mixColor(
+  start: readonly [number, number, number],
+  end: readonly [number, number, number],
+  amount: number,
+): string {
+  const clamped = Math.max(0, Math.min(1, amount));
+  const [red, green, blue] = start.map((channel, index) =>
+    Math.round(channel + ((end[index] ?? channel) - channel) * clamped)
+  );
+
+  return `rgb(${red}, ${green}, ${blue})`;
+}
+
 function AudioCreditsPanel(props: { credits: readonly AudioCredit[] }) {
   return (
     <details class="audio-credits">
       <summary>Audio credits</summary>
       <Show
         when={props.credits.length > 0}
-        fallback={<p class="muted">No local or external recording files are enabled yet. Browser TTS may be used as a fallback.</p>}
+        fallback={<p class="muted">No recordings are used in the current view. The app may use your browser voice instead.</p>}
       >
         <div class="audio-credit-list">
           <For each={props.credits}>
@@ -910,8 +1739,8 @@ function AudioCreditsPanel(props: { credits: readonly AudioCredit[] }) {
 function EmptyDataset() {
   return (
     <section class="training-panel">
-      <h2>No training content yet</h2>
-      <p>Add minimal pairs to `src/languages/fr/index.ts` to start a session.</p>
+      <h2>No practice content yet</h2>
+      <p>Add word pairs to this language to start a session.</p>
     </section>
   );
 }
@@ -1055,6 +1884,45 @@ function phonemeLabel(phonemeId: PhonemeId): string {
   return dataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.ipa ?? phonemeId;
 }
 
+function phonemePairLabel(phonemePair: PhonemePair): string {
+  return `${phonemeLabel(phonemePair[0])} vs ${phonemeLabel(phonemePair[1])}`;
+}
+
+function phonemeCardClass(
+  phoneme: Phoneme,
+  draftPhonemeIds: readonly PhonemeId[],
+  activePhonemePair: PhonemePair | null,
+): string {
+  const classes = ["phoneme-card"];
+
+  if (draftPhonemeIds.includes(phoneme.id)) {
+    classes.push("selected");
+  }
+
+  if (activePhonemePair?.includes(phoneme.id)) {
+    classes.push("active");
+  }
+
+  return classes.join(" ");
+}
+
+function contrastCardClass(
+  contrast: PhonemeContrast,
+  activePhonemePair: PhonemePair | null,
+): string {
+  const classes = ["contrast-card", "contrast-button"];
+
+  if (activePhonemePair && samePhonemePair(contrast.phonemeIds, activePhonemePair)) {
+    classes.push("active");
+  }
+
+  return classes.join(" ");
+}
+
+function wordsForPhoneme(phonemeId: PhonemeId): WordEntry[] {
+  return dataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
+}
+
 function phonemeHasAudio(phonemeId: PhonemeId): boolean {
   return Boolean(dataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.audio?.length);
 }
@@ -1063,21 +1931,33 @@ function minimalPairCount(): number {
   return dataset.contrasts.reduce((total, contrast) => total + contrast.minimalPairs.length, 0);
 }
 
-function collectAudioCredits(): AudioCredit[] {
+function collectTermAudioCredits(terms: readonly MinimalPairTerm[]): AudioCredit[] {
   const credits = new Map<string, AudioCredit>();
 
-  for (const word of dataset.words) {
+  for (const term of terms) {
+    const source = term.selectedAudio ?? term.word.audio[0];
+
+    if (source) {
+      addAudioCredit(credits, `${term.word.written} ${term.word.ipa}`, source);
+    }
+  }
+
+  return sortAudioCredits(credits);
+}
+
+function collectWordAudioCredits(words: readonly WordEntry[]): AudioCredit[] {
+  const credits = new Map<string, AudioCredit>();
+
+  for (const word of words) {
     for (const source of word.audio) {
       addAudioCredit(credits, `${word.written} ${word.ipa}`, source);
     }
   }
 
-  for (const phoneme of dataset.phonemes) {
-    for (const source of phoneme.audio ?? []) {
-      addAudioCredit(credits, `${phoneme.ipa} sound`, source);
-    }
-  }
+  return sortAudioCredits(credits);
+}
 
+function sortAudioCredits(credits: Map<string, AudioCredit>): AudioCredit[] {
   return [...credits.values()].sort((left, right) =>
     (left.labels[0] ?? "").localeCompare(right.labels[0] ?? "")
   );
@@ -1123,7 +2003,165 @@ function saveSpeechVoiceURI(voiceURI: string | null): void {
   localStorage.removeItem(SPEECH_VOICE_STORAGE_KEY);
 }
 
-function createNextPrompt(currentProgress: ReturnType<typeof loadProgress>): MatchingPrompt | undefined {
-  const item = selectNextMinimalPair(dataset, currentProgress);
+function createNextPrompt(
+  currentProgress: ReturnType<typeof loadProgress>,
+  phonemePair: PhonemePair | null,
+): MatchingPrompt | undefined {
+  const item = phonemePair
+    ? selectNextMinimalPairForPhonemes(dataset, phonemePair, currentProgress)
+    : selectNextMinimalPair(dataset, currentProgress);
+
   return item ? createMatchingPrompt(item) : undefined;
+}
+
+function createNextSortingPrompt(
+  currentProgress: ReturnType<typeof loadProgress>,
+  phonemePair: PhonemePair | null,
+): SortingPrompt | undefined {
+  return phonemePair
+    ? createSortingPromptForPhonemes(dataset, phonemePair)
+    : selectNextSortingPrompt(dataset, currentProgress);
+}
+
+function readUrlState(): UrlState {
+  if (typeof window === "undefined") {
+    return {
+      languageId: dataset.id,
+      mode: "match",
+      phonemePair: null,
+      catalogTab: "phonemes",
+      explorePhonemeId: null,
+    };
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const explorePhonemeId = parsePhonemeId(params.get("explore"));
+
+  return {
+    languageId: parseLanguageId(params.get("lang")) ?? dataset.id,
+    mode: parseMode(params.get("mode")) ?? "match",
+    phonemePair: parsePhonemePair(params.get("phonemes")),
+    catalogTab: explorePhonemeId ? "phonemes" : parseCatalogTab(params.get("tab")) ?? "phonemes",
+    explorePhonemeId,
+  };
+}
+
+function writeUrlState(state: UrlState, historyMode: UrlHistoryMode): void {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+
+  params.set("lang", state.languageId);
+  params.set("mode", state.mode);
+
+  if (state.phonemePair) {
+    params.set("phonemes", state.phonemePair.join(","));
+  } else {
+    params.delete("phonemes");
+  }
+
+  params.set("tab", state.catalogTab);
+
+  if (state.explorePhonemeId) {
+    params.set("explore", state.explorePhonemeId);
+  } else {
+    params.delete("explore");
+  }
+
+  const query = params.toString();
+  const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
+  const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+  if (nextUrl === currentUrl) {
+    return;
+  }
+
+  if (historyMode === "push") {
+    window.history.pushState(null, "", nextUrl);
+    return;
+  }
+
+  window.history.replaceState(null, "", nextUrl);
+}
+
+function parseMode(value: string | null): TrainingMode | null {
+  return value === "match" || value === "sort" ? value : null;
+}
+
+function parseCatalogTab(value: string | null): CatalogTab | null {
+  return value === "phonemes" || value === "contrasts" ? value : null;
+}
+
+function parseLanguageId(value: string | null): string | null {
+  return languageDatasets.some((language) => sameLanguageId(language.id, value ?? undefined))
+    ? getLanguageDataset(value ?? undefined).id
+    : null;
+}
+
+function parsePhonemeId(value: string | null): PhonemeId | null {
+  return value && isKnownPhoneme(value) ? value : null;
+}
+
+function parsePhonemePair(value: string | null): PhonemePair | null {
+  if (!value) {
+    return null;
+  }
+
+  return toPhonemePair(value.split(",").map((part) => part.trim()).filter(isKnownPhoneme));
+}
+
+function toPhonemePair(values: readonly PhonemeId[]): PhonemePair | null {
+  const first = values[0];
+  const second = values[1];
+
+  return values.length === 2 && first && second && first !== second
+    ? [first, second]
+    : null;
+}
+
+function isKnownPhoneme(value: string): value is PhonemeId {
+  return dataset.phonemes.some((phoneme) => phoneme.id === value);
+}
+
+function samePhonemePair(left: readonly PhonemeId[], right: PhonemePair): boolean {
+  return left.length === 2 && left.includes(right[0]) && left.includes(right[1]);
+}
+
+function phonemePairFromMatchingPrompt(prompt: MatchingPrompt | undefined): PhonemePair | null {
+  if (!prompt) {
+    return null;
+  }
+
+  const first = prompt.item.terms[0]?.phonemeId;
+  const second = prompt.item.terms[1]?.phonemeId;
+
+  return first && second && first !== second ? [first, second] : null;
+}
+
+function phonemePairFromSortingPrompt(prompt: SortingPrompt | undefined): PhonemePair | null {
+  if (!prompt) {
+    return null;
+  }
+
+  const first = prompt.groups[0]?.phonemeId;
+  const second = prompt.groups[1]?.phonemeId;
+
+  return first && second && first !== second ? [first, second] : null;
+}
+
+function getInitialDataset(): LanguageDataset {
+  if (typeof window === "undefined") {
+    return getLanguageDataset(undefined);
+  }
+
+  return getLanguageDataset(new URLSearchParams(window.location.search).get("lang") ?? undefined);
+}
+
+function voiceMatchesSpeechLang(voice: SpeechSynthesisVoice, lang: string): boolean {
+  const voiceLang = voice.lang.toLowerCase();
+  const preferred = lang.toLowerCase();
+
+  return voiceLang === preferred || voiceLang.startsWith(`${preferred.split("-")[0]}-`);
 }

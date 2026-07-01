@@ -73,6 +73,29 @@ export function selectNextMinimalPair(
   return best?.item;
 }
 
+export function selectNextMinimalPairForPhonemes(
+  dataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+  progress: AppProgress,
+  now = Date.now(),
+): MinimalPairItem | undefined {
+  let best: { item: MinimalPairItem; score: number } | undefined;
+
+  for (const item of getResolvedMinimalPairs(dataset)) {
+    if (!samePhonemePair(item.terms.map((term) => term.phonemeId), phonemeIds)) {
+      continue;
+    }
+
+    const score = scoreMinimalPair(dataset.id, item, progress, now);
+
+    if (!best || score > best.score) {
+      best = { item, score };
+    }
+  }
+
+  return best?.item ?? createCustomMinimalPair(dataset, phonemeIds);
+}
+
 export function createMatchingPrompt(item: MinimalPairItem): MatchingPrompt {
   const lockedTerms = item.terms.map(lockTermAudio) as [MinimalPairTerm, MinimalPairTerm];
   const lockedItem: MinimalPairItem = { ...item, terms: lockedTerms };
@@ -181,6 +204,72 @@ function gradeSlot(
     chosenPhonemeId: chosenTerm.phonemeId,
     correct: chosenTerm.id === slot.term.id,
   };
+}
+
+function createCustomMinimalPair(
+  dataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+): MinimalPairItem | undefined {
+  const [firstPhonemeId, secondPhonemeId] = phonemeIds;
+  const firstWord = sampleWordForPhoneme(dataset, firstPhonemeId, secondPhonemeId);
+  const secondWord = sampleWordForPhoneme(dataset, secondPhonemeId, firstPhonemeId);
+
+  if (!firstWord || !secondWord) {
+    return undefined;
+  }
+
+  return {
+    id: `custom:${firstPhonemeId}:${secondPhonemeId}:${firstWord.id}:${secondWord.id}`,
+    contrastId: createCustomContrastId(phonemeIds),
+    terms: [
+      {
+        id: `${firstPhonemeId}:${firstWord.id}`,
+        wordId: firstWord.id,
+        phonemeId: firstPhonemeId,
+        word: firstWord,
+      },
+      {
+        id: `${secondPhonemeId}:${secondWord.id}`,
+        wordId: secondWord.id,
+        phonemeId: secondPhonemeId,
+        word: secondWord,
+      },
+    ],
+    tags: ["custom"],
+  };
+}
+
+function sampleWordForPhoneme(
+  dataset: LanguageDataset,
+  phonemeId: PhonemeId,
+  excludedPhonemeId: PhonemeId,
+) {
+  const exactWords = dataset.words.filter((word) =>
+    word.phonemeIds.includes(phonemeId) && !word.phonemeIds.includes(excludedPhonemeId)
+  );
+  const fallbackWords = exactWords.length > 0
+    ? exactWords
+    : dataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
+
+  return sample(fallbackWords);
+}
+
+function samePhonemePair(
+  left: readonly PhonemeId[],
+  right: readonly [PhonemeId, PhonemeId],
+): boolean {
+  return left.length === 2
+    && left.includes(right[0])
+    && left.includes(right[1])
+    && right[0] !== right[1];
+}
+
+function createCustomContrastId(phonemeIds: readonly [PhonemeId, PhonemeId]): string {
+  return `custom:${phonemeIds[0]}:${phonemeIds[1]}`;
+}
+
+function sample<T>(items: readonly T[]): T | undefined {
+  return items[Math.floor(Math.random() * items.length)];
 }
 
 function createSlotId(index: number): PromptSlotId {

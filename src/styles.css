@@ -1,8 +1,10 @@
 :root {
+  --font-sans: "Noto Sans", "DejaVu Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Noto Serif", "DejaVu Serif", "Charis SIL", "Gentium Plus", Georgia, "Times New Roman", serif;
+  --font-ipa: "Charis SIL", "Doulos SIL", "Gentium Plus", "Noto Sans", "DejaVu Sans", "Lucida Grande", "Segoe UI", "Arial Unicode MS", sans-serif;
   color: #202020;
   background: #f4f1ea;
-  font-family:
-    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -100,7 +102,7 @@ p {
 h1 {
   max-width: 680px;
   margin-bottom: 16px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
   font-size: clamp(2.6rem, 8vw, 5rem);
   font-weight: 500;
   line-height: 1;
@@ -109,7 +111,7 @@ h1 {
 
 h2 {
   margin-bottom: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 500;
   line-height: 1.1;
@@ -147,6 +149,14 @@ h3 {
   font-weight: 700;
 }
 
+.language-select-label {
+  display: grid;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
 .workspace-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
@@ -154,13 +164,23 @@ h3 {
   margin-top: 16px;
 }
 
-.mode-tabs {
+.mode-tabs,
+.catalog-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
+}
+
+.mode-tabs {
   margin-top: 16px;
 }
 
-.mode-tab {
+.catalog-tabs {
+  margin-bottom: 16px;
+}
+
+.mode-tab,
+.catalog-tab {
   cursor: pointer;
   border: 2px solid #202020;
   background: #fffdfa;
@@ -169,7 +189,8 @@ h3 {
   font-weight: 750;
 }
 
-.mode-tab.selected {
+.mode-tab.selected,
+.catalog-tab.selected {
   background: #202020;
   color: #fffdfa;
 }
@@ -247,14 +268,19 @@ h3 {
 .word-button,
 .sort-word-card,
 .primary-button,
-.text-button {
+.text-button,
+.small-button,
+.catalog-tab,
+.phoneme-main,
+.contrast-button {
   cursor: pointer;
 }
 
 .sound-button,
 .word-button,
 .sort-word-card,
-.primary-button {
+.primary-button,
+.small-button {
   border: 2px solid #202020;
   box-shadow: 2px 2px 0 #202020;
 }
@@ -273,14 +299,18 @@ h3 {
 
 .sound-button:hover,
 .word-button:hover:not(:disabled),
-.sort-word-card:hover:not(:disabled) {
+.sort-word-card:hover:not(:disabled),
+.small-button:hover:not(:disabled),
+.mode-tab:hover:not(.selected),
+.catalog-tab:hover:not(.selected) {
   background: #f7f7f4;
 }
 
 .sound-button:active,
 .word-button:active:not(:disabled),
 .sort-word-card:active:not(:disabled),
-.primary-button:active:not(:disabled) {
+.primary-button:active:not(:disabled),
+.small-button:active:not(:disabled) {
   transform: translate(2px, 2px);
   box-shadow: none;
 }
@@ -322,8 +352,12 @@ h3 {
 .word-button:focus-visible,
 .sort-word-card:focus-visible,
 .mode-tab:focus-visible,
+.catalog-tab:focus-visible,
 .primary-button:focus-visible,
+.small-button:focus-visible,
 .text-button:focus-visible,
+.phoneme-main:focus-visible,
+.contrast-button:focus-visible,
 .audio-credits summary:focus-visible {
   outline: 3px solid #866118;
   outline-offset: 3px;
@@ -354,8 +388,12 @@ h3 {
 }
 
 .assignment-line span,
-.word-ipa {
-  font-family: Georgia, "Times New Roman", serif;
+.word-ipa,
+.phoneme-ipa,
+.ipa-text,
+.ipa-heading {
+  font-family: var(--font-ipa);
+  font-feature-settings: "mark" 1, "mkmk" 1;
 }
 
 .word-ipa {
@@ -410,13 +448,13 @@ h3 {
   background: var(--pair-solid, #202020);
   color: #fffdfa;
   cursor: pointer;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-ipa);
+  font-feature-settings: "mark" 1, "mkmk" 1;
   font-size: 1.3rem;
 }
 
 .sort-group-title small {
-  font-family:
-    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 750;
   letter-spacing: 0.05em;
@@ -462,7 +500,16 @@ h3 {
   font-weight: 750;
 }
 
-.primary-button:disabled {
+.small-button {
+  padding: 7px 10px;
+  background: #fffdfa;
+  color: #202020;
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.primary-button:disabled,
+.small-button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
   box-shadow: none;
@@ -509,6 +556,109 @@ h3 {
   font-weight: 700;
 }
 
+.spectrogram-panel {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #d6cec2;
+}
+
+.spectrogram-heading {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.spectrogram-status {
+  border: 1px solid #202020;
+  background: #fffdfa;
+  color: #202020;
+  padding: 4px 7px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.spectrogram-status.playing {
+  background: #202020;
+  color: #fffdfa;
+}
+
+.spectrogram-status.ended {
+  border-color: #8a6814;
+  background: #f8f0d5;
+}
+
+.spectrogram-status.error {
+  border-color: #9f2d28;
+  background: #fae8e5;
+  color: #9f2d28;
+}
+
+.spectrogram-frame {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #202020;
+  box-shadow: 2px 2px 0 #202020;
+  background: #f4f1ea;
+}
+
+.spectrogram-frame::before,
+.spectrogram-frame::after {
+  position: absolute;
+  left: 8px;
+  z-index: 1;
+  color: rgba(32, 32, 32, 0.58);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.spectrogram-frame::before {
+  top: 6px;
+  content: "High";
+}
+
+.spectrogram-frame::after {
+  bottom: 6px;
+  content: "Low";
+}
+
+.spectrogram-frame canvas {
+  display: block;
+  width: 100%;
+  height: 150px;
+}
+
+.spectrogram-meta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px;
+  align-items: start;
+}
+
+.spectrogram-meta strong {
+  display: block;
+  font-family: var(--font-ipa);
+  font-feature-settings: "mark" 1, "mkmk" 1;
+}
+
+.spectrogram-meta span {
+  display: block;
+  color: #5f584f;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.spectrogram-replay {
+  white-space: nowrap;
+}
+
 .voice-panel {
   margin-top: 18px;
   padding-top: 18px;
@@ -530,6 +680,7 @@ h3 {
   font-weight: 750;
 }
 
+.language-select-label select,
 .voice-select-label select {
   width: 100%;
   border: 2px solid #202020;
@@ -566,22 +717,208 @@ h3 {
   text-underline-offset: 3px;
 }
 
+.text-button.compact {
+  margin-top: 0;
+  font-size: 0.9rem;
+}
+
 .content-panel {
   margin-top: 16px;
+}
+
+.phoneme-selection-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 12px;
+  border: 1px solid #d6cec2;
+  background: #f4f1ea;
+}
+
+.phoneme-selection-bar p {
+  margin: 0;
+  color: #3f3c37;
+}
+
+.selection-actions,
+.explore-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.phoneme-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.phoneme-card {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #d6cec2;
+  background: #fffdfa;
+}
+
+.phoneme-card.active {
+  border-color: #202020;
+}
+
+.phoneme-card.selected {
+  background: #f8f0d5;
+  border-color: #8a6814;
+}
+
+.phoneme-main {
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #202020;
+  text-align: left;
+}
+
+.phoneme-main strong {
+  line-height: 1.25;
+}
+
+.phoneme-main small,
+.contrast-button small {
+  color: #5f584f;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.phoneme-card p {
+  margin: 0;
+  color: #5f584f;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.phoneme-ipa {
+  font-size: 1.55rem;
+}
+
+.phoneme-ipa.large {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .contrast-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.contrast-grid.interactive {
+  align-items: stretch;
+}
+
 .contrast-card {
   padding: 14px;
+}
+
+.contrast-button {
+  display: grid;
+  width: 100%;
+  gap: 8px;
+  border: 2px solid #202020;
+  box-shadow: 2px 2px 0 #202020;
+  background: #fffdfa;
+  color: #202020;
+  text-align: left;
+}
+
+.contrast-button:hover,
+.contrast-button.active {
+  background: #f8f0d5;
 }
 
 .contrast-card p {
   margin: 8px 0 0;
   color: #5f584f;
   line-height: 1.5;
+}
+
+.phoneme-explorer {
+  display: grid;
+  gap: 14px;
+}
+
+.phoneme-explorer-heading {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #d6cec2;
+  background: #f4f1ea;
+}
+
+.phoneme-explorer-heading h3 {
+  margin-bottom: 4px;
+}
+
+.phoneme-explorer-heading p {
+  margin: 0;
+  color: #5f584f;
+  line-height: 1.45;
+}
+
+.explore-word-list {
+  display: grid;
+  gap: 10px;
+}
+
+.explore-word-card {
+  border: 1px solid #d6cec2;
+  background: #fffdfa;
+  padding: 12px;
+}
+
+.explore-word-heading {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.explore-word-heading strong,
+.explore-word-heading span {
+  display: block;
+}
+
+.explore-word-heading span {
+  margin-top: 4px;
+  color: #5f584f;
+  font-family: var(--font-ipa);
+  font-feature-settings: "mark" 1, "mkmk" 1;
+}
+
+.track-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e2dcd2;
+}
+
+.track-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.track-row span {
+  color: #5f584f;
+  font-size: 0.9rem;
 }
 
 .audio-credits {
@@ -612,6 +949,8 @@ h3 {
 .audio-credit-card strong {
   display: block;
   margin-bottom: 6px;
+  font-family: var(--font-ipa);
+  font-feature-settings: "mark" 1, "mkmk" 1;
 }
 
 .audio-credit-card p {
@@ -633,12 +972,15 @@ h3 {
 
 @media (max-width: 900px) {
   .hero-panel,
-  .mode-tabs,
   .workspace-grid {
     grid-template-columns: 1fr;
   }
 
   .contrast-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .phoneme-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -665,18 +1007,33 @@ h3 {
   .sort-groups,
   .sort-word-grid,
   .stat-grid,
-  .contrast-grid {
+  .contrast-grid,
+  .phoneme-grid {
     grid-template-columns: 1fr;
   }
 
   .sound-button,
   .word-button,
   .sort-word-card,
-  .primary-button {
+  .primary-button,
+  .small-button,
+  .contrast-button {
     box-shadow: none;
   }
 
   .primary-button {
     width: 100%;
+  }
+
+  .explore-word-heading,
+  .phoneme-explorer-heading,
+  .phoneme-selection-bar,
+  .spectrogram-meta {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .spectrogram-meta {
+    grid-template-columns: 1fr;
   }
 }

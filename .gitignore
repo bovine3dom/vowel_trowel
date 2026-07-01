@@ -5,7 +5,9 @@ node_modules
 out
 dist
 reports
-public/audio/fr/wiktionary
+public/audio/*/wiktionary/
+playwright-report
+test-results
 *.tgz
 
 # code coverage

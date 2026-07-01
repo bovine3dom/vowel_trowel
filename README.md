@@ -1,87 +1,96 @@
 # vowel_trowel
 
-To install dependencies:
+Install dependencies:
 
 ```bash
 bun install
 ```
 
-To run:
+Run locally:
 
 ```bash
 bun run dev
 ```
 
-To build a static client-only app:
+Build the static client-only app:
 
 ```bash
 bun run build
 ```
 
-The built files in `dist/` can be hosted by a plain HTTP server. Language content lives under `src/languages/`, and static recordings should be placed under `public/audio/`.
+The built files in `dist/` can be hosted by a plain HTTP server. Language content lives under `src/languages/`, and static recordings live under `public/audio/`.
 
-## Wiktionary audio candidates
-
-Generate a local report of candidate French recordings from Wiktionary/Commons:
+Run checks:
 
 ```bash
-bun run audio:wiktionary
+bun run check
+bun run test:e2e
 ```
 
-Useful focused run:
+If Playwright browsers are missing, install Chromium once:
 
 ```bash
-bun run audio:wiktionary -- --words=brun,brin,jeune,jeûne
+bunx playwright install chromium
 ```
 
-The scraper uses MediaWiki APIs, includes your `git config user.email` in its `User-Agent`, retries transient HTTP failures, and respects `Retry-After`. It writes reports under `reports/` and does not modify the dataset automatically.
+## Audio Review Workflow
 
-Optional download of detected Swiss/Belgian candidates:
+Use the wizard for the normal Wiktionary/Commons review loop:
 
 ```bash
-bun run audio:wiktionary -- --words=brun,brin --download=regional
+bun run audio:wizard
 ```
 
-Download all candidates for a small review set:
+By default it picks the first 12 words in French that do not have approved recordings, downloads up to 4 candidates per word, opens the terminal reviewer, then applies approved recordings to the app.
+
+Focused examples:
 
 ```bash
-bun run audio:wiktionary -- --words=brun,brin,jeune,jeûne --download=all
+bun run audio:wizard -- --words=brun,brin,jeune,jeûne
+bun run audio:wizard -- --language=en-GB --words=ship,sheep
+bun run audio:wizard -- --language=en-GB --limit=20 --max-candidates-per-word=6
 ```
 
-Downloaded files go under `public/audio/fr/wiktionary/`. Each file gets a `.metadata.json` sidecar with the Commons source URL, license, attribution, scoring, and review fields.
+Review controls are single-key: `a` approve, `r` reject, `s` skip, `p` play again, `u` undo the last decision, `w` skip the rest of the current word, and `q` quit.
 
-Interactive review workflow:
+The scraper uses MediaWiki APIs, includes your `git config user.email` in its `User-Agent`, retries transient HTTP failures, and respects `Retry-After`. Pass `--email=you@example.com` if git email is not set.
 
-1. Download a focused candidate set:
+Downloaded review candidates go under ignored staging paths:
+
+```text
+public/audio/<language>/wiktionary/
+```
+
+Approved recordings are copied into committed app paths:
+
+```text
+public/audio/<language>/approved/
+```
+
+The apply step also writes `src/languages/<language>/audio.ts`. Each approved recording keeps license, attribution, accent, and source URL metadata in the audio module, and copied sidecar metadata stays next to the approved file when available.
+
+## Manual Audio Commands
+
+Generate a candidate report without the wizard:
 
 ```bash
-bun run audio:wiktionary -- --words=brun,brin,jeune,jeûne --download=all
+bun run audio:wiktionary -- --words=brun,brin --download=all
 ```
 
-2. Review downloaded candidates from the terminal:
+Review downloaded candidates:
 
 ```bash
 bun run audio:review
 ```
 
-The reviewer auto-detects `mpv`, `ffplay`, or `play`. You can pass `--player=mpv`, `--no-autoplay`, `--no-play`, `--words=brun,brin`, or `--include-reviewed`.
-
-3. Apply approved recordings to `src/languages/fr/audio.ts`:
+Apply approved candidates:
 
 ```bash
 bun run audio:apply-reviewed
 ```
 
-The reviewer updates `reports/wiktionary-audio-candidates.json`, each candidate metadata sidecar when present, and `reports/wiktionary-audio-review-state.json`. The scraper reads that review-state file on later runs and skips downloading candidates already approved or rejected. Use `--force-download-reviewed` if you intentionally want to download them again.
+For British English, pass `--language=en-GB` to any audio command.
 
-Manual review is also possible by editing `reports/wiktionary-audio-candidates.json` and setting good candidates to:
-
-```json
-"review": {
-  "status": "approved",
-  "accent": "Swiss French",
-  "notes": "Contrast preserved; clear recording."
-}
-```
+The reviewer updates the language-specific candidate report, each candidate metadata sidecar when present, and the language-specific review-state file. The scraper reads that review-state file on later runs and skips downloading candidates already approved or rejected. Use `--force-download-reviewed` if you intentionally want to download them again.
 
 The app supports multiple recordings per word. Each training round randomly locks one recording per word, so repeated plays in the same round use the same audio; the next round can choose a different recording.
