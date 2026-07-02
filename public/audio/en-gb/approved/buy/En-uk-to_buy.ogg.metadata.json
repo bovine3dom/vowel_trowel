@@ -1,0 +1,107 @@
+{
+  "downloadedAt": "2026-07-02T08:17:51.846Z",
+  "word": {
+    "id": "en-gb-word-buy",
+    "written": "buy",
+    "ipa": "/baɪ/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-price"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-to buy.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/En-uk-to_buy.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_buy.ogg",
+    "mime": "application/ogg",
+    "size": 17520,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of \"to buy\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-buy|File%3AEn-uk-to%20buy.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-to_buy.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "buy",
+        "fileTitle": "File:En-uk-to buy.ogg",
+        "languageCode": "en",
+        "ipa": "[baɪ]",
+        "normalizedIpa": "baɪ",
+        "context": "** {{IPA|en|[baɪ]|a=US,RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "buy",
+        "fileTitle": "File:En-uk-to buy.ogg",
+        "languageCode": "en",
+        "ipa": "[bɑj]",
+        "normalizedIpa": "bɑj",
+        "context": "** {{IPA|en|[bɑj]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "buy",
+        "fileTitle": "File:En-uk-to buy.ogg",
+        "languageCode": "en",
+        "ipa": "[bəj]",
+        "normalizedIpa": "bəj",
+        "context": "*** {{IPA|en|[bəj]|a=dialectal}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "buy",
+        "fileTitle": "File:En-uk-to buy.ogg",
+        "languageCode": "en",
+        "ipa": "[bɑɪ]",
+        "normalizedIpa": "bɑɪ",
+        "context": "** {{IPA|en|[bɑɪ]|a=AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/baɪ/",
+      "claimed": [
+        "[baɪ]",
+        "[bɑj]",
+        "[bəj]",
+        "[bɑɪ]"
+      ],
+      "matched": [
+        "[baɪ]"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /baɪ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-buy/En-uk-to_buy.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_buy.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-buy/En-uk-to_buy.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-buy/En-uk-to_buy.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-buy/En-uk-to_buy.ogg"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "downloadedAt": "2026-07-02T08:19:35.663Z",
+  "word": {
+    "id": "en-gb-word-gold",
+    "written": "gold",
+    "ipa": "/ɡəʊld/",
+    "phonemeIds": [
+      "en-gb-g",
+      "en-gb-goat",
+      "en-gb-l",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-gold.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/En-us-gold.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-gold.ogg",
+    "mime": "application/ogg",
+    "size": 15322,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-gold|File%3AEn-us-gold.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-gold.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:En-us-gold.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡəʊld/",
+        "normalizedIpa": "ɡəʊld",
+        "context": "* {{IPA|en|/ɡəʊld/|[ɡɒʊɫd]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:En-us-gold.ogg",
+        "languageCode": "en",
+        "ipa": "[ɡɒʊɫd]",
+        "normalizedIpa": "ɡɒʊɫd",
+        "context": "* {{IPA|en|/ɡəʊld/|[ɡɒʊɫd]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:En-us-gold.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈɡɒld/",
+        "normalizedIpa": "ɡɒld",
+        "context": "** {{IPA|en|/ˈɡɒld/|a=doll-dole}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:En-us-gold.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡoʊld/",
+        "normalizedIpa": "ɡoʊld",
+        "context": "* {{enPR|gōld|a=GA,CA}}, {{IPA|en|/ɡoʊld/|[ɡold]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:En-us-gold.ogg",
+        "languageCode": "en",
+        "ipa": "[ɡold]",
+        "normalizedIpa": "ɡold",
+        "context": "* {{enPR|gōld|a=GA,CA}}, {{IPA|en|/ɡoʊld/|[ɡold]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/ɡəʊld/",
+      "claimed": [
+        "/ɡəʊld/",
+        "[ɡɒʊɫd]",
+        "/ˈɡɒld/",
+        "/ɡoʊld/",
+        "[ɡold]"
+      ],
+      "matched": [
+        "/ɡəʊld/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /ɡəʊld/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-gold/En-us-gold.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-gold.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-gold/En-us-gold.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-gold/En-us-gold.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-gold/En-us-gold.ogg"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:19:51.215Z",
+  "word": {
+    "id": "en-gb-word-save",
+    "written": "save",
+    "ipa": "/seɪv/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-face",
+      "en-gb-v"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-save.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/En-us-save.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-save.ogg",
+    "mime": "application/ogg",
+    "size": 12457,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-save|File%3AEn-us-save.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-save.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "save",
+        "fileTitle": "File:En-us-save.ogg",
+        "languageCode": "en",
+        "ipa": "/seɪv/",
+        "normalizedIpa": "seɪv",
+        "context": "* {{enPR|sāv}}, {{IPA|en|/seɪv/|a=RP,GA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/seɪv/",
+      "claimed": [
+        "/seɪv/"
+      ],
+      "matched": [
+        "/seɪv/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /seɪv/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-save/En-us-save.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-save.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-save/En-us-save.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-save/En-us-save.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-save/En-us-save.ogg"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "downloadedAt": "2026-07-02T08:17:50.003Z",
+  "word": {
+    "id": "en-gb-word-hop",
+    "written": "hop",
+    "ipa": "/hɒp/",
+    "phonemeIds": [
+      "en-gb-h",
+      "en-gb-lot",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-hop.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/En-au-hop.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-hop.ogg",
+    "mime": "application/ogg",
+    "size": 12584,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"hop\". Male, Australian accent.",
+    "key": "en-gb-word-hop|File%3AEn-au-hop.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-hop.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "hop",
+        "fileTitle": "File:En-au-hop.ogg",
+        "languageCode": "en",
+        "ipa": "/hɒp/",
+        "normalizedIpa": "hɒp",
+        "context": "* {{IPA|en|/hɒp/|a=UK}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "hop",
+        "fileTitle": "File:En-au-hop.ogg",
+        "languageCode": "en",
+        "ipa": "/hɑp/",
+        "normalizedIpa": "hɑp",
+        "context": "* {{IPA|en|/hɑp/|a=US,CA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "hop",
+        "fileTitle": "File:En-au-hop.ogg",
+        "languageCode": "en",
+        "ipa": "/hɔp/",
+        "normalizedIpa": "hɔp",
+        "context": "* {{IPA|en|/hɔp/|a=AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/hɒp/",
+      "claimed": [
+        "/hɒp/",
+        "/hɑp/",
+        "/hɔp/"
+      ],
+      "matched": [
+        "/hɒp/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /hɒp/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-hop/En-au-hop.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-hop.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-hop/En-au-hop.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-hop/En-au-hop.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-hop/En-au-hop.ogg"
+  }
+}

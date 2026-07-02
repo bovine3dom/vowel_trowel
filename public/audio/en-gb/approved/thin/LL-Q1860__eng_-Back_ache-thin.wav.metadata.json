@@ -1,0 +1,73 @@
+{
+  "downloadedAt": "2026-07-02T08:18:22.670Z",
+  "word": {
+    "id": "en-gb-word-thin",
+    "written": "thin",
+    "ipa": "/θɪn/",
+    "phonemeIds": [
+      "en-gb-theta",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Back ache-thin.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/LL-Q1860_%28eng%29-Back_ache-thin.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-thin.wav",
+    "mime": "audio/wav",
+    "size": 76588,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Back ache Recorder: Back ache",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-thin|File%3ALL-Q1860%20(eng)-Back%20ache-thin.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Back_ache-thin.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "thin",
+        "fileTitle": "File:LL-Q1860 (eng)-Back ache-thin.wav",
+        "languageCode": "en",
+        "ipa": "/ˈθɪn/",
+        "normalizedIpa": "θɪn",
+        "context": "* {{IPA|en|/ˈθɪn/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/θɪn/",
+      "claimed": [
+        "/ˈθɪn/"
+      ],
+      "matched": [
+        "/ˈθɪn/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /θɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-thin/LL-Q1860__eng_-Back_ache-thin.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-thin.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-thin/LL-Q1860__eng_-Back_ache-thin.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-thin/LL-Q1860__eng_-Back_ache-thin.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-thin/LL-Q1860__eng_-Back_ache-thin.wav"
+  }
+}

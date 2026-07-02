@@ -1,0 +1,91 @@
+{
+  "downloadedAt": "2026-07-02T08:19:05.882Z",
+  "word": {
+    "id": "en-gb-word-tie",
+    "written": "tie",
+    "ipa": "/taɪ/",
+    "phonemeIds": [
+      "en-gb-t",
+      "en-gb-price"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-tie.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/En-us-tie.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-tie.ogg",
+    "mime": "application/ogg",
+    "size": 12670,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Self, recorded using the program Shtooka .",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'tie' in United States English.",
+    "key": "en-gb-word-tie|File%3AEn-us-tie.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-tie.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tie",
+        "fileTitle": "File:En-us-tie.ogg",
+        "languageCode": "en",
+        "ipa": "/taɪ/",
+        "normalizedIpa": "taɪ",
+        "context": "* {{IPA|en|/taɪ/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tie",
+        "fileTitle": "File:En-us-tie.ogg",
+        "languageCode": "en",
+        "ipa": "/təɪ/",
+        "normalizedIpa": "təɪ",
+        "context": "* {{IPA|en|/təɪ/|/toɪ/|a=Dublin}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tie",
+        "fileTitle": "File:En-us-tie.ogg",
+        "languageCode": "en",
+        "ipa": "/toɪ/",
+        "normalizedIpa": "toɪ",
+        "context": "* {{IPA|en|/təɪ/|/toɪ/|a=Dublin}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/taɪ/",
+      "claimed": [
+        "/taɪ/",
+        "/təɪ/",
+        "/toɪ/"
+      ],
+      "matched": [
+        "/taɪ/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /taɪ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-tie/En-us-tie.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-tie.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-tie/En-us-tie.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-tie/En-us-tie.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-tie/En-us-tie.ogg"
+  }
+}

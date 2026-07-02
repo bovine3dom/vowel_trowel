@@ -1,0 +1,70 @@
+{
+  "downloadedAt": "2026-07-02T08:19:07.930Z",
+  "word": {
+    "id": "en-gb-word-din",
+    "written": "din",
+    "ipa": "/dɪn/",
+    "phonemeIds": [
+      "en-gb-d",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-din.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/97/En-us-din.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-din.ogg",
+    "mime": "application/ogg",
+    "size": 13157,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": null,
+    "credit": null,
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-din|File%3AEn-us-din.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-din.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "din",
+        "fileTitle": "File:En-us-din.ogg",
+        "languageCode": "en",
+        "ipa": "/dɪn/",
+        "normalizedIpa": "dɪn",
+        "context": "* {{IPA|en|/dɪn/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/dɪn/",
+      "claimed": [
+        "/dɪn/"
+      ],
+      "matched": [
+        "/dɪn/"
+      ]
+    },
+    "score": 14,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /dɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-din/En-us-din.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-din.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-din/En-us-din.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-din/En-us-din.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-din/En-us-din.ogg"
+  }
+}

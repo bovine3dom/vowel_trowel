@@ -1,0 +1,138 @@
+{
+  "downloadedAt": "2026-07-02T08:18:07.718Z",
+  "word": {
+    "id": "en-gb-word-like",
+    "written": "like",
+    "ipa": "/laɪk/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-price",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-to like.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/En-uk-to_like.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_like.ogg",
+    "mime": "application/ogg",
+    "size": 16809,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of \"to like\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-like|File%3AEn-uk-to%20like.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-to_like.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-uk-to like.ogg",
+        "languageCode": "en",
+        "ipa": "/laɪ̯k/",
+        "normalizedIpa": "laɪk",
+        "context": "* {{enPR|līk}}, {{IPA|en|/laɪ̯k/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-uk-to like.ogg",
+        "languageCode": "en",
+        "ipa": "/læ̙ːk/",
+        "normalizedIpa": "læ̙ːk",
+        "context": "* {{IPA|en|/læ̙ːk/|/lɑːk/|a=MLE,Jamaica}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-uk-to like.ogg",
+        "languageCode": "en",
+        "ipa": "/lɑːk/",
+        "normalizedIpa": "lɑːk",
+        "context": "* {{IPA|en|/læ̙ːk/|/lɑːk/|a=MLE,Jamaica}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-uk-to like.ogg",
+        "languageCode": "en",
+        "ipa": "/lɔɪ̯k/",
+        "normalizedIpa": "lɔɪk",
+        "context": "* {{IPA|en|/lɔɪ̯k/|a=Dublin}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-uk-to like.ogg",
+        "languageCode": "en",
+        "ipa": "/lʌɪk/",
+        "normalizedIpa": "lʌɪk",
+        "context": "* {{IPA|en|/lʌɪk/|[ləi̯k]|a=CA,Scotland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-uk-to like.ogg",
+        "languageCode": "en",
+        "ipa": "[ləi̯k]",
+        "normalizedIpa": "ləik",
+        "context": "* {{IPA|en|/lʌɪk/|[ləi̯k]|a=CA,Scotland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-uk-to like.ogg",
+        "languageCode": "en",
+        "ipa": "/lɑɪ̯k/",
+        "normalizedIpa": "lɑɪk",
+        "context": "* {{IPA|en|/lɑɪ̯k/|a=Australia}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/laɪk/",
+      "claimed": [
+        "/laɪ̯k/",
+        "/læ̙ːk/",
+        "/lɑːk/",
+        "/lɔɪ̯k/",
+        "/lʌɪk/",
+        "[ləi̯k]",
+        "/lɑɪ̯k/"
+      ],
+      "matched": [
+        "/laɪ̯k/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /laɪk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-like/En-uk-to_like.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_like.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-like/En-uk-to_like.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-like/En-uk-to_like.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-like/En-uk-to_like.ogg"
+  }
+}

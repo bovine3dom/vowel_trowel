@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:18:20.313Z",
+  "word": {
+    "id": "en-gb-word-seal",
+    "written": "seal",
+    "ipa": "/siːl/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-fleece",
+      "en-gb-l"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-seal.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/En-us-seal.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-seal.ogg",
+    "mime": "application/ogg",
+    "size": 13327,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Self, recorded using the program Shtooka .",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'seal' in United States English.",
+    "key": "en-gb-word-seal|File%3AEn-us-seal.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-seal.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "seal",
+        "fileTitle": "File:En-us-seal.ogg",
+        "languageCode": "en",
+        "ipa": "/siːl/",
+        "normalizedIpa": "siːl",
+        "context": "* {{enPR|sēl}}, {{IPA|en|/siːl/|/siː.əl/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "seal",
+        "fileTitle": "File:En-us-seal.ogg",
+        "languageCode": "en",
+        "ipa": "/siː.əl/",
+        "normalizedIpa": "siːəl",
+        "context": "* {{enPR|sēl}}, {{IPA|en|/siːl/|/siː.əl/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/siːl/",
+      "claimed": [
+        "/siːl/",
+        "/siː.əl/"
+      ],
+      "matched": [
+        "/siːl/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /siːl/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-seal/En-us-seal.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-seal.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-seal/En-us-seal.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-seal/En-us-seal.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-seal/En-us-seal.ogg"
+  }
+}

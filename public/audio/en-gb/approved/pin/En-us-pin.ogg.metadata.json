@@ -1,0 +1,80 @@
+{
+  "downloadedAt": "2026-07-02T08:18:51.817Z",
+  "word": {
+    "id": "en-gb-word-pin",
+    "written": "pin",
+    "ipa": "/pɪn/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-pin.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/En-us-pin.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-pin.ogg",
+    "mime": "application/ogg",
+    "size": 13514,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": null,
+    "credit": null,
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-pin|File%3AEn-us-pin.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-pin.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pin",
+        "fileTitle": "File:En-us-pin.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈpɪn/",
+        "normalizedIpa": "pɪn",
+        "context": "* {{IPA|en|/ˈpɪn/|[ˈpʰɪn]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pin",
+        "fileTitle": "File:En-us-pin.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈpʰɪn]",
+        "normalizedIpa": "pʰɪn",
+        "context": "* {{IPA|en|/ˈpɪn/|[ˈpʰɪn]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/pɪn/",
+      "claimed": [
+        "/ˈpɪn/",
+        "[ˈpʰɪn]"
+      ],
+      "matched": [
+        "/ˈpɪn/"
+      ]
+    },
+    "score": 14,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /pɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-pin/En-us-pin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-pin.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-pin/En-us-pin.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-pin/En-us-pin.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-pin/En-us-pin.ogg"
+  }
+}

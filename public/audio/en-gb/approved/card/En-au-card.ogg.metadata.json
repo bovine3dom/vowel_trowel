@@ -1,0 +1,122 @@
+{
+  "downloadedAt": "2026-07-02T08:19:21.754Z",
+  "word": {
+    "id": "en-gb-word-card",
+    "written": "card",
+    "ipa": "/kɑːd/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-palm",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-card.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/En-au-card.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-card.ogg",
+    "mime": "application/ogg",
+    "size": 17187,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"card\". Male, Australian accent.",
+    "key": "en-gb-word-card|File%3AEn-au-card.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-card.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-au-card.ogg",
+        "languageCode": "en",
+        "ipa": "/kɑːd/",
+        "normalizedIpa": "kɑːd",
+        "context": "** {{IPA|en|/kɑːd/|[kʰɑːd]|a=England}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-au-card.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰɑːd]",
+        "normalizedIpa": "kʰɑːd",
+        "context": "** {{IPA|en|/kɑːd/|[kʰɑːd]|a=England}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-au-card.ogg",
+        "languageCode": "en",
+        "ipa": "/kɑɹd/",
+        "normalizedIpa": "kɑɹd",
+        "context": "** {{IPA|en|/kɑɹd/|[kʰɑɹd]|a=US}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-au-card.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰɑɹd]",
+        "normalizedIpa": "kʰɑɹd",
+        "context": "** {{IPA|en|/kɑɹd/|[kʰɑɹd]|a=US}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-au-card.ogg",
+        "languageCode": "en",
+        "ipa": "/kaːd/",
+        "normalizedIpa": "kaːd",
+        "context": "** {{IPA|en|/kaːd/|[kʰäːd]|a=Australia}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-au-card.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰäːd]",
+        "normalizedIpa": "kʰäːd",
+        "context": "** {{IPA|en|/kaːd/|[kʰäːd]|a=Australia}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kɑːd/",
+      "claimed": [
+        "/kɑːd/",
+        "[kʰɑːd]",
+        "/kɑɹd/",
+        "[kʰɑɹd]",
+        "/kaːd/",
+        "[kʰäːd]"
+      ],
+      "matched": [
+        "/kɑːd/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /kɑːd/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-card/En-au-card.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-card.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-card/En-au-card.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-card/En-au-card.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-card/En-au-card.ogg"
+  }
+}

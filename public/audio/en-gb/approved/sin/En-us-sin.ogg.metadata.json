@@ -1,0 +1,70 @@
+{
+  "downloadedAt": "2026-07-02T08:18:23.385Z",
+  "word": {
+    "id": "en-gb-word-sin",
+    "written": "sin",
+    "ipa": "/sɪn/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-sin.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/En-us-sin.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-sin.ogg",
+    "mime": "application/ogg",
+    "size": 14238,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": null,
+    "credit": null,
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-sin|File%3AEn-us-sin.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-sin.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "sin",
+        "fileTitle": "File:En-us-sin.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈsɪn/",
+        "normalizedIpa": "sɪn",
+        "context": "* {{IPA|en|/ˈsɪn/|[ˈsɪn]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/sɪn/",
+      "claimed": [
+        "/ˈsɪn/"
+      ],
+      "matched": [
+        "/ˈsɪn/"
+      ]
+    },
+    "score": 14,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /sɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-sin/En-us-sin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sin.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-sin/En-us-sin.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-sin/En-us-sin.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-sin/En-us-sin.ogg"
+  }
+}

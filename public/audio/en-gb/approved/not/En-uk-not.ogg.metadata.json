@@ -1,0 +1,87 @@
+{
+  "downloadedAt": "2026-07-02T08:17:36.998Z",
+  "word": {
+    "id": "en-gb-word-not",
+    "written": "not",
+    "ipa": "/nɒt/",
+    "phonemeIds": [
+      "en-gb-n",
+      "en-gb-lot",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-not.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b9/En-uk-not.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-not.ogg",
+    "mime": "application/ogg",
+    "size": 22393,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": "No machine-readable author provided. Celestianpower assumed (based on copyright claims).",
+    "credit": "No machine-readable source provided. Own work assumed (based on copyright claims).",
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-not|File%3AEn-uk-not.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-not.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "not",
+        "fileTitle": "File:En-uk-not.ogg",
+        "languageCode": "en",
+        "ipa": "/nɒt/",
+        "normalizedIpa": "nɒt",
+        "context": "* {{IPA|en|/nɒt/|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "not",
+        "fileTitle": "File:En-uk-not.ogg",
+        "languageCode": "en",
+        "ipa": "/nɔt/",
+        "normalizedIpa": "nɔt",
+        "context": "** {{IPA|en|/nɔt/|a=SSB}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/nɒt/",
+      "claimed": [
+        "/nɒt/",
+        "/nɔt/"
+      ],
+      "matched": [
+        "/nɒt/"
+      ]
+    },
+    "score": 25,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /nɒt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-not/En-uk-not.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "Public domain",
+      "attribution": "No machine-readable author provided. Celestianpower assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-not.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-not/En-uk-not.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-not/En-uk-not.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-not/En-uk-not.ogg"
+  }
+}

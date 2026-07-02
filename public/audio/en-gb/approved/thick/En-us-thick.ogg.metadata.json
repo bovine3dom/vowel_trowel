@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:18:34.845Z",
+  "word": {
+    "id": "en-gb-word-thick",
+    "written": "thick",
+    "ipa": "/θɪk/",
+    "phonemeIds": [
+      "en-gb-theta",
+      "en-gb-kit",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-thick.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/En-us-thick.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-thick.ogg",
+    "mime": "application/ogg",
+    "size": 11953,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-thick|File%3AEn-us-thick.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-thick.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "thick",
+        "fileTitle": "File:En-us-thick.ogg",
+        "languageCode": "en",
+        "ipa": "/θɪk/",
+        "normalizedIpa": "θɪk",
+        "context": "* {{IPA|en|/θɪk/|a=RP,GA,AU}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "thick",
+        "fileTitle": "File:En-us-thick.ogg",
+        "languageCode": "en",
+        "ipa": "/θɘk/",
+        "normalizedIpa": "θɘk",
+        "context": "* {{IPA|en|/θɘk/|a=NZ}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/θɪk/",
+      "claimed": [
+        "/θɪk/",
+        "/θɘk/"
+      ],
+      "matched": [
+        "/θɪk/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /θɪk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-thick/En-us-thick.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-thick.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-thick/En-us-thick.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-thick/En-us-thick.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-thick/En-us-thick.ogg"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:19:04.655Z",
+  "word": {
+    "id": "en-gb-word-beach",
+    "written": "beach",
+    "ipa": "/biːtʃ/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-fleece",
+      "en-gb-ch"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-beach.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dc/En-us-beach.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-beach.ogg",
+    "mime": "application/ogg",
+    "size": 11595,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-beach|File%3AEn-us-beach.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-beach.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "beach",
+        "fileTitle": "File:En-us-beach.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈbiːt͡ʃ/",
+        "normalizedIpa": "biːtʃ",
+        "context": "* {{IPA|en|/ˈbiːt͡ʃ/|[ˈbɪi̯t͡ʃ]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "beach",
+        "fileTitle": "File:En-us-beach.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈbɪi̯t͡ʃ]",
+        "normalizedIpa": "bɪitʃ",
+        "context": "* {{IPA|en|/ˈbiːt͡ʃ/|[ˈbɪi̯t͡ʃ]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/biːtʃ/",
+      "claimed": [
+        "/ˈbiːt͡ʃ/",
+        "[ˈbɪi̯t͡ʃ]"
+      ],
+      "matched": [
+        "/ˈbiːt͡ʃ/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /biːtʃ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-beach/En-us-beach.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-beach.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-beach/En-us-beach.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-beach/En-us-beach.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-beach/En-us-beach.ogg"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-02T08:20:07.016Z",
+  "word": {
+    "id": "en-gb-word-cheap",
+    "written": "cheap",
+    "ipa": "/tʃiːp/",
+    "phonemeIds": [
+      "en-gb-ch",
+      "en-gb-fleece",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-cheap.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/En-uk-cheap.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-cheap.ogg",
+    "mime": "application/ogg",
+    "size": 15692,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"cheap\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-cheap|File%3AEn-uk-cheap.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-cheap.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cheap",
+        "fileTitle": "File:En-uk-cheap.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈt͡ʃiːp/",
+        "normalizedIpa": "tʃiːp",
+        "context": "* {{IPA|en|/ˈt͡ʃiːp/|[ˈt͡ʃʰɪi̯p]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cheap",
+        "fileTitle": "File:En-uk-cheap.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈt͡ʃʰɪi̯p]",
+        "normalizedIpa": "tʃʰɪip",
+        "context": "* {{IPA|en|/ˈt͡ʃiːp/|[ˈt͡ʃʰɪi̯p]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/tʃiːp/",
+      "claimed": [
+        "/ˈt͡ʃiːp/",
+        "[ˈt͡ʃʰɪi̯p]"
+      ],
+      "matched": [
+        "/ˈt͡ʃiːp/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /tʃiːp/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-cheap/En-uk-cheap.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-cheap.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-cheap/En-uk-cheap.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-cheap/En-uk-cheap.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-cheap/En-uk-cheap.ogg"
+  }
+}

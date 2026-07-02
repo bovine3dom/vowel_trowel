@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-02T08:19:19.502Z",
+  "word": {
+    "id": "en-gb-word-town",
+    "written": "town",
+    "ipa": "/taʊn/",
+    "phonemeIds": [
+      "en-gb-t",
+      "en-gb-mouth",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-town.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/En-uk-town.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-town.ogg",
+    "mime": "application/ogg",
+    "size": 16581,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"town\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-town|File%3AEn-uk-town.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-town.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "town",
+        "fileTitle": "File:En-uk-town.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈtaʊ̯n/",
+        "normalizedIpa": "taʊn",
+        "context": "* {{IPA|en|/ˈtaʊ̯n/|[ˈtʰaʊ̯n]|a=RP,GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "town",
+        "fileTitle": "File:En-uk-town.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈtʰaʊ̯n]",
+        "normalizedIpa": "tʰaʊn",
+        "context": "* {{IPA|en|/ˈtaʊ̯n/|[ˈtʰaʊ̯n]|a=RP,GA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/taʊn/",
+      "claimed": [
+        "/ˈtaʊ̯n/",
+        "[ˈtʰaʊ̯n]"
+      ],
+      "matched": [
+        "/ˈtaʊ̯n/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /taʊn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-town/En-uk-town.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-town.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-town/En-uk-town.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-town/En-uk-town.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-town/En-uk-town.ogg"
+  }
+}

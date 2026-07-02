@@ -1,6 +1,15 @@
 import type { AudioSource } from "../types";
 
 export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]> = {
+  "back": [
+    {
+      "src": "audio/en-gb/approved/back/En-us-back.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-back.ogg"
+    }
+  ],
   "bad": [
     {
       "src": "audio/en-gb/approved/bad/En-uk-bad.ogg",
@@ -39,6 +48,49 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-barn.wav"
     }
   ],
+  "bat": [
+    {
+      "src": "audio/en-gb/approved/bat/En-us-bat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bat.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/bat/En-au-bat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-bat.ogg"
+    }
+  ],
+  "bay": [
+    {
+      "src": "audio/en-gb/approved/bay/En-us-bay.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bay.ogg"
+    }
+  ],
+  "beach": [
+    {
+      "src": "audio/en-gb/approved/beach/En-uk-beach.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-beach.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/beach/En-us-beach.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-beach.ogg"
+    }
+  ],
   "beat": [
     {
       "src": "audio/en-gb/approved/beat/En-us-beat.ogg",
@@ -71,6 +123,14 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bed.ogg"
+    }
+  ],
+  "bin": [
+    {
+      "src": "audio/en-gb/approved/bin/En-us-bin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bin.ogg"
     }
   ],
   "bit": [
@@ -116,6 +176,67 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-bun.ogg"
     }
   ],
+  "bus": [
+    {
+      "src": "audio/en-gb/approved/bus/En-us-bus.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bus.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/bus/En-Buss.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "ThirteenToThirty",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Buss.ogg"
+    }
+  ],
+  "buy": [
+    {
+      "src": "audio/en-gb/approved/buy/En-uk-to_buy.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_buy.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/buy/En-us-buy.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-buy.ogg"
+    }
+  ],
+  "buzz": [
+    {
+      "src": "audio/en-gb/approved/buzz/En-us-buzz.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Sylvanmoon",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-buzz.ogg"
+    }
+  ],
+  "cab": [
+    {
+      "src": "audio/en-gb/approved/cab/En-us-cab.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cab.ogg"
+    }
+  ],
+  "came": [
+    {
+      "src": "audio/en-gb/approved/came/En-us-came.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-came.ogg"
+    }
+  ],
   "cap": [
     {
       "src": "audio/en-gb/approved/cap/En-us-cap.ogg",
@@ -123,6 +244,29 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cap.ogg"
+    }
+  ],
+  "card": [
+    {
+      "src": "audio/en-gb/approved/card/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-card.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Naomi Persephone Amethyst Recorder: NaomiAmethyst",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-card.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/card/En-us-card.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-card.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/card/En-au-card.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-card.ogg"
     }
   ],
   "cart": [
@@ -134,6 +278,38 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cart.ogg"
     }
   ],
+  "cash": [
+    {
+      "src": "audio/en-gb/approved/cash/En-us-cash.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Neskaya",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cash.ogg"
+    }
+  ],
+  "catch": [
+    {
+      "src": "audio/en-gb/approved/catch/En-au-catch.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-catch.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/catch/En-us-catch.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-catch.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/catch/LL-Q1860__eng_-Nattes___chat-catch.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Nattes à chat Recorder: Nattes à chat",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Nattes_%C3%A0_chat-catch.wav"
+    }
+  ],
   "caught": [
     {
       "src": "audio/en-gb/approved/caught/En-uk-caught.ogg",
@@ -143,6 +319,62 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "No machine-readable author provided. Celestianpower assumed (based on copyright claims).",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-caught.ogg",
       "notes": "Regional candidate: British English"
+    }
+  ],
+  "cheap": [
+    {
+      "src": "audio/en-gb/approved/cheap/En-uk-cheap.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-cheap.ogg",
+      "notes": "Regional candidate: British English"
+    }
+  ],
+  "chip": [
+    {
+      "src": "audio/en-gb/approved/chip/En-us-chip.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-chip.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/chip/EN-AU_ck1_chip.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_chip.ogg"
+    }
+  ],
+  "coat": [
+    {
+      "src": "audio/en-gb/approved/coat/En-uk-coat.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-coat.ogg",
+      "notes": "Regional candidate: British English"
+    }
+  ],
+  "cold": [
+    {
+      "src": "audio/en-gb/approved/cold/En-uk-cold.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-cold.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/cold/LL-Q1860__eng_-Back_ache-cold.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-cold.wav"
     }
   ],
   "cot": [
@@ -218,6 +450,23 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-cut.ogg"
     }
   ],
+  "die": [
+    {
+      "src": "audio/en-gb/approved/die/En-us-die.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-die.ogg"
+    }
+  ],
+  "din": [
+    {
+      "src": "audio/en-gb/approved/din/En-us-din.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-din.ogg"
+    }
+  ],
   "don": [
     {
       "src": "audio/en-gb/approved/don/LL-Q1860__eng_-Vealhurl-Don.wav",
@@ -225,6 +474,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Don.wav"
+    }
+  ],
+  "down": [
+    {
+      "src": "audio/en-gb/approved/down/En-us-down.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-down.ogg"
     }
   ],
   "fan": [
@@ -259,6 +517,22 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-fill.ogg"
+    }
+  ],
+  "fine": [
+    {
+      "src": "audio/en-gb/approved/fine/En-us-fine.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-fine.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/fine/En-au-fine.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-fine.ogg"
     }
   ],
   "fool": [
@@ -302,6 +576,74 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-fun.ogg"
     }
   ],
+  "game": [
+    {
+      "src": "audio/en-gb/approved/game/En-us-game.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-game.ogg"
+    }
+  ],
+  "girl": [
+    {
+      "src": "audio/en-gb/approved/girl/LL-Q1860__eng_-Vealhurl-girl.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-girl.wav"
+    }
+  ],
+  "goat": [
+    {
+      "src": "audio/en-gb/approved/goat/En-us-goat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-goat.ogg"
+    }
+  ],
+  "gold": [
+    {
+      "src": "audio/en-gb/approved/gold/En-uk-gold.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-gold.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/gold/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-gold.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Naomi Persephone Amethyst Recorder: NaomiAmethyst",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-gold.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/gold/En-us-gold.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-gold.ogg"
+    }
+  ],
+  "got": [
+    {
+      "src": "audio/en-gb/approved/got/LL-Q1860__eng_-Vealhurl-got.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-got.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/got/EN-AU_ck1_got.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_got.ogg"
+    }
+  ],
   "had": [
     {
       "src": "audio/en-gb/approved/had/En-us-had.ogg",
@@ -338,6 +680,31 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-hood.ogg"
     }
   ],
+  "hop": [
+    {
+      "src": "audio/en-gb/approved/hop/En-au-hop.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-hop.ogg"
+    }
+  ],
+  "hope": [
+    {
+      "src": "audio/en-gb/approved/hope/LL-Q1860__eng_-Vealhurl-hope.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-hope.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/hope/En-us-hope.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-hope.ogg"
+    }
+  ],
   "hut": [
     {
       "src": "audio/en-gb/approved/hut/En-us-hut.ogg",
@@ -345,6 +712,40 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-hut.ogg"
+    }
+  ],
+  "jeep": [
+    {
+      "src": "audio/en-gb/approved/jeep/EN-AU_ck1_jeep.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_jeep.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/jeep/En-ca-jeep.oga",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "K6ka",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-ca-jeep.oga"
+    }
+  ],
+  "lake": [
+    {
+      "src": "audio/en-gb/approved/lake/En-uk-lake.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-lake.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/lake/En-us-lake.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-lake.ogg"
     }
   ],
   "lark": [
@@ -381,6 +782,22 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-late.ogg"
     }
   ],
+  "leaf": [
+    {
+      "src": "audio/en-gb/approved/leaf/LL-Q1860__eng_-Back_ache-leaf.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-leaf.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/leaf/En-us-leaf.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-leaf.ogg"
+    }
+  ],
   "leave": [
     {
       "src": "audio/en-gb/approved/leave/En-uk-to_leave.ogg",
@@ -404,6 +821,42 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-leave.ogg"
+    }
+  ],
+  "light": [
+    {
+      "src": "audio/en-gb/approved/light/En-uk-light.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-light.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/light/En-us-light.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-light.ogg"
+    }
+  ],
+  "like": [
+    {
+      "src": "audio/en-gb/approved/like/En-uk-to_like.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_like.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/like/En-us-like.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-like.ogg"
     }
   ],
   "live": [
@@ -462,6 +915,24 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "notes": "Regional candidate: British English"
     }
   ],
+  "match": [
+    {
+      "src": "audio/en-gb/approved/match/En-uk-match.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-match.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/match/En-us-match.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-match.ogg"
+    }
+  ],
   "mate": [
     {
       "src": "audio/en-gb/approved/mate/En-us-mate.ogg",
@@ -478,6 +949,51 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-mate.ogg"
     }
   ],
+  "might": [
+    {
+      "src": "audio/en-gb/approved/might/En-us-might.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-might.ogg"
+    }
+  ],
+  "not": [
+    {
+      "src": "audio/en-gb/approved/not/En-uk-not.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "Public domain",
+      "attribution": "No machine-readable author provided. Celestianpower assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-not.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/not/LL-Q1860__eng_-Back_ache-not.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-not.wav"
+    }
+  ],
+  "note": [
+    {
+      "src": "audio/en-gb/approved/note/En-us-note.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-note.ogg"
+    }
+  ],
+  "pack": [
+    {
+      "src": "audio/en-gb/approved/pack/En-au-pack.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-pack.ogg"
+    }
+  ],
   "pain": [
     {
       "src": "audio/en-gb/approved/pain/LL-Q1860__eng_-Back_ache-pain.wav",
@@ -492,6 +1008,46 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-pain.ogg"
+    }
+  ],
+  "pat": [
+    {
+      "src": "audio/en-gb/approved/pat/En-us-pat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-pat.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/pat/En-au-pat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-pat.ogg"
+    }
+  ],
+  "peach": [
+    {
+      "src": "audio/en-gb/approved/peach/En-us-peach.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-peach.ogg"
+    }
+  ],
+  "pin": [
+    {
+      "src": "audio/en-gb/approved/pin/En-ca-pin.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "No machine-readable author provided. Tawker assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-ca-pin.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/pin/En-us-pin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-pin.ogg"
     }
   ],
   "pool": [
@@ -544,6 +1100,49 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-pull.ogg"
+    }
+  ],
+  "safe": [
+    {
+      "src": "audio/en-gb/approved/safe/En-us-safe.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-safe.ogg"
+    }
+  ],
+  "sane": [
+    {
+      "src": "audio/en-gb/approved/sane/LL-Q1860__eng_-Vealhurl-sane.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-sane.wav"
+    }
+  ],
+  "save": [
+    {
+      "src": "audio/en-gb/approved/save/LL-Q1860__eng_-Vealhurl-save.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-save.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/save/En-us-save.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-save.ogg"
+    }
+  ],
+  "seal": [
+    {
+      "src": "audio/en-gb/approved/seal/En-us-seal.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-seal.ogg"
     }
   ],
   "seat": [
@@ -605,6 +1204,89 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-ship.wav"
     }
   ],
+  "sick": [
+    {
+      "src": "audio/en-gb/approved/sick/En-uk-sick.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-sick.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/sick/En-us-sick.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sick.ogg"
+    }
+  ],
+  "sign": [
+    {
+      "src": "audio/en-gb/approved/sign/LL-Q1860__eng_-Wodencafe-sign.wav",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Wodencafe Recorder: Wodencafe",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Wodencafe-sign.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/sign/LL-Q1860__eng_-Grendelkhan-sign.wav",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Grendelkhan Recorder: Grendelkhan",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Grendelkhan-sign.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/sign/LL-Q1860__eng_-Samuel_Muldoon__Muldoonsamuel55_-sign.wav",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Samuel Muldoon Recorder: Muldoonsamuel55",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Samuel_Muldoon_(Muldoonsamuel55)-sign.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/sign/En-us-sign.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sign.ogg"
+    }
+  ],
+  "sin": [
+    {
+      "src": "audio/en-gb/approved/sin/En-us-sin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sin.ogg"
+    }
+  ],
+  "sink": [
+    {
+      "src": "audio/en-gb/approved/sink/En-uk-sink.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "Public domain",
+      "attribution": "No machine-readable author provided. Celestianpower assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-sink.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/sink/En-us-sink.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sink.ogg"
+    }
+  ],
+  "sip": [
+    {
+      "src": "audio/en-gb/approved/sip/LL-Q1860__eng_-Vealhurl-sip.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-sip.wav"
+    }
+  ],
   "sit": [
     {
       "src": "audio/en-gb/approved/sit/En-au-sit.ogg",
@@ -662,6 +1344,129 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-slip.ogg"
     }
   ],
+  "sum": [
+    {
+      "src": "audio/en-gb/approved/sum/En-us-sum.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sum.ogg"
+    }
+  ],
+  "thick": [
+    {
+      "src": "audio/en-gb/approved/thick/En-us-thick.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-thick.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/thick/LL-Q1860__eng_-Back_ache-thick.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-thick.wav"
+    }
+  ],
+  "thin": [
+    {
+      "src": "audio/en-gb/approved/thin/LL-Q1860__eng_-Back_ache-thin.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-thin.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/thin/En-us-thin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-thin.ogg"
+    }
+  ],
+  "think": [
+    {
+      "src": "audio/en-gb/approved/think/LL-Q1860__eng_-Back_ache-think.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-think.wav"
+    }
+  ],
+  "thumb": [
+    {
+      "src": "audio/en-gb/approved/thumb/En-us-thumb.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-thumb.ogg"
+    }
+  ],
+  "tie": [
+    {
+      "src": "audio/en-gb/approved/tie/En-us-tie.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-tie.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/tie/En-au-tie.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-tie.ogg"
+    }
+  ],
+  "tin": [
+    {
+      "src": "audio/en-gb/approved/tin/En-us-tin.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "No machine-readable author provided. Dvortygirl assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-tin.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/tin/En-tin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-tin.ogg"
+    }
+  ],
+  "town": [
+    {
+      "src": "audio/en-gb/approved/town/En-uk-town.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-town.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/town/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-town.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Naomi Persephone Amethyst Recorder: NaomiAmethyst",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-town.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/town/En-us-town.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-town.ogg"
+    }
+  ],
+  "vine": [
+    {
+      "src": "audio/en-gb/approved/vine/En-us-vine.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-vine.ogg"
+    }
+  ],
   "weight": [
     {
       "src": "audio/en-gb/approved/weight/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-weight.wav",
@@ -692,6 +1497,33 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-wet.ogg"
+    }
+  ],
+  "zeal": [
+    {
+      "src": "audio/en-gb/approved/zeal/En-us-zeal.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-zeal.ogg"
+    }
+  ],
+  "zip": [
+    {
+      "src": "audio/en-gb/approved/zip/En-us-zip.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-zip.ogg"
+    }
+  ],
+  "zoo": [
+    {
+      "src": "audio/en-gb/approved/zoo/En-us-zoo.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "No machine-readable author provided. Neoglitch assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-zoo.ogg"
     }
   ]
 };

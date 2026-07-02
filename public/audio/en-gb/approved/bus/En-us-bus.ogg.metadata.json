@@ -1,0 +1,112 @@
+{
+  "downloadedAt": "2026-07-02T08:18:21.440Z",
+  "word": {
+    "id": "en-gb-word-bus",
+    "written": "bus",
+    "ipa": "/bʌs/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-strut",
+      "en-gb-s"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-bus.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/En-us-bus.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-bus.ogg",
+    "mime": "application/ogg",
+    "size": 12995,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Self, recorded using the program Shtooka .",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'bus' in United States English.",
+    "key": "en-gb-word-bus|File%3AEn-us-bus.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-bus.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bus",
+        "fileTitle": "File:En-us-bus.ogg",
+        "languageCode": "en",
+        "ipa": "/bʊs/",
+        "normalizedIpa": "bʊs",
+        "context": "** {{IPA|en|/bʊs/|a=Northern England,Ireland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bus",
+        "fileTitle": "File:En-us-bus.ogg",
+        "languageCode": "en",
+        "ipa": "/bʌs/",
+        "normalizedIpa": "bʌs",
+        "context": "** {{IPA|en|/bʌs/|a=Scotland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bus",
+        "fileTitle": "File:En-us-bus.ogg",
+        "languageCode": "en",
+        "ipa": "/bɐs/",
+        "normalizedIpa": "bɐs",
+        "context": "** {{IPA|en|/bɐs/|a=AU,NZ,Mid-Atlantic,Philippines}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bus",
+        "fileTitle": "File:En-us-bus.ogg",
+        "languageCode": "en",
+        "ipa": "/bɔs/",
+        "normalizedIpa": "bɔs",
+        "context": "** {{IPA|en|/bɔs/|a=[[w:Inland Northern American English#Northern Cities Vowel Shift|Northern Cities Vowel Shift]],Ireland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bus",
+        "fileTitle": "File:En-us-bus.ogg",
+        "languageCode": "en",
+        "ipa": "/bʊz/",
+        "normalizedIpa": "bʊz",
+        "context": "** {{IPA|en|/bʊz/|a=[[w:Birmingham|Birmingham]], [[w:Black Country|Black Country]]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/bʌs/",
+      "claimed": [
+        "/bʊs/",
+        "/bʌs/",
+        "/bɐs/",
+        "/bɔs/",
+        "/bʊz/"
+      ],
+      "matched": [
+        "/bʌs/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /bʌs/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bus/En-us-bus.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bus.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bus/En-us-bus.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bus/En-us-bus.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bus/En-us-bus.ogg"
+  }
+}

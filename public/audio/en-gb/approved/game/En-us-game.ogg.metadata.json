@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:19:22.471Z",
+  "word": {
+    "id": "en-gb-word-game",
+    "written": "game",
+    "ipa": "/ɡeɪm/",
+    "phonemeIds": [
+      "en-gb-g",
+      "en-gb-face",
+      "en-gb-m"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-game.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/En-us-game.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-game.ogg",
+    "mime": "application/ogg",
+    "size": 10815,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-game|File%3AEn-us-game.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-game.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "game",
+        "fileTitle": "File:En-us-game.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡeɪm/",
+        "normalizedIpa": "ɡeɪm",
+        "context": "* {{IPA|en|/ɡeɪm/|a2=<<GA>>|[ɡeɪ̯m]|a3=<<SSB>>|[ɡɛi̯m]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "game",
+        "fileTitle": "File:En-us-game.ogg",
+        "languageCode": "en",
+        "ipa": "[ɡɛi̯m]",
+        "normalizedIpa": "ɡɛim",
+        "context": "* {{IPA|en|/ɡeɪm/|a2=<<GA>>|[ɡeɪ̯m]|a3=<<SSB>>|[ɡɛi̯m]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/ɡeɪm/",
+      "claimed": [
+        "/ɡeɪm/",
+        "[ɡɛi̯m]"
+      ],
+      "matched": [
+        "/ɡeɪm/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /ɡeɪm/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-game/En-us-game.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-game.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-game/En-us-game.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-game/En-us-game.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-game/En-us-game.ogg"
+  }
+}

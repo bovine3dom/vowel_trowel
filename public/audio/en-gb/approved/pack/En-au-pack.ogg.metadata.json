@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:19:05.063Z",
+  "word": {
+    "id": "en-gb-word-pack",
+    "written": "pack",
+    "ipa": "/pæk/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-trap",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-pack.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/En-au-pack.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-pack.ogg",
+    "mime": "application/ogg",
+    "size": 14434,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"pack\". Male, Australian accent.",
+    "key": "en-gb-word-pack|File%3AEn-au-pack.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-pack.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pack",
+        "fileTitle": "File:En-au-pack.ogg",
+        "languageCode": "en",
+        "ipa": "/pæk/",
+        "normalizedIpa": "pæk",
+        "context": "* {{IPA|en|/pæk/|[pʰæk]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pack",
+        "fileTitle": "File:En-au-pack.ogg",
+        "languageCode": "en",
+        "ipa": "[pʰæk]",
+        "normalizedIpa": "pʰæk",
+        "context": "* {{IPA|en|/pæk/|[pʰæk]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/pæk/",
+      "claimed": [
+        "/pæk/",
+        "[pʰæk]"
+      ],
+      "matched": [
+        "/pæk/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /pæk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-pack/En-au-pack.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-pack.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-pack/En-au-pack.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-pack/En-au-pack.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-pack/En-au-pack.ogg"
+  }
+}

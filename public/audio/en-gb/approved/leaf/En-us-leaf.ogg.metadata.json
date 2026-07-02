@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:19:50.016Z",
+  "word": {
+    "id": "en-gb-word-leaf",
+    "written": "leaf",
+    "ipa": "/liːf/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-fleece",
+      "en-gb-f"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-leaf.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/En-us-leaf.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-leaf.ogg",
+    "mime": "application/ogg",
+    "size": 12817,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-leaf|File%3AEn-us-leaf.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-leaf.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "leaf",
+        "fileTitle": "File:En-us-leaf.ogg",
+        "languageCode": "en",
+        "ipa": "/liːf/",
+        "normalizedIpa": "liːf",
+        "context": "* {{IPA|en|/liːf/|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "leaf",
+        "fileTitle": "File:En-us-leaf.ogg",
+        "languageCode": "en",
+        "ipa": "/lif/",
+        "normalizedIpa": "lif",
+        "context": "* {{IPA|en|/lif/|a=US}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/liːf/",
+      "claimed": [
+        "/liːf/",
+        "/lif/"
+      ],
+      "matched": [
+        "/liːf/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /liːf/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-leaf/En-us-leaf.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-leaf.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-leaf/En-us-leaf.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-leaf/En-us-leaf.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-leaf/En-us-leaf.ogg"
+  }
+}

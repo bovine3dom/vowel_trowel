@@ -1,0 +1,78 @@
+{
+  "downloadedAt": "2026-07-02T08:20:06.094Z",
+  "word": {
+    "id": "en-gb-word-match",
+    "written": "match",
+    "ipa": "/mætʃ/",
+    "phonemeIds": [
+      "en-gb-m",
+      "en-gb-trap",
+      "en-gb-ch"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-match.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/En-uk-match.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-match.ogg",
+    "mime": "application/ogg",
+    "size": 17516,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"match\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-match|File%3AEn-uk-match.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-match.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "match",
+        "fileTitle": "File:En-uk-match.ogg",
+        "languageCode": "en",
+        "ipa": "/mæt͡ʃ/",
+        "normalizedIpa": "mætʃ",
+        "context": "* {{IPA|en|/mæt͡ʃ/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/mætʃ/",
+      "claimed": [
+        "/mæt͡ʃ/"
+      ],
+      "matched": [
+        "/mæt͡ʃ/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /mætʃ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-match/En-uk-match.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-match.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-match/En-uk-match.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-match/En-uk-match.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-match/En-uk-match.ogg"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "downloadedAt": "2026-07-02T08:17:53.484Z",
+  "word": {
+    "id": "en-gb-word-might",
+    "written": "might",
+    "ipa": "/maɪt/",
+    "phonemeIds": [
+      "en-gb-m",
+      "en-gb-price",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-might.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/En-us-might.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-might.ogg",
+    "mime": "application/ogg",
+    "size": 14757,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-might|File%3AEn-us-might.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-might.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "might",
+        "fileTitle": "File:En-us-might.ogg",
+        "languageCode": "en",
+        "ipa": "/maɪt/",
+        "normalizedIpa": "maɪt",
+        "context": "* {{enPR|mīt}}, {{IPA|en|/maɪt/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "might",
+        "fileTitle": "File:En-us-might.ogg",
+        "languageCode": "en",
+        "ipa": "[mɐɪt]",
+        "normalizedIpa": "mɐɪt",
+        "context": "** {{IPA|en|[mɐɪt]|a=US}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "might",
+        "fileTitle": "File:En-us-might.ogg",
+        "languageCode": "en",
+        "ipa": "[mɑjt]",
+        "normalizedIpa": "mɑjt",
+        "context": "** {{IPA|en|[mɑjt]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "might",
+        "fileTitle": "File:En-us-might.ogg",
+        "languageCode": "en",
+        "ipa": "[məjt]",
+        "normalizedIpa": "məjt",
+        "context": "** {{IPA|en|[məjt]|a=CA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "might",
+        "fileTitle": "File:En-us-might.ogg",
+        "languageCode": "en",
+        "ipa": "[mɑɪt]",
+        "normalizedIpa": "mɑɪt",
+        "context": "** {{IPA|en|[mɑɪt]|a=AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/maɪt/",
+      "claimed": [
+        "/maɪt/",
+        "[mɐɪt]",
+        "[mɑjt]",
+        "[məjt]",
+        "[mɑɪt]"
+      ],
+      "matched": [
+        "/maɪt/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /maɪt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-might/En-us-might.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-might.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-might/En-us-might.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-might/En-us-might.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-might/En-us-might.ogg"
+  }
+}

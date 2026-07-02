@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:18:50.726Z",
+  "word": {
+    "id": "en-gb-word-bat",
+    "written": "bat",
+    "ipa": "/bæt/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-trap",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-bat.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/En-us-bat.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-bat.ogg",
+    "mime": "application/ogg",
+    "size": 8696,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the word 'bat' in US English",
+    "key": "en-gb-word-bat|File%3AEn-us-bat.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-bat.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bat",
+        "fileTitle": "File:En-us-bat.ogg",
+        "languageCode": "en",
+        "ipa": "/bæt/",
+        "normalizedIpa": "bæt",
+        "context": "* {{IPA|en|/bæt/|a=RP,US,AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/bæt/",
+      "claimed": [
+        "/bæt/"
+      ],
+      "matched": [
+        "/bæt/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /bæt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bat/En-us-bat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bat.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bat/En-us-bat.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bat/En-us-bat.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bat/En-us-bat.ogg"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "downloadedAt": "2026-07-02T08:19:34.862Z",
+  "word": {
+    "id": "en-gb-word-gold",
+    "written": "gold",
+    "ipa": "/ɡəʊld/",
+    "phonemeIds": [
+      "en-gb-g",
+      "en-gb-goat",
+      "en-gb-l",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-gold.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/En-uk-gold.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-gold.ogg",
+    "mime": "application/ogg",
+    "size": 16391,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"gold\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-gold|File%3AEn-uk-gold.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-gold.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:En-uk-gold.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡəʊld/",
+        "normalizedIpa": "ɡəʊld",
+        "context": "* {{IPA|en|/ɡəʊld/|[ɡɒʊɫd]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:En-uk-gold.ogg",
+        "languageCode": "en",
+        "ipa": "[ɡɒʊɫd]",
+        "normalizedIpa": "ɡɒʊɫd",
+        "context": "* {{IPA|en|/ɡəʊld/|[ɡɒʊɫd]|a=RP}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/ɡəʊld/",
+      "claimed": [
+        "/ɡəʊld/",
+        "[ɡɒʊɫd]"
+      ],
+      "matched": [
+        "/ɡəʊld/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /ɡəʊld/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-gold/En-uk-gold.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-gold.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-gold/En-uk-gold.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-gold/En-uk-gold.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-gold/En-uk-gold.ogg"
+  }
+}

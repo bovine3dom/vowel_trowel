@@ -1,0 +1,73 @@
+{
+  "downloadedAt": "2026-07-02T08:19:49.711Z",
+  "word": {
+    "id": "en-gb-word-leaf",
+    "written": "leaf",
+    "ipa": "/liːf/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-fleece",
+      "en-gb-f"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Back ache-leaf.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/LL-Q1860_%28eng%29-Back_ache-leaf.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-leaf.wav",
+    "mime": "audio/wav",
+    "size": 68396,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Back ache Recorder: Back ache",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-leaf|File%3ALL-Q1860%20(eng)-Back%20ache-leaf.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Back_ache-leaf.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "leaf",
+        "fileTitle": "File:LL-Q1860 (eng)-Back ache-leaf.wav",
+        "languageCode": "en",
+        "ipa": "/liːf/",
+        "normalizedIpa": "liːf",
+        "context": "* {{IPA|en|/liːf/|a=RP}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/liːf/",
+      "claimed": [
+        "/liːf/"
+      ],
+      "matched": [
+        "/liːf/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /liːf/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-leaf/LL-Q1860__eng_-Back_ache-leaf.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-leaf.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-leaf/LL-Q1860__eng_-Back_ache-leaf.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-leaf/LL-Q1860__eng_-Back_ache-leaf.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-leaf/LL-Q1860__eng_-Back_ache-leaf.wav"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "downloadedAt": "2026-07-02T08:17:36.690Z",
+  "word": {
+    "id": "en-gb-word-goat",
+    "written": "goat",
+    "ipa": "/ɡəʊt/",
+    "phonemeIds": [
+      "en-gb-g",
+      "en-gb-goat",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-goat.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/En-us-goat.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-goat.ogg",
+    "mime": "application/ogg",
+    "size": 12152,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-goat|File%3AEn-us-goat.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-goat.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "goat",
+        "fileTitle": "File:En-us-goat.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡəʊt/",
+        "normalizedIpa": "ɡəʊt",
+        "context": "** {{IPA|en|/ɡəʊt/|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "goat",
+        "fileTitle": "File:En-us-goat.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡoːt/",
+        "normalizedIpa": "ɡoːt",
+        "context": "** {{IPA|en|/ɡoːt/|a=Scotland,North-East England}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "goat",
+        "fileTitle": "File:En-us-goat.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡəwt/",
+        "normalizedIpa": "ɡəwt",
+        "context": "** {{IPA|en|/ɡəwt/|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "goat",
+        "fileTitle": "File:En-us-goat.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡoʊt/",
+        "normalizedIpa": "ɡoʊt",
+        "context": "* {{IPA|en|/ɡoʊt/|[ɡoʊʔt̚]|a=GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "goat",
+        "fileTitle": "File:En-us-goat.ogg",
+        "languageCode": "en",
+        "ipa": "[ɡoʊʔt̚]",
+        "normalizedIpa": "ɡoʊʔt̚",
+        "context": "* {{IPA|en|/ɡoʊt/|[ɡoʊʔt̚]|a=GA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/ɡəʊt/",
+      "claimed": [
+        "/ɡəʊt/",
+        "/ɡoːt/",
+        "/ɡəwt/",
+        "/ɡoʊt/",
+        "[ɡoʊʔt̚]"
+      ],
+      "matched": [
+        "/ɡəʊt/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /ɡəʊt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-goat/En-us-goat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-goat.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-goat/En-us-goat.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-goat/En-us-goat.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-goat/En-us-goat.ogg"
+  }
+}

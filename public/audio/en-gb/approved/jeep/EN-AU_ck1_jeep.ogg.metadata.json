@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:20:07.425Z",
+  "word": {
+    "id": "en-gb-word-jeep",
+    "written": "jeep",
+    "ipa": "/dʒiːp/",
+    "phonemeIds": [
+      "en-gb-j",
+      "en-gb-fleece",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:EN-AU ck1 jeep.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/EN-AU_ck1_jeep.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_jeep.ogg",
+    "mime": "application/ogg",
+    "size": 13988,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"jeep\". Male, Australian accent.",
+    "key": "en-gb-word-jeep|File%3AEN-AU%20ck1%20jeep.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEN-AU_ck1_jeep.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "jeep",
+        "fileTitle": "File:EN-AU ck1 jeep.ogg",
+        "languageCode": "en",
+        "ipa": "/d͡ʒiːp/",
+        "normalizedIpa": "dʒiːp",
+        "context": "* {{enPR|jēp}}, {{IPA|en|/d͡ʒiːp/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/dʒiːp/",
+      "claimed": [
+        "/d͡ʒiːp/"
+      ],
+      "matched": [
+        "/d͡ʒiːp/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /dʒiːp/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-jeep/EN-AU_ck1_jeep.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_jeep.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-jeep/EN-AU_ck1_jeep.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-jeep/EN-AU_ck1_jeep.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-jeep/EN-AU_ck1_jeep.ogg"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "downloadedAt": "2026-07-02T08:19:05.473Z",
+  "word": {
+    "id": "en-gb-word-back",
+    "written": "back",
+    "ipa": "/bæk/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-trap",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-back.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ec/En-us-back.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-back.ogg",
+    "mime": "application/ogg",
+    "size": 14632,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-back|File%3AEn-us-back.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-back.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "back",
+        "fileTitle": "File:En-us-back.ogg",
+        "languageCode": "en",
+        "ipa": "/bæk/",
+        "normalizedIpa": "bæk",
+        "context": "* {{IPA|en|/bæk/|[bæk]|[bak]|[-k̚]|[-ˀk]|a=RP,GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "back",
+        "fileTitle": "File:En-us-back.ogg",
+        "languageCode": "en",
+        "ipa": "[bak]",
+        "normalizedIpa": "bak",
+        "context": "* {{IPA|en|/bæk/|[bæk]|[bak]|[-k̚]|[-ˀk]|a=RP,GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "back",
+        "fileTitle": "File:En-us-back.ogg",
+        "languageCode": "en",
+        "ipa": "[-k̚]",
+        "normalizedIpa": "-k̚",
+        "context": "* {{IPA|en|/bæk/|[bæk]|[bak]|[-k̚]|[-ˀk]|a=RP,GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "back",
+        "fileTitle": "File:En-us-back.ogg",
+        "languageCode": "en",
+        "ipa": "[-ˀk]",
+        "normalizedIpa": "-ˀk",
+        "context": "* {{IPA|en|/bæk/|[bæk]|[bak]|[-k̚]|[-ˀk]|a=RP,GA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/bæk/",
+      "claimed": [
+        "/bæk/",
+        "[bak]",
+        "[-k̚]",
+        "[-ˀk]"
+      ],
+      "matched": [
+        "/bæk/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /bæk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-back/En-us-back.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-back.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-back/En-us-back.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-back/En-us-back.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-back/En-us-back.ogg"
+  }
+}

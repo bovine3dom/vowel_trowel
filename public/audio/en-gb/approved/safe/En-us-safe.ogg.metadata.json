@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:19:50.426Z",
+  "word": {
+    "id": "en-gb-word-safe",
+    "written": "safe",
+    "ipa": "/seɪf/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-face",
+      "en-gb-f"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-safe.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/En-us-safe.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-safe.ogg",
+    "mime": "application/ogg",
+    "size": 11398,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-safe|File%3AEn-us-safe.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-safe.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "safe",
+        "fileTitle": "File:En-us-safe.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈseɪ̯f/",
+        "normalizedIpa": "seɪf",
+        "context": "* {{IPA|en|/ˈseɪ̯f/|[ˈseɪ̯f]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/seɪf/",
+      "claimed": [
+        "/ˈseɪ̯f/"
+      ],
+      "matched": [
+        "/ˈseɪ̯f/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /seɪf/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-safe/En-us-safe.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-safe.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-safe/En-us-safe.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-safe/En-us-safe.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-safe/En-us-safe.ogg"
+  }
+}

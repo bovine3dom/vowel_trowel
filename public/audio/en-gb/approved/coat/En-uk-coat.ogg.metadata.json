@@ -1,0 +1,108 @@
+{
+  "downloadedAt": "2026-07-02T08:17:35.154Z",
+  "word": {
+    "id": "en-gb-word-coat",
+    "written": "coat",
+    "ipa": "/kəʊt/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-goat",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-coat.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/En-uk-coat.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-coat.ogg",
+    "mime": "application/ogg",
+    "size": 15670,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"coat\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-coat|File%3AEn-uk-coat.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-coat.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "coat",
+        "fileTitle": "File:En-uk-coat.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈkoʊ̯t/",
+        "normalizedIpa": "koʊt",
+        "context": "* {{IPA|en|/ˈkoʊ̯t/|[ˈkʰoʊ̯t]|a=GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "coat",
+        "fileTitle": "File:En-uk-coat.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈkʰoʊ̯t]",
+        "normalizedIpa": "kʰoʊt",
+        "context": "* {{IPA|en|/ˈkoʊ̯t/|[ˈkʰoʊ̯t]|a=GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "coat",
+        "fileTitle": "File:En-uk-coat.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈkəʊ̯t/",
+        "normalizedIpa": "kəʊt",
+        "context": "* {{IPA|en|/ˈkəʊ̯t/|[ˈkʰəʊ̯t]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "coat",
+        "fileTitle": "File:En-uk-coat.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈkʰəʊ̯t]",
+        "normalizedIpa": "kʰəʊt",
+        "context": "* {{IPA|en|/ˈkəʊ̯t/|[ˈkʰəʊ̯t]|a=RP}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kəʊt/",
+      "claimed": [
+        "/ˈkoʊ̯t/",
+        "[ˈkʰoʊ̯t]",
+        "/ˈkəʊ̯t/",
+        "[ˈkʰəʊ̯t]"
+      ],
+      "matched": [
+        "/ˈkəʊ̯t/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /kəʊt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-coat/En-uk-coat.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-coat.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-coat/En-uk-coat.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-coat/En-uk-coat.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-coat/En-uk-coat.ogg"
+  }
+}

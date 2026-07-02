@@ -1,0 +1,132 @@
+{
+  "downloadedAt": "2026-07-02T08:18:08.025Z",
+  "word": {
+    "id": "en-gb-word-like",
+    "written": "like",
+    "ipa": "/laɪk/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-price",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-like.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/En-us-like.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-like.ogg",
+    "mime": "application/ogg",
+    "size": 15008,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-like|File%3AEn-us-like.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-like.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-us-like.ogg",
+        "languageCode": "en",
+        "ipa": "/laɪ̯k/",
+        "normalizedIpa": "laɪk",
+        "context": "* {{enPR|līk}}, {{IPA|en|/laɪ̯k/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-us-like.ogg",
+        "languageCode": "en",
+        "ipa": "/læ̙ːk/",
+        "normalizedIpa": "læ̙ːk",
+        "context": "* {{IPA|en|/læ̙ːk/|/lɑːk/|a=MLE,Jamaica}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-us-like.ogg",
+        "languageCode": "en",
+        "ipa": "/lɑːk/",
+        "normalizedIpa": "lɑːk",
+        "context": "* {{IPA|en|/læ̙ːk/|/lɑːk/|a=MLE,Jamaica}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-us-like.ogg",
+        "languageCode": "en",
+        "ipa": "/lɔɪ̯k/",
+        "normalizedIpa": "lɔɪk",
+        "context": "* {{IPA|en|/lɔɪ̯k/|a=Dublin}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-us-like.ogg",
+        "languageCode": "en",
+        "ipa": "/lʌɪk/",
+        "normalizedIpa": "lʌɪk",
+        "context": "* {{IPA|en|/lʌɪk/|[ləi̯k]|a=CA,Scotland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-us-like.ogg",
+        "languageCode": "en",
+        "ipa": "[ləi̯k]",
+        "normalizedIpa": "ləik",
+        "context": "* {{IPA|en|/lʌɪk/|[ləi̯k]|a=CA,Scotland}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "like",
+        "fileTitle": "File:En-us-like.ogg",
+        "languageCode": "en",
+        "ipa": "/lɑɪ̯k/",
+        "normalizedIpa": "lɑɪk",
+        "context": "* {{IPA|en|/lɑɪ̯k/|a=Australia}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/laɪk/",
+      "claimed": [
+        "/laɪ̯k/",
+        "/læ̙ːk/",
+        "/lɑːk/",
+        "/lɔɪ̯k/",
+        "/lʌɪk/",
+        "[ləi̯k]",
+        "/lɑɪ̯k/"
+      ],
+      "matched": [
+        "/laɪ̯k/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /laɪk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-like/En-us-like.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-like.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-like/En-us-like.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-like/En-us-like.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-like/En-us-like.ogg"
+  }
+}

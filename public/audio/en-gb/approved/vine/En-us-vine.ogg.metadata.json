@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:19:49.290Z",
+  "word": {
+    "id": "en-gb-word-vine",
+    "written": "vine",
+    "ipa": "/vaɪn/",
+    "phonemeIds": [
+      "en-gb-v",
+      "en-gb-price",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-vine.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/En-us-vine.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-vine.ogg",
+    "mime": "application/ogg",
+    "size": 12489,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Self, recorded using the program Shtooka .",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'vine' in United States English.",
+    "key": "en-gb-word-vine|File%3AEn-us-vine.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-vine.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "vine",
+        "fileTitle": "File:En-us-vine.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈvaɪ̯n/",
+        "normalizedIpa": "vaɪn",
+        "context": "* {{IPA|en|/ˈvaɪ̯n/|[ˈvaɪ̯n]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/vaɪn/",
+      "claimed": [
+        "/ˈvaɪ̯n/"
+      ],
+      "matched": [
+        "/ˈvaɪ̯n/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /vaɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-vine/En-us-vine.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-vine.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-vine/En-us-vine.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-vine/En-us-vine.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-vine/En-us-vine.ogg"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "downloadedAt": "2026-07-02T08:18:52.121Z",
+  "word": {
+    "id": "en-gb-word-bin",
+    "written": "bin",
+    "ipa": "/bɪn/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-bin.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/8/80/En-us-bin.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-bin.ogg",
+    "mime": "application/ogg",
+    "size": 13842,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": null,
+    "credit": null,
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-bin|File%3AEn-us-bin.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-bin.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bin",
+        "fileTitle": "File:En-us-bin.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈbɪn/",
+        "normalizedIpa": "bɪn",
+        "context": "* {{IPA|en|/ˈbɪn/|[ˈbɪn]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/bɪn/",
+      "claimed": [
+        "/ˈbɪn/"
+      ],
+      "matched": [
+        "/ˈbɪn/"
+      ]
+    },
+    "score": 14,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /bɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bin/En-us-bin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bin.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bin/En-us-bin.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bin/En-us-bin.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bin/En-us-bin.ogg"
+  }
+}

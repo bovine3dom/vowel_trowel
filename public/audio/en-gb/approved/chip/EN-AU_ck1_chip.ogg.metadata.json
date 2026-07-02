@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:19:51.787Z",
+  "word": {
+    "id": "en-gb-word-chip",
+    "written": "chip",
+    "ipa": "/tʃɪp/",
+    "phonemeIds": [
+      "en-gb-ch",
+      "en-gb-kit",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:EN-AU ck1 chip.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/EN-AU_ck1_chip.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_chip.ogg",
+    "mime": "application/ogg",
+    "size": 16477,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"chip\". Male, Australian accent.",
+    "key": "en-gb-word-chip|File%3AEN-AU%20ck1%20chip.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEN-AU_ck1_chip.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "chip",
+        "fileTitle": "File:EN-AU ck1 chip.ogg",
+        "languageCode": "en",
+        "ipa": "/t͡ʃɪp/",
+        "normalizedIpa": "tʃɪp",
+        "context": "* {{enPR|chĭp}}, {{IPA|en|/t͡ʃɪp/|[t͡ʃʰɪp]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "chip",
+        "fileTitle": "File:EN-AU ck1 chip.ogg",
+        "languageCode": "en",
+        "ipa": "[t͡ʃʰɪp]",
+        "normalizedIpa": "tʃʰɪp",
+        "context": "* {{enPR|chĭp}}, {{IPA|en|/t͡ʃɪp/|[t͡ʃʰɪp]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/tʃɪp/",
+      "claimed": [
+        "/t͡ʃɪp/",
+        "[t͡ʃʰɪp]"
+      ],
+      "matched": [
+        "/t͡ʃɪp/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /tʃɪp/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-chip/EN-AU_ck1_chip.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_chip.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-chip/EN-AU_ck1_chip.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-chip/EN-AU_ck1_chip.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-chip/EN-AU_ck1_chip.ogg"
+  }
+}

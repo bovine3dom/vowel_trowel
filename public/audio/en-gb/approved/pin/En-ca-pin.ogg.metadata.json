@@ -1,0 +1,81 @@
+{
+  "downloadedAt": "2026-07-02T08:18:51.443Z",
+  "word": {
+    "id": "en-gb-word-pin",
+    "written": "pin",
+    "ipa": "/pɪn/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-ca-pin.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/En-ca-pin.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-ca-pin.ogg",
+    "mime": "application/ogg",
+    "size": 16276,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "No machine-readable author provided. Tawker assumed (based on copyright claims).",
+    "credit": "No machine-readable source provided. Own work assumed (based on copyright claims).",
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-pin|File%3AEn-ca-pin.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-ca-pin.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pin",
+        "fileTitle": "File:En-ca-pin.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈpɪn/",
+        "normalizedIpa": "pɪn",
+        "context": "* {{IPA|en|/ˈpɪn/|[ˈpʰɪn]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pin",
+        "fileTitle": "File:En-ca-pin.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈpʰɪn]",
+        "normalizedIpa": "pʰɪn",
+        "context": "* {{IPA|en|/ˈpɪn/|[ˈpʰɪn]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/pɪn/",
+      "claimed": [
+        "/ˈpɪn/",
+        "[ˈpʰɪn]"
+      ],
+      "matched": [
+        "/ˈpɪn/"
+      ]
+    },
+    "score": 14,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /pɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-pin/En-ca-pin.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "No machine-readable author provided. Tawker assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-ca-pin.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-pin/En-ca-pin.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-pin/En-ca-pin.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-pin/En-ca-pin.ogg"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "downloadedAt": "2026-07-02T08:19:35.340Z",
+  "word": {
+    "id": "en-gb-word-gold",
+    "written": "gold",
+    "ipa": "/ɡəʊld/",
+    "phonemeIds": [
+      "en-gb-g",
+      "en-gb-goat",
+      "en-gb-l",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-gold.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/LL-Q1860_%28eng%29-Naomi_Persephone_Amethyst_%28NaomiAmethyst%29-gold.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-gold.wav",
+    "mime": "audio/wav",
+    "size": 75820,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Naomi Persephone Amethyst Recorder: NaomiAmethyst",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-gold|File%3ALL-Q1860%20(eng)-Naomi%20Persephone%20Amethyst%20(NaomiAmethyst)-gold.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-gold.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-gold.wav",
+        "languageCode": "en",
+        "ipa": "/ɡəʊld/",
+        "normalizedIpa": "ɡəʊld",
+        "context": "* {{IPA|en|/ɡəʊld/|[ɡɒʊɫd]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-gold.wav",
+        "languageCode": "en",
+        "ipa": "[ɡɒʊɫd]",
+        "normalizedIpa": "ɡɒʊɫd",
+        "context": "* {{IPA|en|/ɡəʊld/|[ɡɒʊɫd]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-gold.wav",
+        "languageCode": "en",
+        "ipa": "/ˈɡɒld/",
+        "normalizedIpa": "ɡɒld",
+        "context": "** {{IPA|en|/ˈɡɒld/|a=doll-dole}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-gold.wav",
+        "languageCode": "en",
+        "ipa": "/ɡoʊld/",
+        "normalizedIpa": "ɡoʊld",
+        "context": "* {{enPR|gōld|a=GA,CA}}, {{IPA|en|/ɡoʊld/|[ɡold]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "gold",
+        "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-gold.wav",
+        "languageCode": "en",
+        "ipa": "[ɡold]",
+        "normalizedIpa": "ɡold",
+        "context": "* {{enPR|gōld|a=GA,CA}}, {{IPA|en|/ɡoʊld/|[ɡold]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/ɡəʊld/",
+      "claimed": [
+        "/ɡəʊld/",
+        "[ɡɒʊɫd]",
+        "/ˈɡɒld/",
+        "/ɡoʊld/",
+        "[ɡold]"
+      ],
+      "matched": [
+        "/ɡəʊld/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /ɡəʊld/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-gold/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-gold.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Naomi Persephone Amethyst Recorder: NaomiAmethyst",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-gold.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-gold/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-gold.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-gold/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-gold.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-gold/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-gold.wav"
+  }
+}

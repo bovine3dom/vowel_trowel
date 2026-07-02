@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:18:22.259Z",
+  "word": {
+    "id": "en-gb-word-buzz",
+    "written": "buzz",
+    "ipa": "/bʌz/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-strut",
+      "en-gb-z"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-buzz.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/En-us-buzz.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-buzz.ogg",
+    "mime": "application/ogg",
+    "size": 14910,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Sylvanmoon",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English, recorded by Sylvanmoon",
+    "key": "en-gb-word-buzz|File%3AEn-us-buzz.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-buzz.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "buzz",
+        "fileTitle": "File:En-us-buzz.ogg",
+        "languageCode": "en",
+        "ipa": "/bʌz/",
+        "normalizedIpa": "bʌz",
+        "context": "* {{enPR|bŭz}}, {{IPA|en|/bʌz/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/bʌz/",
+      "claimed": [
+        "/bʌz/"
+      ],
+      "matched": [
+        "/bʌz/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /bʌz/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-buzz/En-us-buzz.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Sylvanmoon",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-buzz.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-buzz/En-us-buzz.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-buzz/En-us-buzz.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-buzz/En-us-buzz.ogg"
+  }
+}

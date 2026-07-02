@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:18:35.848Z",
+  "word": {
+    "id": "en-gb-word-sick",
+    "written": "sick",
+    "ipa": "/sɪk/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-kit",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-sick.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/28/En-us-sick.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-sick.ogg",
+    "mime": "application/ogg",
+    "size": 11753,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-sick|File%3AEn-us-sick.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-sick.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "sick",
+        "fileTitle": "File:En-us-sick.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈsɪk/",
+        "normalizedIpa": "sɪk",
+        "context": "* {{enPR|sĭk}}, {{IPA|en|/ˈsɪk/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/sɪk/",
+      "claimed": [
+        "/ˈsɪk/"
+      ],
+      "matched": [
+        "/ˈsɪk/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /sɪk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-sick/En-us-sick.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sick.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-sick/En-us-sick.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-sick/En-us-sick.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-sick/En-us-sick.ogg"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:18:52.804Z",
+  "word": {
+    "id": "en-gb-word-peach",
+    "written": "peach",
+    "ipa": "/piːtʃ/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-fleece",
+      "en-gb-ch"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-peach.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/En-us-peach.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-peach.ogg",
+    "mime": "application/ogg",
+    "size": 12691,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Self, recorded using the program Shtooka .",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'peach' in United States English.",
+    "key": "en-gb-word-peach|File%3AEn-us-peach.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-peach.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "peach",
+        "fileTitle": "File:En-us-peach.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈpiːt͡ʃ/",
+        "normalizedIpa": "piːtʃ",
+        "context": "* {{IPA|en|/ˈpiːt͡ʃ/|[ˈpɪi̯t͡ʃ]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "peach",
+        "fileTitle": "File:En-us-peach.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈpɪi̯t͡ʃ]",
+        "normalizedIpa": "pɪitʃ",
+        "context": "* {{IPA|en|/ˈpiːt͡ʃ/|[ˈpɪi̯t͡ʃ]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/piːtʃ/",
+      "claimed": [
+        "/ˈpiːt͡ʃ/",
+        "[ˈpɪi̯t͡ʃ]"
+      ],
+      "matched": [
+        "/ˈpiːt͡ʃ/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /piːtʃ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-peach/En-us-peach.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-peach.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-peach/En-us-peach.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-peach/En-us-peach.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-peach/En-us-peach.ogg"
+  }
+}

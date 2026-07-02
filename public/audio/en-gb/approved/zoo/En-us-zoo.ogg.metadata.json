@@ -1,0 +1,81 @@
+{
+  "downloadedAt": "2026-07-02T08:18:21.132Z",
+  "word": {
+    "id": "en-gb-word-zoo",
+    "written": "zoo",
+    "ipa": "/zuː/",
+    "phonemeIds": [
+      "en-gb-z",
+      "en-gb-goose"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-zoo.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/En-us-zoo.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-zoo.ogg",
+    "mime": "application/ogg",
+    "size": 11453,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "No machine-readable author provided. Neoglitch assumed (based on copyright claims).",
+    "credit": "No machine-readable source provided. Own work assumed (based on copyright claims).",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English, recorded by Neoglitch , 4 November 2011",
+    "key": "en-gb-word-zoo|File%3AEn-us-zoo.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-zoo.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "zoo",
+        "fileTitle": "File:En-us-zoo.ogg",
+        "languageCode": "en",
+        "ipa": "/zuː/",
+        "normalizedIpa": "zuː",
+        "context": "* {{IPA|en|/zuː/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "zoo",
+        "fileTitle": "File:En-us-zoo.ogg",
+        "languageCode": "en",
+        "ipa": "/zʉw/",
+        "normalizedIpa": "zʉw",
+        "context": "* {{IPA|en|/zʉw/|a=SSB}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/zuː/",
+      "claimed": [
+        "/zuː/",
+        "/zʉw/"
+      ],
+      "matched": [
+        "/zuː/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /zuː/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-zoo/En-us-zoo.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "No machine-readable author provided. Neoglitch assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-zoo.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-zoo/En-us-zoo.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-zoo/En-us-zoo.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-zoo/En-us-zoo.ogg"
+  }
+}

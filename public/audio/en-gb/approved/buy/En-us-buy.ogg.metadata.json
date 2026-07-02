@@ -1,0 +1,101 @@
+{
+  "downloadedAt": "2026-07-02T08:17:52.255Z",
+  "word": {
+    "id": "en-gb-word-buy",
+    "written": "buy",
+    "ipa": "/baɪ/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-price"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-buy.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/En-us-buy.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-buy.ogg",
+    "mime": "application/ogg",
+    "size": 8737,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the word 'buy' in US English",
+    "key": "en-gb-word-buy|File%3AEn-us-buy.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-buy.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "buy",
+        "fileTitle": "File:En-us-buy.ogg",
+        "languageCode": "en",
+        "ipa": "/baɪ/",
+        "normalizedIpa": "baɪ",
+        "context": "* {{enPR|bī}}, {{IPA|en|/baɪ/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "buy",
+        "fileTitle": "File:En-us-buy.ogg",
+        "languageCode": "en",
+        "ipa": "[bɑj]",
+        "normalizedIpa": "bɑj",
+        "context": "** {{IPA|en|[bɑj]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "buy",
+        "fileTitle": "File:En-us-buy.ogg",
+        "languageCode": "en",
+        "ipa": "[bəj]",
+        "normalizedIpa": "bəj",
+        "context": "*** {{IPA|en|[bəj]|a=dialectal}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "buy",
+        "fileTitle": "File:En-us-buy.ogg",
+        "languageCode": "en",
+        "ipa": "[bɑɪ]",
+        "normalizedIpa": "bɑɪ",
+        "context": "** {{IPA|en|[bɑɪ]|a=AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/baɪ/",
+      "claimed": [
+        "/baɪ/",
+        "[bɑj]",
+        "[bəj]",
+        "[bɑɪ]"
+      ],
+      "matched": [
+        "/baɪ/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /baɪ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-buy/En-us-buy.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-buy.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-buy/En-us-buy.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-buy/En-us-buy.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-buy/En-us-buy.ogg"
+  }
+}

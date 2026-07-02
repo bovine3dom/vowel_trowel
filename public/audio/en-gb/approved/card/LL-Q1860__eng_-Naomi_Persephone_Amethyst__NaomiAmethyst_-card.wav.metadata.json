@@ -1,0 +1,103 @@
+{
+  "downloadedAt": "2026-07-02T08:19:21.028Z",
+  "word": {
+    "id": "en-gb-word-card",
+    "written": "card",
+    "ipa": "/kɑːd/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-palm",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-card.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/LL-Q1860_%28eng%29-Naomi_Persephone_Amethyst_%28NaomiAmethyst%29-card.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-card.wav",
+    "mime": "audio/wav",
+    "size": 75052,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Naomi Persephone Amethyst Recorder: NaomiAmethyst",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-card|File%3ALL-Q1860%20(eng)-Naomi%20Persephone%20Amethyst%20(NaomiAmethyst)-card.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-card.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-card.wav",
+        "languageCode": "en",
+        "ipa": "/kɑːd/",
+        "normalizedIpa": "kɑːd",
+        "context": "** {{IPA|en|/kɑːd/|[kʰɑːd]|a=England}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-card.wav",
+        "languageCode": "en",
+        "ipa": "[kʰɑːd]",
+        "normalizedIpa": "kʰɑːd",
+        "context": "** {{IPA|en|/kɑːd/|[kʰɑːd]|a=England}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-card.wav",
+        "languageCode": "en",
+        "ipa": "/kɑɹd/",
+        "normalizedIpa": "kɑɹd",
+        "context": "** {{IPA|en|/kɑɹd/|[kʰɑɹd]|a=US}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:LL-Q1860 (eng)-Naomi Persephone Amethyst (NaomiAmethyst)-card.wav",
+        "languageCode": "en",
+        "ipa": "[kʰɑɹd]",
+        "normalizedIpa": "kʰɑɹd",
+        "context": "** {{IPA|en|/kɑɹd/|[kʰɑɹd]|a=US}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kɑːd/",
+      "claimed": [
+        "/kɑːd/",
+        "[kʰɑːd]",
+        "/kɑɹd/",
+        "[kʰɑɹd]"
+      ],
+      "matched": [
+        "/kɑːd/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /kɑːd/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-card/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-card.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Naomi Persephone Amethyst Recorder: NaomiAmethyst",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-card.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-card/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-card.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-card/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-card.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-card/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-card.wav"
+  }
+}

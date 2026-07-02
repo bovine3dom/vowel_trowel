@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:19:37.319Z",
+  "word": {
+    "id": "en-gb-word-fine",
+    "written": "fine",
+    "ipa": "/faɪn/",
+    "phonemeIds": [
+      "en-gb-f",
+      "en-gb-price",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-fine.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/En-us-fine.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-fine.ogg",
+    "mime": "application/ogg",
+    "size": 11173,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-fine|File%3AEn-us-fine.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-fine.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fine",
+        "fileTitle": "File:En-us-fine.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈfaɪ̯n/",
+        "normalizedIpa": "faɪn",
+        "context": "* {{IPA|en|/ˈfaɪ̯n/|a=RP,GA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/faɪn/",
+      "claimed": [
+        "/ˈfaɪ̯n/"
+      ],
+      "matched": [
+        "/ˈfaɪ̯n/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /faɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-fine/En-us-fine.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-fine.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-fine/En-us-fine.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-fine/En-us-fine.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-fine/En-us-fine.ogg"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:19:07.110Z",
+  "word": {
+    "id": "en-gb-word-tin",
+    "written": "tin",
+    "ipa": "/tɪn/",
+    "phonemeIds": [
+      "en-gb-t",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-tin.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/En-us-tin.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-tin.ogg",
+    "mime": "application/ogg",
+    "size": 10813,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "No machine-readable author provided. Dvortygirl assumed (based on copyright claims).",
+    "credit": "No machine-readable source provided. Own work assumed (based on copyright claims).",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English, recorded by Dvortygirl , 21 September 2006",
+    "key": "en-gb-word-tin|File%3AEn-us-tin.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-tin.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tin",
+        "fileTitle": "File:En-us-tin.ogg",
+        "languageCode": "en",
+        "ipa": "/tɪn/",
+        "normalizedIpa": "tɪn",
+        "context": "* {{enPR|tĭn}}, {{IPA|en|/tɪn/|[tʰɪn]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tin",
+        "fileTitle": "File:En-us-tin.ogg",
+        "languageCode": "en",
+        "ipa": "[tʰɪn]",
+        "normalizedIpa": "tʰɪn",
+        "context": "* {{enPR|tĭn}}, {{IPA|en|/tɪn/|[tʰɪn]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/tɪn/",
+      "claimed": [
+        "/tɪn/",
+        "[tʰɪn]"
+      ],
+      "matched": [
+        "/tɪn/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /tɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-tin/En-us-tin.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "No machine-readable author provided. Dvortygirl assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-tin.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-tin/En-us-tin.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-tin/En-us-tin.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-tin/En-us-tin.ogg"
+  }
+}

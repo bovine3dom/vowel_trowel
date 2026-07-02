@@ -1,0 +1,73 @@
+{
+  "downloadedAt": "2026-07-02T08:18:06.413Z",
+  "word": {
+    "id": "en-gb-word-sign",
+    "written": "sign",
+    "ipa": "/saɪn/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-price",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Samuel Muldoon (Muldoonsamuel55)-sign.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/LL-Q1860_%28eng%29-Samuel_Muldoon_%28Muldoonsamuel55%29-sign.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Samuel_Muldoon_(Muldoonsamuel55)-sign.wav",
+    "mime": "audio/wav",
+    "size": 103980,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Speaker: Samuel Muldoon Recorder: Muldoonsamuel55",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-sign|File%3ALL-Q1860%20(eng)-Samuel%20Muldoon%20(Muldoonsamuel55)-sign.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Samuel_Muldoon_(Muldoonsamuel55)-sign.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "sign",
+        "fileTitle": "File:LL-Q1860 (eng)-Samuel Muldoon (Muldoonsamuel55)-sign.wav",
+        "languageCode": "en",
+        "ipa": "/saɪn/",
+        "normalizedIpa": "saɪn",
+        "context": "** {{IPA|en|/saɪn/|a=RP,GA,CA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/saɪn/",
+      "claimed": [
+        "/saɪn/"
+      ],
+      "matched": [
+        "/saɪn/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /saɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-sign/LL-Q1860__eng_-Samuel_Muldoon__Muldoonsamuel55_-sign.wav",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Samuel Muldoon Recorder: Muldoonsamuel55",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Samuel_Muldoon_(Muldoonsamuel55)-sign.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-sign/LL-Q1860__eng_-Samuel_Muldoon__Muldoonsamuel55_-sign.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-sign/LL-Q1860__eng_-Samuel_Muldoon__Muldoonsamuel55_-sign.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-sign/LL-Q1860__eng_-Samuel_Muldoon__Muldoonsamuel55_-sign.wav"
+  }
+}

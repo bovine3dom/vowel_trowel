@@ -1,0 +1,91 @@
+{
+  "downloadedAt": "2026-07-02T08:19:06.394Z",
+  "word": {
+    "id": "en-gb-word-tie",
+    "written": "tie",
+    "ipa": "/taɪ/",
+    "phonemeIds": [
+      "en-gb-t",
+      "en-gb-price"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-tie.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/En-au-tie.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-tie.ogg",
+    "mime": "application/ogg",
+    "size": 16972,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"tie\". Male, Australian accent.",
+    "key": "en-gb-word-tie|File%3AEn-au-tie.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-tie.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tie",
+        "fileTitle": "File:En-au-tie.ogg",
+        "languageCode": "en",
+        "ipa": "/taɪ/",
+        "normalizedIpa": "taɪ",
+        "context": "* {{IPA|en|/taɪ/}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tie",
+        "fileTitle": "File:En-au-tie.ogg",
+        "languageCode": "en",
+        "ipa": "/təɪ/",
+        "normalizedIpa": "təɪ",
+        "context": "* {{IPA|en|/təɪ/|/toɪ/|a=Dublin}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tie",
+        "fileTitle": "File:En-au-tie.ogg",
+        "languageCode": "en",
+        "ipa": "/toɪ/",
+        "normalizedIpa": "toɪ",
+        "context": "* {{IPA|en|/təɪ/|/toɪ/|a=Dublin}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/taɪ/",
+      "claimed": [
+        "/taɪ/",
+        "/təɪ/",
+        "/toɪ/"
+      ],
+      "matched": [
+        "/taɪ/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /taɪ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-tie/En-au-tie.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-tie.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-tie/En-au-tie.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-tie/En-au-tie.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-tie/En-au-tie.ogg"
+  }
+}

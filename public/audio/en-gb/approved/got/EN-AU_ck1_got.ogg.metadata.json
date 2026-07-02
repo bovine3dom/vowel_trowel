@@ -1,0 +1,112 @@
+{
+  "downloadedAt": "2026-07-02T08:17:36.384Z",
+  "word": {
+    "id": "en-gb-word-got",
+    "written": "got",
+    "ipa": "/ɡɒt/",
+    "phonemeIds": [
+      "en-gb-g",
+      "en-gb-lot",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:EN-AU ck1 got.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/EN-AU_ck1_got.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_got.ogg",
+    "mime": "application/ogg",
+    "size": 27761,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"got\". Male, Australian accent.",
+    "key": "en-gb-word-got|File%3AEN-AU%20ck1%20got.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEN-AU_ck1_got.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "got",
+        "fileTitle": "File:EN-AU ck1 got.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡɑt/",
+        "normalizedIpa": "ɡɑt",
+        "context": "** {{IPA|en|/ɡɑt/|a=GenAm}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "got",
+        "fileTitle": "File:EN-AU ck1 got.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡaʔ/",
+        "normalizedIpa": "ɡaʔ",
+        "context": "** {{IPA|en|/ɡaʔ/|a=AAE}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "got",
+        "fileTitle": "File:EN-AU ck1 got.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡʌt/",
+        "normalizedIpa": "ɡʌt",
+        "context": "** {{IPA|en|/ɡʌt/|/ɡɒt/|a=New England,Boston}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "got",
+        "fileTitle": "File:EN-AU ck1 got.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡɒt/",
+        "normalizedIpa": "ɡɒt",
+        "context": "** {{IPA|en|/ɡʌt/|/ɡɒt/|a=New England,Boston}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "got",
+        "fileTitle": "File:EN-AU ck1 got.ogg",
+        "languageCode": "en",
+        "ipa": "/ɡɔt/",
+        "normalizedIpa": "ɡɔt",
+        "context": "** {{IPA|en|/ɡɔt/|a=AU,NZ}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/ɡɒt/",
+      "claimed": [
+        "/ɡɑt/",
+        "/ɡaʔ/",
+        "/ɡʌt/",
+        "/ɡɒt/",
+        "/ɡɔt/"
+      ],
+      "matched": [
+        "/ɡɒt/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /ɡɒt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-got/EN-AU_ck1_got.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:EN-AU_ck1_got.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-got/EN-AU_ck1_got.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-got/EN-AU_ck1_got.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-got/EN-AU_ck1_got.ogg"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "downloadedAt": "2026-07-02T08:19:21.345Z",
+  "word": {
+    "id": "en-gb-word-card",
+    "written": "card",
+    "ipa": "/kɑːd/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-palm",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-card.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dc/En-us-card.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-card.ogg",
+    "mime": "application/ogg",
+    "size": 15023,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-card|File%3AEn-us-card.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-card.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-us-card.ogg",
+        "languageCode": "en",
+        "ipa": "/kɑːd/",
+        "normalizedIpa": "kɑːd",
+        "context": "** {{IPA|en|/kɑːd/|[kʰɑːd]|a=England}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-us-card.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰɑːd]",
+        "normalizedIpa": "kʰɑːd",
+        "context": "** {{IPA|en|/kɑːd/|[kʰɑːd]|a=England}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-us-card.ogg",
+        "languageCode": "en",
+        "ipa": "/kɑɹd/",
+        "normalizedIpa": "kɑɹd",
+        "context": "** {{IPA|en|/kɑɹd/|[kʰɑɹd]|a=US}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "card",
+        "fileTitle": "File:En-us-card.ogg",
+        "languageCode": "en",
+        "ipa": "[kʰɑɹd]",
+        "normalizedIpa": "kʰɑɹd",
+        "context": "** {{IPA|en|/kɑɹd/|[kʰɑɹd]|a=US}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kɑːd/",
+      "claimed": [
+        "/kɑːd/",
+        "[kʰɑːd]",
+        "/kɑɹd/",
+        "[kʰɑɹd]"
+      ],
+      "matched": [
+        "/kɑːd/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /kɑːd/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-card/En-us-card.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-card.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-card/En-us-card.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-card/En-us-card.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-card/En-us-card.ogg"
+  }
+}

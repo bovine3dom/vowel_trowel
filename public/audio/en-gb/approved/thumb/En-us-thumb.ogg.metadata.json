@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:18:37.890Z",
+  "word": {
+    "id": "en-gb-word-thumb",
+    "written": "thumb",
+    "ipa": "/θʌm/",
+    "phonemeIds": [
+      "en-gb-theta",
+      "en-gb-strut",
+      "en-gb-m"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-thumb.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cd/En-us-thumb.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-thumb.ogg",
+    "mime": "application/ogg",
+    "size": 9568,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the acronym 'thumb' in US English",
+    "key": "en-gb-word-thumb|File%3AEn-us-thumb.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-thumb.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "thumb",
+        "fileTitle": "File:En-us-thumb.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈθʌm/",
+        "normalizedIpa": "θʌm",
+        "context": "* {{IPA|en|/ˈθʌm/|[ˈθʌ̈m]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "thumb",
+        "fileTitle": "File:En-us-thumb.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈθʌ̈m]",
+        "normalizedIpa": "θʌ̈m",
+        "context": "* {{IPA|en|/ˈθʌm/|[ˈθʌ̈m]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/θʌm/",
+      "claimed": [
+        "/ˈθʌm/",
+        "[ˈθʌ̈m]"
+      ],
+      "matched": [
+        "/ˈθʌm/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /θʌm/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-thumb/En-us-thumb.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-thumb.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-thumb/En-us-thumb.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-thumb/En-us-thumb.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-thumb/En-us-thumb.ogg"
+  }
+}

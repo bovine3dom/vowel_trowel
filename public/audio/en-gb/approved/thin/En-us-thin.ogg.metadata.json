@@ -1,0 +1,70 @@
+{
+  "downloadedAt": "2026-07-02T08:18:22.976Z",
+  "word": {
+    "id": "en-gb-word-thin",
+    "written": "thin",
+    "ipa": "/θɪn/",
+    "phonemeIds": [
+      "en-gb-theta",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-thin.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/En-us-thin.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-thin.ogg",
+    "mime": "application/ogg",
+    "size": 14718,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": null,
+    "credit": null,
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-thin|File%3AEn-us-thin.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-thin.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "thin",
+        "fileTitle": "File:En-us-thin.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈθɪn/",
+        "normalizedIpa": "θɪn",
+        "context": "* {{IPA|en|/ˈθɪn/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/θɪn/",
+      "claimed": [
+        "/ˈθɪn/"
+      ],
+      "matched": [
+        "/ˈθɪn/"
+      ]
+    },
+    "score": 14,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /θɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-thin/En-us-thin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-thin.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-thin/En-us-thin.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-thin/En-us-thin.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-thin/En-us-thin.ogg"
+  }
+}

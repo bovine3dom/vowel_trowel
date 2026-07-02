@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:18:38.182Z",
+  "word": {
+    "id": "en-gb-word-sum",
+    "written": "sum",
+    "ipa": "/sʌm/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-strut",
+      "en-gb-m"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-sum.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/En-us-sum.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-sum.ogg",
+    "mime": "application/ogg",
+    "size": 11704,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Self, recorded using the program Shtooka .",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'sum' in United States English.",
+    "key": "en-gb-word-sum|File%3AEn-us-sum.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-sum.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "sum",
+        "fileTitle": "File:En-us-sum.ogg",
+        "languageCode": "en",
+        "ipa": "/sʌm/",
+        "normalizedIpa": "sʌm",
+        "context": "* {{enPR|sŭm|a=UK,US}}, {{IPA|en|/sʌm/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/sʌm/",
+      "claimed": [
+        "/sʌm/"
+      ],
+      "matched": [
+        "/sʌm/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /sʌm/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-sum/En-us-sum.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sum.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-sum/En-us-sum.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-sum/En-us-sum.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-sum/En-us-sum.ogg"
+  }
+}

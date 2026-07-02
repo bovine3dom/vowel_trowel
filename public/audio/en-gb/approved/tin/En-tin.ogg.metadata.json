@@ -1,0 +1,80 @@
+{
+  "downloadedAt": "2026-07-02T08:19:07.520Z",
+  "word": {
+    "id": "en-gb-word-tin",
+    "written": "tin",
+    "ipa": "/tɪn/",
+    "phonemeIds": [
+      "en-gb-t",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-tin.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/En-tin.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-tin.ogg",
+    "mime": "application/ogg",
+    "size": 12119,
+    "license": "pd",
+    "licenseShortName": "Public domain",
+    "artist": null,
+    "credit": null,
+    "attribution": null,
+    "description": null,
+    "key": "en-gb-word-tin|File%3AEn-tin.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-tin.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tin",
+        "fileTitle": "File:En-tin.ogg",
+        "languageCode": "en",
+        "ipa": "/tɪn/",
+        "normalizedIpa": "tɪn",
+        "context": "* {{enPR|tĭn}}, {{IPA|en|/tɪn/|[tʰɪn]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "tin",
+        "fileTitle": "File:En-tin.ogg",
+        "languageCode": "en",
+        "ipa": "[tʰɪn]",
+        "normalizedIpa": "tʰɪn",
+        "context": "* {{enPR|tĭn}}, {{IPA|en|/tɪn/|[tʰɪn]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/tɪn/",
+      "claimed": [
+        "/tɪn/",
+        "[tʰɪn]"
+      ],
+      "matched": [
+        "/tɪn/"
+      ]
+    },
+    "score": 14,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /tɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-tin/En-tin.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-tin.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-tin/En-tin.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-tin/En-tin.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-tin/En-tin.ogg"
+  }
+}

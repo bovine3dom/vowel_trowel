@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:18:19.931Z",
+  "word": {
+    "id": "en-gb-word-zip",
+    "written": "zip",
+    "ipa": "/zɪp/",
+    "phonemeIds": [
+      "en-gb-z",
+      "en-gb-kit",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-zip.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d1/En-us-zip.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-zip.ogg",
+    "mime": "application/ogg",
+    "size": 10183,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the word 'zip' in US English",
+    "key": "en-gb-word-zip|File%3AEn-us-zip.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-zip.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "zip",
+        "fileTitle": "File:En-us-zip.ogg",
+        "languageCode": "en",
+        "ipa": "/zɪp/",
+        "normalizedIpa": "zɪp",
+        "context": "* {{enPR|zĭp}}, {{IPA|en|/zɪp/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/zɪp/",
+      "claimed": [
+        "/zɪp/"
+      ],
+      "matched": [
+        "/zɪp/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /zɪp/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-zip/En-us-zip.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-zip.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-zip/En-us-zip.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-zip/En-us-zip.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-zip/En-us-zip.ogg"
+  }
+}

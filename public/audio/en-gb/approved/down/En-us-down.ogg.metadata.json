@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:19:20.525Z",
+  "word": {
+    "id": "en-gb-word-down",
+    "written": "down",
+    "ipa": "/daʊn/",
+    "phonemeIds": [
+      "en-gb-d",
+      "en-gb-mouth",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-down.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/En-us-down.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-down.ogg",
+    "mime": "application/ogg",
+    "size": 10307,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-down|File%3AEn-us-down.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-down.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "down",
+        "fileTitle": "File:En-us-down.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈdaʊ̯n/",
+        "normalizedIpa": "daʊn",
+        "context": "* {{IPA|en|/ˈdaʊ̯n/|a=RP,GA,CA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/daʊn/",
+      "claimed": [
+        "/ˈdaʊ̯n/"
+      ],
+      "matched": [
+        "/ˈdaʊ̯n/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /daʊn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-down/En-us-down.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-down.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-down/En-us-down.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-down/En-us-down.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-down/En-us-down.ogg"
+  }
+}

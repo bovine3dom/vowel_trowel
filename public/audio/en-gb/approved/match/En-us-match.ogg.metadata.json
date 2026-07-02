@@ -1,0 +1,72 @@
+{
+  "downloadedAt": "2026-07-02T08:20:06.504Z",
+  "word": {
+    "id": "en-gb-word-match",
+    "written": "match",
+    "ipa": "/mætʃ/",
+    "phonemeIds": [
+      "en-gb-m",
+      "en-gb-trap",
+      "en-gb-ch"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-match.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ad/En-us-match.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-match.ogg",
+    "mime": "application/ogg",
+    "size": 14795,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-match|File%3AEn-us-match.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-match.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "match",
+        "fileTitle": "File:En-us-match.ogg",
+        "languageCode": "en",
+        "ipa": "/mæt͡ʃ/",
+        "normalizedIpa": "mætʃ",
+        "context": "* {{IPA|en|/mæt͡ʃ/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/mætʃ/",
+      "claimed": [
+        "/mæt͡ʃ/"
+      ],
+      "matched": [
+        "/mæt͡ʃ/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /mætʃ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-match/En-us-match.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-match.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-match/En-us-match.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-match/En-us-match.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-match/En-us-match.ogg"
+  }
+}

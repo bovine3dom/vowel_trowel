@@ -1,0 +1,71 @@
+{
+  "downloadedAt": "2026-07-02T08:17:51.436Z",
+  "word": {
+    "id": "en-gb-word-bay",
+    "written": "bay",
+    "ipa": "/beɪ/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-face"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-bay.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/En-us-bay.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-bay.ogg",
+    "mime": "application/ogg",
+    "size": 12028,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Self, recorded using the program Shtooka .",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'bay' in United States English.",
+    "key": "en-gb-word-bay|File%3AEn-us-bay.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-bay.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "bay",
+        "fileTitle": "File:En-us-bay.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈbeɪ̯/",
+        "normalizedIpa": "beɪ",
+        "context": "* {{IPA|en|/ˈbeɪ̯/|a=RP,GA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/beɪ/",
+      "claimed": [
+        "/ˈbeɪ̯/"
+      ],
+      "matched": [
+        "/ˈbeɪ̯/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /beɪ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bay/En-us-bay.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bay.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bay/En-us-bay.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bay/En-us-bay.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bay/En-us-bay.ogg"
+  }
+}

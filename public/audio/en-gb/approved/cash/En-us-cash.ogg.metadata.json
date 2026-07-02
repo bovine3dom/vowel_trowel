@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:20:04.354Z",
+  "word": {
+    "id": "en-gb-word-cash",
+    "written": "cash",
+    "ipa": "/kæʃ/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-trap",
+      "en-gb-sh"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-cash.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/En-us-cash.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-cash.ogg",
+    "mime": "application/ogg",
+    "size": 33090,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Neskaya",
+    "credit": "Self, recorded using the program 'Audacity'.",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'cash' in United States English.",
+    "key": "en-gb-word-cash|File%3AEn-us-cash.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-cash.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cash",
+        "fileTitle": "File:En-us-cash.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈkæʃ/",
+        "normalizedIpa": "kæʃ",
+        "context": "* {{IPA|en|/ˈkæʃ/|[ˈkʰæʃ]|a=RP,GA,AU}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cash",
+        "fileTitle": "File:En-us-cash.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈkʰæʃ]",
+        "normalizedIpa": "kʰæʃ",
+        "context": "* {{IPA|en|/ˈkæʃ/|[ˈkʰæʃ]|a=RP,GA,AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kæʃ/",
+      "claimed": [
+        "/ˈkæʃ/",
+        "[ˈkʰæʃ]"
+      ],
+      "matched": [
+        "/ˈkæʃ/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /kæʃ/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-cash/En-us-cash.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Neskaya",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cash.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-cash/En-us-cash.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-cash/En-us-cash.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-cash/En-us-cash.ogg"
+  }
+}

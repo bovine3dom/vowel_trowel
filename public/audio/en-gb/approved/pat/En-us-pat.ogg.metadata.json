@@ -1,0 +1,102 @@
+{
+  "downloadedAt": "2026-07-02T08:18:50.010Z",
+  "word": {
+    "id": "en-gb-word-pat",
+    "written": "pat",
+    "ipa": "/pæt/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-trap",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-pat.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/En-us-pat.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-pat.ogg",
+    "mime": "application/ogg",
+    "size": 14728,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-pat|File%3AEn-us-pat.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-pat.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pat",
+        "fileTitle": "File:En-us-pat.ogg",
+        "languageCode": "en",
+        "ipa": "/pæt/",
+        "normalizedIpa": "pæt",
+        "context": "* {{enPR|pǎt}}, {{IPA|en|/pæt/|[pʰæt]|[pʰæt̚]|[pʰæˀt̚]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pat",
+        "fileTitle": "File:En-us-pat.ogg",
+        "languageCode": "en",
+        "ipa": "[pʰæt]",
+        "normalizedIpa": "pʰæt",
+        "context": "* {{enPR|pǎt}}, {{IPA|en|/pæt/|[pʰæt]|[pʰæt̚]|[pʰæˀt̚]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pat",
+        "fileTitle": "File:En-us-pat.ogg",
+        "languageCode": "en",
+        "ipa": "[pʰæt̚]",
+        "normalizedIpa": "pʰæt̚",
+        "context": "* {{enPR|pǎt}}, {{IPA|en|/pæt/|[pʰæt]|[pʰæt̚]|[pʰæˀt̚]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pat",
+        "fileTitle": "File:En-us-pat.ogg",
+        "languageCode": "en",
+        "ipa": "[pʰæˀt̚]",
+        "normalizedIpa": "pʰæˀt̚",
+        "context": "* {{enPR|pǎt}}, {{IPA|en|/pæt/|[pʰæt]|[pʰæt̚]|[pʰæˀt̚]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/pæt/",
+      "claimed": [
+        "/pæt/",
+        "[pʰæt]",
+        "[pʰæt̚]",
+        "[pʰæˀt̚]"
+      ],
+      "matched": [
+        "/pæt/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /pæt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-pat/En-us-pat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-pat.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-pat/En-us-pat.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-pat/En-us-pat.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-pat/En-us-pat.ogg"
+  }
+}

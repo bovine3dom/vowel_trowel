@@ -1,0 +1,112 @@
+{
+  "downloadedAt": "2026-07-02T08:17:53.074Z",
+  "word": {
+    "id": "en-gb-word-light",
+    "written": "light",
+    "ipa": "/laɪt/",
+    "phonemeIds": [
+      "en-gb-l",
+      "en-gb-price",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-light.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/En-us-light.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-light.ogg",
+    "mime": "application/ogg",
+    "size": 12601,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-light|File%3AEn-us-light.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-light.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "light",
+        "fileTitle": "File:En-us-light.ogg",
+        "languageCode": "en",
+        "ipa": "[laɪt]",
+        "normalizedIpa": "laɪt",
+        "context": "** {{IPA|en|[laɪt]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "light",
+        "fileTitle": "File:En-us-light.ogg",
+        "languageCode": "en",
+        "ipa": "[lɑjt]",
+        "normalizedIpa": "lɑjt",
+        "context": "** {{IPA|en|[lɑjt]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "light",
+        "fileTitle": "File:En-us-light.ogg",
+        "languageCode": "en",
+        "ipa": "[ɫɐɪt]",
+        "normalizedIpa": "ɫɐɪt",
+        "context": "** {{IPA|en|[ɫɐɪt]|a=GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "light",
+        "fileTitle": "File:En-us-light.ogg",
+        "languageCode": "en",
+        "ipa": "[ləjt]",
+        "normalizedIpa": "ləjt",
+        "context": "** {{IPA|en|[ləjt]|a=CA,regional US}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "light",
+        "fileTitle": "File:En-us-light.ogg",
+        "languageCode": "en",
+        "ipa": "[lɑɪt]",
+        "normalizedIpa": "lɑɪt",
+        "context": "** {{IPA|en|[lɑɪt]|a=AU}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/laɪt/",
+      "claimed": [
+        "[laɪt]",
+        "[lɑjt]",
+        "[ɫɐɪt]",
+        "[ləjt]",
+        "[lɑɪt]"
+      ],
+      "matched": [
+        "[laɪt]"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /laɪt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-light/En-us-light.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-light.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-light/En-us-light.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-light/En-us-light.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-light/En-us-light.ogg"
+  }
+}

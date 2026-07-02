@@ -1,0 +1,114 @@
+{
+  "downloadedAt": "2026-07-02T08:19:34.516Z",
+  "word": {
+    "id": "en-gb-word-cold",
+    "written": "cold",
+    "ipa": "/kəʊld/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-goat",
+      "en-gb-l",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q1860 (eng)-Back ache-cold.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/LL-Q1860_%28eng%29-Back_ache-cold.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-cold.wav",
+    "mime": "audio/wav",
+    "size": 92972,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Back ache Recorder: Back ache",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "en-gb-word-cold|File%3ALL-Q1860%20(eng)-Back%20ache-cold.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Back_ache-cold.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cold",
+        "fileTitle": "File:LL-Q1860 (eng)-Back ache-cold.wav",
+        "languageCode": "en",
+        "ipa": "/kəʊld/",
+        "normalizedIpa": "kəʊld",
+        "context": "** {{IPA|en|/kəʊld/|[kʰɔʊɫd]|[kʰɒʊɫd]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cold",
+        "fileTitle": "File:LL-Q1860 (eng)-Back ache-cold.wav",
+        "languageCode": "en",
+        "ipa": "[kʰɔʊɫd]",
+        "normalizedIpa": "kʰɔʊɫd",
+        "context": "** {{IPA|en|/kəʊld/|[kʰɔʊɫd]|[kʰɒʊɫd]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cold",
+        "fileTitle": "File:LL-Q1860 (eng)-Back ache-cold.wav",
+        "languageCode": "en",
+        "ipa": "[kʰɒʊɫd]",
+        "normalizedIpa": "kʰɒʊɫd",
+        "context": "** {{IPA|en|/kəʊld/|[kʰɔʊɫd]|[kʰɒʊɫd]|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cold",
+        "fileTitle": "File:LL-Q1860 (eng)-Back ache-cold.wav",
+        "languageCode": "en",
+        "ipa": "/kɔwld/",
+        "normalizedIpa": "kɔwld",
+        "context": "** {{IPA|en|/kɔwld/|[kʰɔw(ɫ)d]|a=SSB}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "cold",
+        "fileTitle": "File:LL-Q1860 (eng)-Back ache-cold.wav",
+        "languageCode": "en",
+        "ipa": "[kʰɔw(ɫ)d]",
+        "normalizedIpa": "kʰɔwɫd",
+        "context": "** {{IPA|en|/kɔwld/|[kʰɔw(ɫ)d]|a=SSB}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/kəʊld/",
+      "claimed": [
+        "/kəʊld/",
+        "[kʰɔʊɫd]",
+        "[kʰɒʊɫd]",
+        "/kɔwld/",
+        "[kʰɔw(ɫ)d]"
+      ],
+      "matched": [
+        "/kəʊld/"
+      ]
+    },
+    "score": 19,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "Wiktionary IPA matches /kəʊld/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-cold/LL-Q1860__eng_-Back_ache-cold.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-cold.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-cold/LL-Q1860__eng_-Back_ache-cold.wav",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-cold/LL-Q1860__eng_-Back_ache-cold.wav.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-cold/LL-Q1860__eng_-Back_ache-cold.wav"
+  }
+}

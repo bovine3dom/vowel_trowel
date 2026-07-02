@@ -1,0 +1,78 @@
+{
+  "downloadedAt": "2026-07-02T08:18:35.557Z",
+  "word": {
+    "id": "en-gb-word-sick",
+    "written": "sick",
+    "ipa": "/sɪk/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-kit",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-uk-sick.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a3/En-uk-sick.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-uk-sick.ogg",
+    "mime": "application/ogg",
+    "size": 15329,
+    "license": "cc-by-3.0-us",
+    "licenseShortName": "CC BY 3.0 us",
+    "artist": "Association Shtooka, Judith Franck",
+    "credit": "Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"sick\" in English language. Female voice. Speaker from London, England.",
+    "key": "en-gb-word-sick|File%3AEn-uk-sick.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-sick.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "British English"
+    ],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "sick",
+        "fileTitle": "File:En-uk-sick.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈsɪk/",
+        "normalizedIpa": "sɪk",
+        "context": "* {{enPR|sĭk}}, {{IPA|en|/ˈsɪk/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/sɪk/",
+      "claimed": [
+        "/ˈsɪk/"
+      ],
+      "matched": [
+        "/ˈsɪk/"
+      ]
+    },
+    "score": 29,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "regional keyword: British English",
+      "Wiktionary IPA matches /sɪk/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-sick/En-uk-sick.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-sick.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-sick/En-uk-sick.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-sick/En-uk-sick.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-sick/En-uk-sick.ogg"
+  }
+}

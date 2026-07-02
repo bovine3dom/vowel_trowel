@@ -1,0 +1,71 @@
+{
+  "downloadedAt": "2026-07-02T08:20:07.909Z",
+  "word": {
+    "id": "en-gb-word-jeep",
+    "written": "jeep",
+    "ipa": "/dʒiːp/",
+    "phonemeIds": [
+      "en-gb-j",
+      "en-gb-fleece",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-ca-jeep.oga",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/En-ca-jeep.oga",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-ca-jeep.oga",
+    "mime": "application/ogg",
+    "size": 53828,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "K6ka",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of \"jeep\".",
+    "key": "en-gb-word-jeep|File%3AEn-ca-jeep.oga|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-ca-jeep.oga",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "jeep",
+        "fileTitle": "File:En-ca-jeep.oga",
+        "languageCode": "en",
+        "ipa": "/d͡ʒiːp/",
+        "normalizedIpa": "dʒiːp",
+        "context": "* {{enPR|jēp}}, {{IPA|en|/d͡ʒiːp/}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/dʒiːp/",
+      "claimed": [
+        "/d͡ʒiːp/"
+      ],
+      "matched": [
+        "/d͡ʒiːp/"
+      ]
+    },
+    "score": 14,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /dʒiːp/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-jeep/En-ca-jeep.oga",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "K6ka",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-ca-jeep.oga"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-jeep/En-ca-jeep.oga",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-jeep/En-ca-jeep.oga.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-jeep/En-ca-jeep.oga"
+  }
+}

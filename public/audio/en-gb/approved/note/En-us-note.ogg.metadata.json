@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:17:38.226Z",
+  "word": {
+    "id": "en-gb-word-note",
+    "written": "note",
+    "ipa": "/nəʊt/",
+    "phonemeIds": [
+      "en-gb-n",
+      "en-gb-goat",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-note.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/En-us-note.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-note.ogg",
+    "mime": "application/ogg",
+    "size": 10356,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-note|File%3AEn-us-note.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-note.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "note",
+        "fileTitle": "File:En-us-note.ogg",
+        "languageCode": "en",
+        "ipa": "/nəʊ̯t/",
+        "normalizedIpa": "nəʊt",
+        "context": "* {{IPA|en|/nəʊ̯t/|a=RP}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "note",
+        "fileTitle": "File:En-us-note.ogg",
+        "languageCode": "en",
+        "ipa": "/noʊ̯t/",
+        "normalizedIpa": "noʊt",
+        "context": "* {{IPA|en|/noʊ̯t/|a=GA,CA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/nəʊt/",
+      "claimed": [
+        "/nəʊ̯t/",
+        "/noʊ̯t/"
+      ],
+      "matched": [
+        "/nəʊ̯t/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /nəʊt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-note/En-us-note.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-note.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-note/En-us-note.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-note/En-us-note.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-note/En-us-note.ogg"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "downloadedAt": "2026-07-02T08:19:37.831Z",
+  "word": {
+    "id": "en-gb-word-fine",
+    "written": "fine",
+    "ipa": "/faɪn/",
+    "phonemeIds": [
+      "en-gb-f",
+      "en-gb-price",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-fine.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/En-au-fine.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-fine.ogg",
+    "mime": "application/ogg",
+    "size": 17297,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"fine\". Male, Australian accent.",
+    "key": "en-gb-word-fine|File%3AEn-au-fine.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-fine.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fine",
+        "fileTitle": "File:En-au-fine.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈfaɪ̯n/",
+        "normalizedIpa": "faɪn",
+        "context": "* {{IPA|en|/ˈfaɪ̯n/|a=RP,GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fine",
+        "fileTitle": "File:En-au-fine.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈfaːn/",
+        "normalizedIpa": "faːn",
+        "context": "* {{IPA|en|/ˈfaːn/|a=Southern US,[[w:Monophthongization|/aɪ̯/-ungliding]]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fine",
+        "fileTitle": "File:En-au-fine.ogg",
+        "languageCode": "en",
+        "ipa": "/aɪ̯/-ungliding]]",
+        "normalizedIpa": "aɪ-ungliding",
+        "context": "* {{IPA|en|/ˈfaːn/|a=Southern US,[[w:Monophthongization|/aɪ̯/-ungliding]]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "fine",
+        "fileTitle": "File:En-au-fine.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈfɑɪ̯n/",
+        "normalizedIpa": "fɑɪn",
+        "context": "* {{IPA|en|/ˈfɑɪ̯n/|a=AU,NZ}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/faɪn/",
+      "claimed": [
+        "/ˈfaɪ̯n/",
+        "/ˈfaːn/",
+        "/aɪ̯/-ungliding]]",
+        "/ˈfɑɪ̯n/"
+      ],
+      "matched": [
+        "/ˈfaɪ̯n/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /faɪn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-fine/En-au-fine.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-fine.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-fine/En-au-fine.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-fine/En-au-fine.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-fine/En-au-fine.ogg"
+  }
+}

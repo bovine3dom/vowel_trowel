@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:19:20.218Z",
+  "word": {
+    "id": "en-gb-word-town",
+    "written": "town",
+    "ipa": "/taʊn/",
+    "phonemeIds": [
+      "en-gb-t",
+      "en-gb-mouth",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-town.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/En-us-town.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-town.ogg",
+    "mime": "application/ogg",
+    "size": 10284,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation of the term in US English",
+    "key": "en-gb-word-town|File%3AEn-us-town.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-town.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "town",
+        "fileTitle": "File:En-us-town.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈtaʊ̯n/",
+        "normalizedIpa": "taʊn",
+        "context": "* {{IPA|en|/ˈtaʊ̯n/|[ˈtʰaʊ̯n]|a=RP,GA}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "town",
+        "fileTitle": "File:En-us-town.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈtʰaʊ̯n]",
+        "normalizedIpa": "tʰaʊn",
+        "context": "* {{IPA|en|/ˈtaʊ̯n/|[ˈtʰaʊ̯n]|a=RP,GA}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/taʊn/",
+      "claimed": [
+        "/ˈtaʊ̯n/",
+        "[ˈtʰaʊ̯n]"
+      ],
+      "matched": [
+        "/ˈtaʊ̯n/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /taʊn/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-town/En-us-town.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-town.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-town/En-us-town.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-town/En-us-town.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-town/En-us-town.ogg"
+  }
+}

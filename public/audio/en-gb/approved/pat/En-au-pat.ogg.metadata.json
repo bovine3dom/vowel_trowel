@@ -1,0 +1,102 @@
+{
+  "downloadedAt": "2026-07-02T08:18:50.348Z",
+  "word": {
+    "id": "en-gb-word-pat",
+    "written": "pat",
+    "ipa": "/pæt/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-trap",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-au-pat.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/En-au-pat.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-au-pat.ogg",
+    "mime": "application/ogg",
+    "size": 24175,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Commander Keane",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Pronunciation in English of \"pat\". Male, Australian accent.",
+    "key": "en-gb-word-pat|File%3AEn-au-pat.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-pat.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pat",
+        "fileTitle": "File:En-au-pat.ogg",
+        "languageCode": "en",
+        "ipa": "/pæt/",
+        "normalizedIpa": "pæt",
+        "context": "* {{enPR|pǎt}}, {{IPA|en|/pæt/|[pʰæt]|[pʰæt̚]|[pʰæˀt̚]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pat",
+        "fileTitle": "File:En-au-pat.ogg",
+        "languageCode": "en",
+        "ipa": "[pʰæt]",
+        "normalizedIpa": "pʰæt",
+        "context": "* {{enPR|pǎt}}, {{IPA|en|/pæt/|[pʰæt]|[pʰæt̚]|[pʰæˀt̚]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pat",
+        "fileTitle": "File:En-au-pat.ogg",
+        "languageCode": "en",
+        "ipa": "[pʰæt̚]",
+        "normalizedIpa": "pʰæt̚",
+        "context": "* {{enPR|pǎt}}, {{IPA|en|/pæt/|[pʰæt]|[pʰæt̚]|[pʰæˀt̚]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "pat",
+        "fileTitle": "File:En-au-pat.ogg",
+        "languageCode": "en",
+        "ipa": "[pʰæˀt̚]",
+        "normalizedIpa": "pʰæˀt̚",
+        "context": "* {{enPR|pǎt}}, {{IPA|en|/pæt/|[pʰæt]|[pʰæt̚]|[pʰæˀt̚]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/pæt/",
+      "claimed": [
+        "/pæt/",
+        "[pʰæt]",
+        "[pʰæt̚]",
+        "[pʰæˀt̚]"
+      ],
+      "matched": [
+        "/pæt/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /pæt/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-pat/En-au-pat.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-pat.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-pat/En-au-pat.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-pat/En-au-pat.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-pat/En-au-pat.ogg"
+  }
+}

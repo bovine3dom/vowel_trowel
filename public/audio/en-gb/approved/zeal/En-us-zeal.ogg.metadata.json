@@ -1,0 +1,82 @@
+{
+  "downloadedAt": "2026-07-02T08:18:20.723Z",
+  "word": {
+    "id": "en-gb-word-zeal",
+    "written": "zeal",
+    "ipa": "/ziːl/",
+    "phonemeIds": [
+      "en-gb-z",
+      "en-gb-fleece",
+      "en-gb-l"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:En-us-zeal.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/En-us-zeal.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:En-us-zeal.ogg",
+    "mime": "application/ogg",
+    "size": 13058,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Dvortygirl",
+    "credit": "Self, recorded using the program Shtooka .",
+    "attribution": null,
+    "description": "Audio pronunciation of the term 'zeal' in United States English.",
+    "key": "en-gb-word-zeal|File%3AEn-us-zeal.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-zeal.ogg",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "zeal",
+        "fileTitle": "File:En-us-zeal.ogg",
+        "languageCode": "en",
+        "ipa": "/ziːl/",
+        "normalizedIpa": "ziːl",
+        "context": "* {{IPA|en|/ziːl/|a=UK}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "zeal",
+        "fileTitle": "File:En-us-zeal.ogg",
+        "languageCode": "en",
+        "ipa": "/zil/",
+        "normalizedIpa": "zil",
+        "context": "* {{IPA|en|/zil/|a=US}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/ziːl/",
+      "claimed": [
+        "/ziːl/",
+        "/zil/"
+      ],
+      "matched": [
+        "/ziːl/"
+      ]
+    },
+    "score": 18,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests English audio",
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /ziːl/"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-zeal/En-us-zeal.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-zeal.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-zeal/En-us-zeal.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-zeal/En-us-zeal.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-zeal/En-us-zeal.ogg"
+  }
+}
