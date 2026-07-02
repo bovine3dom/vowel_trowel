@@ -128,6 +128,14 @@ bun run audio:apply-reviewed
 bun run audio:apply-reviewed -- --source=mswc --language=en-GB
 ```
 
+Remove a bad approved recording reported from the in-app player:
+
+```bash
+bun run audio:blacklist -- audio/fr/approved/cousin/common_voice_fr_19725023.opus
+```
+
+Use `--dry-run` first if you want to inspect what will be removed. The in-app track-link button copies the approved recording filepath. The command removes that exact approved `src` everywhere it appears in `src/languages/<language>/audio.ts`, deletes the now-unused approved audio file when it is under `public/audio/<language>/approved/`, and records a rejected review entry for the original source when it can infer one.
+
 For British English, pass `--language=en-GB` to any audio command.
 
 The reviewer updates the language-specific candidate report, each candidate metadata sidecar when present, and the language-specific review-state file. The scraper reads that review-state file on later runs and skips downloading candidates already approved or rejected. Use `--force-download-reviewed` if you intentionally want to download or stage them again. MSWC/Common Voice joins use clip filename stems only and do not write Common Voice client IDs into reports, sidecars, or app audio metadata.

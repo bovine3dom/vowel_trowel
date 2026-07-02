@@ -270,6 +270,7 @@ h3 {
 .primary-button,
 .text-button,
 .small-button,
+.audio-feedback-button,
 .catalog-tab,
 .phoneme-main,
 .contrast-button {
@@ -281,7 +282,8 @@ h3 {
 .sort-word-card,
 .primary-button,
 .text-button,
-.small-button {
+.small-button,
+.audio-feedback-button {
   border: 2px solid #202020;
   box-shadow: 2px 2px 0 #202020;
 }
@@ -303,6 +305,7 @@ h3 {
 .sort-word-card:hover:not(:disabled),
 .text-button:hover:not(:disabled),
 .small-button:hover:not(:disabled),
+.audio-feedback-button:hover:not(:disabled),
 .mode-tab:hover:not(.selected),
 .catalog-tab:hover:not(.selected) {
   background: #f7f7f4;
@@ -320,6 +323,7 @@ h3 {
 .primary-button:active:not(:disabled),
 .text-button:active:not(:disabled),
 .small-button:active:not(:disabled),
+.audio-feedback-button:active:not(:disabled),
 .mode-tab:active:not(:disabled),
 .catalog-tab:active:not(:disabled),
 .contrast-button:active:not(:disabled) {
@@ -368,6 +372,7 @@ h3 {
 .primary-button:focus-visible,
 .small-button:focus-visible,
 .text-button:focus-visible,
+.audio-feedback-button:focus-visible,
 .phoneme-main:focus-visible,
 .contrast-button:focus-visible,
 .audio-credits summary:focus-visible {
@@ -510,7 +515,8 @@ h3 {
 
 .primary-button,
 .small-button,
-.text-button {
+.text-button,
+.audio-feedback-button {
   min-height: 38px;
   line-height: 1.2;
 }
@@ -684,6 +690,13 @@ h3 {
   align-items: start;
 }
 
+.spectrogram-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-end;
+}
+
 .spectrogram-meta strong {
   display: block;
   font-family: var(--font-ipa);
@@ -698,6 +711,41 @@ h3 {
 }
 
 .spectrogram-replay {
+  white-space: nowrap;
+}
+
+.audio-feedback-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  background: #fffdfa;
+  color: #202020;
+  padding: 7px 10px;
+  font-size: 0.88rem;
+  font-weight: 750;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.audio-feedback-button svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   white-space: nowrap;
 }
 
@@ -1109,6 +1157,7 @@ h3 {
   .primary-button,
   .text-button,
   .small-button,
+  .audio-feedback-button,
   .mode-tab,
   .catalog-tab,
   .contrast-button {
@@ -1133,6 +1182,10 @@ h3 {
   .selection-actions > button,
   .explore-actions > button {
     flex: 1 1 150px;
+  }
+
+  .explore-actions > .audio-feedback-button {
+    flex: 0 0 auto;
   }
 
   .explore-word-heading,

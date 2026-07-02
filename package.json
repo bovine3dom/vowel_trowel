@@ -14,6 +14,7 @@
     "audio:mswc": "bun run scripts/mswc-audio-report.ts",
     "audio:review": "bun run scripts/review-audio-candidates.ts",
     "audio:apply-reviewed": "bun run scripts/apply-reviewed-audio.ts",
+    "audio:blacklist": "bun run scripts/blacklist-audio.ts",
     "audio:wizard": "bun run scripts/audio-review-wizard.ts"
   },
   "dependencies": {

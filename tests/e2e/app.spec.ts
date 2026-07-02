@@ -1,4 +1,16 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+async function getMockClipboard(page: Page): Promise<string> {
+  return page.evaluate(() =>
+    (window as Window & { __vowelTrowelClipboard?: string }).__vowelTrowelClipboard ?? ""
+  );
+}
+
+async function clearMockClipboard(page: Page): Promise<void> {
+  await page.evaluate(() => {
+    (window as Window & { __vowelTrowelClipboard?: string }).__vowelTrowelClipboard = "";
+  });
+}
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
@@ -104,6 +116,14 @@ test.beforeEach(async ({ page }) => {
     Object.defineProperty(window, "Audio", { value: MockAudio });
     Object.defineProperty(window, "AudioContext", { value: MockAudioContext });
     Object.defineProperty(window, "webkitAudioContext", { value: MockAudioContext });
+    Object.defineProperty(navigator, "clipboard", {
+      value: {
+        writeText: (value: string) => {
+          (window as Window & { __vowelTrowelClipboard?: string }).__vowelTrowelClipboard = value;
+          return Promise.resolve();
+        },
+      },
+    });
     Object.defineProperty(window, "speechSynthesis", {
       value: {
         addEventListener() {},
@@ -235,6 +255,50 @@ test("keeps match sample identity out of the spectrogram label", async ({ page }
   await expect(panel.getByText(/Sample [AB]/)).toBeVisible();
   await expect(panel.getByText("mue", { exact: true })).toHaveCount(0);
   await expect(panel.getByText("moue", { exact: true })).toHaveCount(0);
+
+  const copyButton = panel.getByRole("button", { name: "Copy track link" });
+  await copyButton.click();
+  await expect(copyButton).toHaveAttribute("title", "Track link copied");
+  await expect(copyButton).toHaveText("Track link copied");
+  await expect.poll(() => getMockClipboard(page)).toMatch(/^audio\/fr\/approved\//);
+});
+
+test("copies distinct filepaths for distinct explorer recordings", async ({ page }) => {
+  await page.goto("/?lang=fr&mode=match&phonemes=fr-oe,fr-eu&tab=phonemes&explore=fr-oe");
+
+  const soeurCard = page.locator(".explore-word-card").filter({ hasText: "sœur" }).first();
+  const trackRows = soeurCard.locator(".track-row");
+  await expect(trackRows.nth(1)).toBeVisible();
+
+  await trackRows.nth(0).getByRole("button", { name: "Copy track link" }).click();
+  await expect.poll(() => getMockClipboard(page)).toMatch(/^audio\/fr\/approved\/soeur\//);
+  const firstPath = await getMockClipboard(page);
+
+  await clearMockClipboard(page);
+  await trackRows.nth(1).getByRole("button", { name: "Copy track link" }).click();
+  await expect.poll(() => getMockClipboard(page)).toMatch(/^audio\/fr\/approved\/soeur\//);
+  const secondPath = await getMockClipboard(page);
+
+  expect(secondPath).not.toBe(firstPath);
+  expect(firstPath).toContain("audio/fr/approved/soeur/");
+  expect(secondPath).toContain("audio/fr/approved/soeur/");
+
+  const lastTrackRow = trackRows.nth(await trackRows.count() - 1);
+  await clearMockClipboard(page);
+  await lastTrackRow.getByRole("button", { name: "Copy track link" }).click();
+  await expect.poll(() => getMockClipboard(page)).toMatch(/^audio\/fr\/approved\/soeur\//);
+  const expectedRandomPath = await getMockClipboard(page);
+
+  await clearMockClipboard(page);
+  await page.evaluate(() => {
+    Math.random = () => 0.999;
+  });
+  await soeurCard.getByRole("button", { name: "Play random recording" }).click();
+
+  const panel = page.getByLabel("Spectrogram display");
+  await expect(panel.getByText("sœur")).toBeVisible();
+  await panel.getByRole("button", { name: "Copy track link" }).click();
+  await expect.poll(() => getMockClipboard(page)).toBe(expectedRandomPath);
 });
 
 test("can submit a sorting answer", async ({ page }) => {
@@ -274,7 +338,11 @@ test("updates the spectrogram when a reviewed recording plays", async ({ page })
   await page.goto("/?lang=fr&mode=match&phonemes=fr-oe,fr-eu&tab=phonemes&explore=fr-oe");
 
   const jeuneCard = page.locator(".explore-word-card").filter({ hasText: "jeune" }).first();
-  await jeuneCard.getByRole("button", { name: "Play recording" }).click();
+  const explorerFlagButton = jeuneCard.getByRole("button", { name: "Copy track link" }).first();
+  await expect(explorerFlagButton).toBeVisible();
+  await explorerFlagButton.click();
+  await expect.poll(() => getMockClipboard(page)).toMatch(/^audio\/fr\/approved\/jeune\//);
+  await jeuneCard.getByRole("button", { name: "Play random recording" }).click();
 
   const panel = page.getByLabel("Spectrogram display");
 

@@ -13,6 +13,7 @@ export interface PlaybackVisualizationState {
   status: PlaybackVisualizationStatus;
   label: string;
   detail?: string;
+  feedbackPath?: string;
   spectrogram?: PrecomputedSpectrogram;
   getTiming?: () => PlaybackTiming;
   replay?: () => Promise<void>;
@@ -37,6 +38,7 @@ interface PlaybackRequest {
   source?: AudioSource;
   fallbackText: string;
   visualizationLabel?: string;
+  feedbackPath?: string;
   speech: SpeechSettings;
 }
 
@@ -78,12 +80,14 @@ export async function playTermAudio(
   term: MinimalPairTerm,
   speech: SpeechSettings,
   visualizationLabel?: string,
+  feedbackPath?: string,
 ): Promise<void> {
   await playAudioSources(
     term.selectedAudio ? [term.selectedAudio] : term.word.audio,
     term.word.speechText ?? term.word.written,
     speech,
     visualizationLabel,
+    feedbackPath,
   );
 }
 
@@ -92,17 +96,19 @@ export async function playAudioSources(
   fallbackText: string,
   speech: SpeechSettings,
   visualizationLabel?: string,
+  feedbackPath?: string,
 ): Promise<void> {
   await playPlaybackRequest({
     source: sources?.[0],
     fallbackText,
     visualizationLabel,
+    feedbackPath,
     speech: cloneSpeechSettings(speech),
   });
 }
 
 async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
-  const { source, fallbackText, visualizationLabel, speech } = request;
+  const { source, fallbackText, visualizationLabel, feedbackPath, speech } = request;
   const displayLabel = visualizationLabel ?? fallbackText;
 
   stopCurrentPlayback();
@@ -130,6 +136,7 @@ async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
         status: "playing",
         label: displayLabel,
         detail: describeAudioSource(source),
+        feedbackPath,
         spectrogram,
         getTiming,
         replay,
@@ -141,6 +148,7 @@ async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
         status: "playing",
         label: displayLabel,
         detail: `${describeAudioSource(source)} · spectrogram unavailable`,
+        feedbackPath,
         getTiming,
         replay,
       });

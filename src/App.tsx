@@ -286,11 +286,19 @@ export default function App() {
     updateUrl({ phonemePair: nextActivePair }, "replace");
   };
 
-  const playWordRecording = async (word: WordEntry) => {
+  const playRandomWordRecording = async (word: WordEntry) => {
+    const source = chooseRandomAudioSource(word.audio);
+
     setAudioError(null);
 
     try {
-      await playAudioSources(word.audio, word.speechText ?? word.written, speechSettings());
+      await playAudioSources(
+        source ? [source] : [],
+        word.speechText ?? word.written,
+        speechSettings(),
+        undefined,
+        getAudioFeedbackPath(source),
+      );
     } catch (error) {
       setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
     }
@@ -310,7 +318,13 @@ export default function App() {
     setAudioError(null);
 
     try {
-      await playAudioSources([source], word.speechText ?? word.written, speechSettings());
+      await playAudioSources(
+        [source],
+        word.speechText ?? word.written,
+        speechSettings(),
+        undefined,
+        getAudioFeedbackPath(source),
+      );
     } catch (error) {
       setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
     }
@@ -355,7 +369,12 @@ export default function App() {
     setAudioError(null);
 
     try {
-      await playTermAudio(slot.term, speechSettings(), `Sample ${slot.label}`);
+      await playTermAudio(
+        slot.term,
+        speechSettings(),
+        `Sample ${slot.label}`,
+        getAudioFeedbackPath(selectedAudioForTerm(slot.term)),
+      );
     } catch (error) {
       setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
     }
@@ -365,7 +384,12 @@ export default function App() {
     setAudioError(null);
 
     try {
-      await playTermAudio(term, speechSettings());
+      await playTermAudio(
+        term,
+        speechSettings(),
+        undefined,
+        getAudioFeedbackPath(selectedAudioForTerm(term)),
+      );
     } catch (error) {
       setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
     }
@@ -512,7 +536,12 @@ export default function App() {
         return;
       }
 
-      await playTermAudio(group.exampleTerm, speechSettings());
+      await playTermAudio(
+        group.exampleTerm,
+        speechSettings(),
+        undefined,
+        getAudioFeedbackPath(selectedAudioForTerm(group.exampleTerm)),
+      );
     } catch (error) {
       setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
     }
@@ -706,7 +735,7 @@ export default function App() {
           onExploreClose={closePhonemeExplorer}
           onPairSelect={choosePhonemePair}
           onPairClear={clearPhonemePair}
-          onWordRecordingPlay={playWordRecording}
+          onRandomRecordingPlay={playRandomWordRecording}
           onWordTtsPlay={playWordTts}
           onTrackPlay={playAudioTrack}
         />
@@ -1148,7 +1177,7 @@ function CatalogPanel(props: {
   onExploreClose: () => void;
   onPairSelect: (phonemePair: PhonemePair, mode?: TrainingMode) => void;
   onPairClear: () => void;
-  onWordRecordingPlay: (word: WordEntry) => void;
+  onRandomRecordingPlay: (word: WordEntry) => void;
   onWordTtsPlay: (word: WordEntry) => void;
   onTrackPlay: (word: WordEntry, source: AudioSource) => void;
 }) {
@@ -1207,7 +1236,7 @@ function CatalogPanel(props: {
               ttsEnabled={props.ttsEnabled}
               audioError={props.audioError}
               onBack={props.onExploreClose}
-              onWordRecordingPlay={props.onWordRecordingPlay}
+              onRandomRecordingPlay={props.onRandomRecordingPlay}
               onWordTtsPlay={props.onWordTtsPlay}
               onTrackPlay={props.onTrackPlay}
             />
@@ -1314,7 +1343,7 @@ function PhonemeExplorer(props: {
   ttsEnabled: boolean;
   audioError: string | null;
   onBack: () => void;
-  onWordRecordingPlay: (word: WordEntry) => void;
+  onRandomRecordingPlay: (word: WordEntry) => void;
   onWordTtsPlay: (word: WordEntry) => void;
   onTrackPlay: (word: WordEntry, source: AudioSource) => void;
 }) {
@@ -1352,9 +1381,9 @@ function PhonemeExplorer(props: {
                     class="small-button"
                     type="button"
                     disabled={word.audio.length === 0}
-                    onClick={() => props.onWordRecordingPlay(word)}
+                    onClick={() => props.onRandomRecordingPlay(word)}
                   >
-                    Play recording
+                    Play random recording
                   </button>
                   <Show when={props.ttsEnabled}>
                     <button class="small-button" type="button" onClick={() => props.onWordTtsPlay(word)}>
@@ -1377,6 +1406,7 @@ function PhonemeExplorer(props: {
                         <button class="text-button compact" type="button" onClick={() => props.onTrackPlay(word, source)}>
                           Play track {index() + 1}
                         </button>
+                        <AudioFeedbackButton path={getAudioFeedbackPath(source)} />
                         <span>
                           {[source.accent, source.license].filter(Boolean).join(" · ") || source.kind}
                         </span>
@@ -1544,16 +1574,72 @@ function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) 
           <strong>{props.visualization.label}</strong>
           <span>{props.visualization.detail}</span>
         </div>
-        <button
-          class="small-button spectrogram-replay"
-          type="button"
-          disabled={!props.visualization.replay}
-          onClick={() => void props.visualization.replay?.().catch(() => undefined)}
-        >
-          Replay
-        </button>
+        <div class="spectrogram-actions">
+          <AudioFeedbackButton path={props.visualization.feedbackPath} />
+          <button
+            class="small-button spectrogram-replay"
+            type="button"
+            disabled={!props.visualization.replay}
+            onClick={() => void props.visualization.replay?.().catch(() => undefined)}
+          >
+            Replay
+          </button>
+        </div>
       </div>
     </section>
+  );
+}
+
+function AudioFeedbackButton(props: { path: string | undefined }) {
+  let resetTimeout: number | undefined;
+  const [copied, setCopied] = createSignal(false);
+
+  const copyTrackLink = async (event: MouseEvent) => {
+    event.stopPropagation();
+
+    if (!props.path) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(props.path);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
+
+    if (resetTimeout !== undefined) {
+      window.clearTimeout(resetTimeout);
+    }
+
+    resetTimeout = window.setTimeout(() => setCopied(false), 2000);
+  };
+
+  onCleanup(() => {
+    if (resetTimeout !== undefined) {
+      window.clearTimeout(resetTimeout);
+    }
+  });
+
+  return (
+    <Show when={props.path}>
+      <button
+        class="audio-feedback-button"
+        type="button"
+        title={copied() ? "Track link copied" : "Copy track link"}
+        aria-label="Copy track link"
+        onClick={(event) => void copyTrackLink(event)}
+      >
+        <Show when={copied()} fallback={
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 4.93" />
+            <path d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07L13 19.07" />
+          </svg>
+        }>
+          <span aria-live="polite">Track link copied</span>
+        </Show>
+      </button>
+    </Show>
   );
 }
 
@@ -2215,6 +2301,26 @@ function createPracticeDataset(sourceDataset: LanguageDataset, ttsEnabled: boole
 
 function hasWordRecording(word: WordEntry): boolean {
   return word.audio.length > 0;
+}
+
+function selectedAudioForTerm(term: MinimalPairTerm): AudioSource | undefined {
+  return term.selectedAudio ?? term.word.audio[0];
+}
+
+function chooseRandomAudioSource(sources: readonly AudioSource[]): AudioSource | undefined {
+  if (sources.length === 0) {
+    return undefined;
+  }
+
+  return sources[Math.floor(Math.random() * sources.length)] ?? sources[0];
+}
+
+function getAudioFeedbackPath(source: AudioSource | undefined): string | undefined {
+  if (!source?.src || source.kind === "tts") {
+    return undefined;
+  }
+
+  return source.src;
 }
 
 function createNextPrompt(
