@@ -1,5 +1,11 @@
 # vowel_trowel
 
+quick and dirty app i made mostly for myself because i can't reliably hear the difference between dessus/dessous
+
+the code is terrible and largely computer generated. all the bad ideas are my own. i had to manually review all the audio too.
+
+---
+
 Install dependencies:
 
 ```bash
