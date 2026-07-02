@@ -8,8 +8,52 @@
       content="Train your ear to distinguish similar phonemes with minimal-pair listening drills."
     />
     <title>Vowel Trowel</title>
+    <style>
+      body {
+        margin: 0;
+        background: #f4f1ea;
+      }
+
+      .noscript-shell {
+        box-sizing: border-box;
+        width: min(680px, calc(100% - 32px));
+        margin: 48px auto;
+        border: 1px solid #c8c0b4;
+        background: #fffdfa;
+        color: #202020;
+        padding: 24px;
+        font-family: "Noto Sans", "DejaVu Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.55;
+      }
+
+      .noscript-shell h1 {
+        margin: 0 0 12px;
+        font-family: "Noto Serif", "DejaVu Serif", Georgia, "Times New Roman", serif;
+        font-size: clamp(2rem, 8vw, 3.25rem);
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+
+      .noscript-shell p {
+        margin: 0 0 12px;
+      }
+
+      .noscript-shell p:last-child {
+        margin-bottom: 0;
+      }
+    </style>
   </head>
   <body>
+    <noscript>
+      <main class="noscript-shell">
+        <h1>Vowel Trowel</h1>
+        <p>
+          Vowel Trowel needs JavaScript to play recordings, draw spectrograms, and run the practice rounds.
+        </p>
+        <p>Please enable JavaScript for this site, then reload the page.</p>
+      </main>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

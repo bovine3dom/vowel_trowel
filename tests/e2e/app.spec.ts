@@ -134,6 +134,21 @@ test("loads the French matching practice", async ({ page }) => {
   await expect(page).toHaveURL(/mode=match/);
 });
 
+test("shows a friendly message when JavaScript is disabled", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+
+  try {
+    await page.goto("http://127.0.0.1:4173/");
+
+    await expect(page.getByRole("heading", { name: "Vowel Trowel" })).toBeVisible();
+    await expect(page.getByText(/needs JavaScript/i)).toBeVisible();
+    await expect(page.getByText(/Please enable JavaScript/i)).toBeVisible();
+  } finally {
+    await context.close();
+  }
+});
+
 test("switches language through the selector", async ({ page }) => {
   await page.goto("/");
 
