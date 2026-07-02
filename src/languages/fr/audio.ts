@@ -1149,15 +1149,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-zh. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/joue/common_voice_fr_18545363.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-zh. Common Voice accent: Français de Belgique."
     }
   ],
   "lait": [
