@@ -36,6 +36,7 @@ export interface PlaybackTiming {
 interface PlaybackRequest {
   source?: AudioSource;
   fallbackText: string;
+  visualizationLabel?: string;
   speech: SpeechSettings;
 }
 
@@ -76,11 +77,13 @@ export function subscribePlaybackVisualization(
 export async function playTermAudio(
   term: MinimalPairTerm,
   speech: SpeechSettings,
+  visualizationLabel?: string,
 ): Promise<void> {
   await playAudioSources(
     term.selectedAudio ? [term.selectedAudio] : term.word.audio,
     term.word.speechText ?? term.word.written,
     speech,
+    visualizationLabel,
   );
 }
 
@@ -88,16 +91,19 @@ export async function playAudioSources(
   sources: readonly AudioSource[] | undefined,
   fallbackText: string,
   speech: SpeechSettings,
+  visualizationLabel?: string,
 ): Promise<void> {
   await playPlaybackRequest({
     source: sources?.[0],
     fallbackText,
+    visualizationLabel,
     speech: cloneSpeechSettings(speech),
   });
 }
 
 async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
-  const { source, fallbackText, speech } = request;
+  const { source, fallbackText, visualizationLabel, speech } = request;
+  const displayLabel = visualizationLabel ?? fallbackText;
 
   stopCurrentPlayback();
 
@@ -122,7 +128,7 @@ async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
         id: sessionId,
         mode: "recording",
         status: "playing",
-        label: fallbackText,
+        label: displayLabel,
         detail: describeAudioSource(source),
         spectrogram,
         getTiming,
@@ -133,7 +139,7 @@ async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
         id: sessionId,
         mode: "recording",
         status: "playing",
-        label: fallbackText,
+        label: displayLabel,
         detail: `${describeAudioSource(source)} · spectrogram unavailable`,
         getTiming,
         replay,
@@ -164,7 +170,7 @@ async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
     id: sessionId,
     mode: "voice",
     status: "playing",
-    label: fallbackText,
+    label: displayLabel,
     detail: "Browser voice fallback. A real spectrogram is available for recordings.",
     replay,
   });

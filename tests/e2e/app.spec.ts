@@ -204,6 +204,18 @@ test("can submit a matching answer", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Check answer" })).toBeDisabled();
 });
 
+test("keeps match sample identity out of the spectrogram label", async ({ page }) => {
+  await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes");
+
+  await page.locator(".match-column").first().getByRole("button").first().click();
+
+  const panel = page.getByLabel("Spectrogram display");
+
+  await expect(panel.getByText(/Sample [AB]/)).toBeVisible();
+  await expect(panel.getByText("mue", { exact: true })).toHaveCount(0);
+  await expect(panel.getByText("moue", { exact: true })).toHaveCount(0);
+});
+
 test("can submit a sorting answer", async ({ page }) => {
   await page.goto("/?lang=fr&mode=sort&phonemes=fr-u,fr-y&tab=phonemes");
 

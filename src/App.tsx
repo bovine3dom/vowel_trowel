@@ -355,7 +355,7 @@ export default function App() {
     setAudioError(null);
 
     try {
-      await playTermAudio(slot.term, speechSettings());
+      await playTermAudio(slot.term, speechSettings(), `Sample ${slot.label}`);
     } catch (error) {
       setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
     }
