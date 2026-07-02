@@ -1,4 +1,5 @@
 import { For, Show, createEffect, createMemo, createSignal, onCleanup, onMount } from "solid-js";
+import { strToU8, zipSync } from "fflate";
 
 import {
   getAvailableSpeechVoices,
@@ -10,7 +11,7 @@ import {
   type PrecomputedSpectrogram,
   type PlaybackVisualizationState,
 } from "./audio/playback";
-import { getLanguageDataset, languageDatasets, sameLanguageId } from "./languages";
+import { getLanguageDataset, getLanguageSlug, languageDatasets, sameLanguageId } from "./languages";
 import type { AudioSource, LanguageDataset, MinimalPairTerm, Phoneme, PhonemeContrast, PhonemeId, WordEntry } from "./languages/types";
 import {
   canSubmitPrompt,
@@ -50,6 +51,7 @@ type TrainingMode = "match" | "sort";
 type CatalogTab = "phonemes" | "contrasts";
 type PhonemePair = readonly [PhonemeId, PhonemeId];
 type UrlHistoryMode = "push" | "replace";
+type ContributionLicence = "CC0-1.0" | "CC-BY-4.0";
 
 interface UrlState {
   languageId: string;
@@ -57,6 +59,7 @@ interface UrlState {
   phonemePair: PhonemePair | null;
   catalogTab: CatalogTab;
   explorePhonemeId: PhonemeId | null;
+  contributionWordId: string | null;
   ttsEnabled: boolean;
 }
 
@@ -82,6 +85,7 @@ export default function App() {
   const [draftPhonemeIds, setDraftPhonemeIds] = createSignal<readonly PhonemeId[]>(initialActivePhonemePair ?? []);
   const [catalogTab, setCatalogTab] = createSignal<CatalogTab>(initialUrlState.catalogTab);
   const [explorePhonemeId, setExplorePhonemeId] = createSignal<PhonemeId | null>(initialUrlState.explorePhonemeId);
+  const [contributionWordId, setContributionWordId] = createSignal<string | null>(initialUrlState.contributionWordId);
   const [ttsEnabled, setTtsEnabled] = createSignal(initialUrlState.ttsEnabled);
   const [progress, setProgress] = createSignal(initialProgress);
   const [prompt, setPrompt] = createSignal<MatchingPrompt | undefined>(initialPrompt);
@@ -121,7 +125,16 @@ export default function App() {
     ),
   );
   const activeSpeechVoice = createMemo(() => selectSpeechVoice(speechVoices(), speechSettings()));
+  const contributionWord = createMemo(() => {
+    const wordId = contributionWordId();
+
+    return wordId ? dataset.words.find((word) => word.id === wordId) : undefined;
+  });
   const currentAudioCredits = createMemo(() => {
+    if (contributionWordId()) {
+      return [];
+    }
+
     const exploredPhonemeId = explorePhonemeId();
 
     if (exploredPhonemeId) {
@@ -174,6 +187,7 @@ export default function App() {
     setDraftPhonemeIds(nextActivePair ?? []);
     setCatalogTab(state.catalogTab);
     setExplorePhonemeId(state.explorePhonemeId);
+    setContributionWordId(state.contributionWordId);
     setTtsEnabled(state.ttsEnabled);
 
     setPrompt(nextPrompt);
@@ -195,6 +209,7 @@ export default function App() {
       phonemePair: patch.phonemePair === undefined ? activePhonemePair() : patch.phonemePair,
       catalogTab: patch.catalogTab ?? catalogTab(),
       explorePhonemeId: patch.explorePhonemeId === undefined ? explorePhonemeId() : patch.explorePhonemeId,
+      contributionWordId: patch.contributionWordId === undefined ? contributionWordId() : patch.contributionWordId,
       ttsEnabled: patch.ttsEnabled ?? ttsEnabled(),
     }, historyMode);
   };
@@ -217,12 +232,23 @@ export default function App() {
   const explorePhoneme = (phonemeId: PhonemeId) => {
     setCatalogTab("phonemes");
     setExplorePhonemeId(phonemeId);
+    setContributionWordId(null);
     updateUrl({ catalogTab: "phonemes", explorePhonemeId: phonemeId });
   };
 
   const closePhonemeExplorer = () => {
     setExplorePhonemeId(null);
     updateUrl({ explorePhonemeId: null }, "replace");
+  };
+
+  const openContributionPage = (word: WordEntry) => {
+    setContributionWordId(word.id);
+    updateUrl({ contributionWordId: word.id });
+  };
+
+  const closeContributionPage = () => {
+    setContributionWordId(null);
+    updateUrl({ contributionWordId: null }, "replace");
   };
 
   const selectPhonemeForDraft = (phonemeId: PhonemeId) => {
@@ -584,6 +610,7 @@ export default function App() {
     params.set("lang", languageId);
     params.delete("phonemes");
     params.delete("explore");
+    params.delete("contribute");
 
     const query = params.toString();
     window.location.assign(`${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
@@ -613,6 +640,10 @@ export default function App() {
         </div>
       </section>
 
+      <Show
+        when={contributionWord()}
+        fallback={
+          <>
       <nav class="mode-tabs" aria-label="Training mode">
         <button
           class={mode() === "match" ? "mode-tab selected" : "mode-tab"}
@@ -738,9 +769,22 @@ export default function App() {
           onRandomRecordingPlay={playRandomWordRecording}
           onWordTtsPlay={playWordTts}
           onTrackPlay={playAudioTrack}
+          onContribute={openContributionPage}
         />
         <AudioCreditsPanel credits={currentAudioCredits()} ttsEnabled={ttsEnabled()} />
       </section>
+
+          </>
+        }
+      >
+        {(word) => (
+          <ContributionPage
+            language={dataset}
+            word={word()}
+            onBack={closeContributionPage}
+          />
+        )}
+      </Show>
 
       <footer class="app-footer">
         <a
@@ -1180,6 +1224,7 @@ function CatalogPanel(props: {
   onRandomRecordingPlay: (word: WordEntry) => void;
   onWordTtsPlay: (word: WordEntry) => void;
   onTrackPlay: (word: WordEntry, source: AudioSource) => void;
+  onContribute: (word: WordEntry) => void;
 }) {
   const exploredPhoneme = createMemo(() =>
     props.explorePhonemeId
@@ -1239,6 +1284,7 @@ function CatalogPanel(props: {
               onRandomRecordingPlay={props.onRandomRecordingPlay}
               onWordTtsPlay={props.onWordTtsPlay}
               onTrackPlay={props.onTrackPlay}
+              onContribute={props.onContribute}
             />
           )}
         </Show>
@@ -1346,8 +1392,15 @@ function PhonemeExplorer(props: {
   onRandomRecordingPlay: (word: WordEntry) => void;
   onWordTtsPlay: (word: WordEntry) => void;
   onTrackPlay: (word: WordEntry, source: AudioSource) => void;
+  onContribute: (word: WordEntry) => void;
 }) {
-  const words = createMemo(() => wordsForPhoneme(props.phoneme.id, props.availableDataset));
+  const [showMissingWords, setShowMissingWords] = createSignal(false);
+  const words = createMemo(() =>
+    wordsForPhoneme(props.phoneme.id, showMissingWords() ? dataset : props.availableDataset)
+  );
+  const hiddenWordCount = createMemo(() =>
+    wordsForPhoneme(props.phoneme.id, dataset).length - wordsForPhoneme(props.phoneme.id, props.availableDataset).length
+  );
 
   return (
     <section class="phoneme-explorer">
@@ -1390,6 +1443,9 @@ function PhonemeExplorer(props: {
                       Browser voice
                     </button>
                   </Show>
+                  <button class="small-button" type="button" onClick={() => props.onContribute(word)}>
+                    Contribute a recording
+                  </button>
                 </div>
               </div>
 
@@ -1419,6 +1475,258 @@ function PhonemeExplorer(props: {
           )}
           </For>
         </Show>
+        <label class="explorer-option">
+          <input
+            type="checkbox"
+            checked={showMissingWords()}
+            onInput={(event) => setShowMissingWords(event.currentTarget.checked)}
+          />
+          Show words missing recordings
+          <Show when={hiddenWordCount() > 0}>
+            <span>({hiddenWordCount()} hidden)</span>
+          </Show>
+        </label>
+      </div>
+    </section>
+  );
+}
+
+function ContributionPage(props: {
+  language: LanguageDataset;
+  word: WordEntry;
+  onBack: () => void;
+}) {
+  let recorder: MediaRecorder | undefined;
+  let activeStream: MediaStream | undefined;
+  let chunks: BlobPart[] = [];
+  const [status, setStatus] = createSignal<"idle" | "recording" | "recorded">("idle");
+  const [recordingBlob, setRecordingBlob] = createSignal<Blob | null>(null);
+  const [recordingUrl, setRecordingUrl] = createSignal<string | null>(null);
+  const [licence, setLicence] = createSignal<ContributionLicence>("CC0-1.0");
+  const [speakerName, setSpeakerName] = createSignal("");
+  const [accent, setAccent] = createSignal("");
+  const [error, setError] = createSignal<string | null>(null);
+
+  const recorderAvailable = () =>
+    typeof navigator !== "undefined"
+    && Boolean(navigator.mediaDevices?.getUserMedia)
+    && typeof MediaRecorder !== "undefined";
+  const requiresAttributionName = createMemo(() => licence() === "CC-BY-4.0");
+  const canDownload = createMemo(() =>
+    Boolean(recordingBlob()) && (!requiresAttributionName() || speakerName().trim().length > 0)
+  );
+
+  createEffect(() => {
+    const url = recordingUrl();
+
+    onCleanup(() => {
+      if (url) {
+        URL.revokeObjectURL(url);
+      }
+    });
+  });
+
+  onCleanup(() => {
+    if (recorder?.state === "recording") {
+      recorder.stop();
+    }
+    stopStream(activeStream);
+  });
+
+  const startRecording = async () => {
+    if (!recorderAvailable()) {
+      setError("Recording is not available in this browser.");
+      return;
+    }
+
+    setError(null);
+    setRecordingBlob(null);
+    setRecordingUrl(null);
+    chunks = [];
+
+    try {
+      activeStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mimeType = chooseRecordingMimeType();
+      recorder = new MediaRecorder(activeStream, mimeType ? { mimeType } : undefined);
+
+      recorder.addEventListener("dataavailable", (event) => {
+        if (event.data.size > 0) {
+          chunks.push(event.data);
+        }
+      });
+      recorder.addEventListener("stop", () => {
+        const blob = new Blob(chunks, { type: recorder?.mimeType || mimeType || "audio/webm" });
+
+        stopStream(activeStream);
+        activeStream = undefined;
+        setRecordingBlob(blob);
+        setRecordingUrl(URL.createObjectURL(blob));
+        setStatus("recorded");
+      }, { once: true });
+      recorder.start();
+      setStatus("recording");
+    } catch (recordingError) {
+      stopStream(activeStream);
+      activeStream = undefined;
+      setStatus("idle");
+      setError(recordingError instanceof Error ? recordingError.message : "Could not start recording.");
+    }
+  };
+
+  const stopRecording = () => {
+    if (recorder?.state === "recording") {
+      recorder.stop();
+    }
+  };
+
+  const discardRecording = () => {
+    setRecordingBlob(null);
+    setRecordingUrl(null);
+    setStatus("idle");
+    setError(null);
+  };
+
+  const downloadBundle = async () => {
+    const blob = recordingBlob();
+
+    if (!blob || !canDownload()) {
+      return;
+    }
+
+    const recordingFilename = `recording.${extensionForMimeType(blob.type)}`;
+    const manifest = createContributionManifest({
+      language: props.language,
+      word: props.word,
+      recordingFilename,
+      mimeType: blob.type || "audio/webm",
+      recordingSize: blob.size,
+      licence: licence(),
+      speakerName: speakerName().trim(),
+      accent: accent().trim(),
+    });
+    const archive = zipSync({
+      "manifest.json": strToU8(`${JSON.stringify(manifest, null, 2)}\n`),
+      [recordingFilename]: new Uint8Array(await blob.arrayBuffer()),
+    }, { level: 0 });
+
+    downloadBlob(
+      new Blob([archive], { type: "application/zip" }),
+      `${manifest.id}.zip`,
+    );
+  };
+
+  return (
+    <section class="content-panel contribution-panel">
+      <div class="contribution-nav">
+        <button class="text-button compact" type="button" onClick={props.onBack}>
+          Back to sound library
+        </button>
+      </div>
+
+      <div class="panel-heading contribution-heading">
+        <p class="eyebrow">Contribute audio</p>
+        <h2>Record “{props.word.written}”</h2>
+        <p>
+          Say <strong>{props.word.written}</strong> <span class="ipa-text">{props.word.ipa}</span> clearly once.
+          Download a bundle and send it for review before it is added to the site.
+        </p>
+      </div>
+
+      <dl class="contribution-summary">
+        <div>
+          <dt>Language</dt>
+          <dd>{props.language.name}</dd>
+        </div>
+        <div>
+          <dt>Word</dt>
+          <dd>{props.word.written}</dd>
+        </div>
+        <div>
+          <dt>IPA</dt>
+          <dd class="ipa-text">{props.word.ipa}</dd>
+        </div>
+        <div>
+          <dt>Sound IDs</dt>
+          <dd>{props.word.phonemeIds.join(", ")}</dd>
+        </div>
+      </dl>
+
+      <div class="contribution-grid">
+        <section class="contribution-card recorder-card">
+          <p class="eyebrow">Step 1</p>
+          <h3>Record your sample</h3>
+          <p class="contribution-card-copy">Use a quiet room and say the word once, naturally.</p>
+          <Show when={recorderAvailable()} fallback={
+            <p class="error-message">Recording is not available in this browser.</p>
+          }>
+            <div class="recorder-actions">
+              <Show when={status() === "recording"} fallback={
+                <button class="primary-button" type="button" onClick={() => void startRecording()}>
+                  Start recording
+                </button>
+              }>
+                <button class="primary-button" type="button" onClick={stopRecording}>
+                  Stop recording
+                </button>
+              </Show>
+              <button class="small-button" type="button" disabled={!recordingBlob()} onClick={discardRecording}>
+                Discard
+              </button>
+            </div>
+          </Show>
+
+          <Show when={status() === "recording"}>
+            <p class="recording-status">Recording now...</p>
+          </Show>
+          <Show when={recordingUrl()}>
+            {(url) => (
+              <div class="recording-preview">
+                <p>Listen back before downloading.</p>
+                <audio controls src={url()} />
+              </div>
+            )}
+          </Show>
+          <Show when={error()}>
+            {(message) => <p class="error-message">{message()}</p>}
+          </Show>
+        </section>
+
+        <section class="contribution-card contribution-form-card">
+          <p class="eyebrow">Step 2</p>
+          <h3>Licence and download</h3>
+          <p class="contribution-card-copy">CC0 is easiest. Pick CC BY 4.0 if you want your name attached.</p>
+          <label class="field-label">
+            Licence
+            <select value={licence()} onInput={(event) => setLicence(event.currentTarget.value as ContributionLicence)}>
+              <option value="CC0-1.0">CC0 1.0 public domain dedication</option>
+              <option value="CC-BY-4.0">CC BY 4.0 attribution</option>
+            </select>
+          </label>
+          <label class="field-label">
+            Name {requiresAttributionName() ? <span>(required for CC BY 4.0)</span> : <span>(optional for CC0)</span>}
+            <input
+              type="text"
+              value={speakerName()}
+              onInput={(event) => setSpeakerName(event.currentTarget.value)}
+              placeholder="How you want to be credited"
+            />
+          </label>
+          <label class="field-label">
+            Accent or region <span>(optional)</span>
+            <input
+              type="text"
+              value={accent()}
+              onInput={(event) => setAccent(event.currentTarget.value)}
+              placeholder="e.g. Belgian French"
+            />
+          </label>
+          <button class="primary-button" type="button" disabled={!canDownload()} onClick={() => void downloadBundle()}>
+            Download contribution zip
+          </button>
+          <Show when={requiresAttributionName() && speakerName().trim().length === 0}>
+            <p class="muted">CC BY 4.0 needs a name for attribution. CC0 does not.</p>
+          </Show>
+        </section>
       </div>
     </section>
   );
@@ -2315,6 +2623,123 @@ function chooseRandomAudioSource(sources: readonly AudioSource[]): AudioSource |
   return sources[Math.floor(Math.random() * sources.length)] ?? sources[0];
 }
 
+function stopStream(stream: MediaStream | undefined): void {
+  for (const track of stream?.getTracks() ?? []) {
+    track.stop();
+  }
+}
+
+function chooseRecordingMimeType(): string {
+  if (typeof MediaRecorder === "undefined" || typeof MediaRecorder.isTypeSupported !== "function") {
+    return "";
+  }
+
+  return [
+    "audio/webm;codecs=opus",
+    "audio/webm",
+    "audio/ogg;codecs=opus",
+    "audio/ogg",
+    "audio/mp4",
+  ].find((mimeType) => MediaRecorder.isTypeSupported(mimeType)) ?? "";
+}
+
+function extensionForMimeType(mimeType: string): string {
+  if (mimeType.includes("ogg")) {
+    return "ogg";
+  }
+
+  if (mimeType.includes("mp4") || mimeType.includes("mpeg")) {
+    return "m4a";
+  }
+
+  if (mimeType.includes("wav")) {
+    return "wav";
+  }
+
+  return "webm";
+}
+
+function createContributionManifest(options: {
+  language: LanguageDataset;
+  word: WordEntry;
+  recordingFilename: string;
+  mimeType: string;
+  recordingSize: number;
+  licence: ContributionLicence;
+  speakerName: string;
+  accent: string;
+}) {
+  const shortWordId = stripWordPrefix(options.word.id, options.language.id);
+  const id = createContributionId(options.language.id, shortWordId);
+
+  return {
+    version: 1,
+    type: "vowel-trowel-contribution",
+    id,
+    createdAt: new Date().toISOString(),
+    pageUrl: typeof window === "undefined" ? undefined : window.location.href,
+    language: {
+      id: options.language.id,
+      slug: getLanguageSlug(options.language.id),
+      name: options.language.name,
+      autonym: options.language.autonym,
+    },
+    word: {
+      id: options.word.id,
+      shortId: shortWordId,
+      written: options.word.written,
+      ipa: options.word.ipa,
+      phonemeIds: options.word.phonemeIds,
+      speechText: options.word.speechText,
+    },
+    recording: {
+      filename: options.recordingFilename,
+      mimeType: options.mimeType,
+      size: options.recordingSize,
+    },
+    contribution: {
+      licence: options.licence,
+      speakerName: options.speakerName || undefined,
+      accent: options.accent || undefined,
+    },
+  };
+}
+
+function stripWordPrefix(wordId: string, languageId: string): string {
+  const prefix = `${getLanguageSlug(languageId)}-word-`;
+
+  return wordId.startsWith(prefix) ? wordId.slice(prefix.length) : wordId;
+}
+
+function createContributionId(languageId: string, shortWordId: string): string {
+  const random = typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : Math.random().toString(36).slice(2);
+
+  return sanitizeFilename(`${getLanguageSlug(languageId)}-${shortWordId}-${Date.now().toString(36)}-${random}`);
+}
+
+function downloadBlob(blob: Blob, filename: string): void {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = filename;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function sanitizeFilename(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9._-]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    || "audio";
+}
+
 function getAudioFeedbackPath(source: AudioSource | undefined): string | undefined {
   if (!source?.src || source.kind === "tts") {
     return undefined;
@@ -2353,12 +2778,14 @@ function readUrlState(): UrlState {
       phonemePair: null,
       catalogTab: "phonemes",
       explorePhonemeId: null,
+      contributionWordId: null,
       ttsEnabled: false,
     };
   }
 
   const params = new URLSearchParams(window.location.search);
   const explorePhonemeId = parsePhonemeId(params.get("explore"));
+  const contributionWordId = parseWordId(params.get("contribute"));
 
   return {
     languageId: parseLanguageId(params.get("lang")) ?? dataset.id,
@@ -2366,6 +2793,7 @@ function readUrlState(): UrlState {
     phonemePair: parsePhonemePair(params.get("phonemes")),
     catalogTab: explorePhonemeId ? "phonemes" : parseCatalogTab(params.get("tab")) ?? "phonemes",
     explorePhonemeId,
+    contributionWordId,
     ttsEnabled: parseBooleanFlag(params.get("tts")),
   };
 }
@@ -2392,6 +2820,12 @@ function writeUrlState(state: UrlState, historyMode: UrlHistoryMode): void {
     params.set("explore", state.explorePhonemeId);
   } else {
     params.delete("explore");
+  }
+
+  if (state.contributionWordId) {
+    params.set("contribute", state.contributionWordId);
+  } else {
+    params.delete("contribute");
   }
 
   if (state.ttsEnabled) {
@@ -2436,6 +2870,22 @@ function parseLanguageId(value: string | null): string | null {
 
 function parsePhonemeId(value: string | null): PhonemeId | null {
   return value && isKnownPhoneme(value) ? value : null;
+}
+
+function parseWordId(value: string | null): string | null {
+  if (!value) {
+    return null;
+  }
+
+  const direct = dataset.words.find((word) => word.id === value);
+
+  if (direct) {
+    return direct.id;
+  }
+
+  const prefixed = `${getLanguageSlug(dataset.id)}-word-${value}`;
+
+  return dataset.words.some((word) => word.id === prefixed) ? prefixed : null;
 }
 
 function parsePhonemePair(value: string | null): PhonemePair | null {

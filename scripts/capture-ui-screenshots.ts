@@ -65,6 +65,16 @@ const scenarios: readonly ScreenshotScenario[] = [
     viewport: { width: 390, height: 1000 },
     action: submitSortingAnswer,
   },
+  {
+    name: "10-contribution-desktop",
+    url: "/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes&explore=fr-u&contribute=fr-word-moue",
+    viewport: { width: 1440, height: 1100 },
+  },
+  {
+    name: "11-contribution-mobile",
+    url: "/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes&explore=fr-u&contribute=fr-word-moue",
+    viewport: { width: 390, height: 1000 },
+  },
 ];
 
 let server: ChildProcess | undefined;

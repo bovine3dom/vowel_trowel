@@ -16,7 +16,7 @@ interface CliOptions {
   existingOnly: boolean;
 }
 
-type AudioCandidateSource = "wiktionary" | "mswc";
+type AudioCandidateSource = "wiktionary" | "mswc" | "contribution";
 
 interface ReviewedReport {
   language?: {
@@ -221,7 +221,9 @@ function toDatasetAudioSrc(filePath: string): string {
 function isAudioStagingPath(filePath: string): boolean {
   const normalized = filePath.replace(/\\/g, "/");
 
-  return normalized.includes("/wiktionary/") || normalized.includes("/mswc/");
+  return normalized.includes("/wiktionary/")
+    || normalized.includes("/mswc/")
+    || normalized.includes("/contributions/");
 }
 
 function isInDirectory(filePath: string, directory: string): boolean {
@@ -306,9 +308,9 @@ function parseSource(value: string | undefined): AudioCandidateSource {
     return "wiktionary";
   }
 
-  if (value === "mswc") {
-    return "mswc";
+  if (value === "mswc" || value === "contribution") {
+    return value;
   }
 
-  throw new Error(`Expected --source=wiktionary or --source=mswc; got ${value}.`);
+  throw new Error(`Expected --source=wiktionary, --source=mswc, or --source=contribution; got ${value}.`);
 }

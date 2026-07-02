@@ -208,6 +208,9 @@ test("explores a sound and returns without adding an extra history entry", async
   await expect(page.locator(".phoneme-explorer").getByText("roue")).toHaveCount(0);
   await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" })).toHaveCount(0);
 
+  await page.getByLabel("Show words missing recordings").check();
+  await expect(page.locator(".phoneme-explorer").getByText("roue")).toBeVisible();
+
   await page.getByRole("button", { name: "Back to sounds" }).click();
 
   await expect(page).not.toHaveURL(/explore=/);
@@ -221,6 +224,22 @@ test("shows fallback-only words when TTS flag is enabled", async ({ page }) => {
   await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" }).first()).toBeVisible();
   await expect(page.getByText("Browser voice", { exact: true }).first()).toBeVisible();
   await expect(page).toHaveURL(/tts=1/);
+});
+
+test("opens a contribution recorder for a word", async ({ page }) => {
+  await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes&explore=fr-u");
+
+  const moueCard = page.locator(".explore-word-card").filter({ hasText: "moue" }).first();
+  await moueCard.getByRole("button", { name: "Contribute a recording" }).click();
+
+  await expect(page).toHaveURL(/contribute=fr-word-moue/);
+  await expect(page.getByRole("heading", { name: "Record “moue”" })).toBeVisible();
+  await expect(page.getByRole("combobox", { name: "Licence" })).toHaveValue("CC0-1.0");
+  await expect(page.getByPlaceholder("How you want to be credited")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Download contribution zip" })).toBeDisabled();
+
+  await page.getByRole("button", { name: "Back to sound library" }).click();
+  await expect(page).not.toHaveURL(/contribute=/);
 });
 
 test("can submit a matching answer", async ({ page }) => {

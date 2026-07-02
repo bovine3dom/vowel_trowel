@@ -1285,7 +1285,7 @@ function renderMarkdown(report: AudioReport): string {
     for (const candidate of word.candidates) {
       lines.push(`- ${candidate.fileTitle}`);
       lines.push(`  Source: ${candidate.commonsUrl}`);
-      lines.push(`  License: ${candidate.licenseShortName ?? candidate.license ?? "unknown"}`);
+      lines.push(`  Licence: ${candidate.licenseShortName ?? candidate.license ?? "unknown"}`);
       lines.push(`  Attribution: ${candidate.attribution ?? candidate.artist ?? candidate.credit ?? "unknown"}`);
       lines.push(`  Regions: ${candidate.regions.length ? candidate.regions.join(", ") : "none detected"}`);
       lines.push(`  IPA check: ${renderIpaCheck(candidate.ipaCheck)}`);

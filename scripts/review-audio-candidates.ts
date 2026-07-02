@@ -32,7 +32,7 @@ interface CliOptions {
   limit: number | null;
 }
 
-type AudioCandidateSource = "wiktionary" | "mswc";
+type AudioCandidateSource = "wiktionary" | "mswc" | "contribution";
 
 interface ReviewedReport {
   words?: ReviewedWord[];
@@ -637,7 +637,7 @@ function printCandidate(item: ReviewItem, index: number, total: number): void {
   console.log(`File: ${candidate.fileTitle}`);
   console.log(`Local path: ${candidate.localPath}`);
   console.log(`Source: ${candidate.sourceName ? `${candidate.sourceName} ` : ""}${candidate.sourceUrl ?? candidate.commonsUrl ?? candidate.sourceId ?? "unknown"}`);
-  console.log(`License: ${candidate.licenseShortName ?? candidate.license ?? "unknown"}`);
+  console.log(`Licence: ${candidate.licenseShortName ?? candidate.license ?? "unknown"}`);
   console.log(`Attribution: ${candidate.attribution ?? candidate.artist ?? candidate.credit ?? "unknown"}`);
   console.log(`Regions: ${candidate.regions?.length ? candidate.regions.join(", ") : "none detected"}`);
   console.log(`Target phonemes: ${candidate.targetPhonemeIds?.length ? candidate.targetPhonemeIds.join(", ") : word.phonemeIds?.join(", ") ?? "unknown"}`);
@@ -803,7 +803,7 @@ function parseArgs(args: string[]): CliOptions {
 
 function printUsage(): void {
   console.log("Usage: bun run audio:review -- [options]");
-  console.log("Options: --source=wiktionary|mswc --language=en-GB --words=ship,sheep --limit=10 --include-reviewed --player=mpv --no-autoplay --no-play");
+  console.log("Options: --source=wiktionary|mswc|contribution --language=en-GB --words=ship,sheep --limit=10 --include-reviewed --player=mpv --no-autoplay --no-play");
 }
 
 function getLanguagePathDefaults(languageId: string, source: AudioCandidateSource): { report: string; reviewState: string } {
@@ -835,7 +835,11 @@ function parseSource(value: string | undefined): AudioCandidateSource {
     return "mswc";
   }
 
-  throw new Error(`Expected --source=wiktionary or --source=mswc; got ${value}.`);
+  if (value === "contribution") {
+    return "contribution";
+  }
+
+  throw new Error(`Expected --source=wiktionary, --source=mswc, or --source=contribution; got ${value}.`);
 }
 
 function getLast(values: Map<string, string[]>, key: string): string | undefined {

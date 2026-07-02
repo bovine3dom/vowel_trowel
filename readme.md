@@ -101,7 +101,7 @@ Approved recordings are copied into committed app paths:
 public/audio/<language>/approved/
 ```
 
-The apply step also writes `src/languages/<language>/audio.ts`. Each approved recording keeps license, attribution, accent, and source URL metadata in the audio module, and copied sidecar metadata stays next to the approved file when available.
+The apply step also writes `src/languages/<language>/audio.ts`. Each approved recording keeps licence, attribution, accent, and source URL metadata in the audio module, and copied sidecar metadata stays next to the approved file when available.
 
 ## Manual Audio Commands
 
@@ -127,6 +127,15 @@ Apply approved candidates:
 bun run audio:apply-reviewed
 bun run audio:apply-reviewed -- --source=mswc --language=en-GB
 ```
+
+Import a user contribution bundle downloaded from the app:
+
+```bash
+bun run audio:import -- path/to/vowel-trowel-contribution.zip
+bun run audio:import -- path/to/first.zip path/to/second.zip
+```
+
+The contribution page records in the browser, defaults the licence to CC0 1.0, and also offers CC BY 4.0 when the contributor provides an attribution name. `audio:import` stages each bundle under `public/audio/<language>/contributions/`, opens the interactive reviewer for the imported words, then copies approved recordings into `public/audio/<language>/approved/`. Use `--dry-run` to inspect the workflow, `--no-review` to only stage bundles, or `--no-apply` to review without applying approvals.
 
 Remove a bad approved recording reported from the in-app player:
 

@@ -15,9 +15,11 @@
     "audio:review": "bun run scripts/review-audio-candidates.ts",
     "audio:apply-reviewed": "bun run scripts/apply-reviewed-audio.ts",
     "audio:blacklist": "bun run scripts/blacklist-audio.ts",
+    "audio:import": "bun run scripts/import-contribution-audio.ts",
     "audio:wizard": "bun run scripts/audio-review-wizard.ts"
   },
   "dependencies": {
+    "fflate": "^0.8.3",
     "solid-js": "latest"
   },
   "devDependencies": {

@@ -25,7 +25,7 @@ export interface PhonemeContrast {
   tags?: readonly string[];
 }
 
-export type AudioSourceKind = "local" | "wiktionary" | "tts" | "external";
+export type AudioSourceKind = "local" | "wiktionary" | "tts" | "external" | "contribution";
 
 export interface AudioSource {
   src: string;

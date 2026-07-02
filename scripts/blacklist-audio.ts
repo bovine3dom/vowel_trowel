@@ -26,7 +26,7 @@ interface AudioFeedbackCode {
   src: string;
 }
 
-type AudioCandidateSource = "wiktionary" | "mswc";
+type AudioCandidateSource = "wiktionary" | "mswc" | "contribution";
 
 interface CandidateReport {
   words?: Array<{
@@ -258,6 +258,10 @@ function fullWordIdFromAudioKey(wordId: string, languageId: string): string {
 }
 
 function getRejectedSources(source: AudioSource): AudioCandidateSource[] {
+  if (source.kind === "contribution" || source.sourceUrl?.startsWith("vowel-trowel-contribution:")) {
+    return ["contribution"];
+  }
+
   if (source.kind === "wiktionary" || source.sourceUrl?.includes("commons.wikimedia.org")) {
     return ["wiktionary"];
   }
@@ -266,7 +270,19 @@ function getRejectedSources(source: AudioSource): AudioCandidateSource[] {
     return ["mswc"];
   }
 
-  return ["wiktionary", "mswc"];
+  return ["wiktionary", "mswc", "contribution"];
+}
+
+function getReviewSourceName(source: AudioCandidateSource): string {
+  if (source === "mswc") {
+    return "MLCommons Multilingual Spoken Words Corpus";
+  }
+
+  if (source === "contribution") {
+    return "Vowel Trowel user contribution";
+  }
+
+  return "Wikimedia Commons";
 }
 
 async function markRejectedInReviewState(
@@ -285,7 +301,7 @@ async function markRejectedInReviewState(
     written: word?.written ?? stripWordPrefix(code.wordId, dataset.id),
     fileTitle: identity.fileTitle,
     sourceId: identity.sourceId,
-    sourceName: source === "mswc" ? "MLCommons Multilingual Spoken Words Corpus" : "Wikimedia Commons",
+    sourceName: getReviewSourceName(source),
     sourceUrl: identity.sourceUrl,
     commonsUrl: identity.commonsUrl,
     localPath: toPublicAudioPath(audioSource.src) ?? undefined,
@@ -320,6 +336,17 @@ function createRejectedIdentity(
       wordId: code.wordId,
       fileTitle: `MSWC ${mswcCode}/${basename}`,
       sourceId: `mswc:${mswcCode}:${basename}`,
+      sourceUrl: audioSource.sourceUrl,
+    };
+  }
+
+  if (source === "contribution") {
+    return {
+      wordId: code.wordId,
+      fileTitle: `User contribution ${basename}`,
+      sourceId: audioSource.sourceUrl?.startsWith("vowel-trowel-contribution:")
+        ? audioSource.sourceUrl
+        : `contribution:${code.languageId}:${basename}`,
       sourceUrl: audioSource.sourceUrl,
     };
   }
