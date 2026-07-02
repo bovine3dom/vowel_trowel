@@ -4,6 +4,8 @@ quick and dirty app i made mostly for myself because i can't reliably hear the d
 
 the code is terrible and largely computer generated. all the bad ideas are my own. i had to manually review all the audio too.
 
+site is live at https://vowel-trowel.pages.dev/
+
 ---
 
 Install dependencies:

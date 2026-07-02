@@ -130,6 +130,10 @@ test("loads the French matching practice", async ({ page }) => {
   await expect(panel.getByText("Play a recording to draw a spectrogram.")).toBeVisible();
   await expect(panel.getByRole("button", { name: "Replay" })).toBeDisabled();
   await expect(panel.getByRole("button", { name: "Maximise" })).toBeEnabled();
+  await expect(page.getByRole("link", { name: "View Vowel Trowel on GitHub" })).toHaveAttribute(
+    "href",
+    "https://github.com/bovine3dom/vowel_trowel",
+  );
   await expect(page).toHaveURL(/lang=fr/);
   await expect(page).toHaveURL(/mode=match/);
 });
