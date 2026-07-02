@@ -18,7 +18,10 @@ export interface StoredCandidateReview extends CandidateReview {
   wordId: string;
   written: string;
   fileTitle: string;
-  commonsUrl: string;
+  sourceId?: string;
+  sourceName?: string;
+  sourceUrl?: string;
+  commonsUrl?: string;
   localPath?: string;
   metadataPath?: string;
   datasetSrc?: string;
@@ -35,7 +38,9 @@ export interface AudioReviewState {
 export interface CandidateIdentity {
   wordId: string;
   fileTitle: string;
-  commonsUrl: string;
+  sourceId?: string;
+  sourceUrl?: string;
+  commonsUrl?: string;
 }
 
 export function createEmptyReviewState(): AudioReviewState {
@@ -96,7 +101,7 @@ export function upsertStoredReview(
 }
 
 export function createCandidateKey(identity: CandidateIdentity): string {
-  return [identity.wordId, identity.fileTitle, identity.commonsUrl]
+  return [identity.wordId, identity.fileTitle, identity.sourceId ?? identity.sourceUrl ?? identity.commonsUrl ?? ""]
     .map((part) => encodeURIComponent(part))
     .join("|");
 }

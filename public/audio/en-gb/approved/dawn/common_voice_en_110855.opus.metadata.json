@@ -1,0 +1,89 @@
+{
+  "stagedAt": "2026-07-02T13:03:04.147Z",
+  "word": {
+    "id": "en-gb-word-dawn",
+    "written": "dawn",
+    "ipa": "/dɔːn/",
+    "phonemeIds": [
+      "en-gb-d",
+      "en-gb-thought",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-dawn|MSWC%20en%2Fdawn%2Fcommon_voice_en_110855.opus|mswc%3Aen%3Adawn%2Fcommon_voice_en_110855.opus",
+    "sourceId": "mswc:en:dawn/common_voice_en_110855.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/dawn/common_voice_en_110855.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-thought"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-thought",
+        "ipa": "/ɔː/",
+        "label": "THOUGHT/NORTH vowel"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-lot-thought"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-thought."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Common Voice accent metadata suggests British English."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_en_110855.mp3",
+      "locale": "en",
+      "accents": "England English",
+      "upVotes": 5,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "dawn/common_voice_en_110855.opus",
+      "word": "dawn"
+    },
+    "score": 49,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice accent metadata suggests British English.",
+      "Common Voice vote balance +5"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-dawn/common_voice_en_110855.opus",
+      "kind": "external",
+      "accent": "British English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-thought. Common Voice accent: England English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-dawn/common_voice_en_110855.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-dawn/common_voice_en_110855.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-dawn/common_voice_en_110855.opus"
+  }
+}

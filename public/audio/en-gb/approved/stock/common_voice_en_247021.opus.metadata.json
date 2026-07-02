@@ -1,0 +1,90 @@
+{
+  "stagedAt": "2026-07-02T13:03:04.154Z",
+  "word": {
+    "id": "en-gb-word-stock",
+    "written": "stock",
+    "ipa": "/stɒk/",
+    "phonemeIds": [
+      "en-gb-s",
+      "en-gb-t",
+      "en-gb-lot",
+      "en-gb-k"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-stock|MSWC%20en%2Fstock%2Fcommon_voice_en_247021.opus|mswc%3Aen%3Astock%2Fcommon_voice_en_247021.opus",
+    "sourceId": "mswc:en:stock/common_voice_en_247021.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/stock/common_voice_en_247021.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-lot"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-lot",
+        "ipa": "/ɒ/",
+        "label": "LOT vowel"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-lot-thought"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-lot."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Common Voice accent metadata suggests British English."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_en_247021.mp3",
+      "locale": "en",
+      "accents": "England English",
+      "upVotes": 3,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "stock/common_voice_en_247021.opus",
+      "word": "stock"
+    },
+    "score": 47,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice accent metadata suggests British English.",
+      "Common Voice vote balance +3"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-stock/common_voice_en_247021.opus",
+      "kind": "external",
+      "accent": "British English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-lot. Common Voice accent: England English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-stock/common_voice_en_247021.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-stock/common_voice_en_247021.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-stock/common_voice_en_247021.opus"
+  }
+}

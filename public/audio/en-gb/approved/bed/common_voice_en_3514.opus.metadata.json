@@ -1,0 +1,96 @@
+{
+  "stagedAt": "2026-07-02T13:24:53.348Z",
+  "word": {
+    "id": "en-gb-word-bed",
+    "written": "bed",
+    "ipa": "/bed/",
+    "phonemeIds": [
+      "en-gb-b",
+      "en-gb-dress",
+      "en-gb-d"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-bed|MSWC%20en%2Fbed%2Fcommon_voice_en_3514.opus|mswc%3Aen%3Abed%2Fcommon_voice_en_3514.opus",
+    "sourceId": "mswc:en:bed/common_voice_en_3514.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/bed/common_voice_en_3514.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-dress",
+      "en-gb-d"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-dress",
+        "ipa": "/e/",
+        "label": "DRESS vowel"
+      },
+      {
+        "id": "en-gb-d",
+        "ipa": "/d/",
+        "label": "voiced alveolar stop"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-dress-trap",
+      "en-gb-t-d"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-dress, en-gb-d."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Common Voice accent metadata suggests British English."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_en_3514.mp3",
+      "locale": "en",
+      "accents": "England English",
+      "upVotes": 80,
+      "downVotes": 2
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "bed/common_voice_en_3514.opus",
+      "word": "bed"
+    },
+    "score": 52,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice accent metadata suggests British English.",
+      "Common Voice vote balance +78"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-bed/common_voice_en_3514.opus",
+      "kind": "external",
+      "accent": "British English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress, en-gb-d. Common Voice accent: England English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-bed/common_voice_en_3514.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-bed/common_voice_en_3514.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-bed/common_voice_en_3514.opus"
+  }
+}

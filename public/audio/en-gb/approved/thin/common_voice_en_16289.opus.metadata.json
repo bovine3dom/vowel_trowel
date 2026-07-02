@@ -1,0 +1,96 @@
+{
+  "stagedAt": "2026-07-02T13:24:53.495Z",
+  "word": {
+    "id": "en-gb-word-thin",
+    "written": "thin",
+    "ipa": "/θɪn/",
+    "phonemeIds": [
+      "en-gb-theta",
+      "en-gb-kit",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-thin|MSWC%20en%2Fthin%2Fcommon_voice_en_16289.opus|mswc%3Aen%3Athin%2Fcommon_voice_en_16289.opus",
+    "sourceId": "mswc:en:thin/common_voice_en_16289.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/thin/common_voice_en_16289.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-theta",
+      "en-gb-n"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-theta",
+        "ipa": "/θ/",
+        "label": "voiceless dental fricative"
+      },
+      {
+        "id": "en-gb-n",
+        "ipa": "/n/",
+        "label": "alveolar nasal"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-theta-s",
+      "en-gb-n-ng"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-theta, en-gb-n."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Common Voice accent metadata suggests British English."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_en_16289.mp3",
+      "locale": "en",
+      "accents": "England English",
+      "upVotes": 10,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "thin/common_voice_en_16289.opus",
+      "word": "thin"
+    },
+    "score": 52,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice accent metadata suggests British English.",
+      "Common Voice vote balance +10"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-thin/common_voice_en_16289.opus",
+      "kind": "external",
+      "accent": "British English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-theta, en-gb-n. Common Voice accent: England English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-thin/common_voice_en_16289.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-thin/common_voice_en_16289.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-thin/common_voice_en_16289.opus"
+  }
+}

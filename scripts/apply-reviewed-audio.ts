@@ -8,12 +8,15 @@ import type { AudioSource } from "../src/languages/types";
 
 interface CliOptions {
   languageId: string;
+  source: AudioCandidateSource;
   report: string;
   output: string | null;
   approvedDir: string | null;
   dryRun: boolean;
   existingOnly: boolean;
 }
+
+type AudioCandidateSource = "wiktionary" | "mswc";
 
 interface ReviewedReport {
   language?: {
@@ -29,6 +32,9 @@ interface ReviewedWord {
 }
 
 interface ReviewedCandidate {
+  sourceId?: string;
+  sourceName?: string;
+  sourceUrl?: string;
   fileTitle?: string;
   commonsUrl?: string;
   license?: string | null;
@@ -53,7 +59,7 @@ const report = options.existingOnly
   ? { language: { id: options.languageId }, words: [] }
   : JSON.parse(await readFile(options.report, "utf8")) as ReviewedReport;
 const languageId = report.language?.id ? getLanguageDataset(report.language.id).id : options.languageId;
-const defaults = getLanguagePathDefaults(languageId);
+const defaults = getLanguagePathDefaults(languageId, options.source);
 const outputPath = options.output ?? defaults.output;
 const approvedDir = options.approvedDir ?? defaults.approvedDir;
 const merged = mergeApprovedAudio(getExistingAudio(languageId), report, languageId);
@@ -108,12 +114,12 @@ function createAudioSource(candidate: ReviewedCandidate): AudioSource {
 
   return compactAudioSource({
     src: suggested.src,
-    kind: "wiktionary",
+    kind: suggested.kind ?? "external",
     speaker: suggested.speaker,
     accent: candidate.review?.accent ?? candidate.regions?.[0] ?? suggested.accent,
     license: suggested.license ?? candidate.licenseShortName ?? candidate.license ?? undefined,
     attribution: suggested.attribution ?? candidate.attribution ?? candidate.artist ?? candidate.credit ?? undefined,
-    sourceUrl: suggested.sourceUrl ?? candidate.commonsUrl,
+    sourceUrl: suggested.sourceUrl ?? candidate.sourceUrl ?? candidate.commonsUrl,
     notes: candidate.review?.notes ?? suggested.notes,
   });
 }
@@ -168,7 +174,7 @@ async function copyApprovedSource(
 ): Promise<AudioSource> {
   const inputPath = toPublicAudioPath(source.src);
 
-  if (!inputPath || !isWiktionaryStagingPath(inputPath) || isInDirectory(inputPath, approvedDir)) {
+  if (!inputPath || !isAudioStagingPath(inputPath) || isInDirectory(inputPath, approvedDir)) {
     return source;
   }
 
@@ -212,8 +218,10 @@ function toDatasetAudioSrc(filePath: string): string {
   return normalized.startsWith("public/") ? normalized.slice("public/".length) : normalized;
 }
 
-function isWiktionaryStagingPath(filePath: string): boolean {
-  return filePath.replace(/\\/g, "/").includes("/wiktionary/");
+function isAudioStagingPath(filePath: string): boolean {
+  const normalized = filePath.replace(/\\/g, "/");
+
+  return normalized.includes("/wiktionary/") || normalized.includes("/mswc/");
 }
 
 function isInDirectory(filePath: string, directory: string): boolean {
@@ -260,10 +268,12 @@ function parseArgs(args: string[]): CliOptions {
   }
 
   const languageId = getLanguageDataset(values.get("language") ?? values.get("lang")).id;
-  const defaults = getLanguagePathDefaults(languageId);
+  const source = parseSource(values.get("source"));
+  const defaults = getLanguagePathDefaults(languageId, source);
 
   return {
     languageId,
+    source,
     report: values.get("report") ?? defaults.report,
     output: values.get("output") ?? null,
     approvedDir: values.get("approved-dir") ?? null,
@@ -272,13 +282,33 @@ function parseArgs(args: string[]): CliOptions {
   };
 }
 
-function getLanguagePathDefaults(languageId: string): { report: string; output: string; approvedDir: string } {
+function getLanguagePathDefaults(languageId: string, source: AudioCandidateSource): { report: string; output: string; approvedDir: string } {
   const slug = getLanguageSlug(languageId);
-  const reportPrefix = sameLanguageId(languageId, "fr") ? "wiktionary" : `${slug}-wiktionary`;
+  const reportPrefix = getReportPrefix(languageId, source);
 
   return {
     report: `reports/${reportPrefix}-audio-candidates.json`,
     output: `src/languages/${slug}/audio.ts`,
     approvedDir: `public/audio/${slug}/approved`,
   };
+}
+
+function getReportPrefix(languageId: string, source: AudioCandidateSource): string {
+  if (source === "wiktionary" && sameLanguageId(languageId, "fr")) {
+    return "wiktionary";
+  }
+
+  return `${getLanguageSlug(languageId)}-${source}`;
+}
+
+function parseSource(value: string | undefined): AudioCandidateSource {
+  if (!value || value === "wiktionary") {
+    return "wiktionary";
+  }
+
+  if (value === "mswc") {
+    return "mswc";
+  }
+
+  throw new Error(`Expected --source=wiktionary or --source=mswc; got ${value}.`);
 }

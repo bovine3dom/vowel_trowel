@@ -1,0 +1,84 @@
+{
+  "stagedAt": "2026-07-02T13:24:53.591Z",
+  "word": {
+    "id": "en-gb-word-curl",
+    "written": "curl",
+    "ipa": "/kɜːl/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-nurse",
+      "en-gb-l"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-curl|MSWC%20en%2Fcurl%2Fcommon_voice_en_19168477.opus|mswc%3Aen%3Acurl%2Fcommon_voice_en_19168477.opus",
+    "sourceId": "mswc:en:curl/common_voice_en_19168477.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/curl/common_voice_en_19168477.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [],
+    "targetPhonemeIds": [
+      "en-gb-k"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-k",
+        "ipa": "/k/",
+        "label": "voiceless velar stop"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-k-g"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-k."
+      ]
+    },
+    "accentPolicy": {
+      "status": "neutral",
+      "notes": []
+    },
+    "commonVoice": {
+      "path": "common_voice_en_19168477.mp3",
+      "locale": "en",
+      "accents": "United States English",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "curl/common_voice_en_19168477.opus",
+      "word": "curl"
+    },
+    "score": 16,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-curl/common_voice_en_19168477.opus",
+      "kind": "external",
+      "accent": "United States English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-k. Common Voice accent: United States English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "United States English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-curl/common_voice_en_19168477.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-curl/common_voice_en_19168477.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-curl/common_voice_en_19168477.opus"
+  }
+}

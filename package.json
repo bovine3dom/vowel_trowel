@@ -10,6 +10,7 @@
     "test:e2e": "playwright test",
     "ui:screenshots": "bun run scripts/capture-ui-screenshots.ts",
     "audio:wiktionary": "bun run scripts/wiktionary-audio-report.ts",
+    "audio:mswc": "bun run scripts/mswc-audio-report.ts",
     "audio:review": "bun run scripts/review-audio-candidates.ts",
     "audio:apply-reviewed": "bun run scripts/apply-reviewed-audio.ts",
     "audio:wizard": "bun run scripts/audio-review-wizard.ts"

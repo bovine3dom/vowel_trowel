@@ -6,6 +6,7 @@ out
 dist
 reports
 public/audio/*/wiktionary/
+public/audio/*/mswc/
 playwright-report
 test-results
 *.tgz

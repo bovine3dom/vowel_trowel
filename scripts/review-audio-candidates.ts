@@ -21,6 +21,7 @@ import {
 
 interface CliOptions {
   languageId: string;
+  source: AudioCandidateSource;
   report: string;
   reviewStatePath: string;
   player: string | null;
@@ -30,6 +31,8 @@ interface CliOptions {
   words: string[];
   limit: number | null;
 }
+
+type AudioCandidateSource = "wiktionary" | "mswc";
 
 interface ReviewedReport {
   words?: ReviewedWord[];
@@ -45,6 +48,9 @@ interface ReviewedWord {
 
 interface ReviewedCandidate {
   key?: string;
+  sourceId?: string;
+  sourceName?: string;
+  sourceUrl?: string;
   fileTitle?: string;
   commonsUrl?: string;
   audioUrl?: string | null;
@@ -72,6 +78,16 @@ interface ReviewedCandidate {
   sourceWikis?: string[];
   score?: number;
   reasons?: string[];
+  targetPhonemeIds?: string[];
+  targetContrasts?: string[];
+  graphemeCheck?: {
+    status?: string;
+    notes?: string[];
+  };
+  accentPolicy?: {
+    status?: string;
+    notes?: string[];
+  };
   suggestedAudioSource?: AudioSource;
   review?: {
     status?: string;
@@ -82,7 +98,6 @@ interface ReviewedCandidate {
 
 interface CandidateWithIdentity extends ReviewedCandidate {
   fileTitle: string;
-  commonsUrl: string;
 }
 
 interface ReviewableCandidate extends CandidateWithIdentity {
@@ -340,11 +355,7 @@ async function saveDecision(
   accent: string | undefined,
   notes: string | undefined,
 ): Promise<void> {
-  const key = createCandidateKey({
-    wordId: item.word.wordId,
-    fileTitle: item.candidate.fileTitle,
-    commonsUrl: item.candidate.commonsUrl,
-  });
+  const key = createCandidateKey(getCandidateIdentity(item.word, item.candidate));
 
   decisionHistory.push({
     item,
@@ -369,11 +380,7 @@ async function undoLastDecision(): Promise<ReviewItem | null> {
     return null;
   }
 
-  const key = createCandidateKey({
-    wordId: previous.item.word.wordId,
-    fileTitle: previous.item.candidate.fileTitle,
-    commonsUrl: previous.item.candidate.commonsUrl,
-  });
+  const key = createCandidateKey(getCandidateIdentity(previous.item.word, previous.item.candidate));
 
   Object.keys(previous.item.candidate).forEach((candidateKey) => {
     delete previous.item.candidate[candidateKey as keyof ReviewableCandidate];
@@ -410,6 +417,8 @@ function setCandidateDecision(
   candidate.key = candidate.key ?? createCandidateKey({
     wordId: word.wordId,
     fileTitle: candidate.fileTitle,
+    sourceId: candidate.sourceId,
+    sourceUrl: candidate.sourceUrl,
     commonsUrl: candidate.commonsUrl,
   });
 
@@ -428,6 +437,9 @@ function setCandidateDecision(
     wordId: word.wordId,
     written: word.written,
     fileTitle: candidate.fileTitle,
+    sourceId: candidate.sourceId,
+    sourceName: candidate.sourceName,
+    sourceUrl: candidate.sourceUrl,
     commonsUrl: candidate.commonsUrl,
     localPath: candidate.localPath,
     metadataPath: candidate.metadataPath,
@@ -450,12 +462,12 @@ function createAudioSource(
 
   return compactAudioSource({
     src: datasetSrc,
-    kind: suggested?.kind ?? "wiktionary",
+    kind: suggested?.kind ?? (candidate.sourceId?.startsWith("mswc:") ? "external" : "wiktionary"),
     speaker: suggested?.speaker,
     accent: accent ?? candidate.regions?.[0] ?? suggested?.accent,
     license: suggested?.license ?? candidate.licenseShortName ?? candidate.license ?? undefined,
     attribution: suggested?.attribution ?? candidate.attribution ?? candidate.artist ?? candidate.credit ?? undefined,
-    sourceUrl: suggested?.sourceUrl ?? candidate.commonsUrl,
+    sourceUrl: suggested?.sourceUrl ?? candidate.sourceUrl ?? candidate.commonsUrl,
     notes: notes ?? suggested?.notes,
   });
 }
@@ -525,6 +537,8 @@ function applyStoredReviewsToReport(report: ReviewedReport, state: AudioReviewSt
       const stored = getStoredReview(state, {
         wordId: word.wordId,
         fileTitle: candidate.fileTitle,
+        sourceId: candidate.sourceId,
+        sourceUrl: candidate.sourceUrl,
         commonsUrl: candidate.commonsUrl,
       });
 
@@ -533,6 +547,10 @@ function applyStoredReviewsToReport(report: ReviewedReport, state: AudioReviewSt
       }
 
       candidate.key = stored.key;
+      candidate.sourceId = stored.sourceId ?? candidate.sourceId;
+      candidate.sourceName = stored.sourceName ?? candidate.sourceName;
+      candidate.sourceUrl = stored.sourceUrl ?? candidate.sourceUrl;
+      candidate.commonsUrl = stored.commonsUrl ?? candidate.commonsUrl;
       candidate.localPath = stored.localPath ?? candidate.localPath;
       candidate.metadataPath = stored.metadataPath ?? candidate.metadataPath;
       candidate.datasetSrc = stored.datasetSrc ?? candidate.datasetSrc;
@@ -618,11 +636,20 @@ function printCandidate(item: ReviewItem, index: number, total: number): void {
   console.log(`[${index}/${total}] ${word.written}${word.ipa ? ` ${word.ipa}` : ""}`);
   console.log(`File: ${candidate.fileTitle}`);
   console.log(`Local path: ${candidate.localPath}`);
-  console.log(`Source: ${candidate.commonsUrl}`);
+  console.log(`Source: ${candidate.sourceName ? `${candidate.sourceName} ` : ""}${candidate.sourceUrl ?? candidate.commonsUrl ?? candidate.sourceId ?? "unknown"}`);
   console.log(`License: ${candidate.licenseShortName ?? candidate.license ?? "unknown"}`);
   console.log(`Attribution: ${candidate.attribution ?? candidate.artist ?? candidate.credit ?? "unknown"}`);
   console.log(`Regions: ${candidate.regions?.length ? candidate.regions.join(", ") : "none detected"}`);
+  console.log(`Target phonemes: ${candidate.targetPhonemeIds?.length ? candidate.targetPhonemeIds.join(", ") : word.phonemeIds?.join(", ") ?? "unknown"}`);
   console.log(`IPA check: ${formatCandidateIpaCheck(candidate)}`);
+
+  if (candidate.graphemeCheck) {
+    console.log(`Grapheme check: ${formatSafetyCheck(candidate.graphemeCheck)}`);
+  }
+
+  if (candidate.accentPolicy) {
+    console.log(`Accent policy: ${formatSafetyCheck(candidate.accentPolicy)}`);
+  }
 
   if (candidate.score !== undefined) {
     console.log(`Score: ${candidate.score}${candidate.reasons?.length ? ` (${candidate.reasons.join("; ")})` : ""}`);
@@ -637,6 +664,10 @@ function formatCandidateIpaCheck(candidate: ReviewedCandidate): string {
   }
 
   return `${check.status}; expected ${check.expected ?? "unknown"}; Wiktionary claimed ${check.claimed?.join(", ") || "unknown"}`;
+}
+
+function formatSafetyCheck(check: { status?: string; notes?: string[] }): string {
+  return `${check.status ?? "unknown"}${check.notes?.length ? `; ${check.notes.join("; ")}` : ""}`;
 }
 
 async function playCandidate(player: PlayerSpec, localPath: string): Promise<void> {
@@ -690,11 +721,31 @@ function commandExists(command: string): boolean {
 }
 
 function hasCandidateIdentity(candidate: ReviewedCandidate): candidate is CandidateWithIdentity {
-  return Boolean(candidate.fileTitle && candidate.commonsUrl);
+  return Boolean(candidate.fileTitle && getCandidateSourceKey(candidate));
 }
 
 function isReviewableCandidate(candidate: ReviewedCandidate): candidate is ReviewableCandidate {
-  return Boolean(candidate.fileTitle && candidate.commonsUrl && candidate.localPath);
+  return Boolean(candidate.fileTitle && getCandidateSourceKey(candidate) && candidate.localPath);
+}
+
+function getCandidateIdentity(word: ReviewedWord, candidate: CandidateWithIdentity): {
+  wordId: string;
+  fileTitle: string;
+  sourceId?: string;
+  sourceUrl?: string;
+  commonsUrl?: string;
+} {
+  return {
+    wordId: word.wordId,
+    fileTitle: candidate.fileTitle,
+    sourceId: candidate.sourceId,
+    sourceUrl: candidate.sourceUrl,
+    commonsUrl: candidate.commonsUrl,
+  };
+}
+
+function getCandidateSourceKey(candidate: ReviewedCandidate): string | undefined {
+  return candidate.sourceId ?? candidate.sourceUrl ?? candidate.commonsUrl;
 }
 
 function parseReviewStatus(value: string | undefined): AudioReviewStatus | null {
@@ -733,10 +784,12 @@ function parseArgs(args: string[]): CliOptions {
   }
 
   const languageId = getLanguageDataset(getLast(values, "language") ?? getLast(values, "lang")).id;
-  const defaults = getLanguagePathDefaults(languageId);
+  const source = parseSource(getLast(values, "source"));
+  const defaults = getLanguagePathDefaults(languageId, source);
 
   return {
     languageId,
+    source,
     report: getLast(values, "report") ?? defaults.report,
     reviewStatePath: getLast(values, "review-state") ?? defaults.reviewState,
     player: getLast(values, "player") ?? null,
@@ -750,19 +803,39 @@ function parseArgs(args: string[]): CliOptions {
 
 function printUsage(): void {
   console.log("Usage: bun run audio:review -- [options]");
-  console.log("Options: --language=en-GB --words=ship,sheep --limit=10 --include-reviewed --player=mpv --no-autoplay --no-play");
+  console.log("Options: --source=wiktionary|mswc --language=en-GB --words=ship,sheep --limit=10 --include-reviewed --player=mpv --no-autoplay --no-play");
 }
 
-function getLanguagePathDefaults(languageId: string): { report: string; reviewState: string } {
+function getLanguagePathDefaults(languageId: string, source: AudioCandidateSource): { report: string; reviewState: string } {
   const slug = getLanguageSlug(languageId);
-  const reportPrefix = sameLanguageId(languageId, "fr") ? "wiktionary" : `${slug}-wiktionary`;
+  const reportPrefix = getReportPrefix(languageId, source);
 
   return {
     report: `reports/${reportPrefix}-audio-candidates.json`,
-    reviewState: sameLanguageId(languageId, "fr")
+    reviewState: source === "wiktionary" && sameLanguageId(languageId, "fr")
       ? DEFAULT_REVIEW_STATE_PATH
-      : `reports/${slug}-wiktionary-audio-review-state.json`,
+      : `reports/${slug}-${source}-audio-review-state.json`,
   };
+}
+
+function getReportPrefix(languageId: string, source: AudioCandidateSource): string {
+  if (source === "wiktionary" && sameLanguageId(languageId, "fr")) {
+    return "wiktionary";
+  }
+
+  return `${getLanguageSlug(languageId)}-${source}`;
+}
+
+function parseSource(value: string | undefined): AudioCandidateSource {
+  if (!value || value === "wiktionary") {
+    return "wiktionary";
+  }
+
+  if (value === "mswc") {
+    return "mswc";
+  }
+
+  throw new Error(`Expected --source=wiktionary or --source=mswc; got ${value}.`);
 }
 
 function getLast(values: Map<string, string[]>, key: string): string | undefined {

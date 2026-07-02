@@ -1,0 +1,96 @@
+{
+  "stagedAt": "2026-07-02T13:24:53.396Z",
+  "word": {
+    "id": "en-gb-word-cart",
+    "written": "cart",
+    "ipa": "/kɑːt/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-palm",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-cart|MSWC%20en%2Fcart%2Fcommon_voice_en_18163675.opus|mswc%3Aen%3Acart%2Fcommon_voice_en_18163675.opus",
+    "sourceId": "mswc:en:cart/common_voice_en_18163675.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/cart/common_voice_en_18163675.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-palm",
+      "en-gb-t"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-palm",
+        "ipa": "/ɑː/",
+        "label": "PALM/START vowel"
+      },
+      {
+        "id": "en-gb-t",
+        "ipa": "/t/",
+        "label": "voiceless alveolar stop"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-strut-palm",
+      "en-gb-t-d"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-palm, en-gb-t."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Common Voice accent metadata suggests British English."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_en_18163675.mp3",
+      "locale": "en",
+      "accents": "England English",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "cart/common_voice_en_18163675.opus",
+      "word": "cart"
+    },
+    "score": 46,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice accent metadata suggests British English.",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-cart/common_voice_en_18163675.opus",
+      "kind": "external",
+      "accent": "British English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-palm, en-gb-t. Common Voice accent: England English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-cart/common_voice_en_18163675.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-cart/common_voice_en_18163675.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-cart/common_voice_en_18163675.opus"
+  }
+}

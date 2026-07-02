@@ -1,0 +1,96 @@
+{
+  "stagedAt": "2026-07-02T13:24:53.310Z",
+  "word": {
+    "id": "en-gb-word-ship",
+    "written": "ship",
+    "ipa": "/ʃɪp/",
+    "phonemeIds": [
+      "en-gb-sh",
+      "en-gb-kit",
+      "en-gb-p"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-ship|MSWC%20en%2Fship%2Fcommon_voice_en_106846.opus|mswc%3Aen%3Aship%2Fcommon_voice_en_106846.opus",
+    "sourceId": "mswc:en:ship/common_voice_en_106846.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/ship/common_voice_en_106846.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-kit",
+      "en-gb-sh"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-kit",
+        "ipa": "/ɪ/",
+        "label": "KIT vowel"
+      },
+      {
+        "id": "en-gb-sh",
+        "ipa": "/ʃ/",
+        "label": "voiceless postalveolar fricative"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-kit-fleece",
+      "en-gb-sh-ch"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-kit, en-gb-sh."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Common Voice accent metadata suggests British English."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_en_106846.mp3",
+      "locale": "en",
+      "accents": "England English",
+      "upVotes": 5,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "ship/common_voice_en_106846.opus",
+      "word": "ship"
+    },
+    "score": 49,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice accent metadata suggests British English.",
+      "Common Voice vote balance +5"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-ship/common_voice_en_106846.opus",
+      "kind": "external",
+      "accent": "British English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-kit, en-gb-sh. Common Voice accent: England English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-ship/common_voice_en_106846.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-ship/common_voice_en_106846.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-ship/common_voice_en_106846.opus"
+  }
+}

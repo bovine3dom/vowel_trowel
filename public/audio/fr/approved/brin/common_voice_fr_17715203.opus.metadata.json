@@ -1,0 +1,80 @@
+{
+  "stagedAt": "2026-07-02T12:58:10.145Z",
+  "word": {
+    "id": "fr-word-brin",
+    "written": "brin",
+    "ipa": "/bʁɛ̃/",
+    "phonemeIds": [
+      "fr-in"
+    ]
+  },
+  "candidate": {
+    "key": "fr-word-brin|MSWC%20fr%2Fbrin%2Fcommon_voice_fr_17715203.opus|mswc%3Afr%3Abrin%2Fcommon_voice_fr_17715203.opus",
+    "sourceId": "mswc:fr:brin/common_voice_fr_17715203.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC fr/brin/common_voice_fr_17715203.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [],
+    "targetPhonemeIds": [
+      "fr-in"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "fr-in",
+        "ipa": "/ɛ̃/",
+        "label": "open-mid front nasal vowel"
+      }
+    ],
+    "targetContrasts": [
+      "fr-un-in"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme fr-in."
+      ]
+    },
+    "accentPolicy": {
+      "status": "neutral",
+      "notes": []
+    },
+    "commonVoice": {
+      "path": "common_voice_fr_17715203.mp3",
+      "locale": "fr",
+      "variant": "Français de métropole",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "fr",
+      "link": "brin/common_voice_fr_17715203.opus",
+      "word": "brin"
+    },
+    "score": 16,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/mswc/fr-word-brin/common_voice_fr_17715203.opus",
+      "kind": "external",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme fr-in."
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/mswc/fr-word-brin/common_voice_fr_17715203.opus",
+    "metadataPath": "public/audio/fr/mswc/fr-word-brin/common_voice_fr_17715203.opus.metadata.json",
+    "datasetSrc": "audio/fr/mswc/fr-word-brin/common_voice_fr_17715203.opus"
+  }
+}

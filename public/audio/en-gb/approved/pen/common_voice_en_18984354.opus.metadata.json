@@ -1,0 +1,90 @@
+{
+  "stagedAt": "2026-07-02T13:03:03.954Z",
+  "word": {
+    "id": "en-gb-word-pen",
+    "written": "pen",
+    "ipa": "/pen/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-dress",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-pen|MSWC%20en%2Fpen%2Fcommon_voice_en_18984354.opus|mswc%3Aen%3Apen%2Fcommon_voice_en_18984354.opus",
+    "sourceId": "mswc:en:pen/common_voice_en_18984354.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/pen/common_voice_en_18984354.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-dress"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-dress",
+        "ipa": "/e/",
+        "label": "DRESS vowel"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-dress-trap",
+      "en-gb-dress-face"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-dress."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Common Voice accent metadata suggests British English."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_en_18984354.mp3",
+      "locale": "en",
+      "accents": "England English|Academic southern English",
+      "upVotes": 4,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "pen/common_voice_en_18984354.opus",
+      "word": "pen"
+    },
+    "score": 48,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice accent metadata suggests British English.",
+      "Common Voice vote balance +4"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-pen/common_voice_en_18984354.opus",
+      "kind": "external",
+      "accent": "British English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress. Common Voice accent: England English|Academic southern English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-pen/common_voice_en_18984354.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-pen/common_voice_en_18984354.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-pen/common_voice_en_18984354.opus"
+  }
+}

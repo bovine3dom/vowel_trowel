@@ -1,0 +1,89 @@
+{
+  "stagedAt": "2026-07-02T13:03:03.963Z",
+  "word": {
+    "id": "en-gb-word-pan",
+    "written": "pan",
+    "ipa": "/pæn/",
+    "phonemeIds": [
+      "en-gb-p",
+      "en-gb-trap",
+      "en-gb-n"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-pan|MSWC%20en%2Fpan%2Fcommon_voice_en_13608.opus|mswc%3Aen%3Apan%2Fcommon_voice_en_13608.opus",
+    "sourceId": "mswc:en:pan/common_voice_en_13608.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/pan/common_voice_en_13608.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-trap"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-trap",
+        "ipa": "/æ/",
+        "label": "TRAP vowel"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-dress-trap"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-trap."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Common Voice accent metadata suggests British English."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_en_13608.mp3",
+      "locale": "en",
+      "accents": "England English",
+      "upVotes": 10,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "pan/common_voice_en_13608.opus",
+      "word": "pan"
+    },
+    "score": 52,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice accent metadata suggests British English.",
+      "Common Voice vote balance +10"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-pan/common_voice_en_13608.opus",
+      "kind": "external",
+      "accent": "British English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-trap. Common Voice accent: England English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-pan/common_voice_en_13608.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-pan/common_voice_en_13608.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-pan/common_voice_en_13608.opus"
+  }
+}

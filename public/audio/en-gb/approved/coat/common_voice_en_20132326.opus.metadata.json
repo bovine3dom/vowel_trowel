@@ -1,0 +1,96 @@
+{
+  "stagedAt": "2026-07-02T13:24:53.412Z",
+  "word": {
+    "id": "en-gb-word-coat",
+    "written": "coat",
+    "ipa": "/kəʊt/",
+    "phonemeIds": [
+      "en-gb-k",
+      "en-gb-goat",
+      "en-gb-t"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-coat|MSWC%20en%2Fcoat%2Fcommon_voice_en_20132326.opus|mswc%3Aen%3Acoat%2Fcommon_voice_en_20132326.opus",
+    "sourceId": "mswc:en:coat/common_voice_en_20132326.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC en/coat/common_voice_en_20132326.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-goat",
+      "en-gb-k"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "en-gb-goat",
+        "ipa": "/əʊ/",
+        "label": "GOAT diphthong"
+      },
+      {
+        "id": "en-gb-k",
+        "ipa": "/k/",
+        "label": "voiceless velar stop"
+      }
+    ],
+    "targetContrasts": [
+      "en-gb-lot-goat",
+      "en-gb-k-g"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme en-gb-goat, en-gb-k."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Common Voice accent metadata suggests British English."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_en_20132326.mp3",
+      "locale": "en",
+      "accents": "England English|New Zealand English",
+      "upVotes": 4,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "en",
+      "link": "coat/common_voice_en_20132326.opus",
+      "word": "coat"
+    },
+    "score": 48,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice accent metadata suggests British English.",
+      "Common Voice vote balance +4"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/mswc/en-gb-word-coat/common_voice_en_20132326.opus",
+      "kind": "external",
+      "accent": "British English",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-goat, en-gb-k. Common Voice accent: England English|New Zealand English."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "localPath": "public/audio/en-gb/mswc/en-gb-word-coat/common_voice_en_20132326.opus",
+    "metadataPath": "public/audio/en-gb/mswc/en-gb-word-coat/common_voice_en_20132326.opus.metadata.json",
+    "datasetSrc": "audio/en-gb/mswc/en-gb-word-coat/common_voice_en_20132326.opus"
+  }
+}
