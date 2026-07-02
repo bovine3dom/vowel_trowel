@@ -667,16 +667,6 @@ h3 {
   text-transform: uppercase;
 }
 
-.spectrogram-frame::before {
-  top: 6px;
-  content: "High";
-}
-
-.spectrogram-frame::after {
-  bottom: 6px;
-  content: "Low";
-}
-
 .spectrogram-frame canvas {
   display: block;
   width: 100%;

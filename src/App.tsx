@@ -1508,9 +1508,6 @@ function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) 
           <h3>Spectrogram</h3>
         </div>
         <div class="spectrogram-heading-actions">
-          <span class={`spectrogram-status ${props.visualization.status}`}>
-            {spectrogramStatusLabel(props.visualization)}
-          </span>
           <button
             class="text-button compact spectrogram-maximise"
             type="button"
@@ -1543,22 +1540,6 @@ function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) 
       </div>
     </section>
   );
-}
-
-function spectrogramStatusLabel(visualization: PlaybackVisualizationState): string {
-  if (visualization.status === "playing") {
-    return visualization.mode === "voice" ? "Voice" : "Playing";
-  }
-
-  if (visualization.status === "ended") {
-    return "Held";
-  }
-
-  if (visualization.status === "error") {
-    return "Error";
-  }
-
-  return "Ready";
 }
 
 function paintSpectrogramBase(canvas: HTMLCanvasElement, visualization: PlaybackVisualizationState): void {
