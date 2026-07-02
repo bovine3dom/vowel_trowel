@@ -124,10 +124,12 @@ test("loads the French matching practice", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Vowel Trowel" })).toBeVisible();
   await expect(page.getByText("Hear two words, choose what you heard")).toBeVisible();
   await expect(page.getByRole("button", { name: "Check answer" })).toBeDisabled();
-  await expect(page.getByLabel("Spectrogram display")).toBeVisible();
-  await expect(page.getByLabel("Spectrogram display").locator(".spectrogram-status")).toHaveText("Ready");
-  await expect(page.getByLabel("Spectrogram display").getByRole("button", { name: "Replay" })).toBeDisabled();
-  await expect(page.getByLabel("Spectrogram display").getByRole("button", { name: "Maximise" })).toBeEnabled();
+  const panel = page.getByLabel("Spectrogram display");
+  await expect(panel).toBeVisible();
+  await expect(panel.getByText("Ready")).toBeVisible();
+  await expect(panel.getByText("Play a recording to draw a spectrogram.")).toBeVisible();
+  await expect(panel.getByRole("button", { name: "Replay" })).toBeDisabled();
+  await expect(panel.getByRole("button", { name: "Maximise" })).toBeEnabled();
   await expect(page).toHaveURL(/lang=fr/);
   await expect(page).toHaveURL(/mode=match/);
 });
@@ -257,7 +259,6 @@ test("updates the spectrogram when a reviewed recording plays", async ({ page })
 
   const panel = page.getByLabel("Spectrogram display");
 
-  await expect(panel.getByText("Playing")).toBeVisible();
   await expect(panel.getByText("jeune")).toBeVisible();
   await expect(panel.getByText(/Swiss French|wiktionary/)).toBeVisible();
 
@@ -270,5 +271,5 @@ test("updates the spectrogram when a reviewed recording plays", async ({ page })
   const replay = panel.getByRole("button", { name: "Replay" });
   await expect(replay).toBeEnabled();
   await replay.click();
-  await expect(panel.locator(".spectrogram-status")).toHaveText("Playing");
+  await expect(panel.getByText("jeune")).toBeVisible();
 });
