@@ -57,6 +57,7 @@ export interface SpeechSettings {
   fallbackLang: string;
   preferredLangs?: readonly string[];
   voiceURI?: string | null;
+  ttsEnabled?: boolean;
 }
 
 export function getPlaybackVisualizationState(): PlaybackVisualizationState {
@@ -150,6 +151,10 @@ async function playPlaybackRequest(request: PlaybackRequest): Promise<void> {
     }
 
     return;
+  }
+
+  if (!speech.ttsEnabled) {
+    throw new Error("No recording is available for this item.");
   }
 
   const sessionId = nextPlaybackSessionId();

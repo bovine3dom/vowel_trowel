@@ -163,12 +163,23 @@ test("explores a sound and returns without adding an extra history entry", async
 
   await expect(page).toHaveURL(/explore=fr-u/);
   await expect(page.getByRole("heading", { name: "close back rounded vowel" })).toBeVisible();
-  await expect(page.locator(".phoneme-explorer").getByText("roue")).toBeVisible();
+  await expect(page.locator(".phoneme-explorer .explore-word-card").first()).toBeVisible();
+  await expect(page.locator(".phoneme-explorer").getByText("roue")).toHaveCount(0);
+  await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" })).toHaveCount(0);
 
   await page.getByRole("button", { name: "Back to sounds" }).click();
 
   await expect(page).not.toHaveURL(/explore=/);
   await expect(page.getByText("Current practice:")).toBeVisible();
+});
+
+test("shows fallback-only words when TTS flag is enabled", async ({ page }) => {
+  await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes&explore=fr-u&tts=1");
+
+  await expect(page.locator(".phoneme-explorer").getByText("roue")).toBeVisible();
+  await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" }).first()).toBeVisible();
+  await expect(page.getByText("Browser voice", { exact: true }).first()).toBeVisible();
+  await expect(page).toHaveURL(/tts=1/);
 });
 
 test("can submit a matching answer", async ({ page }) => {

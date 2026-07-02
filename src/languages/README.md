@@ -13,9 +13,9 @@ The important units are:
 
 Sorting drills are generated from `words`: for a contrast, the app finds all words whose `phonemeIds` contain exactly one of that contrast's target phonemes.
 
-Browser text-to-speech should not be treated as an IPA synthesizer. If you want a phoneme heading like `/y/` to play an isolated sound, add a real audio source to that phoneme. Without phoneme audio, the app plays an example word that contains the phoneme.
+Browser text-to-speech should not be treated as an IPA synthesizer. If you want a phoneme heading like `/y/` to play an isolated sound, add a real audio source to that phoneme. Without phoneme audio, the app plays a recorded example word that contains the phoneme.
 
-Datasets can set `speechLangs` to prefer regional browser voices for TTS fallback, for example `fr-BE` or `fr-CH`. This only works when the user's browser/OS exposes matching voices; it is not a bundled speech engine and should not replace real recordings for merged or regional contrasts.
+Datasets can set `speechLangs` to prefer regional browser voices when optional TTS mode is enabled with `?tts=1`, for example `fr-BE` or `fr-CH`. This only works when the user's browser/OS exposes matching voices; it is not a bundled speech engine and should not replace real recordings for merged or regional contrasts.
 
 Example phoneme audio entry:
 
@@ -69,4 +69,4 @@ Example audio entry:
 
 Files under `public/` are copied to the static build root, so `public/audio/fr/roue.ogg` is referenced as `audio/fr/roue.ogg`.
 
-If a word has no audio source, the app falls back to browser speech synthesis using the dataset's `defaultSpeechLang`. That is useful for scaffolding but should not be considered high-quality phoneme training content.
+If a word has no audio source, the app hides it from practice and exploration by default. Enable optional TTS mode with `?tts=1` only for scaffolding; it should not be considered high-quality phoneme training content.

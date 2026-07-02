@@ -57,6 +57,7 @@ interface UrlState {
   phonemePair: PhonemePair | null;
   catalogTab: CatalogTab;
   explorePhonemeId: PhonemeId | null;
+  ttsEnabled: boolean;
 }
 
 interface AudioCredit {
@@ -68,8 +69,9 @@ interface AudioCredit {
 export default function App() {
   const initialUrlState = readUrlState();
   const initialProgress = loadProgress();
-  const initialPrompt = createNextPrompt(initialProgress, initialUrlState.phonemePair);
-  const initialSortingPrompt = createNextSortingPrompt(initialProgress, initialUrlState.phonemePair);
+  const initialPracticeDataset = createPracticeDataset(dataset, initialUrlState.ttsEnabled);
+  const initialPrompt = createNextPrompt(initialProgress, initialUrlState.phonemePair, initialPracticeDataset);
+  const initialSortingPrompt = createNextSortingPrompt(initialProgress, initialUrlState.phonemePair, initialPracticeDataset);
   const initialActivePhonemePair = initialUrlState.phonemePair
     ?? (initialUrlState.mode === "sort"
       ? phonemePairFromSortingPrompt(initialSortingPrompt)
@@ -80,6 +82,7 @@ export default function App() {
   const [draftPhonemeIds, setDraftPhonemeIds] = createSignal<readonly PhonemeId[]>(initialActivePhonemePair ?? []);
   const [catalogTab, setCatalogTab] = createSignal<CatalogTab>(initialUrlState.catalogTab);
   const [explorePhonemeId, setExplorePhonemeId] = createSignal<PhonemeId | null>(initialUrlState.explorePhonemeId);
+  const [ttsEnabled, setTtsEnabled] = createSignal(initialUrlState.ttsEnabled);
   const [progress, setProgress] = createSignal(initialProgress);
   const [prompt, setPrompt] = createSignal<MatchingPrompt | undefined>(initialPrompt);
   const [selections, setSelections] = createSignal(createPromptSelections(initialPrompt));
@@ -98,6 +101,7 @@ export default function App() {
   const [playbackVisualization, setPlaybackVisualization] = createSignal(getPlaybackVisualizationState());
 
   const languageProgress = createMemo(() => getLanguageProgress(progress(), dataset.id));
+  const practiceDataset = createMemo(() => createPracticeDataset(dataset, ttsEnabled()));
   const topConfusions = createMemo(() => getTopConfusions(progress(), dataset.id));
   const totalAttempts = createMemo(() => {
     const stats = languageProgress();
@@ -109,6 +113,7 @@ export default function App() {
     fallbackLang: dataset.defaultSpeechLang,
     preferredLangs: dataset.speechLangs,
     voiceURI: selectedVoiceURI(),
+    ttsEnabled: ttsEnabled(),
   }));
   const languageSpeechVoices = createMemo(() =>
     speechVoices().filter((voice) =>
@@ -120,7 +125,7 @@ export default function App() {
     const exploredPhonemeId = explorePhonemeId();
 
     if (exploredPhonemeId) {
-      return collectWordAudioCredits(wordsForPhoneme(exploredPhonemeId));
+      return collectWordAudioCredits(wordsForPhoneme(exploredPhonemeId, practiceDataset()));
     }
 
     return mode() === "sort"
@@ -155,8 +160,9 @@ export default function App() {
   });
 
   const applyUrlState = (state: UrlState) => {
-    const nextPrompt = createNextPrompt(progress(), state.phonemePair);
-    const nextSortingPrompt = createNextSortingPrompt(progress(), state.phonemePair);
+    const nextPracticeDataset = createPracticeDataset(dataset, state.ttsEnabled);
+    const nextPrompt = createNextPrompt(progress(), state.phonemePair, nextPracticeDataset);
+    const nextSortingPrompt = createNextSortingPrompt(progress(), state.phonemePair, nextPracticeDataset);
     const nextActivePair = state.phonemePair
       ?? (state.mode === "sort"
         ? phonemePairFromSortingPrompt(nextSortingPrompt)
@@ -168,6 +174,7 @@ export default function App() {
     setDraftPhonemeIds(nextActivePair ?? []);
     setCatalogTab(state.catalogTab);
     setExplorePhonemeId(state.explorePhonemeId);
+    setTtsEnabled(state.ttsEnabled);
 
     setPrompt(nextPrompt);
     setSelections(createPromptSelections(nextPrompt));
@@ -188,6 +195,7 @@ export default function App() {
       phonemePair: patch.phonemePair === undefined ? activePhonemePair() : patch.phonemePair,
       catalogTab: patch.catalogTab ?? catalogTab(),
       explorePhonemeId: patch.explorePhonemeId === undefined ? explorePhonemeId() : patch.explorePhonemeId,
+      ttsEnabled: patch.ttsEnabled ?? ttsEnabled(),
     }, historyMode);
   };
 
@@ -235,8 +243,8 @@ export default function App() {
   };
 
   const choosePhonemePair = (phonemePair: PhonemePair, nextMode = mode()) => {
-    const nextPrompt = createNextPrompt(progress(), phonemePair);
-    const nextSortingPrompt = createNextSortingPrompt(progress(), phonemePair);
+    const nextPrompt = createNextPrompt(progress(), phonemePair, practiceDataset());
+    const nextSortingPrompt = createNextSortingPrompt(progress(), phonemePair, practiceDataset());
 
     setMode(nextMode);
     setLockedPhonemePair(phonemePair);
@@ -256,8 +264,8 @@ export default function App() {
   };
 
   const clearPhonemePair = () => {
-    const nextPrompt = createNextPrompt(progress(), null);
-    const nextSortingPrompt = createNextSortingPrompt(progress(), null);
+    const nextPrompt = createNextPrompt(progress(), null, practiceDataset());
+    const nextSortingPrompt = createNextSortingPrompt(progress(), null, practiceDataset());
     const nextActivePair = mode() === "sort"
       ? phonemePairFromSortingPrompt(nextSortingPrompt)
       : phonemePairFromMatchingPrompt(nextPrompt);
@@ -384,7 +392,7 @@ export default function App() {
 
   const playMatchingAgain = () => {
     const currentPair = phonemePairFromMatchingPrompt(prompt()) ?? activePhonemePair();
-    const nextPrompt = createNextPrompt(progress(), currentPair);
+    const nextPrompt = createNextPrompt(progress(), currentPair, practiceDataset());
     const nextActivePair = currentPair ?? phonemePairFromMatchingPrompt(nextPrompt);
 
     setLockedPhonemePair(currentPair);
@@ -399,7 +407,7 @@ export default function App() {
   };
 
   const nextMatchingContrast = () => {
-    const nextPrompt = createNextPrompt(progress(), null);
+    const nextPrompt = createNextPrompt(progress(), null, practiceDataset());
     const nextActivePair = phonemePairFromMatchingPrompt(nextPrompt);
 
     setLockedPhonemePair(null);
@@ -462,7 +470,7 @@ export default function App() {
 
   const playSortingAgain = () => {
     const currentPair = phonemePairFromSortingPrompt(sortingPrompt()) ?? activePhonemePair();
-    const nextPrompt = createNextSortingPrompt(progress(), currentPair);
+    const nextPrompt = createNextSortingPrompt(progress(), currentPair, practiceDataset());
     const nextActivePair = currentPair ?? phonemePairFromSortingPrompt(nextPrompt);
 
     setLockedPhonemePair(currentPair);
@@ -478,7 +486,7 @@ export default function App() {
   };
 
   const nextSortingContrast = () => {
-    const nextPrompt = createNextSortingPrompt(progress(), null);
+    const nextPrompt = createNextSortingPrompt(progress(), null, practiceDataset());
     const nextActivePair = phonemePairFromSortingPrompt(nextPrompt);
 
     setLockedPhonemePair(null);
@@ -516,8 +524,8 @@ export default function App() {
     }
 
     const emptyProgress = resetProgress();
-    const nextPrompt = createNextPrompt(emptyProgress, lockedPhonemePair());
-    const nextSortingPrompt = createNextSortingPrompt(emptyProgress, lockedPhonemePair());
+    const nextPrompt = createNextPrompt(emptyProgress, lockedPhonemePair(), practiceDataset());
+    const nextSortingPrompt = createNextSortingPrompt(emptyProgress, lockedPhonemePair(), practiceDataset());
 
     setProgress(emptyProgress);
     setPrompt(nextPrompt);
@@ -565,7 +573,7 @@ export default function App() {
         <div class="language-card" aria-label="Current language">
           <span>Practising</span>
           <strong>{dataset.name}</strong>
-          <small>{minimalPairCount()} word pairs</small>
+          <small>{minimalPairCount(practiceDataset())} word pairs</small>
           <label class="language-select-label">
             <span>Language</span>
             <select value={dataset.id} onInput={(event) => chooseLanguage(event.currentTarget.value)}>
@@ -645,14 +653,16 @@ export default function App() {
             <Metric label="Sound pairs" value={String(dataset.contrasts.length)} />
           </div>
           <SpectrogramPanel visualization={playbackVisualization()} />
-          <VoicePanel
-            voices={languageSpeechVoices()}
-            activeVoice={activeSpeechVoice()}
-            selectedVoiceURI={selectedVoiceURI()}
-            languageName={dataset.name}
-            preferredLangs={dataset.speechLangs ?? [dataset.defaultSpeechLang]}
-            onSelect={chooseSpeechVoice}
-          />
+          <Show when={ttsEnabled()}>
+            <VoicePanel
+              voices={languageSpeechVoices()}
+              activeVoice={activeSpeechVoice()}
+              selectedVoiceURI={selectedVoiceURI()}
+              languageName={dataset.name}
+              preferredLangs={dataset.speechLangs ?? [dataset.defaultSpeechLang]}
+              onSelect={chooseSpeechVoice}
+            />
+          </Show>
           <div class="confusion-list">
             <h3>Tricky sounds</h3>
             <Show
@@ -689,6 +699,8 @@ export default function App() {
           draftPhonemeIds={draftPhonemeIds()}
           explorePhonemeId={explorePhonemeId()}
           audioError={audioError()}
+          availableDataset={practiceDataset()}
+          ttsEnabled={ttsEnabled()}
           onTabChange={chooseCatalogTab}
           onPhonemeSelect={selectPhonemeForDraft}
           onPhonemeExplore={explorePhoneme}
@@ -699,7 +711,7 @@ export default function App() {
           onWordTtsPlay={playWordTts}
           onTrackPlay={playAudioTrack}
         />
-        <AudioCreditsPanel credits={currentAudioCredits()} />
+        <AudioCreditsPanel credits={currentAudioCredits()} ttsEnabled={ttsEnabled()} />
       </section>
     </main>
   );
@@ -1106,6 +1118,8 @@ function CatalogPanel(props: {
   draftPhonemeIds: readonly PhonemeId[];
   explorePhonemeId: PhonemeId | null;
   audioError: string | null;
+  availableDataset: LanguageDataset;
+  ttsEnabled: boolean;
   onTabChange: (tab: CatalogTab) => void;
   onPhonemeSelect: (phonemeId: PhonemeId) => void;
   onPhonemeExplore: (phonemeId: PhonemeId) => void;
@@ -1145,6 +1159,7 @@ function CatalogPanel(props: {
         when={props.tab === "phonemes"}
         fallback={
           <PremadeContrastsPanel
+            availableDataset={props.availableDataset}
             activePhonemePair={props.activePhonemePair}
             onPairSelect={props.onPairSelect}
           />
@@ -1166,6 +1181,8 @@ function CatalogPanel(props: {
           {(phoneme) => (
             <PhonemeExplorer
               phoneme={phoneme()}
+              availableDataset={props.availableDataset}
+              ttsEnabled={props.ttsEnabled}
               audioError={props.audioError}
               onBack={props.onExploreClose}
               onWordRecordingPlay={props.onWordRecordingPlay}
@@ -1246,12 +1263,13 @@ function PhonemePicker(props: {
 }
 
 function PremadeContrastsPanel(props: {
+  availableDataset: LanguageDataset;
   activePhonemePair: PhonemePair | null;
   onPairSelect: (phonemePair: PhonemePair, mode?: TrainingMode) => void;
 }) {
   return (
     <div class="contrast-grid interactive">
-      <For each={dataset.contrasts}>
+      <For each={props.availableDataset.contrasts}>
         {(contrast) => (
           <button
             class={contrastCardClass(contrast, props.activePhonemePair)}
@@ -1270,13 +1288,15 @@ function PremadeContrastsPanel(props: {
 
 function PhonemeExplorer(props: {
   phoneme: Phoneme;
+  availableDataset: LanguageDataset;
+  ttsEnabled: boolean;
   audioError: string | null;
   onBack: () => void;
   onWordRecordingPlay: (word: WordEntry) => void;
   onWordTtsPlay: (word: WordEntry) => void;
   onTrackPlay: (word: WordEntry, source: AudioSource) => void;
 }) {
-  const words = createMemo(() => wordsForPhoneme(props.phoneme.id));
+  const words = createMemo(() => wordsForPhoneme(props.phoneme.id, props.availableDataset));
 
   return (
     <section class="phoneme-explorer">
@@ -1296,7 +1316,8 @@ function PhonemeExplorer(props: {
       </Show>
 
       <div class="explore-word-list">
-        <For each={words()}>
+        <Show when={words().length > 0} fallback={<p class="muted">{props.ttsEnabled ? "No words for this sound yet." : "No recorded words for this sound yet."}</p>}>
+          <For each={words()}>
           {(word) => (
             <article class="explore-word-card">
               <div class="explore-word-heading">
@@ -1313,15 +1334,19 @@ function PhonemeExplorer(props: {
                   >
                     Play recording
                   </button>
-                  <button class="small-button" type="button" onClick={() => props.onWordTtsPlay(word)}>
-                    Browser voice
-                  </button>
+                  <Show when={props.ttsEnabled}>
+                    <button class="small-button" type="button" onClick={() => props.onWordTtsPlay(word)}>
+                      Browser voice
+                    </button>
+                  </Show>
                 </div>
               </div>
 
               <Show
                 when={word.audio.length > 0}
-                fallback={<p class="muted">No recording yet; browser voice is available.</p>}
+                fallback={props.ttsEnabled
+                  ? <p class="muted">No recording yet; browser voice is available.</p>
+                  : <p class="muted">No recording yet.</p>}
               >
                 <div class="track-list">
                   <For each={word.audio}>
@@ -1340,7 +1365,8 @@ function PhonemeExplorer(props: {
               </Show>
             </article>
           )}
-        </For>
+          </For>
+        </Show>
       </div>
     </section>
   );
@@ -1845,13 +1871,15 @@ function mixRgb(
   return [red, green, blue];
 }
 
-function AudioCreditsPanel(props: { credits: readonly AudioCredit[] }) {
+function AudioCreditsPanel(props: { credits: readonly AudioCredit[]; ttsEnabled: boolean }) {
   return (
     <details class="audio-credits">
       <summary>Audio credits</summary>
       <Show
         when={props.credits.length > 0}
-        fallback={<p class="muted">No recordings are used in the current view. The app may use your browser voice instead.</p>}
+        fallback={<p class="muted">{props.ttsEnabled
+          ? "No recordings are used in the current view. The app may use your browser voice instead."
+          : "No recordings are used in the current view."}</p>}
       >
         <div class="audio-credit-list">
           <For each={props.credits}>
@@ -1891,8 +1919,8 @@ function AudioCreditsPanel(props: { credits: readonly AudioCredit[] }) {
 function EmptyDataset() {
   return (
     <section class="training-panel">
-      <h2>No practice content yet</h2>
-      <p>Add word pairs to this language to start a session.</p>
+      <h2>No recorded practice content yet</h2>
+      <p>Add recordings or choose another sound to start a session.</p>
     </section>
   );
 }
@@ -2071,16 +2099,16 @@ function contrastCardClass(
   return classes.join(" ");
 }
 
-function wordsForPhoneme(phonemeId: PhonemeId): WordEntry[] {
-  return dataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
+function wordsForPhoneme(phonemeId: PhonemeId, sourceDataset = dataset): WordEntry[] {
+  return sourceDataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
 }
 
 function phonemeHasAudio(phonemeId: PhonemeId): boolean {
   return Boolean(dataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.audio?.length);
 }
 
-function minimalPairCount(): number {
-  return dataset.contrasts.reduce((total, contrast) => total + contrast.minimalPairs.length, 0);
+function minimalPairCount(sourceDataset = dataset): number {
+  return sourceDataset.contrasts.reduce((total, contrast) => total + contrast.minimalPairs.length, 0);
 }
 
 function collectTermAudioCredits(terms: readonly MinimalPairTerm[]): AudioCredit[] {
@@ -2155,13 +2183,41 @@ function saveSpeechVoiceURI(voiceURI: string | null): void {
   localStorage.removeItem(SPEECH_VOICE_STORAGE_KEY);
 }
 
+function createPracticeDataset(sourceDataset: LanguageDataset, ttsEnabled: boolean): LanguageDataset {
+  if (ttsEnabled) {
+    return sourceDataset;
+  }
+
+  const words = sourceDataset.words.filter(hasWordRecording);
+  const wordIds = new Set(words.map((word) => word.id));
+  const contrasts = sourceDataset.contrasts
+    .map((contrast) => ({
+      ...contrast,
+      minimalPairs: contrast.minimalPairs.filter((pair) =>
+        pair.terms.every((term) => wordIds.has(term.wordId))
+      ),
+    }))
+    .filter((contrast) => contrast.minimalPairs.length > 0);
+
+  return {
+    ...sourceDataset,
+    words,
+    contrasts,
+  };
+}
+
+function hasWordRecording(word: WordEntry): boolean {
+  return word.audio.length > 0;
+}
+
 function createNextPrompt(
   currentProgress: ReturnType<typeof loadProgress>,
   phonemePair: PhonemePair | null,
+  sourceDataset: LanguageDataset,
 ): MatchingPrompt | undefined {
   const item = phonemePair
-    ? selectNextMinimalPairForPhonemes(dataset, phonemePair, currentProgress)
-    : selectNextMinimalPair(dataset, currentProgress);
+    ? selectNextMinimalPairForPhonemes(sourceDataset, phonemePair, currentProgress)
+    : selectNextMinimalPair(sourceDataset, currentProgress);
 
   return item ? createMatchingPrompt(item) : undefined;
 }
@@ -2169,10 +2225,11 @@ function createNextPrompt(
 function createNextSortingPrompt(
   currentProgress: ReturnType<typeof loadProgress>,
   phonemePair: PhonemePair | null,
+  sourceDataset: LanguageDataset,
 ): SortingPrompt | undefined {
   return phonemePair
-    ? createSortingPromptForPhonemes(dataset, phonemePair)
-    : selectNextSortingPrompt(dataset, currentProgress);
+    ? createSortingPromptForPhonemes(sourceDataset, phonemePair)
+    : selectNextSortingPrompt(sourceDataset, currentProgress);
 }
 
 function readUrlState(): UrlState {
@@ -2183,6 +2240,7 @@ function readUrlState(): UrlState {
       phonemePair: null,
       catalogTab: "phonemes",
       explorePhonemeId: null,
+      ttsEnabled: false,
     };
   }
 
@@ -2195,6 +2253,7 @@ function readUrlState(): UrlState {
     phonemePair: parsePhonemePair(params.get("phonemes")),
     catalogTab: explorePhonemeId ? "phonemes" : parseCatalogTab(params.get("tab")) ?? "phonemes",
     explorePhonemeId,
+    ttsEnabled: parseBooleanFlag(params.get("tts")),
   };
 }
 
@@ -2222,6 +2281,12 @@ function writeUrlState(state: UrlState, historyMode: UrlHistoryMode): void {
     params.delete("explore");
   }
 
+  if (state.ttsEnabled) {
+    params.set("tts", "1");
+  } else {
+    params.delete("tts");
+  }
+
   const query = params.toString();
   const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
   const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
@@ -2244,6 +2309,10 @@ function parseMode(value: string | null): TrainingMode | null {
 
 function parseCatalogTab(value: string | null): CatalogTab | null {
   return value === "phonemes" || value === "contrasts" ? value : null;
+}
+
+function parseBooleanFlag(value: string | null): boolean {
+  return value === "1" || value === "true" || value === "yes";
 }
 
 function parseLanguageId(value: string | null): string | null {
