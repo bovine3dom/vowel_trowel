@@ -48,6 +48,23 @@ const scenarios: readonly ScreenshotScenario[] = [
     url: "/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes",
     viewport: { width: 390, height: 1000 },
   },
+  {
+    name: "07-match-result-mobile",
+    url: "/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes",
+    viewport: { width: 390, height: 1000 },
+    action: submitMatchingAnswer,
+  },
+  {
+    name: "08-sort-mobile",
+    url: "/?lang=en-GB&mode=sort&phonemes=en-gb-kit,en-gb-fleece&tab=contrasts",
+    viewport: { width: 390, height: 1000 },
+  },
+  {
+    name: "09-sort-result-mobile",
+    url: "/?lang=en-GB&mode=sort&phonemes=en-gb-kit,en-gb-fleece&tab=contrasts",
+    viewport: { width: 390, height: 1000 },
+    action: submitSortingAnswer,
+  },
 ];
 
 let server: ChildProcess | undefined;
@@ -151,6 +168,28 @@ async function submitMatchingAnswer(page: Page): Promise<void> {
   await wordButtons.nth(0).click();
   await soundButtons.nth(1).click();
   await wordButtons.nth(1).click();
+  await page.getByRole("button", { name: "Check answer" }).click();
+}
+
+async function submitSortingAnswer(page: Page): Promise<void> {
+  const wordCards = page.locator(".sort-bag .sort-word-card");
+  const count = await wordCards.count();
+
+  for (let index = 0; index < count; index += 1) {
+    const wordCard = page.locator(".sort-bag .sort-word-card").first();
+    const phonemeId = await wordCard.getAttribute("data-phoneme");
+
+    if (!phonemeId) {
+      throw new Error("Sort word card is missing its phoneme id.");
+    }
+
+    await wordCard.click();
+    await page
+      .locator(`.sort-group[data-phoneme="${phonemeId}"]`)
+      .first()
+      .evaluate((element) => (element as HTMLElement).click());
+  }
+
   await page.getByRole("button", { name: "Check answer" }).click();
 }
 

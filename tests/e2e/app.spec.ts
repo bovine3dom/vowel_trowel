@@ -228,11 +228,12 @@ test("can submit a sorting answer", async ({ page }) => {
 });
 
 test("limits credits to the current practice view", async ({ page }) => {
-  await page.goto("/?lang=fr&mode=match&phonemes=fr-an,fr-in&tab=phonemes");
+  await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes");
 
   await page.getByText("Audio credits").click();
 
-  await expect(page.getByText("No recordings are used in the current view")).toBeVisible();
+  await expect(page.getByText("moue /mu/")).toBeVisible();
+  await expect(page.getByText("mue /my/")).toBeVisible();
   await expect(page.getByText("jeune /ʒœn/")).toHaveCount(0);
 });
 

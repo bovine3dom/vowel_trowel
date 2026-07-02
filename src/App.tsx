@@ -570,18 +570,17 @@ export default function App() {
             Hear two words, choose what you heard, and practise the sounds that trip you up.
           </p>
         </div>
-        <div class="language-card" aria-label="Current language">
-          <span>Practising</span>
-          <strong>{dataset.name}</strong>
-          <small>{minimalPairCount(practiceDataset())} word pairs</small>
-          <label class="language-select-label">
-            <span>Language</span>
-            <select value={dataset.id} onInput={(event) => chooseLanguage(event.currentTarget.value)}>
-              <For each={languageDatasets}>
-                {(language) => <option value={language.id}>{language.name}</option>}
-              </For>
-            </select>
-          </label>
+        <div class="language-card">
+          <select
+            aria-label="Language"
+            class="language-select"
+            value={dataset.id}
+            onInput={(event) => chooseLanguage(event.currentTarget.value)}
+          >
+            <For each={languageDatasets}>
+              {(language) => <option value={language.id}>{language.name}</option>}
+            </For>
+          </select>
         </div>
       </section>
 
@@ -732,6 +731,9 @@ function TrainingPanel(props: {
   const contrast = createMemo(() =>
     dataset.contrasts.find((candidate) => candidate.id === props.prompt.item.contrastId),
   );
+  const heading = createMemo(() =>
+    contrast()?.label ?? phonemeIdsLabel(props.prompt.item.terms.map((term) => term.phonemeId)),
+  );
   const selectedSlot = createMemo(() =>
     props.prompt.slots.find((slot) => slot.id === props.selectedSlotId),
   );
@@ -740,7 +742,7 @@ function TrainingPanel(props: {
     <section class="training-panel">
       <div class="panel-heading">
         <p class="eyebrow">Listen for</p>
-        <h2 class="ipa-heading">{contrast()?.label ?? props.prompt.item.contrastId}</h2>
+        <h2 class="ipa-heading">{heading()}</h2>
       </div>
       <p class="instructions">
         Play each sample, then choose the word you heard.
@@ -910,6 +912,9 @@ function SortingPanel(props: {
   const contrast = createMemo(() =>
     dataset.contrasts.find((candidate) => candidate.id === props.prompt.contrastId),
   );
+  const heading = createMemo(() =>
+    contrast()?.label ?? phonemeIdsLabel(props.prompt.groups.map((group) => group.phonemeId)),
+  );
   const selectedTerm = createMemo(() =>
     props.prompt.wordCards.find((term) => term.id === props.selectedTermId),
   );
@@ -930,7 +935,7 @@ function SortingPanel(props: {
     <section class="training-panel">
       <div class="panel-heading">
         <p class="eyebrow">Sort words</p>
-        <h2 class="ipa-heading">{contrast()?.label ?? props.prompt.contrastId}</h2>
+        <h2 class="ipa-heading">{heading()}</h2>
       </div>
       <p class="instructions">
         Put each word under the sound it contains. Tap a word to hear it; tap a sound heading
@@ -951,6 +956,7 @@ function SortingPanel(props: {
           {(group) => (
             <section
               class={sortGroupClass(props.prompt, group, props.selectedTermId, props.result)}
+              data-phoneme={group.phonemeId}
               onClick={() => props.onPlaceSelected(group.phonemeId)}
               onDragOver={(event) => event.preventDefault()}
               onDrop={(event) => dropOnGroup(event, group.phonemeId)}
@@ -1092,6 +1098,7 @@ function SortWordCard(props: {
         props.result,
         props.selectedTermId,
       )}
+      data-phoneme={props.term.phonemeId}
       type="button"
       draggable={!props.result}
       onClick={(event) => {
@@ -2065,7 +2072,11 @@ function phonemeLabel(phonemeId: PhonemeId): string {
 }
 
 function phonemePairLabel(phonemePair: PhonemePair): string {
-  return `${phonemeLabel(phonemePair[0])} vs ${phonemeLabel(phonemePair[1])}`;
+  return phonemeIdsLabel(phonemePair);
+}
+
+function phonemeIdsLabel(phonemeIds: readonly PhonemeId[]): string {
+  return phonemeIds.map(phonemeLabel).join(" vs ");
 }
 
 function phonemeCardClass(
