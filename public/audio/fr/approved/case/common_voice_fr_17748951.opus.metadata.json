@@ -1,0 +1,79 @@
+{
+  "stagedAt": "2026-07-02T13:52:12.748Z",
+  "word": {
+    "id": "fr-word-case",
+    "written": "case",
+    "ipa": "/kaz/",
+    "phonemeIds": [
+      "fr-z"
+    ]
+  },
+  "candidate": {
+    "key": "fr-word-case|MSWC%20fr%2Fcase%2Fcommon_voice_fr_17748951.opus|mswc%3Afr%3Acase%2Fcommon_voice_fr_17748951.opus",
+    "sourceId": "mswc:fr:case/common_voice_fr_17748951.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC fr/case/common_voice_fr_17748951.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [],
+    "targetPhonemeIds": [
+      "fr-z"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "fr-z",
+        "ipa": "/z/",
+        "label": "voiced alveolar fricative"
+      }
+    ],
+    "targetContrasts": [
+      "fr-s-z"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme fr-z."
+      ]
+    },
+    "accentPolicy": {
+      "status": "neutral",
+      "notes": []
+    },
+    "commonVoice": {
+      "path": "common_voice_fr_17748951.mp3",
+      "locale": "fr",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "fr",
+      "link": "case/common_voice_fr_17748951.opus",
+      "word": "case"
+    },
+    "score": 16,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/mswc/fr-word-case/common_voice_fr_17748951.opus",
+      "kind": "external",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme fr-z."
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/mswc/fr-word-case/common_voice_fr_17748951.opus",
+    "metadataPath": "public/audio/fr/mswc/fr-word-case/common_voice_fr_17748951.opus.metadata.json",
+    "datasetSrc": "audio/fr/mswc/fr-word-case/common_voice_fr_17748951.opus"
+  }
+}

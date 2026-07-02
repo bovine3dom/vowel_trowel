@@ -1,0 +1,86 @@
+{
+  "stagedAt": "2026-07-02T13:52:12.673Z",
+  "word": {
+    "id": "fr-word-faim",
+    "written": "faim",
+    "ipa": "/fɛ̃/",
+    "phonemeIds": [
+      "fr-in"
+    ]
+  },
+  "candidate": {
+    "key": "fr-word-faim|MSWC%20fr%2Ffaim%2Fcommon_voice_fr_18095781.opus|mswc%3Afr%3Afaim%2Fcommon_voice_fr_18095781.opus",
+    "sourceId": "mswc:fr:faim/common_voice_fr_18095781.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC fr/faim/common_voice_fr_18095781.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "Belgian French"
+    ],
+    "targetPhonemeIds": [
+      "fr-in"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "fr-in",
+        "ipa": "/ɛ̃/",
+        "label": "open-mid front nasal vowel"
+      }
+    ],
+    "targetContrasts": [],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme fr-in."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Swiss/Belgian French is prioritized when available."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_fr_18095781.mp3",
+      "locale": "fr",
+      "accents": "Français de Belgique",
+      "variant": "Français d'Europe",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "fr",
+      "link": "faim/common_voice_fr_18095781.opus",
+      "word": "faim"
+    },
+    "score": 46,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Swiss/Belgian French is prioritized when available.",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/mswc/fr-word-faim/common_voice_fr_18095781.opus",
+      "kind": "external",
+      "accent": "Belgian French",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme fr-in. Common Voice accent: Français de Belgique."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Belgian French"
+    },
+    "localPath": "public/audio/fr/mswc/fr-word-faim/common_voice_fr_18095781.opus",
+    "metadataPath": "public/audio/fr/mswc/fr-word-faim/common_voice_fr_18095781.opus.metadata.json",
+    "datasetSrc": "audio/fr/mswc/fr-word-faim/common_voice_fr_18095781.opus"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "downloadedAt": "2026-07-02T14:01:35.146Z",
+  "word": {
+    "id": "fr-word-commun",
+    "written": "commun",
+    "ipa": "/kɔmœ̃/",
+    "phonemeIds": [
+      "fr-un",
+      "fr-open-o"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Arthur Crbz-commun.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/LL-Q150_%28fra%29-Arthur_Crbz-commun.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Arthur_Crbz-commun.wav",
+    "mime": "audio/wav",
+    "size": 75028,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Arthur Crbz Recorder: Arthur Crbz",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-commun|File%3ALL-Q150%20(fra)-Arthur%20Crbz-commun.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Arthur_Crbz-commun.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/kɔmœ̃/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-commun/LL-Q150__fra_-Arthur_Crbz-commun.wav",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Arthur Crbz Recorder: Arthur Crbz",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Arthur_Crbz-commun.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-commun/LL-Q150__fra_-Arthur_Crbz-commun.wav",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-commun/LL-Q150__fra_-Arthur_Crbz-commun.wav.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-commun/LL-Q150__fra_-Arthur_Crbz-commun.wav"
+  }
+}

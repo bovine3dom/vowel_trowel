@@ -1,0 +1,93 @@
+{
+  "stagedAt": "2026-07-02T13:52:12.665Z",
+  "word": {
+    "id": "fr-word-commun",
+    "written": "commun",
+    "ipa": "/kɔmœ̃/",
+    "phonemeIds": [
+      "fr-un",
+      "fr-open-o"
+    ]
+  },
+  "candidate": {
+    "key": "fr-word-commun|MSWC%20fr%2Fcommun%2Fcommon_voice_fr_17470802.opus|mswc%3Afr%3Acommun%2Fcommon_voice_fr_17470802.opus",
+    "sourceId": "mswc:fr:commun/common_voice_fr_17470802.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC fr/commun/common_voice_fr_17470802.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "Swiss French"
+    ],
+    "targetPhonemeIds": [
+      "fr-un",
+      "fr-open-o"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "fr-un",
+        "ipa": "/œ̃/",
+        "label": "open-mid front rounded nasal vowel"
+      },
+      {
+        "id": "fr-open-o",
+        "ipa": "/ɔ/",
+        "label": "open-mid back rounded vowel"
+      }
+    ],
+    "targetContrasts": [],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme fr-un, fr-open-o."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Swiss/Belgian French is prioritized when available."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_fr_17470802.mp3",
+      "locale": "fr",
+      "accents": "Français de Suisse",
+      "variant": "Français d'Europe",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "fr",
+      "link": "commun/common_voice_fr_17470802.opus",
+      "word": "commun"
+    },
+    "score": 46,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Swiss/Belgian French is prioritized when available.",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/mswc/fr-word-commun/common_voice_fr_17470802.opus",
+      "kind": "external",
+      "accent": "Swiss French",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme fr-un, fr-open-o. Common Voice accent: Français de Suisse."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Swiss French"
+    },
+    "localPath": "public/audio/fr/mswc/fr-word-commun/common_voice_fr_17470802.opus",
+    "metadataPath": "public/audio/fr/mswc/fr-word-commun/common_voice_fr_17470802.opus.metadata.json",
+    "datasetSrc": "audio/fr/mswc/fr-word-commun/common_voice_fr_17470802.opus"
+  }
+}

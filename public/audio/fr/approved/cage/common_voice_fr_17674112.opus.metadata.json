@@ -1,0 +1,80 @@
+{
+  "stagedAt": "2026-07-02T13:52:12.779Z",
+  "word": {
+    "id": "fr-word-cage",
+    "written": "cage",
+    "ipa": "/kaʒ/",
+    "phonemeIds": [
+      "fr-zh"
+    ]
+  },
+  "candidate": {
+    "key": "fr-word-cage|MSWC%20fr%2Fcage%2Fcommon_voice_fr_17674112.opus|mswc%3Afr%3Acage%2Fcommon_voice_fr_17674112.opus",
+    "sourceId": "mswc:fr:cage/common_voice_fr_17674112.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC fr/cage/common_voice_fr_17674112.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [],
+    "targetPhonemeIds": [
+      "fr-zh"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "fr-zh",
+        "ipa": "/ʒ/",
+        "label": "voiced postalveolar fricative"
+      }
+    ],
+    "targetContrasts": [
+      "fr-sh-zh"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme fr-zh."
+      ]
+    },
+    "accentPolicy": {
+      "status": "neutral",
+      "notes": []
+    },
+    "commonVoice": {
+      "path": "common_voice_fr_17674112.mp3",
+      "locale": "fr",
+      "variant": "Français de métropole",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "fr",
+      "link": "cage/common_voice_fr_17674112.opus",
+      "word": "cage"
+    },
+    "score": 16,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/mswc/fr-word-cage/common_voice_fr_17674112.opus",
+      "kind": "external",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme fr-zh."
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/mswc/fr-word-cage/common_voice_fr_17674112.opus",
+    "metadataPath": "public/audio/fr/mswc/fr-word-cage/common_voice_fr_17674112.opus.metadata.json",
+    "datasetSrc": "audio/fr/mswc/fr-word-cage/common_voice_fr_17674112.opus"
+  }
+}

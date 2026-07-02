@@ -1,0 +1,93 @@
+{
+  "stagedAt": "2026-07-02T13:52:12.659Z",
+  "word": {
+    "id": "fr-word-chacun",
+    "written": "chacun",
+    "ipa": "/ʃakœ̃/",
+    "phonemeIds": [
+      "fr-un",
+      "fr-sh"
+    ]
+  },
+  "candidate": {
+    "key": "fr-word-chacun|MSWC%20fr%2Fchacun%2Fcommon_voice_fr_17683746.opus|mswc%3Afr%3Achacun%2Fcommon_voice_fr_17683746.opus",
+    "sourceId": "mswc:fr:chacun/common_voice_fr_17683746.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC fr/chacun/common_voice_fr_17683746.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "Belgian French"
+    ],
+    "targetPhonemeIds": [
+      "fr-un",
+      "fr-sh"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "fr-un",
+        "ipa": "/œ̃/",
+        "label": "open-mid front rounded nasal vowel"
+      },
+      {
+        "id": "fr-sh",
+        "ipa": "/ʃ/",
+        "label": "voiceless postalveolar fricative"
+      }
+    ],
+    "targetContrasts": [],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme fr-un, fr-sh."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Swiss/Belgian French is prioritized when available."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_fr_17683746.mp3",
+      "locale": "fr",
+      "accents": "Français de Belgique",
+      "variant": "Français d'Europe",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "fr",
+      "link": "chacun/common_voice_fr_17683746.opus",
+      "word": "chacun"
+    },
+    "score": 46,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Swiss/Belgian French is prioritized when available.",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/mswc/fr-word-chacun/common_voice_fr_17683746.opus",
+      "kind": "external",
+      "accent": "Belgian French",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme fr-un, fr-sh. Common Voice accent: Français de Belgique."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Belgian French"
+    },
+    "localPath": "public/audio/fr/mswc/fr-word-chacun/common_voice_fr_17683746.opus",
+    "metadataPath": "public/audio/fr/mswc/fr-word-chacun/common_voice_fr_17683746.opus.metadata.json",
+    "datasetSrc": "audio/fr/mswc/fr-word-chacun/common_voice_fr_17683746.opus"
+  }
+}

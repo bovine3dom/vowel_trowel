@@ -1,0 +1,90 @@
+{
+  "stagedAt": "2026-07-02T13:52:12.724Z",
+  "word": {
+    "id": "fr-word-dessert",
+    "written": "dessert",
+    "ipa": "/desɛʁ/",
+    "phonemeIds": [
+      "fr-e",
+      "fr-epsilon",
+      "fr-s"
+    ]
+  },
+  "candidate": {
+    "key": "fr-word-dessert|MSWC%20fr%2Fdessert%2Fcommon_voice_fr_19876772.opus|mswc%3Afr%3Adessert%2Fcommon_voice_fr_19876772.opus",
+    "sourceId": "mswc:fr:dessert/common_voice_fr_19876772.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC fr/dessert/common_voice_fr_19876772.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "Swiss French"
+    ],
+    "targetPhonemeIds": [
+      "fr-s"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "fr-s",
+        "ipa": "/s/",
+        "label": "voiceless alveolar fricative"
+      }
+    ],
+    "targetContrasts": [
+      "fr-s-z"
+    ],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme fr-s."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Swiss/Belgian French is prioritized when available."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_fr_19876772.mp3",
+      "locale": "fr",
+      "accents": "Français de Suisse",
+      "variant": "Français d'Europe",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "fr",
+      "link": "dessert/common_voice_fr_19876772.opus",
+      "word": "dessert"
+    },
+    "score": 46,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Swiss/Belgian French is prioritized when available.",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/mswc/fr-word-dessert/common_voice_fr_19876772.opus",
+      "kind": "external",
+      "accent": "Swiss French",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme fr-s. Common Voice accent: Français de Suisse."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Swiss French"
+    },
+    "localPath": "public/audio/fr/mswc/fr-word-dessert/common_voice_fr_19876772.opus",
+    "metadataPath": "public/audio/fr/mswc/fr-word-dessert/common_voice_fr_19876772.opus.metadata.json",
+    "datasetSrc": "audio/fr/mswc/fr-word-dessert/common_voice_fr_19876772.opus"
+  }
+}

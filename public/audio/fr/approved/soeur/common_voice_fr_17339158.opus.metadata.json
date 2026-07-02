@@ -1,0 +1,93 @@
+{
+  "stagedAt": "2026-07-02T13:52:13.086Z",
+  "word": {
+    "id": "fr-word-soeur",
+    "written": "sœur",
+    "ipa": "/sœʁ/",
+    "phonemeIds": [
+      "fr-oe",
+      "fr-s"
+    ]
+  },
+  "candidate": {
+    "key": "fr-word-soeur|MSWC%20fr%2Fs%C5%93ur%2Fcommon_voice_fr_17339158.opus|mswc%3Afr%3As%C5%93ur%2Fcommon_voice_fr_17339158.opus",
+    "sourceId": "mswc:fr:sœur/common_voice_fr_17339158.opus",
+    "sourceName": "MSWC/Common Voice",
+    "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+    "fileTitle": "MSWC fr/sœur/common_voice_fr_17339158.opus",
+    "audioUrl": null,
+    "license": "CC0-1.0",
+    "licenseShortName": "CC0-1.0",
+    "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+    "regions": [
+      "Belgian French"
+    ],
+    "targetPhonemeIds": [
+      "fr-oe",
+      "fr-s"
+    ],
+    "targetPhonemes": [
+      {
+        "id": "fr-oe",
+        "ipa": "/œ/",
+        "label": "open-mid front rounded vowel"
+      },
+      {
+        "id": "fr-s",
+        "ipa": "/s/",
+        "label": "voiceless alveolar fricative"
+      }
+    ],
+    "targetContrasts": [],
+    "graphemeCheck": {
+      "status": "needs-review",
+      "notes": [
+        "MSWC indexes clips by written form, not IPA, POS, sense, or accent-specific phoneme inventory.",
+        "Manual approval must verify target phoneme fr-oe, fr-s."
+      ]
+    },
+    "accentPolicy": {
+      "status": "preferred",
+      "notes": [
+        "Swiss/Belgian French is prioritized when available."
+      ]
+    },
+    "commonVoice": {
+      "path": "common_voice_fr_17339158.mp3",
+      "locale": "fr",
+      "accents": "Français de Belgique",
+      "variant": "Français d'Europe",
+      "upVotes": 2,
+      "downVotes": 0
+    },
+    "mswc": {
+      "languageCode": "fr",
+      "link": "sœur/common_voice_fr_17339158.opus",
+      "word": "sœur"
+    },
+    "score": 46,
+    "reasons": [
+      "MSWC clip found in local clips directory",
+      "candidate matched by exact written form or safe unaccented directory lookup",
+      "joined Common Voice metadata by clip filename stem",
+      "Swiss/Belgian French is prioritized when available.",
+      "Common Voice vote balance +2"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/mswc/fr-word-soeur/common_voice_fr_17339158.opus",
+      "kind": "external",
+      "accent": "Belgian French",
+      "license": "CC0-1.0",
+      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
+      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
+      "notes": "MSWC grapheme-only candidate for target phoneme fr-oe, fr-s. Common Voice accent: Français de Belgique."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Belgian French"
+    },
+    "localPath": "public/audio/fr/mswc/fr-word-soeur/common_voice_fr_17339158.opus",
+    "metadataPath": "public/audio/fr/mswc/fr-word-soeur/common_voice_fr_17339158.opus.metadata.json",
+    "datasetSrc": "audio/fr/mswc/fr-word-soeur/common_voice_fr_17339158.opus"
+  }
+}
