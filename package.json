@@ -2,6 +2,7 @@
   "name": "vowel_trowel",
   "type": "module",
   "private": true,
+  "packageManager": "bun@1.3.4",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
