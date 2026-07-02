@@ -25,6 +25,11 @@ button {
   font: inherit;
 }
 
+button,
+select {
+  border-radius: 0;
+}
+
 .app-shell {
   width: min(1100px, calc(100% - 32px));
   margin: 0 auto;
@@ -183,10 +188,12 @@ h3 {
 .catalog-tab {
   cursor: pointer;
   border: 2px solid #202020;
+  box-shadow: 2px 2px 0 #202020;
   background: #fffdfa;
   color: #202020;
   padding: 10px 14px;
   font-weight: 750;
+  line-height: 1.2;
 }
 
 .mode-tab.selected,
@@ -280,6 +287,7 @@ h3 {
 .word-button,
 .sort-word-card,
 .primary-button,
+.text-button,
 .small-button {
   border: 2px solid #202020;
   box-shadow: 2px 2px 0 #202020;
@@ -300,17 +308,28 @@ h3 {
 .sound-button:hover,
 .word-button:hover:not(:disabled),
 .sort-word-card:hover:not(:disabled),
+.text-button:hover:not(:disabled),
 .small-button:hover:not(:disabled),
 .mode-tab:hover:not(.selected),
 .catalog-tab:hover:not(.selected) {
   background: #f7f7f4;
 }
 
+.primary-button:hover:not(:disabled),
+.mode-tab.selected:hover,
+.catalog-tab.selected:hover {
+  background: #34302a;
+}
+
 .sound-button:active,
 .word-button:active:not(:disabled),
 .sort-word-card:active:not(:disabled),
 .primary-button:active:not(:disabled),
-.small-button:active:not(:disabled) {
+.text-button:active:not(:disabled),
+.small-button:active:not(:disabled),
+.mode-tab:active:not(:disabled),
+.catalog-tab:active:not(:disabled),
+.contrast-button:active:not(:disabled) {
   transform: translate(2px, 2px);
   box-shadow: none;
 }
@@ -489,8 +508,18 @@ h3 {
 
 .action-row {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
   justify-content: flex-end;
   margin-top: 18px;
+}
+
+.primary-button,
+.small-button,
+.text-button {
+  min-height: 38px;
+  line-height: 1.2;
 }
 
 .primary-button {
@@ -509,6 +538,7 @@ h3 {
 }
 
 .primary-button:disabled,
+.text-button:disabled,
 .small-button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
@@ -737,18 +767,16 @@ h3 {
 
 .text-button {
   margin-top: 18px;
-  padding: 0;
-  border: 0;
-  background: transparent;
+  padding: 7px 10px;
+  background: #fffdfa;
   color: #202020;
+  font-size: 0.88rem;
   font-weight: 750;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
 }
 
 .text-button.compact {
   margin-top: 0;
-  font-size: 0.9rem;
 }
 
 .content-panel {
@@ -777,6 +805,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  align-items: center;
 }
 
 .phoneme-grid {
@@ -786,11 +815,17 @@ h3 {
 }
 
 .phoneme-card {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   padding: 12px;
   border: 1px solid #d6cec2;
   background: #fffdfa;
+}
+
+.phoneme-card > .text-button {
+  margin-top: auto;
+  width: 100%;
 }
 
 .phoneme-card.active {
@@ -881,6 +916,11 @@ h3 {
   gap: 14px;
 }
 
+.phoneme-explorer > .text-button {
+  justify-self: center;
+  min-width: 180px;
+}
+
 .phoneme-explorer-heading {
   display: flex;
   gap: 16px;
@@ -942,7 +982,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  align-items: baseline;
+  align-items: center;
 }
 
 .track-row span {
@@ -1045,13 +1085,32 @@ h3 {
   .word-button,
   .sort-word-card,
   .primary-button,
+  .text-button,
   .small-button,
+  .mode-tab,
+  .catalog-tab,
   .contrast-button {
     box-shadow: none;
   }
 
+  .action-row {
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .action-row > button,
   .primary-button {
     width: 100%;
+  }
+
+  .selection-actions,
+  .explore-actions {
+    width: 100%;
+  }
+
+  .selection-actions > button,
+  .explore-actions > button {
+    flex: 1 1 150px;
   }
 
   .explore-word-heading,
