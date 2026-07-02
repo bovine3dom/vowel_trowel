@@ -5,6 +5,9 @@ import type { PromptAnswer, PromptResult } from "./session";
 import { selectNextMinimalPair } from "./session";
 import { lockTermAudio } from "./audio";
 
+const SORT_WORDS_PER_GROUP_MIN = 4;
+const SORT_WORDS_PER_GROUP_MAX = 6;
+
 export interface SortingGroup {
   id: PhonemeId;
   phonemeId: PhonemeId;
@@ -146,7 +149,7 @@ export function createSortingPrompt(
     }];
   });
   const wordCards = groups.flatMap((group) =>
-    uniqueTerms(termsByPhoneme.get(group.phonemeId) ?? [])
+    sampleSortingTerms(uniqueTerms(termsByPhoneme.get(group.phonemeId) ?? []))
       .map((term) => lockedTermsById.get(term.id))
       .filter((term): term is MinimalPairTerm => Boolean(term)),
   );
@@ -211,7 +214,7 @@ function createCustomSortingPrompt(
     }];
   });
   const wordCards = groups.flatMap((group) =>
-    uniqueTerms(termsByPhoneme.get(group.phonemeId) ?? [])
+    sampleSortingTerms(uniqueTerms(termsByPhoneme.get(group.phonemeId) ?? []))
       .map((term) => lockedTermsById.get(term.id))
       .filter((term): term is MinimalPairTerm => Boolean(term)),
   );
@@ -252,6 +255,16 @@ function uniqueTerms(terms: MinimalPairTerm[]): MinimalPairTerm[] {
   }
 
   return unique;
+}
+
+function sampleSortingTerms(terms: MinimalPairTerm[]): MinimalPairTerm[] {
+  const count = randomInteger(SORT_WORDS_PER_GROUP_MIN, SORT_WORDS_PER_GROUP_MAX);
+
+  return shuffleArray(terms).slice(0, Math.min(terms.length, count));
+}
+
+function randomInteger(min: number, max: number): number {
+  return min + Math.floor(Math.random() * (max - min + 1));
 }
 
 function shuffleArray<T>(items: readonly T[]): T[] {

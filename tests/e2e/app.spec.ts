@@ -147,7 +147,11 @@ test("opens sort mode from shareable URL parameters", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Sort words" })).toHaveClass(/selected/);
   await expect(page.getByRole("heading", { name: "/ɪ/ vs /iː/" })).toBeVisible();
   await expect(page.getByText("Word bag")).toBeVisible();
-  await expect(page.getByRole("button", { name: /ship/i })).toBeVisible();
+  const sortCards = page.locator(".sort-bag .sort-word-card");
+  await expect(sortCards.first()).toBeVisible();
+  const sortCardCount = await sortCards.count();
+  expect(sortCardCount).toBeGreaterThanOrEqual(2);
+  expect(sortCardCount).toBeLessThanOrEqual(12);
   await expect(page).toHaveURL(/phonemes=en-gb-kit%2Cen-gb-fleece|phonemes=en-gb-kit,en-gb-fleece/);
 });
 
@@ -180,7 +184,36 @@ test("can submit a matching answer", async ({ page }) => {
   await page.getByRole("button", { name: "Check answer" }).click();
 
   await expect(page.getByText(/Correct|Not quite/)).toBeVisible();
-  await expect(page.getByRole("button", { name: "Next pair" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Play again" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Next contrast" })).toBeVisible();
+
+  await page.getByRole("button", { name: "Play again" }).click();
+
+  await expect(page.getByText(/Correct|Not quite/)).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Check answer" })).toBeDisabled();
+});
+
+test("can submit a sorting answer", async ({ page }) => {
+  await page.goto("/?lang=fr&mode=sort&phonemes=fr-u,fr-y&tab=phonemes");
+
+  const wordBag = page.locator(".sort-bag");
+  const groupTarget = page.locator(".sort-groups .sort-group").first();
+
+  while (await wordBag.locator(".sort-word-card").count()) {
+    await wordBag.locator(".sort-word-card").first().click();
+    await groupTarget.click({ position: { x: 10, y: 170 } });
+  }
+
+  await page.getByRole("button", { name: "Check answer" }).click();
+
+  await expect(page.getByText(/Correct|Not quite/)).toBeVisible();
+  await expect(page.getByRole("button", { name: "Play again" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Next contrast" })).toBeVisible();
+
+  await page.getByRole("button", { name: "Next contrast" }).click();
+
+  await expect(page.getByText(/Correct|Not quite/)).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Check answer" })).toBeDisabled();
 });
 
 test("limits credits to the current practice view", async ({ page }) => {
