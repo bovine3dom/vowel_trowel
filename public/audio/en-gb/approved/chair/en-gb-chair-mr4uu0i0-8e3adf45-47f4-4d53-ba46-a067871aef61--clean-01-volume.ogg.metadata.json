@@ -1,10 +1,130 @@
 {
-  "updatedAt": "2026-07-03T13:12:38.864Z",
+  "importedAt": "2026-07-03T20:09:00.286Z",
+  "bundlePath": "/home/olie/Downloads/en-gb-batch-mr4uvzdj-a3cdbd62-bceb-4ddb-92b2-60d09c24cb20.zip",
+  "manifest": {
+    "version": 2,
+    "type": "vowel-trowel-contribution",
+    "id": "en-gb-batch-mr4uvzdj-a3cdbd62-bceb-4ddb-92b2-60d09c24cb20",
+    "createdAt": "2026-07-03T11:34:38.553Z",
+    "pageUrl": "http://localhost:5173/?lang=en-GB&mode=match&tab=phonemes&phonemes=en-gb-fleece%2Cen-gb-dress&contribute=mode",
+    "language": {
+      "id": "en-GB",
+      "slug": "en-gb",
+      "name": "British English",
+      "autonym": "British English"
+    },
+    "contribution": {
+      "licence": "CC0-1.0",
+      "speakerName": "bovine3dom",
+      "accent": "British English"
+    },
+    "recordings": [
+      {
+        "id": "en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61",
+        "filename": "recordings/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33792,
+        "recordedAt": "2026-07-03T11:33:06.697Z",
+        "word": {
+          "id": "en-gb-word-chair",
+          "shortId": "chair",
+          "written": "chair",
+          "ipa": "/tʃeə/",
+          "phonemeIds": [
+            "en-gb-ch",
+            "en-gb-square"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782",
+        "filename": "recordings/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33794,
+        "recordedAt": "2026-07-03T11:33:44.961Z",
+        "word": {
+          "id": "en-gb-word-share",
+          "shortId": "share",
+          "written": "share",
+          "ipa": "/ʃeə/",
+          "phonemeIds": [
+            "en-gb-sh",
+            "en-gb-square"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2",
+        "filename": "recordings/en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33779,
+        "recordedAt": "2026-07-03T11:34:08.929Z",
+        "word": {
+          "id": "en-gb-word-prize",
+          "shortId": "prize",
+          "written": "prize",
+          "ipa": "/praɪz/",
+          "phonemeIds": [
+            "en-gb-p",
+            "en-gb-r",
+            "en-gb-price",
+            "en-gb-z"
+          ]
+        }
+      }
+    ]
+  },
+  "recording": {
+    "id": "en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61",
+    "filename": "recordings/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61.webm",
+    "mimeType": "audio/webm;codecs=opus",
+    "size": 33792,
+    "recordedAt": "2026-07-03T11:33:06.697Z",
+    "word": {
+      "id": "en-gb-word-chair",
+      "shortId": "chair",
+      "written": "chair",
+      "ipa": "/tʃeə/",
+      "phonemeIds": [
+        "en-gb-ch",
+        "en-gb-square"
+      ]
+    }
+  },
+  "word": {
+    "id": "en-gb-word-chair",
+    "written": "chair",
+    "ipa": "/tʃeə/",
+    "phonemeIds": [
+      "en-gb-ch",
+      "en-gb-square"
+    ]
+  },
   "candidate": {
     "key": "en-gb-word-chair|User%20contribution%20chair%20en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61|contribution%3Aen-GB%3Aen-gb-batch-mr4uvzdj-a3cdbd62-bceb-4ddb-92b2-60d09c24cb20%3Aen-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61",
+    "sourceId": "contribution:en-GB:en-gb-batch-mr4uvzdj-a3cdbd62-bceb-4ddb-92b2-60d09c24cb20:en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61",
+    "sourceName": "Vowel Trowel user contribution",
+    "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uvzdj-a3cdbd62-bceb-4ddb-92b2-60d09c24cb20:en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61",
+    "fileTitle": "User contribution chair en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61",
+    "audioUrl": null,
     "localPath": "public/audio/en-gb/contributions/chair/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61--clean-01-volume.ogg",
     "metadataPath": "public/audio/en-gb/contributions/chair/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61--clean-01-volume.ogg.metadata.json",
     "datasetSrc": "audio/en-gb/contributions/chair/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61--clean-01-volume.ogg",
+    "license": "CC0 1.0",
+    "licenseShortName": "CC0 1.0",
+    "attribution": "bovine3dom",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-ch",
+      "en-gb-square"
+    ],
+    "reasons": [
+      "User-contributed recording bundle.",
+      "Manifest created at 2026-07-03T11:34:38.553Z.",
+      "Recorded from http://localhost:5173/?lang=en-GB&mode=match&tab=phonemes&phonemes=en-gb-fleece%2Cen-gb-dress&contribute=mode."
+    ],
     "suggestedAudioSource": {
       "src": "audio/en-gb/contributions/chair/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61--clean-01-volume.ogg",
       "kind": "contribution",
@@ -14,6 +134,11 @@
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uvzdj-a3cdbd62-bceb-4ddb-92b2-60d09c24cb20:en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61",
       "notes": "User-contributed recording for chair /tʃeə/."
+    },
+    "review": {
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for chair /tʃeə/."
     },
     "audioProcessing": {
       "original": {
@@ -41,14 +166,10 @@
           "outputPath": "public/audio/en-gb/contributions/chair/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/chair/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/chair/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T13:12:36.461Z"
+          "appliedAt": "2026-07-03T20:09:00.286Z"
         }
       ],
       "currentStep": 0
-    },
-    "review": {
-      "status": "approved",
-      "accent": "British English"
     }
   }
 }

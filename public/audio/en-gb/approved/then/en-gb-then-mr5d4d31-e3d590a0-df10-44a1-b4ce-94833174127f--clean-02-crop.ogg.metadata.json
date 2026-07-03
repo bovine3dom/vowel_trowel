@@ -1,0 +1,65 @@
+{
+  "updatedAt": "2026-07-03T20:11:05.385Z",
+  "candidate": {
+    "key": "en-gb-word-then|User%20contribution%20then%20en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f|contribution%3Aen-GB%3Aen-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873%3Aen-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f",
+    "localPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-02-crop.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-02-crop.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-02-crop.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-02-crop.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f",
+      "notes": "User-contributed recording for then /ðen/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f.webm",
+        "metadataPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f.webm",
+          "kind": "contribution",
+          "speaker": "bovine3dom",
+          "accent": "British English",
+          "license": "CC0 1.0",
+          "attribution": "bovine3dom",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f",
+          "notes": "User-contributed recording for then /ðen/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f.webm",
+          "outputPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T20:09:01.977Z"
+        },
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-01-volume.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-02-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-01-volume.ogg",
+          "outputPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-02-crop.ogg",
+          "datasetSrc": "audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-02-crop.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-02-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T20:11:03.916Z"
+        }
+      ],
+      "currentStep": 1
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    }
+  }
+}

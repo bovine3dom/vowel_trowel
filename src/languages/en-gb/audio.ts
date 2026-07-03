@@ -1,6 +1,18 @@
 import type { AudioSource } from "../types";
 
 export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]> = {
+  "about": [
+    {
+      "src": "audio/en-gb/approved/about/en-gb-about-mr5d36v3-d70b8886-c2c7-48c1-8a70-b6f0a10601c6--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-about-mr5d36v3-d70b8886-c2c7-48c1-8a70-b6f0a10601c6",
+      "notes": "User-contributed recording for about /əˈbaʊt/."
+    }
+  ],
   "after": [
     {
       "src": "audio/en-gb/approved/after/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7--clean-01-volume.ogg",
@@ -740,6 +752,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "notes": "Listen before approving. User-contributed recording for choice /tʃɔɪs/."
     }
   ],
+  "chutzpah": [
+    {
+      "src": "audio/en-gb/approved/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-02-click.ogg",
+      "kind": "contribution",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9",
+      "notes": "User-contributed recording for chutzpah /ˈxʊtspə/."
+    }
+  ],
   "city": [
     {
       "src": "audio/en-gb/approved/city/en-gb-city-mr5564l2-c43ff094-6088-4434-aa6d-dbddfef140d4--clean-01-volume.ogg",
@@ -750,6 +771,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5588fb-471061f5-64aa-49dc-9bed-1ab1dba196e9:en-gb-city-mr5564l2-c43ff094-6088-4434-aa6d-dbddfef140d4",
       "notes": "Listen before approving. User-contributed recording for city /ˈsɪti/."
+    }
+  ],
+  "clear": [
+    {
+      "src": "audio/en-gb/approved/clear/en-gb-clear-mr5cvkos-dc2595d1-d722-421f-88a2-3f424842c4f1--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-clear-mr5cvkos-dc2595d1-d722-421f-88a2-3f424842c4f1",
+      "notes": "User-contributed recording for clear /klɪə/."
     }
   ],
   "cloth": [
@@ -1073,6 +1106,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-thought. Common Voice accent: England English."
     }
   ],
+  "deer": [
+    {
+      "src": "audio/en-gb/approved/deer/en-gb-deer-mr5cxy7p-d9bf1115-207a-456d-85ba-5da65b7ca809--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-deer-mr5cxy7p-d9bf1115-207a-456d-85ba-5da65b7ca809",
+      "notes": "User-contributed recording for deer /dɪə/."
+    }
+  ],
   "die": [
     {
       "src": "audio/en-gb/approved/die/En-us-die.ogg",
@@ -1106,6 +1151,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-down.ogg"
+    }
+  ],
+  "ear": [
+    {
+      "src": "audio/en-gb/approved/ear/en-gb-ear-mr5czybv-3ac38ce1-4d7d-479a-9aee-a5e0a28f00b5--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-ear-mr5czybv-3ac38ce1-4d7d-479a-9aee-a5e0a28f00b5",
+      "notes": "User-contributed recording for ear /ɪə/."
     }
   ],
   "fail": [
@@ -1179,7 +1236,19 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "contribution",
       "license": "CC0 1.0",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2",
-      "notes": "User-contributed recording for father /ˈfɑːðə/."
+      "notes": "Listen before approving. User-contributed recording for father /ˈfɑːðə/."
+    }
+  ],
+  "fear": [
+    {
+      "src": "audio/en-gb/approved/fear/en-gb-fear-mr5d3gct-1195df71-5dcc-4276-892c-07588552d304--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-fear-mr5d3gct-1195df71-5dcc-4276-892c-07588552d304",
+      "notes": "User-contributed recording for fear /fɪə/."
     }
   ],
   "feel": [
@@ -1233,7 +1302,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "contribution",
       "license": "CC0 1.0",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-ferry-mr56p63v-44f769d0-261f-4747-8fce-a2f0c1372fc4",
-      "notes": "User-contributed recording for ferry /ˈferi/."
+      "notes": "Listen before approving. User-contributed recording for ferry /ˈferi/."
     }
   ],
   "fill": [
@@ -1302,6 +1371,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-fun.ogg"
     }
   ],
+  "funny": [
+    {
+      "src": "audio/en-gb/approved/funny/en-gb-funny-mr5d3uod-216bd409-9632-44ef-8ad9-e47d49ed678b--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-funny-mr5d3uod-216bd409-9632-44ef-8ad9-e47d49ed678b",
+      "notes": "User-contributed recording for funny /ˈfʌni/."
+    }
+  ],
   "game": [
     {
       "src": "audio/en-gb/approved/game/En-us-game.ogg",
@@ -1317,7 +1398,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "contribution",
       "license": "CC0 1.0",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf",
-      "notes": "User-contributed recording for genre /ˈʒɒnrə/."
+      "notes": "Listen before approving. User-contributed recording for genre /ˈʒɒnrə/."
     }
   ],
   "gin": [
@@ -1468,7 +1549,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "contribution",
       "license": "CC0 1.0",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326",
-      "notes": "User-contributed recording for happy /ˈhæpi/."
+      "notes": "Listen before approving. User-contributed recording for happy /ˈhæpi/."
     }
   ],
   "head": [
@@ -1597,13 +1678,25 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-ca-jeep.oga"
     }
   ],
+  "joy": [
+    {
+      "src": "audio/en-gb/approved/joy/en-gb-joy-mr5d08n2-07358073-261f-4b53-b034-c3dd15eb9a33--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-joy-mr5d08n2-07358073-261f-4b53-b034-c3dd15eb9a33",
+      "notes": "User-contributed recording for joy /dʒɔɪ/."
+    }
+  ],
   "jury": [
     {
       "src": "audio/en-gb/approved/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg",
       "kind": "contribution",
       "license": "CC0 1.0",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d",
-      "notes": "User-contributed recording for jury /ˈdʒʊəri/."
+      "notes": "Listen before approving. User-contributed recording for jury /ˈdʒʊəri/."
     }
   ],
   "lace": [
@@ -1777,6 +1870,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-fleece, en-gb-v. Common Voice accent: England English."
     }
   ],
+  "leisure": [
+    {
+      "src": "audio/en-gb/approved/leisure/en-gb-leisure-mr5cyeij-e9b65db1-c75a-4ce3-9216-53210b33143e--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-leisure-mr5cyeij-e9b65db1-c75a-4ce3-9216-53210b33143e",
+      "notes": "User-contributed recording for leisure /ˈleʒə/."
+    }
+  ],
   "let": [
     {
       "src": "audio/en-gb/approved/let/common_voice_en_13648.opus",
@@ -1867,6 +1972,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-live-verb.ogg"
+    }
+  ],
+  "loch": [
+    {
+      "src": "audio/en-gb/approved/loch/en-gb-loch-mr5czg45-15e59b8e-e641-44d9-9019-ad2de010a3c8--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-loch-mr5czg45-15e59b8e-e641-44d9-9019-ad2de010a3c8",
+      "notes": "User-contributed recording for loch /lɒx/."
     }
   ],
   "lock": [
@@ -2036,6 +2153,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-mate.ogg"
     }
   ],
+  "measure": [
+    {
+      "src": "audio/en-gb/approved/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b",
+      "notes": "User-contributed recording for measure /ˈmeʒə/."
+    }
+  ],
   "men": [
     {
       "src": "audio/en-gb/approved/men/common_voice_en_11863.opus",
@@ -2092,6 +2221,30 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-might.ogg"
+    }
+  ],
+  "mother": [
+    {
+      "src": "audio/en-gb/approved/mother/en-gb-mother-mr5cyt6s-ef9d3b8a-9526-4bf5-b650-ff2f2a65fa6d--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-mother-mr5cyt6s-ef9d3b8a-9526-4bf5-b650-ff2f2a65fa6d",
+      "notes": "User-contributed recording for mother /ˈmʌðə/."
+    }
+  ],
+  "noise": [
+    {
+      "src": "audio/en-gb/approved/noise/en-gb-noise-mr5d443v-cef73b38-309a-4515-b61c-e5d17621f7f9--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-noise-mr5d443v-cef73b38-309a-4515-b61c-e5d17621f7f9",
+      "notes": "User-contributed recording for noise /nɔɪz/."
     }
   ],
   "not": [
@@ -2253,6 +2406,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-pool.wav"
     }
   ],
+  "poor": [
+    {
+      "src": "audio/en-gb/approved/poor/en-gb-poor-mr5d1hbx-5232f72f-cfea-41b2-ac17-ffdb13f790cb--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-poor-mr5d1hbx-5232f72f-cfea-41b2-ac17-ffdb13f790cb",
+      "notes": "User-contributed recording for poor /pʊə/."
+    }
+  ],
   "port": [
     {
       "src": "audio/en-gb/approved/port/En-uk-a_port.ogg",
@@ -2306,6 +2471,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-pull.ogg"
+    }
+  ],
+  "pure": [
+    {
+      "src": "audio/en-gb/approved/pure/en-gb-pure-mr5cxo4a-2a7fc7ce-6b25-4717-91bb-9c2a307a776e--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-pure-mr5cxo4a-2a7fc7ce-6b25-4717-91bb-9c2a307a776e",
+      "notes": "User-contributed recording for pure /pjʊə/."
     }
   ],
   "race": [
@@ -2974,6 +3151,30 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sum.ogg"
     }
   ],
+  "that": [
+    {
+      "src": "audio/en-gb/approved/that/en-gb-that-mr5d1qja-86d72b17-72ad-4cf9-b626-0ef6f04da5ab--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-that-mr5d1qja-86d72b17-72ad-4cf9-b626-0ef6f04da5ab",
+      "notes": "User-contributed recording for that /ðæt/."
+    }
+  ],
+  "then": [
+    {
+      "src": "audio/en-gb/approved/then/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f--clean-02-crop.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f",
+      "notes": "User-contributed recording for then /ðen/."
+    }
+  ],
   "thick": [
     {
       "src": "audio/en-gb/approved/thick/En-us-thick.ogg",
@@ -3110,6 +3311,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-tin.ogg"
     }
   ],
+  "tour": [
+    {
+      "src": "audio/en-gb/approved/tour/en-gb-tour-mr5d4pvq-a9fe3623-a385-4a4c-9f6b-0225ad5c8e4f--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-tour-mr5d4pvq-a9fe3623-a385-4a4c-9f6b-0225ad5c8e4f",
+      "notes": "User-contributed recording for tour /tʊə/."
+    }
+  ],
   "town": [
     {
       "src": "audio/en-gb/approved/town/En-uk-town.ogg",
@@ -3162,6 +3375,30 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-strut. Common Voice accent: England English|New Zealand English."
+    }
+  ],
+  "unit": [
+    {
+      "src": "audio/en-gb/approved/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b",
+      "notes": "User-contributed recording for unit /ˈjuːnɪt/."
+    }
+  ],
+  "use": [
+    {
+      "src": "audio/en-gb/approved/use/en-gb-use-mr5d2vhh-a12b5e04-8993-4149-8198-e7a0a55a7602--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-use-mr5d2vhh-a12b5e04-8993-4149-8198-e7a0a55a7602",
+      "notes": "User-contributed recording for use /juːs/."
     }
   ],
   "van": [

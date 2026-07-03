@@ -1,10 +1,173 @@
 {
-  "updatedAt": "2026-07-03T13:12:12.543Z",
+  "importedAt": "2026-07-03T20:09:00.491Z",
+  "bundlePath": "/home/olie/Downloads/en-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3.zip",
+  "manifest": {
+    "version": 2,
+    "type": "vowel-trowel-contribution",
+    "id": "en-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3",
+    "createdAt": "2026-07-03T13:11:53.308Z",
+    "pageUrl": "http://localhost:5173/?lang=en-GB&mode=match&tab=phonemes&phonemes=en-gb-f%2Cen-gb-v&contribute=mode",
+    "language": {
+      "id": "en-GB",
+      "slug": "en-gb",
+      "name": "British English",
+      "autonym": "British English"
+    },
+    "contribution": {
+      "licence": "CC0-1.0",
+      "speakerName": "bovine3dom",
+      "accent": "British English"
+    },
+    "recordings": [
+      {
+        "id": "en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7",
+        "filename": "recordings/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34130,
+        "recordedAt": "2026-07-03T13:10:37.732Z",
+        "word": {
+          "id": "en-gb-word-after",
+          "shortId": "after",
+          "written": "after",
+          "ipa": "/ˈɑːftə/",
+          "phonemeIds": [
+            "en-gb-bath",
+            "en-gb-f",
+            "en-gb-t",
+            "en-gb-schwa"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-ask-mr4yboq1-8720982a-9344-4b0d-b1f5-c47d98f5c73c",
+        "filename": "recordings/en-gb-ask-mr4yboq1-8720982a-9344-4b0d-b1f5-c47d98f5c73c.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33780,
+        "recordedAt": "2026-07-03T13:10:50.089Z",
+        "word": {
+          "id": "en-gb-word-ask",
+          "shortId": "ask",
+          "written": "ask",
+          "ipa": "/ɑːsk/",
+          "phonemeIds": [
+            "en-gb-bath",
+            "en-gb-s",
+            "en-gb-k"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-bach-mr4yc1xb-08952567-9122-42dd-8dcd-d5e80e458868",
+        "filename": "recordings/en-gb-bach-mr4yc1xb-08952567-9122-42dd-8dcd-d5e80e458868.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33806,
+        "recordedAt": "2026-07-03T13:11:07.199Z",
+        "word": {
+          "id": "en-gb-word-bach",
+          "shortId": "bach",
+          "written": "Bach",
+          "ipa": "/bɑːx/",
+          "phonemeIds": [
+            "en-gb-b",
+            "en-gb-palm",
+            "en-gb-x"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-bath-mr4ycjzp-e9ebfff8-0312-4b8d-8fc4-fb1e18d42602",
+        "filename": "recordings/en-gb-bath-mr4ycjzp-e9ebfff8-0312-4b8d-8fc4-fb1e18d42602.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33781,
+        "recordedAt": "2026-07-03T13:11:30.613Z",
+        "word": {
+          "id": "en-gb-word-bath",
+          "shortId": "bath",
+          "written": "bath",
+          "ipa": "/bɑːθ/",
+          "phonemeIds": [
+            "en-gb-b",
+            "en-gb-bath",
+            "en-gb-theta"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-beer-mr4ycsnz-ee0a68f1-9141-40d9-94ca-f5d6f14e7527",
+        "filename": "recordings/en-gb-beer-mr4ycsnz-ee0a68f1-9141-40d9-94ca-f5d6f14e7527.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33797,
+        "recordedAt": "2026-07-03T13:11:41.855Z",
+        "word": {
+          "id": "en-gb-word-beer",
+          "shortId": "beer",
+          "written": "beer",
+          "ipa": "/bɪə/",
+          "phonemeIds": [
+            "en-gb-b",
+            "en-gb-near"
+          ]
+        }
+      }
+    ]
+  },
+  "recording": {
+    "id": "en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7",
+    "filename": "recordings/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7.webm",
+    "mimeType": "audio/webm;codecs=opus",
+    "size": 34130,
+    "recordedAt": "2026-07-03T13:10:37.732Z",
+    "word": {
+      "id": "en-gb-word-after",
+      "shortId": "after",
+      "written": "after",
+      "ipa": "/ˈɑːftə/",
+      "phonemeIds": [
+        "en-gb-bath",
+        "en-gb-f",
+        "en-gb-t",
+        "en-gb-schwa"
+      ]
+    }
+  },
+  "word": {
+    "id": "en-gb-word-after",
+    "written": "after",
+    "ipa": "/ˈɑːftə/",
+    "phonemeIds": [
+      "en-gb-palm",
+      "en-gb-f",
+      "en-gb-t",
+      "en-gb-schwa"
+    ]
+  },
   "candidate": {
     "key": "en-gb-word-after|User%20contribution%20after%20en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7|contribution%3Aen-GB%3Aen-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3%3Aen-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7",
+    "sourceId": "contribution:en-GB:en-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3:en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7",
+    "sourceName": "Vowel Trowel user contribution",
+    "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3:en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7",
+    "fileTitle": "User contribution after en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7",
+    "audioUrl": null,
     "localPath": "public/audio/en-gb/contributions/after/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7--clean-01-volume.ogg",
     "metadataPath": "public/audio/en-gb/contributions/after/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7--clean-01-volume.ogg.metadata.json",
     "datasetSrc": "audio/en-gb/contributions/after/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7--clean-01-volume.ogg",
+    "license": "CC0 1.0",
+    "licenseShortName": "CC0 1.0",
+    "attribution": "bovine3dom",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-palm",
+      "en-gb-f",
+      "en-gb-t",
+      "en-gb-schwa"
+    ],
+    "reasons": [
+      "User-contributed recording bundle.",
+      "Manifest created at 2026-07-03T13:11:53.308Z.",
+      "Recorded from http://localhost:5173/?lang=en-GB&mode=match&tab=phonemes&phonemes=en-gb-f%2Cen-gb-v&contribute=mode."
+    ],
     "suggestedAudioSource": {
       "src": "audio/en-gb/contributions/after/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7--clean-01-volume.ogg",
       "kind": "contribution",
@@ -14,6 +177,11 @@
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3:en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7",
       "notes": "User-contributed recording for after /ˈɑːftə/."
+    },
+    "review": {
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for after /ˈɑːftə/."
     },
     "audioProcessing": {
       "original": {
@@ -41,14 +209,10 @@
           "outputPath": "public/audio/en-gb/contributions/after/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/after/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/after/en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T13:12:09.901Z"
+          "appliedAt": "2026-07-03T20:09:00.491Z"
         }
       ],
       "currentStep": 0
-    },
-    "review": {
-      "status": "approved",
-      "accent": "British English"
     }
   }
 }

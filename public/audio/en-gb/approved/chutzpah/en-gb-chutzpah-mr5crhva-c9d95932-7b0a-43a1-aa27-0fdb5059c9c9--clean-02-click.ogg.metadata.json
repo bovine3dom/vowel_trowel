@@ -1,0 +1,58 @@
+{
+  "updatedAt": "2026-07-03T20:09:50.943Z",
+  "candidate": {
+    "key": "en-gb-word-chutzpah|User%20contribution%20chutzpah%20en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9|contribution%3Aen-GB%3Aen-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9",
+    "localPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-02-click.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-02-click.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-02-click.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-02-click.ogg",
+      "kind": "contribution",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9",
+      "notes": "User-contributed recording for chutzpah /ˈxʊtspə/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9.webm",
+        "metadataPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9.webm",
+          "kind": "contribution",
+          "license": "CC0 1.0",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9",
+          "notes": "User-contributed recording for chutzpah /ˈxʊtspə/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9.webm",
+          "outputPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T20:09:03.351Z"
+        },
+        {
+          "filter": "click",
+          "label": "click removal",
+          "tool": "ffmpeg",
+          "command": "ffmpeg -hide_banner -loglevel error -y -i /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-01-volume.ogg -vn -af adeclick -c:a libvorbis -q:a 5 /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-02-click.ogg",
+          "inputPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-01-volume.ogg",
+          "outputPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-02-click.ogg",
+          "datasetSrc": "audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-02-click.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/chutzpah/en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9--clean-02-click.ogg.metadata.json",
+          "appliedAt": "2026-07-03T20:09:28.603Z"
+        }
+      ],
+      "currentStep": 1
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

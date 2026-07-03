@@ -1,0 +1,481 @@
+{
+  "importedAt": "2026-07-03T20:09:01.437Z",
+  "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873.zip",
+  "manifest": {
+    "version": 2,
+    "type": "vowel-trowel-contribution",
+    "id": "en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873",
+    "createdAt": "2026-07-03T20:05:21.560Z",
+    "pageUrl": "http://localhost:5173/?lang=en-GB&mode=target&tab=phonemes&phonemes=en-gb-kit%2Cen-gb-fleece&contribute=mode",
+    "language": {
+      "id": "en-GB",
+      "slug": "en-gb",
+      "name": "British English",
+      "autonym": "British English"
+    },
+    "contribution": {
+      "licence": "CC0-1.0",
+      "speakerName": "bovine3dom",
+      "accent": "British English"
+    },
+    "recordings": [
+      {
+        "id": "en-gb-clear-mr5cvkos-dc2595d1-d722-421f-88a2-3f424842c4f1",
+        "filename": "recordings/en-gb-clear-mr5cvkos-dc2595d1-d722-421f-88a2-3f424842c4f1.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33811,
+        "recordedAt": "2026-07-03T19:58:12.605Z",
+        "word": {
+          "id": "en-gb-word-clear",
+          "shortId": "clear",
+          "written": "clear",
+          "ipa": "/klɪə/",
+          "phonemeIds": [
+            "en-gb-k",
+            "en-gb-l",
+            "en-gb-near"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-pure-mr5cxo4a-2a7fc7ce-6b25-4717-91bb-9c2a307a776e",
+        "filename": "recordings/en-gb-pure-mr5cxo4a-2a7fc7ce-6b25-4717-91bb-9c2a307a776e.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33792,
+        "recordedAt": "2026-07-03T19:59:50.362Z",
+        "word": {
+          "id": "en-gb-word-pure",
+          "shortId": "pure",
+          "written": "pure",
+          "ipa": "/pjʊə/",
+          "phonemeIds": [
+            "en-gb-p",
+            "en-gb-y",
+            "en-gb-cure"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-deer-mr5cxy7p-d9bf1115-207a-456d-85ba-5da65b7ca809",
+        "filename": "recordings/en-gb-deer-mr5cxy7p-d9bf1115-207a-456d-85ba-5da65b7ca809.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34131,
+        "recordedAt": "2026-07-03T20:00:03.445Z",
+        "word": {
+          "id": "en-gb-word-deer",
+          "shortId": "deer",
+          "written": "deer",
+          "ipa": "/dɪə/",
+          "phonemeIds": [
+            "en-gb-d",
+            "en-gb-near"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-leisure-mr5cyeij-e9b65db1-c75a-4ce3-9216-53210b33143e",
+        "filename": "recordings/en-gb-leisure-mr5cyeij-e9b65db1-c75a-4ce3-9216-53210b33143e.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33799,
+        "recordedAt": "2026-07-03T20:00:24.572Z",
+        "word": {
+          "id": "en-gb-word-leisure",
+          "shortId": "leisure",
+          "written": "leisure",
+          "ipa": "/ˈleʒə/",
+          "phonemeIds": [
+            "en-gb-l",
+            "en-gb-dress",
+            "en-gb-zh",
+            "en-gb-schwa"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-mother-mr5cyt6s-ef9d3b8a-9526-4bf5-b650-ff2f2a65fa6d",
+        "filename": "recordings/en-gb-mother-mr5cyt6s-ef9d3b8a-9526-4bf5-b650-ff2f2a65fa6d.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33794,
+        "recordedAt": "2026-07-03T20:00:43.589Z",
+        "word": {
+          "id": "en-gb-word-mother",
+          "shortId": "mother",
+          "written": "mother",
+          "ipa": "/ˈmʌðə/",
+          "phonemeIds": [
+            "en-gb-m",
+            "en-gb-strut",
+            "en-gb-dh",
+            "en-gb-schwa"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b",
+        "filename": "recordings/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34133,
+        "recordedAt": "2026-07-03T20:00:56.653Z",
+        "word": {
+          "id": "en-gb-word-unit",
+          "shortId": "unit",
+          "written": "unit",
+          "ipa": "/ˈjuːnɪt/",
+          "phonemeIds": [
+            "en-gb-y",
+            "en-gb-goose",
+            "en-gb-n",
+            "en-gb-kit",
+            "en-gb-t"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-loch-mr5czg45-15e59b8e-e641-44d9-9019-ad2de010a3c8",
+        "filename": "recordings/en-gb-loch-mr5czg45-15e59b8e-e641-44d9-9019-ad2de010a3c8.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33791,
+        "recordedAt": "2026-07-03T20:01:13.301Z",
+        "word": {
+          "id": "en-gb-word-loch",
+          "shortId": "loch",
+          "written": "loch",
+          "ipa": "/lɒx/",
+          "phonemeIds": [
+            "en-gb-l",
+            "en-gb-lot",
+            "en-gb-x"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-ear-mr5czybv-3ac38ce1-4d7d-479a-9aee-a5e0a28f00b5",
+        "filename": "recordings/en-gb-ear-mr5czybv-3ac38ce1-4d7d-479a-9aee-a5e0a28f00b5.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34243,
+        "recordedAt": "2026-07-03T20:01:36.907Z",
+        "word": {
+          "id": "en-gb-word-ear",
+          "shortId": "ear",
+          "written": "ear",
+          "ipa": "/ɪə/",
+          "phonemeIds": [
+            "en-gb-near"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-joy-mr5d08n2-07358073-261f-4b53-b034-c3dd15eb9a33",
+        "filename": "recordings/en-gb-joy-mr5d08n2-07358073-261f-4b53-b034-c3dd15eb9a33.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34130,
+        "recordedAt": "2026-07-03T20:01:50.270Z",
+        "word": {
+          "id": "en-gb-word-joy",
+          "shortId": "joy",
+          "written": "joy",
+          "ipa": "/dʒɔɪ/",
+          "phonemeIds": [
+            "en-gb-j",
+            "en-gb-choice"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b",
+        "filename": "recordings/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33779,
+        "recordedAt": "2026-07-03T20:02:01.645Z",
+        "word": {
+          "id": "en-gb-word-measure",
+          "shortId": "measure",
+          "written": "measure",
+          "ipa": "/ˈmeʒə/",
+          "phonemeIds": [
+            "en-gb-m",
+            "en-gb-dress",
+            "en-gb-zh",
+            "en-gb-schwa"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-poor-mr5d1hbx-5232f72f-cfea-41b2-ac17-ffdb13f790cb",
+        "filename": "recordings/en-gb-poor-mr5d1hbx-5232f72f-cfea-41b2-ac17-ffdb13f790cb.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33794,
+        "recordedAt": "2026-07-03T20:02:48.189Z",
+        "word": {
+          "id": "en-gb-word-poor",
+          "shortId": "poor",
+          "written": "poor",
+          "ipa": "/pʊə/",
+          "phonemeIds": [
+            "en-gb-p",
+            "en-gb-cure"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-that-mr5d1qja-86d72b17-72ad-4cf9-b626-0ef6f04da5ab",
+        "filename": "recordings/en-gb-that-mr5d1qja-86d72b17-72ad-4cf9-b626-0ef6f04da5ab.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33775,
+        "recordedAt": "2026-07-03T20:03:00.119Z",
+        "word": {
+          "id": "en-gb-word-that",
+          "shortId": "that",
+          "written": "that",
+          "ipa": "/ðæt/",
+          "phonemeIds": [
+            "en-gb-dh",
+            "en-gb-trap",
+            "en-gb-t"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-use-mr5d2vhh-a12b5e04-8993-4149-8198-e7a0a55a7602",
+        "filename": "recordings/en-gb-use-mr5d2vhh-a12b5e04-8993-4149-8198-e7a0a55a7602.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33792,
+        "recordedAt": "2026-07-03T20:03:53.189Z",
+        "word": {
+          "id": "en-gb-word-use",
+          "shortId": "use",
+          "written": "use",
+          "ipa": "/juːs/",
+          "phonemeIds": [
+            "en-gb-y",
+            "en-gb-goose",
+            "en-gb-s"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-about-mr5d36v3-d70b8886-c2c7-48c1-8a70-b6f0a10601c6",
+        "filename": "recordings/en-gb-about-mr5d36v3-d70b8886-c2c7-48c1-8a70-b6f0a10601c6.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33786,
+        "recordedAt": "2026-07-03T20:04:07.935Z",
+        "word": {
+          "id": "en-gb-word-about",
+          "shortId": "about",
+          "written": "about",
+          "ipa": "/əˈbaʊt/",
+          "phonemeIds": [
+            "en-gb-schwa",
+            "en-gb-b",
+            "en-gb-mouth",
+            "en-gb-t"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-fear-mr5d3gct-1195df71-5dcc-4276-892c-07588552d304",
+        "filename": "recordings/en-gb-fear-mr5d3gct-1195df71-5dcc-4276-892c-07588552d304.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33793,
+        "recordedAt": "2026-07-03T20:04:20.237Z",
+        "word": {
+          "id": "en-gb-word-fear",
+          "shortId": "fear",
+          "written": "fear",
+          "ipa": "/fɪə/",
+          "phonemeIds": [
+            "en-gb-f",
+            "en-gb-near"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-funny-mr5d3uod-216bd409-9632-44ef-8ad9-e47d49ed678b",
+        "filename": "recordings/en-gb-funny-mr5d3uod-216bd409-9632-44ef-8ad9-e47d49ed678b.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33797,
+        "recordedAt": "2026-07-03T20:04:38.797Z",
+        "word": {
+          "id": "en-gb-word-funny",
+          "shortId": "funny",
+          "written": "funny",
+          "ipa": "/ˈfʌni/",
+          "phonemeIds": [
+            "en-gb-f",
+            "en-gb-strut",
+            "en-gb-n",
+            "en-gb-happy"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-noise-mr5d443v-cef73b38-309a-4515-b61c-e5d17621f7f9",
+        "filename": "recordings/en-gb-noise-mr5d443v-cef73b38-309a-4515-b61c-e5d17621f7f9.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34115,
+        "recordedAt": "2026-07-03T20:04:51.019Z",
+        "word": {
+          "id": "en-gb-word-noise",
+          "shortId": "noise",
+          "written": "noise",
+          "ipa": "/nɔɪz/",
+          "phonemeIds": [
+            "en-gb-n",
+            "en-gb-choice",
+            "en-gb-z"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f",
+        "filename": "recordings/en-gb-then-mr5d4d31-e3d590a0-df10-44a1-b4ce-94833174127f.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33806,
+        "recordedAt": "2026-07-03T20:05:02.653Z",
+        "word": {
+          "id": "en-gb-word-then",
+          "shortId": "then",
+          "written": "then",
+          "ipa": "/ðen/",
+          "phonemeIds": [
+            "en-gb-dh",
+            "en-gb-dress",
+            "en-gb-n"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-tour-mr5d4pvq-a9fe3623-a385-4a4c-9f6b-0225ad5c8e4f",
+        "filename": "recordings/en-gb-tour-mr5d4pvq-a9fe3623-a385-4a4c-9f6b-0225ad5c8e4f.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33817,
+        "recordedAt": "2026-07-03T20:05:19.238Z",
+        "word": {
+          "id": "en-gb-word-tour",
+          "shortId": "tour",
+          "written": "tour",
+          "ipa": "/tʊə/",
+          "phonemeIds": [
+            "en-gb-t",
+            "en-gb-cure"
+          ]
+        }
+      }
+    ]
+  },
+  "recording": {
+    "id": "en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b",
+    "filename": "recordings/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b.webm",
+    "mimeType": "audio/webm;codecs=opus",
+    "size": 33779,
+    "recordedAt": "2026-07-03T20:02:01.645Z",
+    "word": {
+      "id": "en-gb-word-measure",
+      "shortId": "measure",
+      "written": "measure",
+      "ipa": "/ˈmeʒə/",
+      "phonemeIds": [
+        "en-gb-m",
+        "en-gb-dress",
+        "en-gb-zh",
+        "en-gb-schwa"
+      ]
+    }
+  },
+  "word": {
+    "id": "en-gb-word-measure",
+    "written": "measure",
+    "ipa": "/ˈmeʒə/",
+    "phonemeIds": [
+      "en-gb-m",
+      "en-gb-dress",
+      "en-gb-zh",
+      "en-gb-schwa"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-measure|User%20contribution%20measure%20en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b|contribution%3Aen-GB%3Aen-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873%3Aen-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b",
+    "sourceId": "contribution:en-GB:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b",
+    "sourceName": "Vowel Trowel user contribution",
+    "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b",
+    "fileTitle": "User contribution measure en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b",
+    "audioUrl": null,
+    "localPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg",
+    "license": "CC0 1.0",
+    "licenseShortName": "CC0 1.0",
+    "attribution": "bovine3dom",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-m",
+      "en-gb-dress",
+      "en-gb-zh",
+      "en-gb-schwa"
+    ],
+    "reasons": [
+      "User-contributed recording bundle.",
+      "Manifest created at 2026-07-03T20:05:21.560Z.",
+      "Recorded from http://localhost:5173/?lang=en-GB&mode=target&tab=phonemes&phonemes=en-gb-kit%2Cen-gb-fleece&contribute=mode."
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b",
+      "notes": "User-contributed recording for measure /ˈmeʒə/."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b.webm",
+        "metadataPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b.webm",
+          "kind": "contribution",
+          "speaker": "bovine3dom",
+          "accent": "British English",
+          "license": "CC0 1.0",
+          "attribution": "bovine3dom",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b",
+          "notes": "User-contributed recording for measure /ˈmeʒə/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b.webm",
+          "outputPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T20:09:01.437Z"
+        },
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-02-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-01-volume.ogg",
+          "outputPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-02-crop.ogg",
+          "datasetSrc": "audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-02-crop.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/measure/en-gb-measure-mr5d0hf1-e43d6fc2-fef2-4194-a5b0-6c5251b0fb3b--clean-02-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T20:10:43.470Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-03T20:10:47.403Z"
+}
