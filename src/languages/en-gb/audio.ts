@@ -3144,6 +3144,16 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-n, en-gb-w. Common Voice accent: England English."
     }
   ],
+  "wing": [
+    {
+      "src": "audio/en-gb/approved/wing/en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a--clean-01-crop.ogg",
+      "kind": "contribution",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a",
+      "notes": "User-contributed recording for wing /wɪŋ/."
+    }
+  ],
   "worse": [
     {
       "src": "audio/en-gb/approved/worse/common_voice_en_120491.opus",

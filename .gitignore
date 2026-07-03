@@ -11,6 +11,7 @@ public/audio/*/contributions/
 playwright-report
 test-results
 *.tgz
+user
 
 # code coverage
 coverage
