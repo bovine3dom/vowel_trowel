@@ -121,7 +121,7 @@ bun run audio:review
 bun run audio:review -- --source=mswc --language=en-GB
 ```
 
-The same interactive reviewer is used by `audio:review`, `audio:wizard`, and `audio:import`. During review, use `v` to normalize volume, `n` to reduce background noise, `k` to remove clicks, `c` to crop silence, and `z`/`y` to undo/redo audio filters before approving.
+The same interactive reviewer is used by `audio:review`, `audio:wizard`, and `audio:import`. During review, use `v` to toggle volume normalization, `n` to reduce background noise, `k` to remove clicks, `c` to crop silence, and `z`/`y` to undo/redo audio filters before approving.
 
 Apply approved candidates:
 
@@ -137,7 +137,7 @@ bun run audio:import -- path/to/vowel-trowel-contribution.zip
 bun run audio:import -- path/to/first.zip path/to/second.zip
 ```
 
-The contribution page records in the browser, defaults the licence to CC0 1.0, and also offers CC BY 4.0 when the contributor provides an attribution name. `audio:import` stages each bundle under `public/audio/<language>/contributions/`, opens the interactive reviewer for the imported words, then copies approved recordings into `public/audio/<language>/approved/`. Use `--dry-run` to inspect the workflow, `--no-review` to only stage bundles, or `--no-apply` to review without applying approvals.
+The contribution page records in the browser, defaults the licence to CC0 1.0, and also offers CC BY 4.0 when the contributor provides an attribution name. `audio:import` stages each bundle under `public/audio/<language>/contributions/`, applies volume normalization by default, opens the interactive reviewer for the imported words, then copies approved recordings into `public/audio/<language>/approved/`. Press `v` during review to remove that normalization for the current recording. Use `--dry-run` to inspect the workflow, `--no-review` to only stage bundles, or `--no-apply` to review without applying approvals.
 
 Remove a bad approved recording reported from the in-app player:
 

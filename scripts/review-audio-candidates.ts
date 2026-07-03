@@ -264,7 +264,7 @@ async function reviewItem(
   while (true) {
     const command = await readCommandKey(
       rl,
-      "Choice [a]pprove [r]eject [s]kip [w]ord [p]lay [u]ndo decision [q]uit | filters [v]olume [n]oise [k]lick [c]rop [z]undo [y]redo: ",
+      "Choice [a]pprove [r]eject [s]kip [w]ord [p]lay [u]ndo decision [q]uit | filters [v]olume toggle [n]oise [k]lick [c]rop [z]undo [y]redo: ",
     );
 
     if (command === "p") {
@@ -290,7 +290,7 @@ async function reviewItem(
     }
 
     if (command === "v") {
-      await applyCleanupFilter(item, "volume", player);
+      await toggleVolumeNormalization(item, player);
       continue;
     }
 
@@ -542,6 +542,37 @@ async function applyCleanupFilter(
     return;
   }
 
+  await playAfterAudioEdit(player, item.candidate.localPath);
+}
+
+async function toggleVolumeNormalization(item: ReviewItem, player: PlayerSpec | null): Promise<void> {
+  const state = getAudioProcessingState(item.candidate);
+  const activeVolumeStepIndex = state.history
+    .slice(0, state.currentStep + 1)
+    .findLastIndex((step) => step.filter === "volume");
+
+  if (activeVolumeStepIndex < 0) {
+    await applyCleanupFilter(item, "volume", player);
+    return;
+  }
+
+  const nextStep = activeVolumeStepIndex - 1;
+
+  item.candidate.audioProcessing = {
+    ...state,
+    currentStep: nextStep,
+  };
+  setCandidateAudioPointer(
+    item.candidate,
+    nextStep >= 0 ? pointerFromStep(state.history[nextStep] as AudioProcessingStep) : state.original,
+  );
+
+  await persistAudioEdit(item);
+  console.log(
+    activeVolumeStepIndex < state.currentStep
+      ? "Removed volume normalization and later filter changes."
+      : "Removed volume normalization.",
+  );
   await playAfterAudioEdit(player, item.candidate.localPath);
 }
 
@@ -1200,7 +1231,7 @@ function parseArgs(args: string[]): CliOptions {
 function printUsage(): void {
   console.log("Usage: bun run audio:review -- [options]");
   console.log("Options: --source=wiktionary|mswc|contribution --language=en-GB --words=ship,sheep --limit=10 --include-reviewed --player=mpv --no-autoplay --no-play");
-  console.log("During review: v=normalize volume, n=reduce noise, k=remove clicks, c=crop silence, z/y=undo/redo audio filters.");
+  console.log("During review: v=toggle volume normalization, n=reduce noise, k=remove clicks, c=crop silence, z/y=undo/redo audio filters.");
 }
 
 function getLanguagePathDefaults(languageId: string, source: AudioCandidateSource): { report: string; reviewState: string } {

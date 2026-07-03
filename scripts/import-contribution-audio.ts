@@ -115,11 +115,37 @@ interface ContributionCandidate {
   targetPhonemeIds: readonly string[];
   reasons: string[];
   suggestedAudioSource: AudioSource;
+  audioProcessing?: AudioProcessingState;
   review: {
     status: "pending";
     accent?: string;
     notes: string;
   };
+}
+
+interface CandidateAudioPointer {
+  localPath: string;
+  metadataPath?: string;
+  datasetSrc?: string;
+  suggestedAudioSource?: AudioSource;
+}
+
+interface AudioProcessingStep {
+  filter: "volume";
+  label: string;
+  tool: string;
+  command: string;
+  inputPath: string;
+  outputPath: string;
+  datasetSrc: string;
+  metadataPath: string;
+  appliedAt: string;
+}
+
+interface AudioProcessingState {
+  original: CandidateAudioPointer;
+  history: AudioProcessingStep[];
+  currentStep: number;
 }
 
 const SOURCE_NAME = "Vowel Trowel user contribution";
@@ -149,24 +175,78 @@ async function importContributionBundle(bundlePath: string, opts: CliOptions): P
     const recordingBasename = path.basename(recordingFilename);
     const recording = findZipEntry(zipEntries, recordingFilename);
     const extension = path.extname(recordingBasename) || extensionForMimeType(normalized.recording.mimeType);
-    const localPath = path.join(
+    const originalLocalPath = path.join(
       stagingDir,
       sanitizeFilename(normalized.shortWordId),
       `${sanitizeFilename(normalized.recordingId)}${extension}`,
     );
-    const metadataPath = `${localPath}.metadata.json`;
-    const datasetSrc = toDatasetAudioSrc(localPath);
-    const candidate = createCandidate(dataset, normalized, localPath, metadataPath, datasetSrc);
+    const originalMetadataPath = `${originalLocalPath}.metadata.json`;
+    const originalDatasetSrc = toDatasetAudioSrc(originalLocalPath);
+    const normalizedLocalPath = createProcessedAudioPath(originalLocalPath, "volume", 1);
+    const normalizedMetadataPath = `${normalizedLocalPath}.metadata.json`;
+    const normalizedDatasetSrc = toDatasetAudioSrc(normalizedLocalPath);
+    const candidate = createCandidate(dataset, normalized, normalizedLocalPath, normalizedMetadataPath, normalizedDatasetSrc);
+    const volumeCommand = formatVolumeNormalizationCommand(originalLocalPath, normalizedLocalPath);
+
+    candidate.audioProcessing = createDefaultVolumeProcessingState(
+      candidate,
+      {
+        localPath: originalLocalPath,
+        metadataPath: originalMetadataPath,
+        datasetSrc: originalDatasetSrc,
+      },
+      {
+        command: volumeCommand,
+        localPath: normalizedLocalPath,
+        metadataPath: normalizedMetadataPath,
+        datasetSrc: normalizedDatasetSrc,
+      },
+    );
 
     if (opts.dryRun) {
       console.log(`Would import ${bundlePath}`);
-      console.log(`Would write ${localPath}.`);
-      console.log(`Would write ${metadataPath}.`);
+      console.log(`Would write ${originalLocalPath}.`);
+      console.log(`Would write ${originalMetadataPath}.`);
+      console.log(`Would write normalized audio ${normalizedLocalPath}.`);
+      console.log(`Would write ${normalizedMetadataPath}.`);
       console.log(`Would update ${reportPath}.`);
     } else {
-      await mkdir(path.dirname(path.resolve(localPath)), { recursive: true });
-      await writeFile(localPath, recording);
-      await writeJson(metadataPath, {
+      await mkdir(path.dirname(path.resolve(originalLocalPath)), { recursive: true });
+      await writeFile(originalLocalPath, recording);
+      await writeJson(originalMetadataPath, {
+        importedAt: new Date().toISOString(),
+        bundlePath,
+        manifest,
+        recording: normalized.recording,
+        word: {
+          id: normalized.word.id,
+          written: normalized.word.written,
+          ipa: normalized.word.ipa,
+          phonemeIds: normalized.word.phonemeIds,
+        },
+        candidate: createOriginalCandidateSnapshot(candidate, {
+          localPath: originalLocalPath,
+          metadataPath: originalMetadataPath,
+          datasetSrc: originalDatasetSrc,
+        }),
+      });
+      const appliedVolumeCommand = runVolumeNormalization(originalLocalPath, normalizedLocalPath);
+
+      candidate.audioProcessing = createDefaultVolumeProcessingState(
+        candidate,
+        {
+          localPath: originalLocalPath,
+          metadataPath: originalMetadataPath,
+          datasetSrc: originalDatasetSrc,
+        },
+        {
+          command: appliedVolumeCommand,
+          localPath: normalizedLocalPath,
+          metadataPath: normalizedMetadataPath,
+          datasetSrc: normalizedDatasetSrc,
+        },
+      );
+      await writeJson(normalizedMetadataPath, {
         importedAt: new Date().toISOString(),
         bundlePath,
         manifest,
@@ -512,6 +592,98 @@ function upsertCandidate(report: ContributionReport, word: WordEntry, candidate:
   }
 
   report.words.sort((left, right) => left.wordId.localeCompare(right.wordId));
+}
+
+function createDefaultVolumeProcessingState(
+  candidate: ContributionCandidate,
+  original: CandidateAudioPointer,
+  normalized: CandidateAudioPointer & { command: string },
+): AudioProcessingState {
+  const originalDatasetSrc = original.datasetSrc ?? toDatasetAudioSrc(original.localPath);
+  const normalizedDatasetSrc = normalized.datasetSrc ?? toDatasetAudioSrc(normalized.localPath);
+  const originalSuggestedAudioSource = compactAudioSource({
+    ...candidate.suggestedAudioSource,
+    src: originalDatasetSrc,
+  });
+
+  return {
+    original: {
+      localPath: original.localPath,
+      metadataPath: original.metadataPath ?? `${original.localPath}.metadata.json`,
+      datasetSrc: originalDatasetSrc,
+      suggestedAudioSource: originalSuggestedAudioSource,
+    },
+    history: [{
+      filter: "volume",
+      label: "volume normalization",
+      tool: "sox",
+      command: normalized.command,
+      inputPath: original.localPath,
+      outputPath: normalized.localPath,
+      datasetSrc: normalizedDatasetSrc,
+      metadataPath: normalized.metadataPath ?? `${normalized.localPath}.metadata.json`,
+      appliedAt: new Date().toISOString(),
+    }],
+    currentStep: 0,
+  };
+}
+
+function createOriginalCandidateSnapshot(candidate: ContributionCandidate, original: CandidateAudioPointer): ContributionCandidate {
+  const datasetSrc = original.datasetSrc ?? toDatasetAudioSrc(original.localPath);
+
+  return {
+    ...candidate,
+    localPath: original.localPath,
+    metadataPath: original.metadataPath ?? `${original.localPath}.metadata.json`,
+    datasetSrc,
+    suggestedAudioSource: compactAudioSource({
+      ...candidate.suggestedAudioSource,
+      src: datasetSrc,
+    }),
+    audioProcessing: undefined,
+  };
+}
+
+function createProcessedAudioPath(originalPath: string, filterId: "volume", stepNumber: number): string {
+  const parsed = path.parse(originalPath);
+  const paddedStep = stepNumber.toString().padStart(2, "0");
+
+  return path.join(parsed.dir, `${parsed.name}--clean-${paddedStep}-${filterId}.ogg`);
+}
+
+function runVolumeNormalization(inputPath: string, outputPath: string): string {
+  return runAudioCommand("sox", volumeNormalizationArgs(inputPath, outputPath));
+}
+
+function formatVolumeNormalizationCommand(inputPath: string, outputPath: string): string {
+  return formatCommand("sox", volumeNormalizationArgs(inputPath, outputPath));
+}
+
+function volumeNormalizationArgs(inputPath: string, outputPath: string): string[] {
+  return ["-G", path.resolve(inputPath), path.resolve(outputPath), "norm", "-3"];
+}
+
+function runAudioCommand(command: string, args: readonly string[]): string {
+  const result = spawnSync(command, args, { encoding: "utf8" });
+
+  if (result.error) {
+    throw result.error;
+  }
+
+  if (result.status !== 0) {
+    const details = result.stderr?.trim() || result.stdout?.trim();
+    throw new Error(`${command} exited with code ${result.status ?? "unknown"}${details ? `: ${details}` : ""}`);
+  }
+
+  return formatCommand(command, args);
+}
+
+function formatCommand(command: string, args: readonly string[]): string {
+  return [command, ...args].map(formatCommandPart).join(" ");
+}
+
+function formatCommandPart(value: string): string {
+  return /^[a-zA-Z0-9_./:=@+-]+$/.test(value) ? value : JSON.stringify(value);
 }
 
 function parseArgs(args: string[]): CliOptions {

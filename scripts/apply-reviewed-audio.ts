@@ -62,7 +62,7 @@ const languageId = report.language?.id ? getLanguageDataset(report.language.id).
 const defaults = getLanguagePathDefaults(languageId, options.source);
 const outputPath = options.output ?? defaults.output;
 const approvedDir = options.approvedDir ?? defaults.approvedDir;
-const merged = mergeApprovedAudio(getExistingAudio(languageId), report, languageId);
+const merged = mergeApprovedAudio(getExistingAudio(languageId), report, languageId, approvedDir);
 const approvedAudio = await copyApprovedAudio(merged, approvedDir, options.dryRun);
 const output = renderAudioModule(approvedAudio, languageId);
 
@@ -78,9 +78,13 @@ function mergeApprovedAudio(
   existing: Record<string, readonly AudioSource[]>,
   report: ReviewedReport,
   languageId: string,
+  approvedDir: string,
 ): Record<string, AudioSource[]> {
   const merged = Object.fromEntries(
-    Object.entries(existing).map(([wordId, sources]) => [wordId, [...sources]]),
+    Object.entries(existing).map(([wordId, sources]) => [
+      wordId,
+      dedupeAudioSources(sources.filter((source) => isApprovedAppAudioSource(source, approvedDir))),
+    ]),
   ) as Record<string, AudioSource[]>;
 
   for (const word of report.words ?? []) {
@@ -94,11 +98,7 @@ function mergeApprovedAudio(
       const source = createAudioSource(candidate);
       const existingSources = merged[shortWordId] ?? [];
 
-      if (!existingSources.some((existingSource) => existingSource.src === source.src)) {
-        existingSources.push(source);
-      }
-
-      merged[shortWordId] = existingSources;
+      merged[shortWordId] = dedupeAudioSources([...existingSources, source]);
     }
   }
 
@@ -143,6 +143,7 @@ function stripWordPrefix(wordId: string, languageId: string): string {
 function sortAudioMap(map: Record<string, AudioSource[]>): Record<string, AudioSource[]> {
   return Object.fromEntries(
     Object.entries(map)
+      .map(([wordId, sources]) => [wordId, dedupeAudioSources(sources)] as const)
       .filter(([, sources]) => sources.length > 0)
       .sort(([left], [right]) => left.localeCompare(right)),
   );
@@ -161,9 +162,44 @@ async function copyApprovedAudio(
     for (const source of sources) {
       copied[wordId]?.push(await copyApprovedSource(wordId, source, approvedDir, dryRun));
     }
+
+    copied[wordId] = dedupeAudioSources(copied[wordId] ?? []);
   }
 
   return sortAudioMap(copied);
+}
+
+function isApprovedAppAudioSource(source: AudioSource, approvedDir: string): boolean {
+  const publicAudioPath = toPublicAudioPath(source.src);
+
+  return !publicAudioPath || isInDirectory(publicAudioPath, approvedDir);
+}
+
+function dedupeAudioSources(sources: readonly AudioSource[]): AudioSource[] {
+  const orderedKeys: string[] = [];
+  const byKey = new Map<string, AudioSource>();
+
+  for (const source of sources) {
+    const key = audioSourceDedupeKey(source);
+
+    if (!byKey.has(key)) {
+      orderedKeys.push(key);
+    }
+
+    byKey.set(key, source);
+  }
+
+  return orderedKeys
+    .map((key) => byKey.get(key))
+    .filter((source): source is AudioSource => Boolean(source));
+}
+
+function audioSourceDedupeKey(source: AudioSource): string {
+  if ((source.kind === "contribution" || source.kind === "wiktionary") && source.sourceUrl) {
+    return `${source.kind}:${source.sourceUrl}`;
+  }
+
+  return `src:${source.src}`;
 }
 
 async function copyApprovedSource(
