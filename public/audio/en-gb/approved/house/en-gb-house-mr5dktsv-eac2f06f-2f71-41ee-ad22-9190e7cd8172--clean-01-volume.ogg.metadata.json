@@ -1,0 +1,312 @@
+{
+  "importedAt": "2026-07-03T20:19:03.255Z",
+  "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609.zip",
+  "manifest": {
+    "version": 2,
+    "type": "vowel-trowel-contribution",
+    "id": "en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609",
+    "createdAt": "2026-07-03T20:18:53.934Z",
+    "pageUrl": "https://vowel-trowel.pages.dev/?lang=en-GB&mode=match&tab=phonemes&phonemes=en-gb-foot%2Cen-gb-goose&contribute=mode",
+    "language": {
+      "id": "en-GB",
+      "slug": "en-gb",
+      "name": "British English",
+      "autonym": "British English"
+    },
+    "contribution": {
+      "licence": "CC0-1.0",
+      "speakerName": "bovine3dom",
+      "accent": "British English"
+    },
+    "recordings": [
+      {
+        "id": "en-gb-challah-mr5dj8j4-516656ab-b485-4e3d-bae7-367815adee76",
+        "filename": "recordings/en-gb-challah-mr5dj8j4-516656ab-b485-4e3d-bae7-367815adee76.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33808,
+        "recordedAt": "2026-07-03T20:16:36.592Z",
+        "word": {
+          "id": "en-gb-word-challah",
+          "shortId": "challah",
+          "written": "challah",
+          "ipa": "/ˈxɑːlə/",
+          "phonemeIds": [
+            "en-gb-x",
+            "en-gb-palm",
+            "en-gb-l",
+            "en-gb-schwa"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-chanukah-mr5djp00-0f03e68d-6012-4395-8b07-f9f4c495870a",
+        "filename": "recordings/en-gb-chanukah-mr5djp00-0f03e68d-6012-4395-8b07-f9f4c495870a.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33800,
+        "recordedAt": "2026-07-03T20:16:57.936Z",
+        "word": {
+          "id": "en-gb-word-chanukah",
+          "shortId": "chanukah",
+          "written": "Chanukah",
+          "ipa": "/ˈxɑːnəkə/",
+          "phonemeIds": [
+            "en-gb-x",
+            "en-gb-palm",
+            "en-gb-n",
+            "en-gb-schwa",
+            "en-gb-k",
+            "en-gb-schwa"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-treasure-mr5dk3qn-8e3c47a1-d838-419f-ab85-db66b60c77b3",
+        "filename": "recordings/en-gb-treasure-mr5dk3qn-8e3c47a1-d838-419f-ab85-db66b60c77b3.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34128,
+        "recordedAt": "2026-07-03T20:17:17.039Z",
+        "word": {
+          "id": "en-gb-word-treasure",
+          "shortId": "treasure",
+          "written": "treasure",
+          "ipa": "/ˈtreʒə/",
+          "phonemeIds": [
+            "en-gb-t",
+            "en-gb-r",
+            "en-gb-dress",
+            "en-gb-zh",
+            "en-gb-schwa"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-year-mr5dkb6f-84bc12e5-9fa7-4f5d-b08f-68fb5c88da8c",
+        "filename": "recordings/en-gb-year-mr5dkb6f-84bc12e5-9fa7-4f5d-b08f-68fb5c88da8c.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33795,
+        "recordedAt": "2026-07-03T20:17:26.679Z",
+        "word": {
+          "id": "en-gb-word-year",
+          "shortId": "year",
+          "written": "year",
+          "ipa": "/jɪə/",
+          "phonemeIds": [
+            "en-gb-y",
+            "en-gb-near"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-boil-mr5dkjw6-258e76f7-ef6d-407e-87df-a4178ebfd710",
+        "filename": "recordings/en-gb-boil-mr5dkjw6-258e76f7-ef6d-407e-87df-a4178ebfd710.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33782,
+        "recordedAt": "2026-07-03T20:17:37.974Z",
+        "word": {
+          "id": "en-gb-word-boil",
+          "shortId": "boil",
+          "written": "boil",
+          "ipa": "/bɔɪl/",
+          "phonemeIds": [
+            "en-gb-b",
+            "en-gb-choice",
+            "en-gb-l"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172",
+        "filename": "recordings/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34154,
+        "recordedAt": "2026-07-03T20:17:50.815Z",
+        "word": {
+          "id": "en-gb-word-house",
+          "shortId": "house",
+          "written": "house",
+          "ipa": "/haʊs/",
+          "phonemeIds": [
+            "en-gb-h",
+            "en-gb-mouth",
+            "en-gb-s"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-money-mr5dl13j-3a30fac8-1a91-44fc-88cb-ef793aac6538",
+        "filename": "recordings/en-gb-money-mr5dl13j-3a30fac8-1a91-44fc-88cb-ef793aac6538.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34450,
+        "recordedAt": "2026-07-03T20:18:00.271Z",
+        "word": {
+          "id": "en-gb-word-money",
+          "shortId": "money",
+          "written": "money",
+          "ipa": "/ˈmʌni/",
+          "phonemeIds": [
+            "en-gb-m",
+            "en-gb-strut",
+            "en-gb-n",
+            "en-gb-happy"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-there-mr5dle34-d678fb08-65b0-4236-8ce9-275cfd4e467b",
+        "filename": "recordings/en-gb-there-mr5dle34-d678fb08-65b0-4236-8ce9-275cfd4e467b.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33788,
+        "recordedAt": "2026-07-03T20:18:17.104Z",
+        "word": {
+          "id": "en-gb-word-there",
+          "shortId": "there",
+          "written": "there",
+          "ipa": "/ðeə/",
+          "phonemeIds": [
+            "en-gb-dh",
+            "en-gb-square"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-vision-mr5dlmhr-95f02a0a-9d89-44ec-accb-027155b83312",
+        "filename": "recordings/en-gb-vision-mr5dlmhr-95f02a0a-9d89-44ec-accb-027155b83312.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33792,
+        "recordedAt": "2026-07-03T20:18:27.999Z",
+        "word": {
+          "id": "en-gb-word-vision",
+          "shortId": "vision",
+          "written": "vision",
+          "ipa": "/ˈvɪʒən/",
+          "phonemeIds": [
+            "en-gb-v",
+            "en-gb-kit",
+            "en-gb-zh",
+            "en-gb-schwa",
+            "en-gb-n"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-yes-mr5dlupb-67967ac2-eff8-41d1-a86e-287da216f31b",
+        "filename": "recordings/en-gb-yes-mr5dlupb-67967ac2-eff8-41d1-a86e-287da216f31b.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33822,
+        "recordedAt": "2026-07-03T20:18:38.639Z",
+        "word": {
+          "id": "en-gb-word-yes",
+          "shortId": "yes",
+          "written": "yes",
+          "ipa": "/jes/",
+          "phonemeIds": [
+            "en-gb-y",
+            "en-gb-dress",
+            "en-gb-s"
+          ]
+        }
+      }
+    ]
+  },
+  "recording": {
+    "id": "en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172",
+    "filename": "recordings/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172.webm",
+    "mimeType": "audio/webm;codecs=opus",
+    "size": 34154,
+    "recordedAt": "2026-07-03T20:17:50.815Z",
+    "word": {
+      "id": "en-gb-word-house",
+      "shortId": "house",
+      "written": "house",
+      "ipa": "/haʊs/",
+      "phonemeIds": [
+        "en-gb-h",
+        "en-gb-mouth",
+        "en-gb-s"
+      ]
+    }
+  },
+  "word": {
+    "id": "en-gb-word-house",
+    "written": "house",
+    "ipa": "/haʊs/",
+    "phonemeIds": [
+      "en-gb-h",
+      "en-gb-mouth",
+      "en-gb-s"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-house|User%20contribution%20house%20en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172|contribution%3Aen-GB%3Aen-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609%3Aen-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172",
+    "sourceId": "contribution:en-GB:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172",
+    "sourceName": "Vowel Trowel user contribution",
+    "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172",
+    "fileTitle": "User contribution house en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172",
+    "audioUrl": null,
+    "localPath": "public/audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172--clean-01-volume.ogg",
+    "license": "CC0 1.0",
+    "licenseShortName": "CC0 1.0",
+    "attribution": "bovine3dom",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-h",
+      "en-gb-mouth",
+      "en-gb-s"
+    ],
+    "reasons": [
+      "User-contributed recording bundle.",
+      "Manifest created at 2026-07-03T20:18:53.934Z.",
+      "Recorded from https://vowel-trowel.pages.dev/?lang=en-GB&mode=match&tab=phonemes&phonemes=en-gb-foot%2Cen-gb-goose&contribute=mode."
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172",
+      "notes": "User-contributed recording for house /haʊs/."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172.webm",
+        "metadataPath": "public/audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172.webm",
+          "kind": "contribution",
+          "speaker": "bovine3dom",
+          "accent": "British English",
+          "license": "CC0 1.0",
+          "attribution": "bovine3dom",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172",
+          "notes": "User-contributed recording for house /haʊs/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172.webm",
+          "outputPath": "public/audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/house/en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T20:19:03.255Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-03T20:19:34.512Z"
+}

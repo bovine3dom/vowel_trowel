@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T20:09:00.833Z",
+  "importedAt": "2026-07-03T20:19:01.635Z",
   "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873.zip",
   "manifest": {
     "version": 2,
@@ -428,8 +428,9 @@
       "notes": "User-contributed recording for clear /klɪə/."
     },
     "review": {
-      "status": "approved",
-      "accent": "British English"
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for clear /klɪə/."
     },
     "audioProcessing": {
       "original": {
@@ -457,11 +458,10 @@
           "outputPath": "public/audio/en-gb/contributions/clear/en-gb-clear-mr5cvkos-dc2595d1-d722-421f-88a2-3f424842c4f1--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/clear/en-gb-clear-mr5cvkos-dc2595d1-d722-421f-88a2-3f424842c4f1--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/clear/en-gb-clear-mr5cvkos-dc2595d1-d722-421f-88a2-3f424842c4f1--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:09:00.833Z"
+          "appliedAt": "2026-07-03T20:19:01.635Z"
         }
       ],
       "currentStep": 0
     }
-  },
-  "updatedAt": "2026-07-03T20:10:18.475Z"
+  }
 }

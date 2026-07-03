@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T20:09:01.165Z",
+  "importedAt": "2026-07-03T20:19:01.969Z",
   "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873.zip",
   "manifest": {
     "version": 2,
@@ -434,8 +434,9 @@
       "notes": "User-contributed recording for unit /ˈjuːnɪt/."
     },
     "review": {
-      "status": "approved",
-      "accent": "British English"
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for unit /ˈjuːnɪt/."
     },
     "audioProcessing": {
       "original": {
@@ -463,22 +464,10 @@
           "outputPath": "public/audio/en-gb/contributions/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:09:01.165Z"
-        },
-        {
-          "filter": "crop",
-          "label": "automatic cropping",
-          "tool": "sox",
-          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-01-volume.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-02-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
-          "inputPath": "public/audio/en-gb/contributions/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-01-volume.ogg",
-          "outputPath": "public/audio/en-gb/contributions/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-02-crop.ogg",
-          "datasetSrc": "audio/en-gb/contributions/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-02-crop.ogg",
-          "metadataPath": "public/audio/en-gb/contributions/unit/en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b--clean-02-crop.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:11:11.006Z"
+          "appliedAt": "2026-07-03T20:19:01.969Z"
         }
       ],
       "currentStep": 0
     }
-  },
-  "updatedAt": "2026-07-03T20:11:15.291Z"
+  }
 }

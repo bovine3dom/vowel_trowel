@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T20:09:01.776Z",
+  "importedAt": "2026-07-03T20:19:02.568Z",
   "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873.zip",
   "manifest": {
     "version": 2,
@@ -425,8 +425,9 @@
       "notes": "User-contributed recording for fear /fɪə/."
     },
     "review": {
-      "status": "approved",
-      "accent": "British English"
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for fear /fɪə/."
     },
     "audioProcessing": {
       "original": {
@@ -454,11 +455,10 @@
           "outputPath": "public/audio/en-gb/contributions/fear/en-gb-fear-mr5d3gct-1195df71-5dcc-4276-892c-07588552d304--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/fear/en-gb-fear-mr5d3gct-1195df71-5dcc-4276-892c-07588552d304--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/fear/en-gb-fear-mr5d3gct-1195df71-5dcc-4276-892c-07588552d304--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:09:01.776Z"
+          "appliedAt": "2026-07-03T20:19:02.568Z"
         }
       ],
       "currentStep": 0
     }
-  },
-  "updatedAt": "2026-07-03T20:10:26.063Z"
+  }
 }

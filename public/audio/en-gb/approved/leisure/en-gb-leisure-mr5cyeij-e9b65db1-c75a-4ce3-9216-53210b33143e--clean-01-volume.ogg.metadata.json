@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T20:09:01.034Z",
+  "importedAt": "2026-07-03T20:19:01.835Z",
   "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873.zip",
   "manifest": {
     "version": 2,
@@ -431,8 +431,9 @@
       "notes": "User-contributed recording for leisure /ˈleʒə/."
     },
     "review": {
-      "status": "approved",
-      "accent": "British English"
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for leisure /ˈleʒə/."
     },
     "audioProcessing": {
       "original": {
@@ -460,11 +461,10 @@
           "outputPath": "public/audio/en-gb/contributions/leisure/en-gb-leisure-mr5cyeij-e9b65db1-c75a-4ce3-9216-53210b33143e--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/leisure/en-gb-leisure-mr5cyeij-e9b65db1-c75a-4ce3-9216-53210b33143e--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/leisure/en-gb-leisure-mr5cyeij-e9b65db1-c75a-4ce3-9216-53210b33143e--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:09:01.034Z"
+          "appliedAt": "2026-07-03T20:19:01.835Z"
         }
       ],
       "currentStep": 0
     }
-  },
-  "updatedAt": "2026-07-03T20:10:38.186Z"
+  }
 }

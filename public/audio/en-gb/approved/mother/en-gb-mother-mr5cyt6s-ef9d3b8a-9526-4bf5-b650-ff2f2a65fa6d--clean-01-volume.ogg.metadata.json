@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T20:09:01.097Z",
+  "importedAt": "2026-07-03T20:19:01.901Z",
   "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873.zip",
   "manifest": {
     "version": 2,
@@ -431,8 +431,9 @@
       "notes": "User-contributed recording for mother /ˈmʌðə/."
     },
     "review": {
-      "status": "approved",
-      "accent": "British English"
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for mother /ˈmʌðə/."
     },
     "audioProcessing": {
       "original": {
@@ -460,11 +461,10 @@
           "outputPath": "public/audio/en-gb/contributions/mother/en-gb-mother-mr5cyt6s-ef9d3b8a-9526-4bf5-b650-ff2f2a65fa6d--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/mother/en-gb-mother-mr5cyt6s-ef9d3b8a-9526-4bf5-b650-ff2f2a65fa6d--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/mother/en-gb-mother-mr5cyt6s-ef9d3b8a-9526-4bf5-b650-ff2f2a65fa6d--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:09:01.097Z"
+          "appliedAt": "2026-07-03T20:19:01.901Z"
         }
       ],
       "currentStep": 0
     }
-  },
-  "updatedAt": "2026-07-03T20:10:49.843Z"
+  }
 }
