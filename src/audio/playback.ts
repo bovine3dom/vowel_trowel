@@ -271,7 +271,7 @@ function stopCurrentPlayback(): void {
   }
 }
 
-async function getPrecomputedSpectrogram(audioUrl: string): Promise<PrecomputedSpectrogram> {
+export async function getPrecomputedSpectrogram(audioUrl: string): Promise<PrecomputedSpectrogram> {
   const cached = spectrogramCache.get(audioUrl);
 
   if (cached) {
@@ -291,10 +291,6 @@ async function getPrecomputedSpectrogram(audioUrl: string): Promise<PrecomputedS
 
 async function createPrecomputedSpectrogram(audioUrl: string): Promise<PrecomputedSpectrogram> {
   const context = getAudioContext();
-
-  if (context.state === "suspended") {
-    await context.resume();
-  }
 
   const response = await fetch(audioUrl);
 

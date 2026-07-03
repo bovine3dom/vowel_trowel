@@ -743,6 +743,30 @@ h3 {
   box-shadow: 0 0 0 2px rgba(243, 185, 69, 0.56);
 }
 
+.contribution-formant-target {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.contribution-formant-legend {
+  justify-content: center;
+  font-size: 0.88rem;
+}
+
+.contribution-formant-frame {
+  width: min(100%, 340px);
+}
+
+.contribution-formant-caption {
+  margin: 0;
+  color: #5f584f;
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: center;
+}
+
 .spectrogram-panel.expanded .spectrogram-frame canvas {
   height: 100%;
 }

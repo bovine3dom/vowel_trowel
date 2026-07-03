@@ -4,6 +4,7 @@ import { strToU8, zipSync } from "fflate";
 import {
   getAvailableSpeechVoices,
   getPlaybackVisualizationState,
+  getPrecomputedSpectrogram,
   playAudioSources,
   playTermAudio,
   selectSpeechVoice,
@@ -48,6 +49,7 @@ const dataset = getInitialDataset();
 const SPEECH_VOICE_STORAGE_KEY = "vowel-trowel:tts-voice-uri";
 const CONTRIBUTION_DETAILS_STORAGE_KEY = "vowel-trowel:contribution-details:v1";
 const CONTRIBUTION_HISTORY_STORAGE_KEY = "vowel-trowel:contribution-history:v1";
+const CONTRIBUTION_AUDIO_DEBUG_STORAGE_KEY = "vowel-trowel:debug-audio";
 const CONTRIBUTION_TARGET_RECORDINGS = 4;
 const CONTRIBUTION_COUNTDOWN_SECONDS = 3;
 const CONTRIBUTION_COUNTDOWN_DURATION_MS = CONTRIBUTION_COUNTDOWN_SECONDS * 1000;
@@ -1785,7 +1787,17 @@ function createContributionRecorder(getWordWritten: () => string) {
       const mimeType = chooseRecordingMimeType();
       recorder = new MediaRecorder(activeStream, mimeType ? { mimeType } : undefined);
 
+      debugContributionAudio("recorder created", {
+        requestedMimeType: mimeType || null,
+        recorderMimeType: recorder.mimeType || null,
+      });
+
       recorder.addEventListener("dataavailable", (event) => {
+        debugContributionAudio("recorder dataavailable", {
+          size: event.data.size,
+          type: event.data.type || null,
+        });
+
         if (event.data.size > 0) {
           chunks.push(event.data);
         }
@@ -1801,6 +1813,11 @@ function createContributionRecorder(getWordWritten: () => string) {
         setRecordingBlob(blob);
         setRecordingUrl(URL.createObjectURL(blob));
         setStatus("recorded");
+        debugContributionAudio("recorder stopped", {
+          blobSize: blob.size,
+          blobType: blob.type || null,
+          chunkCount: chunks.length,
+        });
       }, { once: true });
       beginRecordingCountdown();
     } catch (recordingError) {
@@ -2001,6 +2018,7 @@ function ContributionModePage(props: {
   const [accent, setAccent] = createSignal(savedContributionDetails.accent);
   const [downloadStatus, setDownloadStatus] = createSignal<ContributionDownloadStatus>("idle");
   const [downloadError, setDownloadError] = createSignal<string | null>(null);
+  const [recordingPreviewProgress, setRecordingPreviewProgress] = createSignal(0);
 
   const keptWordIds = createMemo(() => new Set(keptRecordings().map((recording) => recording.word.id)));
   const skippedWordIdSet = createMemo(() => new Set(skippedWordIds()));
@@ -2034,6 +2052,20 @@ function ContributionModePage(props: {
       accent: accent().trim(),
     });
   });
+
+  const recordingPreviewTracker = createAudioPlaybackProgressTracker(
+    "batch-preview",
+    setRecordingPreviewProgress,
+  );
+
+  createEffect(() => {
+    activeItem();
+    recorder.recordingUrl();
+    recordingPreviewTracker.stop();
+    setRecordingPreviewProgress(0);
+  });
+
+  onCleanup(recordingPreviewTracker.stop);
 
   const canDownloadRecordings = (recordings: readonly KeptContributionRecording[]) =>
     recordings.length > 0 && (!requiresAttributionName() || speakerName().trim().length > 0);
@@ -2239,6 +2271,13 @@ function ContributionModePage(props: {
                   </div>
                 </dl>
 
+                <ContributionFormantTargetChart
+                  language={props.language}
+                  word={item().word}
+                  recordingUrl={recorder.recordingUrl()}
+                  recordingProgress={recordingPreviewProgress()}
+                />
+
                 <RecordingTimeline
                   status={recorder.status()}
                   timelineElapsedMs={recorder.timelineElapsedMs()}
@@ -2284,7 +2323,26 @@ function ContributionModePage(props: {
                   {(url) => (
                     <div class="recording-preview">
                       <p>Listen back before keeping this recording.</p>
-                      <audio controls src={url()} />
+                        <audio
+                          controls
+                          preload="auto"
+                          ref={loadRecordingPreviewAudio}
+                          src={url()}
+                          onLoadedMetadata={(event) => recordingPreviewTracker.update(event.currentTarget, "loadedmetadata")}
+                          onLoadedData={(event) => recordingPreviewTracker.update(event.currentTarget, "loadeddata")}
+                          onCanPlay={(event) => recordingPreviewTracker.update(event.currentTarget, "canplay")}
+                          onPlay={(event) => recordingPreviewTracker.start(event.currentTarget, "play")}
+                          onPlaying={(event) => recordingPreviewTracker.start(event.currentTarget, "playing")}
+                          onTimeUpdate={(event) => recordingPreviewTracker.update(event.currentTarget, "timeupdate")}
+                          onSeeking={(event) => recordingPreviewTracker.update(event.currentTarget, "seeking")}
+                          onSeeked={(event) => recordingPreviewTracker.update(event.currentTarget, "seeked")}
+                          onWaiting={(event) => recordingPreviewTracker.note(event.currentTarget, "waiting")}
+                          onStalled={(event) => recordingPreviewTracker.note(event.currentTarget, "stalled")}
+                          onSuspend={(event) => recordingPreviewTracker.note(event.currentTarget, "suspend")}
+                          onError={(event) => recordingPreviewTracker.note(event.currentTarget, "error")}
+                          onPause={(event) => recordingPreviewTracker.pause(event.currentTarget)}
+                          onEnded={() => recordingPreviewTracker.end()}
+                        />
                     </div>
                   )}
                 </Show>
@@ -2366,6 +2424,145 @@ function ContributionModePage(props: {
   );
 }
 
+function ContributionFormantTargetChart(props: {
+  language: LanguageDataset;
+  word: WordEntry;
+  recordingUrl?: string | null;
+  recordingProgress?: number;
+}) {
+  let canvas: HTMLCanvasElement | undefined;
+  let lastDrawDebugKey = "";
+  const [recordingSpectrogram, setRecordingSpectrogram] = createSignal<PrecomputedSpectrogram | null>(null);
+  const targets = createMemo((): FormantTarget[] => formantTargetsForWord(props.word, props.language));
+  const debugLabel = () => `${props.language.id}:${props.word.id}`;
+  const draw = () => {
+    const currentTargets = targets();
+    const spectrogram = recordingSpectrogram();
+    const formants = spectrogram?.formants;
+    const progress = props.recordingProgress ?? 0;
+
+    paintFormantTargetChart(canvas, currentTargets, formants, progress);
+
+    const drawDebugKey = [
+      Boolean(canvas?.isConnected),
+      currentTargets.length,
+      Boolean(spectrogram),
+      Boolean(formants),
+      Math.floor(progress * 20),
+    ].join(":");
+
+    if (drawDebugKey !== lastDrawDebugKey && (props.recordingUrl || progress > 0 || spectrogram)) {
+      lastDrawDebugKey = drawDebugKey;
+      debugContributionAudio("formant chart draw", {
+        label: debugLabel(),
+        canvasConnected: Boolean(canvas?.isConnected),
+        targetCount: currentTargets.length,
+        hasSpectrogram: Boolean(spectrogram),
+        hasFormants: Boolean(formants),
+        formantPoints: formants?.points.length ?? 0,
+        progress: Number(progress.toFixed(3)),
+      });
+    }
+  };
+
+  createEffect(() => {
+    const recordingUrl = props.recordingUrl;
+
+    setRecordingSpectrogram(null);
+    debugContributionAudio("formant recording url changed", {
+      label: debugLabel(),
+      url: recordingUrl ? describeDebugAudioSource(recordingUrl) : null,
+    });
+
+    if (!recordingUrl) {
+      return;
+    }
+
+    let cancelled = false;
+    let completed = false;
+    const decodeStartedAt = performance.now();
+
+    debugContributionAudio("formant decode start", {
+      label: debugLabel(),
+      url: describeDebugAudioSource(recordingUrl),
+    });
+
+    void getPrecomputedSpectrogram(recordingUrl)
+      .then((spectrogram) => {
+        completed = true;
+
+        if (!cancelled) {
+          const formants = spectrogram.formants;
+
+          debugContributionAudio("formant decode success", {
+            label: debugLabel(),
+            duration: Number(spectrogram.duration.toFixed(3)),
+            decodeMs: Math.round(performance.now() - decodeStartedAt),
+            hasFormants: Boolean(formants),
+            formantPoints: formants?.points.length ?? 0,
+            validFormantPoints: formants?.points.filter((point) => point.f1 !== null && point.f2 !== null).length ?? 0,
+          });
+          setRecordingSpectrogram(spectrogram);
+        }
+      })
+      .catch((error) => {
+        completed = true;
+
+        if (!cancelled) {
+          debugContributionAudio("formant decode failed", {
+            label: debugLabel(),
+            error: error instanceof Error ? error.message : String(error),
+          });
+          setRecordingSpectrogram(null);
+        }
+      });
+
+    onCleanup(() => {
+      cancelled = true;
+      if (!completed) {
+        debugContributionAudio("formant decode cancelled", {
+          label: debugLabel(),
+          url: describeDebugAudioSource(recordingUrl),
+        });
+      }
+    });
+  });
+
+  createEffect(draw);
+
+  onMount(() => {
+    draw();
+
+    if (!canvas || typeof ResizeObserver === "undefined") {
+      return;
+    }
+
+    const observer = new ResizeObserver(draw);
+
+    observer.observe(canvas);
+    onCleanup(() => observer.disconnect());
+  });
+
+  return (
+    <div class="contribution-formant-target">
+      <div class="formant-legend contribution-formant-legend" aria-hidden="true">
+        <span>Target vowel space</span>
+      </div>
+      <div class="formant-frame contribution-formant-frame">
+        <canvas
+          ref={(element) => { canvas = element; }}
+          aria-label="Target vowel formant positions"
+        />
+      </div>
+      <Show when={targets().length > 0} fallback={<p class="muted">No vowel target is mapped for this word yet.</p>}>
+        <p class="contribution-formant-caption">
+          Aim for the highlighted vowel sound{targets().length === 1 ? "" : "s"}: {targets().map((target) => target.label).join(", ")}.
+        </p>
+      </Show>
+    </div>
+  );
+}
+
 function ContributionPage(props: {
   language: LanguageDataset;
   word: WordEntry;
@@ -2379,6 +2576,7 @@ function ContributionPage(props: {
   const [accent, setAccent] = createSignal(savedContributionDetails.accent);
   const [downloadStatus, setDownloadStatus] = createSignal<ContributionDownloadStatus>("idle");
   const [downloadError, setDownloadError] = createSignal<string | null>(null);
+  const [recordingPreviewProgress, setRecordingPreviewProgress] = createSignal(0);
 
   const requiresAttributionName = createMemo(() => licence() === "CC-BY-4.0");
   const canDownload = createMemo(() =>
@@ -2408,6 +2606,19 @@ function ContributionPage(props: {
       accent: accent().trim(),
     });
   });
+
+  const recordingPreviewTracker = createAudioPlaybackProgressTracker(
+    "single-preview",
+    setRecordingPreviewProgress,
+  );
+
+  createEffect(() => {
+    recorder.recordingUrl();
+    recordingPreviewTracker.stop();
+    setRecordingPreviewProgress(0);
+  });
+
+  onCleanup(recordingPreviewTracker.stop);
 
   const startRecording = async () => {
     setDownloadStatus("idle");
@@ -2519,6 +2730,12 @@ function ContributionPage(props: {
           <p class="eyebrow">Step 1</p>
           <h3>Record your sample</h3>
           <p class="contribution-card-copy">Use a quiet room. After the countdown, say the word once, naturally.</p>
+          <ContributionFormantTargetChart
+            language={props.language}
+            word={props.word}
+            recordingUrl={recorder.recordingUrl()}
+            recordingProgress={recordingPreviewProgress()}
+          />
           <RecordingTimeline
             status={recorder.status()}
             timelineElapsedMs={recorder.timelineElapsedMs()}
@@ -2553,7 +2770,26 @@ function ContributionPage(props: {
             {(url) => (
               <div class="recording-preview">
                 <p>Listen back before downloading.</p>
-                <audio controls src={url()} />
+                <audio
+                  controls
+                  preload="auto"
+                  ref={loadRecordingPreviewAudio}
+                  src={url()}
+                  onLoadedMetadata={(event) => recordingPreviewTracker.update(event.currentTarget, "loadedmetadata")}
+                  onLoadedData={(event) => recordingPreviewTracker.update(event.currentTarget, "loadeddata")}
+                  onCanPlay={(event) => recordingPreviewTracker.update(event.currentTarget, "canplay")}
+                  onPlay={(event) => recordingPreviewTracker.start(event.currentTarget, "play")}
+                  onPlaying={(event) => recordingPreviewTracker.start(event.currentTarget, "playing")}
+                  onTimeUpdate={(event) => recordingPreviewTracker.update(event.currentTarget, "timeupdate")}
+                  onSeeking={(event) => recordingPreviewTracker.update(event.currentTarget, "seeking")}
+                  onSeeked={(event) => recordingPreviewTracker.update(event.currentTarget, "seeked")}
+                  onWaiting={(event) => recordingPreviewTracker.note(event.currentTarget, "waiting")}
+                  onStalled={(event) => recordingPreviewTracker.note(event.currentTarget, "stalled")}
+                  onSuspend={(event) => recordingPreviewTracker.note(event.currentTarget, "suspend")}
+                  onError={(event) => recordingPreviewTracker.note(event.currentTarget, "error")}
+                  onPause={(event) => recordingPreviewTracker.pause(event.currentTarget)}
+                  onEnded={() => recordingPreviewTracker.end()}
+                />
               </div>
             )}
           </Show>
@@ -3024,6 +3260,92 @@ interface FormantChartRange {
   maxF2: number;
 }
 
+interface FormantTarget {
+  id: PhonemeId;
+  label: string;
+  f1: number;
+  f2: number;
+}
+
+const APPROXIMATE_PHONEME_FORMANTS: Record<string, { f1: number; f2: number }> = {
+  "fr-i": { f1: 280, f2: 2400 },
+  "fr-y": { f1: 300, f2: 1700 },
+  "fr-u": { f1: 320, f2: 850 },
+  "fr-e": { f1: 390, f2: 2200 },
+  "fr-epsilon": { f1: 550, f2: 2000 },
+  "fr-schwa": { f1: 550, f2: 1500 },
+  "fr-eu": { f1: 400, f2: 1700 },
+  "fr-oe": { f1: 600, f2: 1600 },
+  "fr-o": { f1: 420, f2: 900 },
+  "fr-open-o": { f1: 600, f2: 1000 },
+  "fr-a": { f1: 850, f2: 1500 },
+  "fr-back-a": { f1: 850, f2: 1100 },
+  "fr-an": { f1: 800, f2: 1100 },
+  "fr-in": { f1: 550, f2: 1900 },
+  "fr-on": { f1: 600, f2: 950 },
+  "fr-un": { f1: 600, f2: 1550 },
+  "en-gb-kit": { f1: 400, f2: 2100 },
+  "en-gb-fleece": { f1: 280, f2: 2400 },
+  "en-gb-happy": { f1: 320, f2: 2300 },
+  "en-gb-dress": { f1: 500, f2: 2000 },
+  "en-gb-trap": { f1: 700, f2: 1850 },
+  "en-gb-bath": { f1: 750, f2: 1100 },
+  "en-gb-palm": { f1: 750, f2: 1100 },
+  "en-gb-strut": { f1: 650, f2: 1400 },
+  "en-gb-lot": { f1: 600, f2: 950 },
+  "en-gb-cloth": { f1: 600, f2: 950 },
+  "en-gb-thought": { f1: 500, f2: 850 },
+  "en-gb-foot": { f1: 430, f2: 1100 },
+  "en-gb-goose": { f1: 320, f2: 850 },
+  "en-gb-nurse": { f1: 500, f2: 1500 },
+  "en-gb-schwa": { f1: 550, f2: 1500 },
+  "en-gb-face": { f1: 400, f2: 2100 },
+  "en-gb-goat": { f1: 430, f2: 1100 },
+  "en-gb-price": { f1: 650, f2: 1700 },
+  "en-gb-choice": { f1: 500, f2: 1250 },
+  "en-gb-mouth": { f1: 650, f2: 1300 },
+  "en-gb-near": { f1: 420, f2: 2000 },
+  "en-gb-square": { f1: 520, f2: 1900 },
+  "en-gb-cure": { f1: 450, f2: 1300 },
+};
+
+const APPROXIMATE_IPA_FORMANTS: Record<string, { f1: number; f2: number }> = {
+  "i": { f1: 280, f2: 2400 },
+  "iː": { f1: 280, f2: 2400 },
+  "ɪ": { f1: 400, f2: 2100 },
+  "y": { f1: 300, f2: 1700 },
+  "u": { f1: 320, f2: 850 },
+  "uː": { f1: 320, f2: 850 },
+  "ʊ": { f1: 430, f2: 1100 },
+  "e": { f1: 420, f2: 2100 },
+  "ɛ": { f1: 550, f2: 2000 },
+  "æ": { f1: 700, f2: 1850 },
+  "ø": { f1: 400, f2: 1700 },
+  "œ": { f1: 600, f2: 1600 },
+  "ə": { f1: 550, f2: 1500 },
+  "ɜː": { f1: 500, f2: 1500 },
+  "o": { f1: 420, f2: 900 },
+  "ɔ": { f1: 600, f2: 1000 },
+  "ɔː": { f1: 500, f2: 850 },
+  "ɒ": { f1: 600, f2: 950 },
+  "ʌ": { f1: 650, f2: 1400 },
+  "a": { f1: 850, f2: 1500 },
+  "ɑ": { f1: 850, f2: 1100 },
+  "ɑː": { f1: 750, f2: 1100 },
+  "ɑ̃": { f1: 800, f2: 1100 },
+  "ɛ̃": { f1: 550, f2: 1900 },
+  "ɔ̃": { f1: 600, f2: 950 },
+  "œ̃": { f1: 600, f2: 1550 },
+  "eɪ": { f1: 400, f2: 2100 },
+  "əʊ": { f1: 430, f2: 1100 },
+  "aɪ": { f1: 650, f2: 1700 },
+  "ɔɪ": { f1: 500, f2: 1250 },
+  "aʊ": { f1: 650, f2: 1300 },
+  "ɪə": { f1: 420, f2: 2000 },
+  "eə": { f1: 520, f2: 1900 },
+  "ʊə": { f1: 450, f2: 1300 },
+};
+
 function formantChartRange(formants: PrecomputedSpectrogram["formants"]): FormantChartRange {
   return {
     minF1: 150,
@@ -3031,6 +3353,77 @@ function formantChartRange(formants: PrecomputedSpectrogram["formants"]): Forman
     minF2: 500,
     maxF2: Math.min(3500, formants?.maxHz ?? 3500),
   };
+}
+
+function formantTargetsForWord(word: WordEntry, sourceDataset: LanguageDataset): FormantTarget[] {
+  const seen = new Set<PhonemeId>();
+  const targets: FormantTarget[] = [];
+
+  for (const phonemeId of word.phonemeIds) {
+    if (seen.has(phonemeId)) {
+      continue;
+    }
+
+    seen.add(phonemeId);
+
+    const phoneme = sourceDataset.phonemes.find((candidate) => candidate.id === phonemeId);
+
+    if (!phoneme || phoneme.category !== "vowel") {
+      continue;
+    }
+
+    const position = formantPositionForPhoneme(phoneme);
+
+    if (!position) {
+      continue;
+    }
+
+    targets.push({
+      id: phoneme.id,
+      label: phoneme.ipa,
+      ...position,
+    });
+  }
+
+  return targets;
+}
+
+function formantPositionForPhoneme(phoneme: Phoneme): { f1: number; f2: number } | undefined {
+  return APPROXIMATE_PHONEME_FORMANTS[phoneme.id]
+    ?? APPROXIMATE_IPA_FORMANTS[normalizePhonemeIpa(phoneme.ipa)];
+}
+
+function normalizePhonemeIpa(ipa: string): string {
+  return ipa.replaceAll("/", "").trim();
+}
+
+function paintFormantTargetChart(
+  canvas: HTMLCanvasElement | undefined,
+  targets: readonly FormantTarget[],
+  measuredFormants: PrecomputedSpectrogram["formants"] | undefined,
+  measuredProgress: number,
+): void {
+  if (!canvas?.isConnected) {
+    return;
+  }
+
+  const { ctx, width, height } = prepareFormantCanvas(canvas);
+  const range = formantChartRange(undefined);
+
+  ctx.fillStyle = "#f4f1ea";
+  ctx.fillRect(0, 0, width, height);
+  paintFormantGrid(ctx, width, height, range);
+  paintReferenceVowels(ctx, width, height, range);
+
+  if (targets.length === 0) {
+    paintFormantMessage(ctx, width, height, "No mapped vowel target");
+  } else {
+    paintFormantTargets(ctx, width, height, range, targets);
+  }
+
+  if (measuredFormants && measuredProgress > 0) {
+    paintFormantPath(ctx, measuredFormants, measuredProgress, width, height, range);
+  }
 }
 
 function paintFormantGrid(ctx: CanvasRenderingContext2D, width: number, height: number, range: FormantChartRange): void {
@@ -3136,16 +3529,79 @@ function paintReferenceVowels(ctx: CanvasRenderingContext2D, width: number, heig
   ctx.restore();
 }
 
+function paintFormantTargets(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  range: FormantChartRange,
+  targets: readonly FormantTarget[],
+): void {
+  const area = formantPlotArea(width, height);
+  const scale = formantScale(width, height);
+  const fontSize = Math.max(18, Math.min(38, Math.floor(scale / 18)));
+  const paddingX = Math.max(8, Math.floor(fontSize * 0.56));
+  const pillHeight = Math.max(28, Math.floor(fontSize * 1.55));
+
+  ctx.save();
+  ctx.font = `900 ${fontSize}px sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  for (const target of targets) {
+    const x = formantX(target.f2, range, area);
+    const y = formantY(target.f1, range, area);
+    const labelWidth = ctx.measureText(target.label).width;
+    const pillWidth = Math.max(pillHeight, labelWidth + paddingX * 2);
+    const left = Math.max(area.left, Math.min(area.right - pillWidth, x - pillWidth / 2));
+    const top = Math.max(area.top, Math.min(area.bottom - pillHeight, y - pillHeight / 2));
+
+    ctx.fillStyle = "rgba(243, 185, 69, 0.88)";
+    ctx.strokeStyle = "#264f87";
+    ctx.lineWidth = Math.max(2, Math.floor(scale / 420));
+    roundedRectPath(ctx, left, top, pillWidth, pillHeight, pillHeight / 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#202020";
+    ctx.fillText(target.label, left + pillWidth / 2, top + pillHeight / 2 + 0.5);
+  }
+
+  ctx.restore();
+}
+
+function roundedRectPath(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number,
+): void {
+  const clampedRadius = Math.min(radius, width / 2, height / 2);
+
+  ctx.beginPath();
+  ctx.moveTo(x + clampedRadius, y);
+  ctx.lineTo(x + width - clampedRadius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + clampedRadius);
+  ctx.lineTo(x + width, y + height - clampedRadius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - clampedRadius, y + height);
+  ctx.lineTo(x + clampedRadius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - clampedRadius);
+  ctx.lineTo(x, y + clampedRadius);
+  ctx.quadraticCurveTo(x, y, x + clampedRadius, y);
+  ctx.closePath();
+}
+
 function paintFormantPath(
   ctx: CanvasRenderingContext2D,
   formants: NonNullable<PrecomputedSpectrogram["formants"]>,
   progress: number,
   width: number,
   height: number,
+  range = formantChartRange(formants),
 ): void {
   const maxTime = Math.max(0.001, formants.duration * progress);
   const area = formantPlotArea(width, height);
-  const range = formantChartRange(formants);
   const scale = formantScale(width, height);
   const lineWidth = Math.max(2, Math.min(9, Math.floor(scale / 130)));
 
@@ -4006,6 +4462,159 @@ function stopStream(stream: MediaStream | undefined): void {
   for (const track of stream?.getTracks() ?? []) {
     track.stop();
   }
+}
+
+function audioPlaybackProgress(audio: HTMLAudioElement): number {
+  const duration = Number.isFinite(audio.duration) && audio.duration > 0
+    ? audio.duration
+    : CONTRIBUTION_RECORDING_DURATION_MS / 1000;
+
+  if (duration <= 0) {
+    return 0;
+  }
+
+  return Math.max(0, Math.min(1, audio.currentTime / duration));
+}
+
+function loadRecordingPreviewAudio(audio: HTMLAudioElement): void {
+  debugContributionAudio("preview audio mounted", audioDebugSnapshot(audio));
+
+  const load = () => {
+    if (audio.isConnected) {
+      debugContributionAudio("preview audio load()", audioDebugSnapshot(audio));
+      audio.load();
+    }
+  };
+
+  if (typeof queueMicrotask === "function") {
+    queueMicrotask(load);
+    return;
+  }
+
+  window.setTimeout(load, 0);
+}
+
+function createAudioPlaybackProgressTracker(label: string, setProgress: (progress: number) => void) {
+  let animationFrame: number | undefined;
+  let lastRafProgressBucket = -1;
+
+  const logAudioState = (eventName: string, audio: HTMLAudioElement, progress = audioPlaybackProgress(audio)) => {
+    if (eventName === "raf") {
+      const progressBucket = Math.floor(progress * 20);
+
+      if (progressBucket === lastRafProgressBucket) {
+        return;
+      }
+
+      lastRafProgressBucket = progressBucket;
+    } else if (eventName === "play" || eventName === "playing" || eventName === "loadedmetadata") {
+      lastRafProgressBucket = -1;
+    }
+
+    debugContributionAudio(`${label} ${eventName}`, audioDebugSnapshot(audio, progress));
+  };
+
+  const stop = () => {
+    if (animationFrame === undefined || typeof cancelAnimationFrame === "undefined") {
+      animationFrame = undefined;
+      return;
+    }
+
+    cancelAnimationFrame(animationFrame);
+    animationFrame = undefined;
+  };
+
+  const update = (audio: HTMLAudioElement, eventName = "update") => {
+    const progress = audioPlaybackProgress(audio);
+
+    setProgress(progress);
+    logAudioState(eventName, audio, progress);
+  };
+
+  const start = (audio: HTMLAudioElement, eventName = "play") => {
+    stop();
+    logAudioState(eventName, audio);
+
+    const tick = () => {
+      update(audio, "raf");
+
+      if (audio.paused || audio.ended || typeof requestAnimationFrame === "undefined") {
+        debugContributionAudio(`${label} raf stopped`, audioDebugSnapshot(audio));
+        animationFrame = undefined;
+        return;
+      }
+
+      animationFrame = requestAnimationFrame(tick);
+    };
+
+    tick();
+  };
+
+  return {
+    update,
+    start,
+    note(audio: HTMLAudioElement, eventName: string) {
+      logAudioState(eventName, audio);
+    },
+    pause(audio: HTMLAudioElement) {
+      stop();
+      update(audio, "pause");
+    },
+    end() {
+      stop();
+      debugContributionAudio(`${label} ended`, { progress: 1 });
+      setProgress(1);
+    },
+    stop,
+  };
+}
+
+function debugContributionAudio(message: string, details?: Record<string, unknown>): void {
+  if (!contributionAudioDebugEnabled()) {
+    return;
+  }
+
+  console.debug(`[vowel-trowel:audio] ${message}`, details ?? {});
+}
+
+function contributionAudioDebugEnabled(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  try {
+    const debugAudioParam = new URLSearchParams(window.location.search).get("debugAudio");
+
+    if (debugAudioParam !== null) {
+      return !["0", "false", "off"].includes(debugAudioParam.toLowerCase());
+    }
+
+    return window.localStorage.getItem(CONTRIBUTION_AUDIO_DEBUG_STORAGE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function audioDebugSnapshot(audio: HTMLAudioElement, progress = audioPlaybackProgress(audio)): Record<string, unknown> {
+  return {
+    progress: Number(progress.toFixed(3)),
+    currentTime: Number(audio.currentTime.toFixed(3)),
+    duration: Number.isFinite(audio.duration) ? Number(audio.duration.toFixed(3)) : String(audio.duration),
+    paused: audio.paused,
+    ended: audio.ended,
+    readyState: audio.readyState,
+    networkState: audio.networkState,
+    src: describeDebugAudioSource(audio.currentSrc || audio.src),
+    error: audio.error ? { code: audio.error.code, message: audio.error.message } : null,
+  };
+}
+
+function describeDebugAudioSource(src: string): string {
+  if (src.startsWith("blob:")) {
+    return `blob:${src.slice(-12)}`;
+  }
+
+  return src;
 }
 
 function chooseRecordingMimeType(): string {
