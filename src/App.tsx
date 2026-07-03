@@ -109,6 +109,7 @@ interface UrlState {
   contributionWordId: string | null;
   contributionModeOpen: boolean;
   ttsEnabled: boolean;
+  showUnrecordedPhonemes: boolean;
 }
 
 interface AudioCredit {
@@ -136,6 +137,7 @@ export default function App() {
   const [contributionWordId, setContributionWordId] = createSignal<string | null>(initialUrlState.contributionWordId);
   const [contributionModeOpen, setContributionModeOpen] = createSignal(initialUrlState.contributionModeOpen);
   const [ttsEnabled, setTtsEnabled] = createSignal(initialUrlState.ttsEnabled);
+  const [showUnrecordedPhonemes, setShowUnrecordedPhonemes] = createSignal(initialUrlState.showUnrecordedPhonemes);
   const [progress, setProgress] = createSignal(initialProgress);
   const [prompt, setPrompt] = createSignal<MatchingPrompt | undefined>(initialPrompt);
   const [selections, setSelections] = createSignal(createPromptSelections(initialPrompt));
@@ -242,6 +244,7 @@ export default function App() {
     setContributionWordId(state.contributionWordId);
     setContributionModeOpen(state.contributionModeOpen);
     setTtsEnabled(state.ttsEnabled);
+    setShowUnrecordedPhonemes(state.showUnrecordedPhonemes);
 
     setPrompt(nextPrompt);
     setSelections(createPromptSelections(nextPrompt));
@@ -265,6 +268,7 @@ export default function App() {
       contributionWordId: patch.contributionWordId === undefined ? contributionWordId() : patch.contributionWordId,
       contributionModeOpen: patch.contributionModeOpen ?? contributionModeOpen(),
       ttsEnabled: patch.ttsEnabled ?? ttsEnabled(),
+      showUnrecordedPhonemes: patch.showUnrecordedPhonemes ?? showUnrecordedPhonemes(),
     }, historyMode);
   };
 
@@ -315,6 +319,11 @@ export default function App() {
   const closeContributionMode = () => {
     setContributionModeOpen(false);
     updateUrl({ contributionModeOpen: false }, "replace");
+  };
+
+  const toggleUnrecordedPhonemes = (nextShowUnrecordedPhonemes: boolean) => {
+    setShowUnrecordedPhonemes(nextShowUnrecordedPhonemes);
+    updateUrl({ showUnrecordedPhonemes: nextShowUnrecordedPhonemes }, "replace");
   };
 
   const markContributionWordsDownloaded = (wordIds: readonly string[]) => {
@@ -836,10 +845,12 @@ export default function App() {
           audioError={audioError()}
           availableDataset={practiceDataset()}
           ttsEnabled={ttsEnabled()}
+          showUnrecordedPhonemes={showUnrecordedPhonemes()}
           onTabChange={chooseCatalogTab}
           onPhonemeSelect={selectPhonemeForDraft}
           onPhonemeExplore={explorePhoneme}
           onExploreClose={closePhonemeExplorer}
+          onShowUnrecordedPhonemesChange={toggleUnrecordedPhonemes}
           onPairSelect={choosePhonemePair}
           onPairClear={clearPhonemePair}
           onRandomRecordingPlay={playRandomWordRecording}
@@ -1324,10 +1335,12 @@ function CatalogPanel(props: {
   audioError: string | null;
   availableDataset: LanguageDataset;
   ttsEnabled: boolean;
+  showUnrecordedPhonemes: boolean;
   onTabChange: (tab: CatalogTab) => void;
   onPhonemeSelect: (phonemeId: PhonemeId) => void;
   onPhonemeExplore: (phonemeId: PhonemeId) => void;
   onExploreClose: () => void;
+  onShowUnrecordedPhonemesChange: (showUnrecordedPhonemes: boolean) => void;
   onPairSelect: (phonemePair: PhonemePair, mode?: TrainingMode) => void;
   onPairClear: () => void;
   onRandomRecordingPlay: (word: WordEntry) => void;
@@ -1374,10 +1387,13 @@ function CatalogPanel(props: {
           when={exploredPhoneme()}
           fallback={
             <PhonemePicker
+              availableDataset={props.availableDataset}
+              showUnrecordedPhonemes={props.showUnrecordedPhonemes}
               activePhonemePair={props.activePhonemePair}
               draftPhonemeIds={props.draftPhonemeIds}
               onPhonemeSelect={props.onPhonemeSelect}
               onPhonemeExplore={props.onPhonemeExplore}
+              onShowUnrecordedPhonemesChange={props.onShowUnrecordedPhonemesChange}
               onPairSelect={props.onPairSelect}
               onPairClear={props.onPairClear}
             />
@@ -1403,13 +1419,23 @@ function CatalogPanel(props: {
 }
 
 function PhonemePicker(props: {
+  availableDataset: LanguageDataset;
+  showUnrecordedPhonemes: boolean;
   activePhonemePair: PhonemePair | null;
   draftPhonemeIds: readonly PhonemeId[];
   onPhonemeSelect: (phonemeId: PhonemeId) => void;
   onPhonemeExplore: (phonemeId: PhonemeId) => void;
+  onShowUnrecordedPhonemesChange: (showUnrecordedPhonemes: boolean) => void;
   onPairSelect: (phonemePair: PhonemePair, mode?: TrainingMode) => void;
   onPairClear: () => void;
 }) {
+  const recordedPhonemes = createMemo(() => dataset.phonemes.filter((phoneme) => phonemeHasWordRecording(phoneme.id, props.availableDataset)));
+  const unrecordedPhonemes = createMemo(() => dataset.phonemes.filter((phoneme) => !phonemeHasWordRecording(phoneme.id, props.availableDataset)));
+  const visiblePhonemes = createMemo(() => props.showUnrecordedPhonemes
+    ? [...recordedPhonemes(), ...unrecordedPhonemes()]
+    : recordedPhonemes()
+  );
+
   return (
     <>
       <div class="phoneme-selection-bar">
@@ -1446,10 +1472,10 @@ function PhonemePicker(props: {
       </div>
 
       <div class="phoneme-grid">
-        <For each={dataset.phonemes}>
+        <For each={visiblePhonemes()}>
           {(phoneme) => (
             <article
-              class={phonemeCardClass(phoneme, props.draftPhonemeIds, props.activePhonemePair)}
+              class={phonemeCardClass(phoneme, props.draftPhonemeIds, props.activePhonemePair, !phonemeHasWordRecording(phoneme.id, props.availableDataset))}
               role="button"
               tabindex="0"
               onClick={() => props.onPhonemeSelect(phoneme.id)}
@@ -1464,6 +1490,9 @@ function PhonemePicker(props: {
                 <span class="phoneme-ipa">{phoneme.ipa}</span>
                 <strong>{phoneme.label}</strong>
                 <small>{phoneme.category}</small>
+                <Show when={!phonemeHasWordRecording(phoneme.id, props.availableDataset)}>
+                  <small class="phoneme-recording-status">No recordings yet</small>
+                </Show>
               </div>
               <Show when={phoneme.notes}>
                 {(notes) => <p>{notes()}</p>}
@@ -1482,6 +1511,19 @@ function PhonemePicker(props: {
           )}
         </For>
       </div>
+      <Show when={unrecordedPhonemes().length > 0}>
+        <label class="explorer-option">
+          <input
+            type="checkbox"
+            checked={props.showUnrecordedPhonemes}
+            onInput={(event) => props.onShowUnrecordedPhonemesChange(event.currentTarget.checked)}
+          />
+          Show sounds without recordings
+          <Show when={!props.showUnrecordedPhonemes}>
+            <span>({unrecordedPhonemes().length} hidden)</span>
+          </Show>
+        </label>
+      </Show>
     </>
   );
 }
@@ -1522,10 +1564,14 @@ function PhonemeExplorer(props: {
   onContribute: (word: WordEntry) => void;
 }) {
   const [showMissingWords, setShowMissingWords] = createSignal(false);
-  const recordedWords = createMemo(() => wordsForPhoneme(props.phoneme.id, props.availableDataset));
+  const recordedWords = createMemo(() => wordsForPhoneme(props.phoneme.id, props.availableDataset).filter(hasWordRecording));
   const missingWords = createMemo(() => wordsForPhoneme(props.phoneme.id, dataset).filter((word) => word.audio.length === 0));
   const visibleMissingWords = createMemo(() => showMissingWords() ? missingWords() : []);
   const visibleWordCount = createMemo(() => recordedWords().length + visibleMissingWords().length);
+
+  createEffect(() => {
+    setShowMissingWords(recordedWords().length === 0 && missingWords().length > 0);
+  });
 
   return (
     <section class="phoneme-explorer">
@@ -1567,7 +1613,9 @@ function PhonemeExplorer(props: {
               onInput={(event) => setShowMissingWords(event.currentTarget.checked)}
             />
             Show words missing recordings
-            <span>({missingWords().length} hidden)</span>
+            <Show when={!showMissingWords()}>
+              <span>({missingWords().length} hidden)</span>
+            </Show>
           </label>
         </Show>
       </div>
@@ -3308,8 +3356,13 @@ function phonemeCardClass(
   phoneme: Phoneme,
   draftPhonemeIds: readonly PhonemeId[],
   activePhonemePair: PhonemePair | null,
+  unrecorded = false,
 ): string {
   const classes = ["phoneme-card"];
+
+  if (unrecorded) {
+    classes.push("unrecorded");
+  }
 
   if (draftPhonemeIds.includes(phoneme.id)) {
     classes.push("selected");
@@ -3337,6 +3390,10 @@ function contrastCardClass(
 
 function wordsForPhoneme(phonemeId: PhonemeId, sourceDataset = dataset): WordEntry[] {
   return sourceDataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
+}
+
+function phonemeHasWordRecording(phonemeId: PhonemeId, sourceDataset = dataset): boolean {
+  return wordsForPhoneme(phonemeId, sourceDataset).some(hasWordRecording);
 }
 
 function createContributionQueue(
@@ -3832,6 +3889,7 @@ function readUrlState(): UrlState {
       contributionWordId: null,
       contributionModeOpen: false,
       ttsEnabled: false,
+      showUnrecordedPhonemes: false,
     };
   }
 
@@ -3850,6 +3908,7 @@ function readUrlState(): UrlState {
     contributionWordId,
     contributionModeOpen,
     ttsEnabled: parseBooleanFlag(params.get("tts")),
+    showUnrecordedPhonemes: parseBooleanFlag(params.get("showSounds")),
   };
 }
 
@@ -3889,6 +3948,12 @@ function writeUrlState(state: UrlState, historyMode: UrlHistoryMode): void {
     params.set("tts", "1");
   } else {
     params.delete("tts");
+  }
+
+  if (state.showUnrecordedPhonemes) {
+    params.set("showSounds", "1");
+  } else {
+    params.delete("showSounds");
   }
 
   const query = params.toString();

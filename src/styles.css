@@ -877,6 +877,15 @@ h3 {
   background: #f7f7f4;
 }
 
+.phoneme-card.unrecorded {
+  background: #fbfaf7;
+  color: #5f584f;
+}
+
+.phoneme-card.unrecorded:hover {
+  background: #f4f1ea;
+}
+
 .phoneme-card > .text-button {
   margin-top: auto;
   width: 100%;
@@ -918,6 +927,10 @@ h3 {
   font-weight: 750;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+.phoneme-main .phoneme-recording-status {
+  color: #8a6814;
 }
 
 .phoneme-card p {
