@@ -1056,8 +1056,8 @@ function TrainingPanel(props: {
             </button>
           }
         >
-          <button class="small-button" type="button" onClick={props.onPlayAgain}>
-            Play again
+          <button class="primary-button secondary" type="button" onClick={props.onPlayAgain}>
+            New pair
           </button>
           <button class="primary-button" type="button" onClick={props.onNextContrast}>
             Next contrast
@@ -1298,21 +1298,15 @@ function ContributionModeCallout(props: {
   queue: readonly ContributionQueueItem[];
   onStart: () => void;
 }) {
-  const topItem = createMemo(() => props.queue[0]);
-
   return (
     <section class="contribution-mode-callout">
       <div>
-        <p class="eyebrow">Help expand the sound library</p>
+        <p class="eyebrow">Contribute recordings</p>
         <Show
-          when={topItem()}
-          fallback={<p>Every word in this language already has {CONTRIBUTION_TARGET_RECORDINGS} recordings.</p>}
+          when={props.queue.length > 0}
+          fallback={<p>No contribution words are waiting right now.</p>}
         >
-          {(item) => (
-            <p>
-              {props.queue.length} words need recordings.
-            </p>
-          )}
+          <p>Record a few words and download one ZIP when you are done.</p>
         </Show>
       </div>
       <button class="primary-button" type="button" disabled={props.queue.length === 0} onClick={props.onStart}>
@@ -1454,16 +1448,34 @@ function PhonemePicker(props: {
       <div class="phoneme-grid">
         <For each={dataset.phonemes}>
           {(phoneme) => (
-            <article class={phonemeCardClass(phoneme, props.draftPhonemeIds, props.activePhonemePair)}>
-              <button class="phoneme-main" type="button" onClick={() => props.onPhonemeSelect(phoneme.id)}>
+            <article
+              class={phonemeCardClass(phoneme, props.draftPhonemeIds, props.activePhonemePair)}
+              role="button"
+              tabindex="0"
+              onClick={() => props.onPhonemeSelect(phoneme.id)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  props.onPhonemeSelect(phoneme.id);
+                }
+              }}
+            >
+              <div class="phoneme-main">
                 <span class="phoneme-ipa">{phoneme.ipa}</span>
                 <strong>{phoneme.label}</strong>
                 <small>{phoneme.category}</small>
-              </button>
+              </div>
               <Show when={phoneme.notes}>
                 {(notes) => <p>{notes()}</p>}
               </Show>
-              <button class="text-button compact" type="button" onClick={() => props.onPhonemeExplore(phoneme.id)}>
+              <button
+                class="text-button compact"
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  props.onPhonemeExplore(phoneme.id);
+                }}
+              >
                 Explore words
               </button>
             </article>
@@ -1663,7 +1675,7 @@ function createContributionRecorder(getWordWritten: () => string) {
     }
 
     if (status() === "recorded") {
-      return "Recorded. Listen back, then keep it if it sounds right.";
+      return "Recorded. Listen back before continuing.";
     }
 
     return "Press start, wait through the three second countdown, then speak during the final two second segment.";
@@ -1949,7 +1961,6 @@ function ContributionModePage(props: {
   );
   const activeItem = createMemo(() => remainingItems()[0]);
   const upcomingItems = createMemo(() => remainingItems().slice(1, 6));
-  const topItem = createMemo(() => props.queue[0]);
   const requiresAttributionName = createMemo(() => licence() === "CC-BY-4.0");
   const canDownload = createMemo(() =>
     keptRecordings().length > 0 && (!requiresAttributionName() || speakerName().trim().length > 0)
@@ -2124,33 +2135,25 @@ function ContributionModePage(props: {
 
       <div class="panel-heading contribution-heading">
         <p class="eyebrow">Contribution mode</p>
-        <h2>Record a useful batch</h2>
+        <h2>Record a batch</h2>
         <p>
-          Record one word at a time. The queue avoids asking the same speaker for the same word twice, because the target is more useful with different speakers and accents.
+          Record one word at a time. Listen back before keeping each recording.
         </p>
       </div>
 
       <section class="contribution-queue-summary">
         <div>
           <strong>{props.queue.length}</strong>
-          <span>useful words need recordings</span>
-        </div>
-        <div>
-          <strong>{CONTRIBUTION_TARGET_RECORDINGS}</strong>
-          <span>recordings per word target</span>
+          <span>words available</span>
         </div>
         <div>
           <strong>{keptRecordings().length}</strong>
-          <span>kept this session</span>
+          <span>kept</span>
         </div>
-        <Show when={topItem()}>
-          {(item) => (
-            <p>
-              Prioritising <span class="ipa-text">{phonemeLabelForDataset(item().priorityPhonemeId, props.language)}</span>
-              {" "}because it has {item().priorityPhonemeRecordingCount} recordings overall.
-            </p>
-          )}
-        </Show>
+        <div>
+          <strong>{skippedWordIds().length}</strong>
+          <span>skipped</span>
+        </div>
       </section>
 
       <div class="contribution-session-grid">
@@ -2160,9 +2163,9 @@ function ContributionModePage(props: {
             fallback={
               <section class="contribution-card current-contribution-step">
                 <p class="eyebrow">Queue complete</p>
-                <h3>No more queued words</h3>
+                <h3>All set</h3>
                 <p class="contribution-card-copy">
-                  You can download your kept recordings now, or go back to the sound library.
+                  Download your kept recordings now, or go back to the sound library.
                 </p>
               </section>
             }
@@ -2175,7 +2178,6 @@ function ContributionModePage(props: {
                     <h3>{item().word.written}</h3>
                     <p class="ipa-text">{item().word.ipa}</p>
                   </div>
-                  <span>{item().wordRecordingCount}/{CONTRIBUTION_TARGET_RECORDINGS} recordings</span>
                 </div>
 
                 <dl class="contribution-summary compact">
@@ -2184,20 +2186,10 @@ function ContributionModePage(props: {
                     <dd>{props.language.name}</dd>
                   </div>
                   <div>
-                    <dt>Sound IDs</dt>
+                    <dt>Sounds</dt>
                     <dd>{item().word.phonemeIds.join(", ")}</dd>
                   </div>
-                  <div>
-                    <dt>Lowest sound coverage</dt>
-                    <dd>{item().phonemeCoverage}</dd>
-                  </div>
                 </dl>
-
-                <p class="contribution-why">
-                  <strong>Why this word?</strong>{" "}
-                  <span class="ipa-text">{phonemeLabelForDataset(item().priorityPhonemeId, props.language)}</span>
-                  {" "}has {item().priorityPhonemeRecordingCount} recordings overall; {item().word.written} has {item().wordRecordingCount}/{CONTRIBUTION_TARGET_RECORDINGS}.
-                </p>
 
                 <RecordingTimeline
                   status={recorder.status()}
@@ -2228,7 +2220,7 @@ function ContributionModePage(props: {
                         Keep and next
                       </button>
                       <button class="small-button" type="button" onClick={() => void keepAndDownload()}>
-                        Keep and finish
+                        Keep and download
                       </button>
                       <button class="contribution-retry-button" type="button" onClick={() => void retryRecording()}>
                         Retry
@@ -2314,7 +2306,6 @@ function ContributionModePage(props: {
                   <div class="upcoming-contribution-word">
                     <strong>{item.word.written}</strong>
                     <span class="ipa-text">{item.word.ipa}</span>
-                    <small>{item.wordRecordingCount}/{CONTRIBUTION_TARGET_RECORDINGS}</small>
                   </div>
                 )}
               </For>
@@ -2451,7 +2442,7 @@ function ContributionPage(props: {
         <h2>Record “{props.word.written}”</h2>
         <p>
           Say <strong>{props.word.written}</strong> <span class="ipa-text">{props.word.ipa}</span> clearly once.
-          Download a bundle and send it for review before it is added to the site.
+          Download the ZIP when you are happy with the recording.
         </p>
       </div>
 
@@ -2469,7 +2460,7 @@ function ContributionPage(props: {
           <dd class="ipa-text">{props.word.ipa}</dd>
         </div>
         <div>
-          <dt>Sound IDs</dt>
+          <dt>Sounds</dt>
           <dd>{props.word.phonemeIds.join(", ")}</dd>
         </div>
       </dl>

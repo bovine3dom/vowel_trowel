@@ -246,6 +246,7 @@ h3 {
 
 .match-column {
   display: grid;
+  grid-template-rows: minmax(42px, auto) repeat(2, minmax(128px, 1fr));
   gap: 10px;
   align-content: start;
   padding: 14px;
@@ -300,6 +301,12 @@ h3 {
   text-align: left;
 }
 
+.sound-button,
+.word-button {
+  height: 100%;
+  grid-template-rows: auto auto 1fr;
+}
+
 .sound-button:hover,
 .word-button:hover:not(:disabled),
 .sort-word-card:hover:not(:disabled),
@@ -311,10 +318,14 @@ h3 {
   background: #f7f7f4;
 }
 
-.primary-button:hover:not(:disabled),
+.primary-button:hover:not(:disabled):not(.secondary),
 .mode-tab.selected:hover,
 .catalog-tab.selected:hover {
   background: #34302a;
+}
+
+.primary-button.secondary:hover:not(:disabled) {
+  background: #f7f7f4;
 }
 
 .sound-button:active,
@@ -373,7 +384,6 @@ h3 {
 .small-button:focus-visible,
 .text-button:focus-visible,
 .audio-feedback-button:focus-visible,
-.phoneme-main:focus-visible,
 .contrast-button:focus-visible,
 .audio-credits summary:focus-visible {
   outline: 3px solid #866118;
@@ -402,6 +412,10 @@ h3 {
 .assignment-line {
   align-self: end;
   margin-top: 18px;
+}
+
+.word-button small {
+  align-self: end;
 }
 
 .assignment-line span,
@@ -526,6 +540,11 @@ h3 {
   background: #202020;
   color: #fffdfa;
   font-weight: 750;
+}
+
+.primary-button.secondary {
+  background: #fffdfa;
+  color: #202020;
 }
 
 .small-button {
@@ -851,6 +870,11 @@ h3 {
   padding: 12px;
   border: 1px solid #d6cec2;
   background: #fffdfa;
+  cursor: pointer;
+}
+
+.phoneme-card:hover {
+  background: #f7f7f4;
 }
 
 .phoneme-card > .text-button {
@@ -865,6 +889,11 @@ h3 {
 .phoneme-card.selected {
   background: #f8f0d5;
   border-color: #8a6814;
+}
+
+.phoneme-card:focus-visible {
+  outline: 3px solid #866118;
+  outline-offset: 3px;
 }
 
 .phoneme-main {
@@ -1073,6 +1102,7 @@ h3 {
   gap: 14px;
   align-items: center;
   justify-content: space-between;
+  margin-top: 32px;
   margin-bottom: 18px;
   padding: 14px;
   border: 2px solid #202020;
@@ -1208,7 +1238,7 @@ h3 {
 }
 
 .contribution-summary.compact {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 14px;
 }
 
@@ -1269,8 +1299,7 @@ h3 {
 
 .upcoming-contribution-word {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 2px 8px;
+  gap: 2px;
   align-items: baseline;
   border: 1px solid #d6cec2;
   background: #fbfaf7;
@@ -1284,13 +1313,6 @@ h3 {
 
 .upcoming-contribution-word span {
   color: #5f584f;
-}
-
-.upcoming-contribution-word small {
-  grid-row: 1 / 3;
-  grid-column: 2;
-  color: #5f584f;
-  font-weight: 750;
 }
 
 .contribution-card .eyebrow {
