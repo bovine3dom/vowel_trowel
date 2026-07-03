@@ -54,6 +54,7 @@ const CONTRIBUTION_DETAILS_STORAGE_KEY = "vowel-trowel:contribution-details:v1";
 const CONTRIBUTION_HISTORY_STORAGE_KEY = "vowel-trowel:contribution-history:v1";
 const CONTRIBUTION_AUDIO_DEBUG_STORAGE_KEY = "vowel-trowel:debug-audio";
 const CONTRIBUTION_TARGET_RECORDINGS = 4;
+const CONTRIBUTION_SESSION_QUEUE_SIZE = 6;
 const CONTRIBUTION_COUNTDOWN_SECONDS = 3;
 const CONTRIBUTION_COUNTDOWN_DURATION_MS = CONTRIBUTION_COUNTDOWN_SECONDS * 1000;
 const CONTRIBUTION_RECORDING_DURATION_MS = 2000;
@@ -74,6 +75,12 @@ interface ContributionQueueItem {
   phonemeCoverage: number;
   priorityPhonemeId: PhonemeId;
   priorityPhonemeRecordingCount: number;
+}
+
+interface ContributionQueueOptions {
+  limit?: number;
+  candidateWordIds?: ReadonlySet<string>;
+  assumedRecordedWordIds?: readonly string[] | ReadonlySet<string>;
 }
 
 interface KeptContributionRecording {
@@ -2845,13 +2852,21 @@ function ContributionModePage(props: {
   const [recordingPreviewProgress, setRecordingPreviewProgress] = createSignal(0);
   const [recordingPreviewRequested, setRecordingPreviewRequested] = createSignal(false);
   const [recordingPreviewPlayed, setRecordingPreviewPlayed] = createSignal(false);
+  const initialCandidateWordIds = new Set(props.queue.map((item) => item.word.id));
+  const [sessionItems, setSessionItems] = createSignal<ContributionQueueItem[]>(createContributionQueue(
+    props.language,
+    new Set(),
+    {
+      candidateWordIds: initialCandidateWordIds,
+      limit: CONTRIBUTION_SESSION_QUEUE_SIZE,
+    },
+  ));
   let recordingPreviewAudio: HTMLAudioElement | undefined;
 
   const keptWordIds = createMemo(() => new Set(keptRecordings().map((recording) => recording.word.id)));
   const skippedWordIdSet = createMemo(() => new Set(skippedWordIds()));
-  const remainingItems = createMemo(() =>
-    props.queue.filter((item) => !keptWordIds().has(item.word.id) && !skippedWordIdSet().has(item.word.id))
-  );
+  const candidateWordIds = createMemo(() => new Set(props.queue.map((item) => item.word.id)));
+  const remainingItems = createMemo(() => sessionItems());
   const activeItem = createMemo(() => remainingItems()[0]);
   const upcomingItems = createMemo(() => remainingItems().slice(1, 6));
   const requiresAttributionName = createMemo(() => licence() === "CC-BY-4.0");
@@ -2885,6 +2900,14 @@ function ContributionModePage(props: {
       speakerName: speakerName().trim(),
       accent: accent().trim(),
     });
+  });
+
+  createEffect(() => {
+    const allowedWordIds = candidateWordIds();
+    const keptIds = keptWordIds();
+    const skippedIds = skippedWordIdSet();
+
+    setSessionItems((current) => fillContributionSessionQueue(current, allowedWordIds, keptIds, skippedIds, props.language));
   });
 
   const recordingPreviewTracker = createAudioPlaybackProgressTracker(
@@ -2978,6 +3001,13 @@ function ContributionModePage(props: {
     }
 
     setKeptRecordings((current) => current.slice(0, -1));
+    setSessionItems((current) => {
+      const restoredItem = props.queue.find((item) => item.word.id === recording.word.id);
+
+      return restoredItem
+        ? [restoredItem, ...current.filter((item) => item.word.id !== recording.word.id)]
+        : current;
+    });
     recorder.restoreRecording(recording.blob);
     setDownloadStatus("idle");
     setDownloadError(null);
@@ -5693,10 +5723,72 @@ function phonemeHasWordRecording(phonemeId: PhonemeId, sourceDataset = dataset):
   return wordsForPhoneme(phonemeId, sourceDataset).some(hasWordRecording);
 }
 
+function fillContributionSessionQueue(
+  currentItems: readonly ContributionQueueItem[],
+  candidateWordIds: ReadonlySet<string>,
+  keptWordIds: ReadonlySet<string>,
+  skippedWordIds: ReadonlySet<string>,
+  sourceDataset: LanguageDataset,
+): ContributionQueueItem[] {
+  const retainedItems = currentItems
+    .filter((item) =>
+      candidateWordIds.has(item.word.id)
+      && !keptWordIds.has(item.word.id)
+      && !skippedWordIds.has(item.word.id)
+    )
+    .slice(0, CONTRIBUTION_SESSION_QUEUE_SIZE);
+  const retainedWordIds = new Set(retainedItems.map((item) => item.word.id));
+  const excludedWordIds = new Set([...keptWordIds, ...skippedWordIds, ...retainedWordIds]);
+  const assumedRecordedWordIds = new Set([...keptWordIds, ...retainedWordIds]);
+  const additions = createContributionQueue(sourceDataset, excludedWordIds, {
+    assumedRecordedWordIds,
+    candidateWordIds,
+    limit: Math.max(0, CONTRIBUTION_SESSION_QUEUE_SIZE - retainedItems.length),
+  });
+
+  return [...retainedItems, ...additions];
+}
+
 function createContributionQueue(
   sourceDataset: LanguageDataset,
   excludedWordIds: ReadonlySet<string> = new Set(),
+  options: ContributionQueueOptions = {},
 ): ContributionQueueItem[] {
+  const phonemeRecordingCounts = createContributionPhonemeRecordingCounts(sourceDataset);
+  const wordsById = new Map(sourceDataset.words.map((word) => [word.id, word]));
+  const selectedItems: ContributionQueueItem[] = [];
+  let candidates = sourceDataset.words.filter((word) =>
+    word.audio.length < CONTRIBUTION_TARGET_RECORDINGS
+    && !excludedWordIds.has(word.id)
+    && (!options.candidateWordIds || options.candidateWordIds.has(word.id))
+  );
+
+  for (const wordId of options.assumedRecordedWordIds ?? []) {
+    const word = wordsById.get(wordId);
+
+    if (word) {
+      addContributionRecordingCoverage(word, phonemeRecordingCounts);
+    }
+  }
+
+  while (candidates.length > 0 && (options.limit === undefined || selectedItems.length < options.limit)) {
+    const nextItem = candidates
+      .map((word) => createContributionQueueItem(word, sourceDataset, phonemeRecordingCounts))
+      .sort(compareContributionQueueItems)[0];
+
+    if (!nextItem) {
+      break;
+    }
+
+    selectedItems.push(nextItem);
+    addContributionRecordingCoverage(nextItem.word, phonemeRecordingCounts);
+    candidates = candidates.filter((word) => word.id !== nextItem.word.id);
+  }
+
+  return selectedItems;
+}
+
+function createContributionPhonemeRecordingCounts(sourceDataset: LanguageDataset): Map<PhonemeId, number> {
   const phonemeRecordingCounts = new Map<PhonemeId, number>();
 
   for (const phoneme of sourceDataset.phonemes) {
@@ -5714,27 +5806,45 @@ function createContributionQueue(
     }
   }
 
-  return sourceDataset.words
-    .filter((word) => word.audio.length < CONTRIBUTION_TARGET_RECORDINGS && !excludedWordIds.has(word.id))
-    .map((word) => {
-      const priorityPhonemeId = findLowestCoveragePhoneme(word.phonemeIds, phonemeRecordingCounts);
-      const priorityPhonemeRecordingCount = phonemeRecordingCounts.get(priorityPhonemeId) ?? 0;
+  return phonemeRecordingCounts;
+}
 
-      return {
-        word,
-        shortWordId: stripWordPrefix(word.id, sourceDataset.id),
-        wordRecordingCount: word.audio.length,
-        phonemeCoverage: priorityPhonemeRecordingCount,
-        priorityPhonemeId,
-        priorityPhonemeRecordingCount,
-      };
-    })
-    .sort((left, right) =>
-      left.phonemeCoverage - right.phonemeCoverage
-      || left.wordRecordingCount - right.wordRecordingCount
-      || left.word.written.localeCompare(right.word.written)
-      || left.word.id.localeCompare(right.word.id)
-    );
+function createContributionQueueItem(
+  word: WordEntry,
+  sourceDataset: LanguageDataset,
+  phonemeRecordingCounts: ReadonlyMap<PhonemeId, number>,
+): ContributionQueueItem {
+  const priorityPhonemeId = findLowestCoveragePhoneme(word.phonemeIds, phonemeRecordingCounts);
+  const priorityPhonemeRecordingCount = phonemeRecordingCounts.get(priorityPhonemeId) ?? 0;
+
+  return {
+    word,
+    shortWordId: stripWordPrefix(word.id, sourceDataset.id),
+    wordRecordingCount: word.audio.length,
+    phonemeCoverage: priorityPhonemeRecordingCount,
+    priorityPhonemeId,
+    priorityPhonemeRecordingCount,
+  };
+}
+
+function compareContributionQueueItems(left: ContributionQueueItem, right: ContributionQueueItem): number {
+  return left.phonemeCoverage - right.phonemeCoverage
+    || left.wordRecordingCount - right.wordRecordingCount
+    || left.word.written.localeCompare(right.word.written)
+    || left.word.id.localeCompare(right.word.id);
+}
+
+function addContributionRecordingCoverage(
+  word: WordEntry,
+  phonemeRecordingCounts: Map<PhonemeId, number>,
+): void {
+  if (word.audio.length >= CONTRIBUTION_TARGET_RECORDINGS) {
+    return;
+  }
+
+  for (const phonemeId of word.phonemeIds) {
+    phonemeRecordingCounts.set(phonemeId, (phonemeRecordingCounts.get(phonemeId) ?? 0) + 1);
+  }
 }
 
 function findLowestCoveragePhoneme(
