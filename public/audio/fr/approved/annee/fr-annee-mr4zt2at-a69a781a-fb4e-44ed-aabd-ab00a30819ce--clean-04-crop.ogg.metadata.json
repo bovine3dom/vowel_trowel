@@ -1,0 +1,84 @@
+{
+  "updatedAt": "2026-07-03T14:16:17.473Z",
+  "candidate": {
+    "key": "fr-word-annee|User%20contribution%20annee%20fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce|contribution%3Afr%3Afr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49%3Afr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce",
+    "localPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-04-crop.ogg",
+    "metadataPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-04-crop.ogg.metadata.json",
+    "datasetSrc": "audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-04-crop.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-04-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce",
+      "notes": "User-contributed recording for année /ane/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce.webm",
+        "metadataPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce.webm.metadata.json",
+        "datasetSrc": "audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce.webm",
+        "suggestedAudioSource": {
+          "src": "audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce.webm",
+          "kind": "contribution",
+          "speaker": "Louis",
+          "license": "CC0 1.0",
+          "attribution": "Louis",
+          "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce",
+          "notes": "User-contributed recording for année /ane/."
+        }
+      },
+      "history": [
+        {
+          "filter": "noise",
+          "label": "background noise reduction",
+          "tool": "sox",
+          "command": "sox /home/olie/projects/vowel_trowel/public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce.webm -n trim 0 0.25 noiseprof /tmp/vowel-trowel-noise-hphLzQ/noise.prof && sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce.webm /home/olie/projects/vowel_trowel/public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-01-noise.ogg highpass 80 noisered /tmp/vowel-trowel-noise-hphLzQ/noise.prof 0.12",
+          "inputPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce.webm",
+          "outputPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-01-noise.ogg",
+          "datasetSrc": "audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-01-noise.ogg",
+          "metadataPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-01-noise.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:16:09.020Z"
+        },
+        {
+          "filter": "click",
+          "label": "click removal",
+          "tool": "ffmpeg",
+          "command": "ffmpeg -hide_banner -loglevel error -y -i /home/olie/projects/vowel_trowel/public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-01-noise.ogg -vn -af adeclick -c:a libvorbis -q:a 5 /home/olie/projects/vowel_trowel/public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-02-click.ogg",
+          "inputPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-01-noise.ogg",
+          "outputPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-02-click.ogg",
+          "datasetSrc": "audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-02-click.ogg",
+          "metadataPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-02-click.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:16:11.244Z"
+        },
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-02-click.ogg /home/olie/projects/vowel_trowel/public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-03-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-02-click.ogg",
+          "outputPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-03-volume.ogg",
+          "datasetSrc": "audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-03-volume.ogg",
+          "metadataPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-03-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:16:13.683Z"
+        },
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-03-volume.ogg /home/olie/projects/vowel_trowel/public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-04-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-03-volume.ogg",
+          "outputPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-04-crop.ogg",
+          "datasetSrc": "audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-04-crop.ogg",
+          "metadataPath": "public/audio/fr/contributions/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-04-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:16:16.087Z"
+        }
+      ],
+      "currentStep": 3
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

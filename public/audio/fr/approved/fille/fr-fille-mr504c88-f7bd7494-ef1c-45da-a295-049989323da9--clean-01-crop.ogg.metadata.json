@@ -1,0 +1,51 @@
+{
+  "updatedAt": "2026-07-03T14:24:19.551Z",
+  "candidate": {
+    "key": "fr-word-fille|User%20contribution%20fille%20fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9|contribution%3Afr%3Afr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49%3Afr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9",
+    "localPath": "public/audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9--clean-01-crop.ogg",
+    "metadataPath": "public/audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9--clean-01-crop.ogg.metadata.json",
+    "datasetSrc": "audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9--clean-01-crop.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9",
+      "notes": "User-contributed recording for fille /fij/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9.webm",
+        "metadataPath": "public/audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9.webm.metadata.json",
+        "datasetSrc": "audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9.webm",
+        "suggestedAudioSource": {
+          "src": "audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9.webm",
+          "kind": "contribution",
+          "speaker": "Louis",
+          "license": "CC0 1.0",
+          "attribution": "Louis",
+          "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9",
+          "notes": "User-contributed recording for fille /fij/."
+        }
+      },
+      "history": [
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9.webm /home/olie/projects/vowel_trowel/public/audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9--clean-01-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9.webm",
+          "outputPath": "public/audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9--clean-01-crop.ogg",
+          "datasetSrc": "audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9--clean-01-crop.ogg",
+          "metadataPath": "public/audio/fr/contributions/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9--clean-01-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:24:18.248Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

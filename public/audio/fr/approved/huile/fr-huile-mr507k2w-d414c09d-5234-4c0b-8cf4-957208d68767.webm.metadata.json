@@ -1,0 +1,987 @@
+{
+  "importedAt": "2026-07-03T14:12:04.640Z",
+  "bundlePath": "/home/olie/Downloads/fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49.zip",
+  "manifest": {
+    "version": 2,
+    "type": "vowel-trowel-contribution",
+    "id": "fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49",
+    "createdAt": "2026-07-03T14:10:59.778Z",
+    "pageUrl": "https://vowel-trowel.pages.dev/?lang=fr&contribute=mode&mode=match&phonemes=fr-sh%2Cfr-zh&tab=phonemes",
+    "language": {
+      "id": "fr",
+      "slug": "fr",
+      "name": "French",
+      "autonym": "francais"
+    },
+    "contribution": {
+      "licence": "CC0-1.0",
+      "speakerName": "Louis"
+    },
+    "recordings": [
+      {
+        "id": "fr-agneau-mr4zs4v5-0aef208d-0369-46c4-8c5a-649dfb75fb7c",
+        "filename": "recordings/fr-agneau-mr4zs4v5-0aef208d-0369-46c4-8c5a-649dfb75fb7c.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 55143,
+        "recordedAt": "2026-07-03T13:51:37.122Z",
+        "word": {
+          "id": "fr-word-agneau",
+          "shortId": "agneau",
+          "written": "agneau",
+          "ipa": "/aɲo/",
+          "phonemeIds": [
+            "fr-a",
+            "fr-ny",
+            "fr-o"
+          ]
+        }
+      },
+      {
+        "id": "fr-ame-mr4zsgrk-7807c321-ea2b-47fc-a6e6-7e4ade3d672f",
+        "filename": "recordings/fr-ame-mr4zsgrk-7807c321-ea2b-47fc-a6e6-7e4ade3d672f.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54066,
+        "recordedAt": "2026-07-03T13:51:52.544Z",
+        "word": {
+          "id": "fr-word-ame",
+          "shortId": "ame",
+          "written": "âme",
+          "ipa": "/ɑm/",
+          "phonemeIds": [
+            "fr-back-a",
+            "fr-m"
+          ]
+        }
+      },
+      {
+        "id": "fr-ami-mr4zsrnm-ebbbf08e-1f1b-4437-8451-3b9963a4fda7",
+        "filename": "recordings/fr-ami-mr4zsrnm-ebbbf08e-1f1b-4437-8451-3b9963a4fda7.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53131,
+        "recordedAt": "2026-07-03T13:52:06.658Z",
+        "word": {
+          "id": "fr-word-ami",
+          "shortId": "ami",
+          "written": "ami",
+          "ipa": "/ami/",
+          "phonemeIds": [
+            "fr-a",
+            "fr-m",
+            "fr-i"
+          ]
+        }
+      },
+      {
+        "id": "fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce",
+        "filename": "recordings/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 55102,
+        "recordedAt": "2026-07-03T13:52:20.453Z",
+        "word": {
+          "id": "fr-word-annee",
+          "shortId": "annee",
+          "written": "année",
+          "ipa": "/ane/",
+          "phonemeIds": [
+            "fr-a",
+            "fr-n",
+            "fr-e"
+          ]
+        }
+      },
+      {
+        "id": "fr-bas-mr4zth67-a16def13-c4ff-4d15-b089-c4a644456680",
+        "filename": "recordings/fr-bas-mr4zth67-a16def13-c4ff-4d15-b089-c4a644456680.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 49404,
+        "recordedAt": "2026-07-03T13:52:39.727Z",
+        "word": {
+          "id": "fr-word-bas",
+          "shortId": "bas",
+          "written": "bas",
+          "ipa": "/bɑ/",
+          "phonemeIds": [
+            "fr-b",
+            "fr-back-a"
+          ]
+        }
+      },
+      {
+        "id": "fr-bateau-mr4zttg6-f6e0c9dc-fc8a-4eff-8efe-d38043dafc13",
+        "filename": "recordings/fr-bateau-mr4zttg6-f6e0c9dc-fc8a-4eff-8efe-d38043dafc13.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 52388,
+        "recordedAt": "2026-07-03T13:52:55.638Z",
+        "word": {
+          "id": "fr-word-bateau",
+          "shortId": "bateau",
+          "written": "bateau",
+          "ipa": "/bato/",
+          "phonemeIds": [
+            "fr-b",
+            "fr-a",
+            "fr-t",
+            "fr-o"
+          ]
+        }
+      },
+      {
+        "id": "fr-beau-mr4zu65z-dea0f39b-c2cb-476f-9669-0f015b6860d0",
+        "filename": "recordings/fr-beau-mr4zu65z-dea0f39b-c2cb-476f-9669-0f015b6860d0.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 52043,
+        "recordedAt": "2026-07-03T13:53:12.119Z",
+        "word": {
+          "id": "fr-word-beau",
+          "shortId": "beau",
+          "written": "beau",
+          "ipa": "/bo/",
+          "phonemeIds": [
+            "fr-b",
+            "fr-o"
+          ]
+        }
+      },
+      {
+        "id": "fr-bebe-mr4zvdng-0167ed01-996b-4000-8028-f98ae4ad7cce",
+        "filename": "recordings/fr-bebe-mr4zvdng-0167ed01-996b-4000-8028-f98ae4ad7cce.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53939,
+        "recordedAt": "2026-07-03T13:54:08.476Z",
+        "word": {
+          "id": "fr-word-bebe",
+          "shortId": "bebe",
+          "written": "bébé",
+          "ipa": "/bebe/",
+          "phonemeIds": [
+            "fr-b",
+            "fr-e"
+          ]
+        }
+      },
+      {
+        "id": "fr-billet-mr4zvr2b-0a966b93-771e-4a77-934d-6eee027edf86",
+        "filename": "recordings/fr-billet-mr4zvr2b-0a966b93-771e-4a77-934d-6eee027edf86.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53324,
+        "recordedAt": "2026-07-03T13:54:25.860Z",
+        "word": {
+          "id": "fr-word-billet",
+          "shortId": "billet",
+          "written": "billet",
+          "ipa": "/bijɛ/",
+          "phonemeIds": [
+            "fr-b",
+            "fr-i",
+            "fr-j",
+            "fr-epsilon"
+          ]
+        }
+      },
+      {
+        "id": "fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a",
+        "filename": "recordings/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53916,
+        "recordedAt": "2026-07-03T13:54:44.159Z",
+        "word": {
+          "id": "fr-word-cafe",
+          "shortId": "cafe",
+          "written": "café",
+          "ipa": "/kafe/",
+          "phonemeIds": [
+            "fr-k",
+            "fr-a",
+            "fr-f",
+            "fr-e"
+          ]
+        }
+      },
+      {
+        "id": "fr-camping-mr4zwnng-97a0b55d-2691-4fa9-8310-4c31de097688",
+        "filename": "recordings/fr-camping-mr4zwnng-97a0b55d-2691-4fa9-8310-4c31de097688.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54648,
+        "recordedAt": "2026-07-03T13:55:08.092Z",
+        "word": {
+          "id": "fr-word-camping",
+          "shortId": "camping",
+          "written": "camping",
+          "ipa": "/kɑ̃piŋ/",
+          "phonemeIds": [
+            "fr-k",
+            "fr-an",
+            "fr-p",
+            "fr-i",
+            "fr-ng"
+          ]
+        }
+      },
+      {
+        "id": "fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2",
+        "filename": "recordings/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53196,
+        "recordedAt": "2026-07-03T13:55:41.581Z",
+        "word": {
+          "id": "fr-word-ce",
+          "shortId": "ce",
+          "written": "ce",
+          "ipa": "/sə/",
+          "phonemeIds": [
+            "fr-s",
+            "fr-schwa"
+          ]
+        }
+      },
+      {
+        "id": "fr-dame-mr4zxq1k-83afd760-67c1-4ef5-95ff-d6a882e18892",
+        "filename": "recordings/fr-dame-mr4zxq1k-83afd760-67c1-4ef5-95ff-d6a882e18892.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54074,
+        "recordedAt": "2026-07-03T13:55:57.848Z",
+        "word": {
+          "id": "fr-word-dame",
+          "shortId": "dame",
+          "written": "dame",
+          "ipa": "/dam/",
+          "phonemeIds": [
+            "fr-d",
+            "fr-a",
+            "fr-m"
+          ]
+        }
+      },
+      {
+        "id": "fr-de-schwa-mr4zy3gz-0e8781cc-f32e-4b18-9bc3-bd4062d4ba7d",
+        "filename": "recordings/fr-de-schwa-mr4zy3gz-0e8781cc-f32e-4b18-9bc3-bd4062d4ba7d.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 52493,
+        "recordedAt": "2026-07-03T13:56:15.251Z",
+        "word": {
+          "id": "fr-word-de-schwa",
+          "shortId": "de-schwa",
+          "written": "de",
+          "ipa": "/də/",
+          "phonemeIds": [
+            "fr-d",
+            "fr-schwa"
+          ]
+        }
+      },
+      {
+        "id": "fr-dire-mr4zyfqi-f9e44674-b91c-4d24-8dc1-ef3dff869960",
+        "filename": "recordings/fr-dire-mr4zyfqi-f9e44674-b91c-4d24-8dc1-ef3dff869960.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54778,
+        "recordedAt": "2026-07-03T13:56:31.146Z",
+        "word": {
+          "id": "fr-word-dire",
+          "shortId": "dire",
+          "written": "dire",
+          "ipa": "/diʁ/",
+          "phonemeIds": [
+            "fr-d",
+            "fr-i",
+            "fr-r"
+          ]
+        }
+      },
+      {
+        "id": "fr-doigt-mr4zys3q-9eec25cf-18c1-498b-9a03-5e4c39e060dc",
+        "filename": "recordings/fr-doigt-mr4zys3q-9eec25cf-18c1-498b-9a03-5e4c39e060dc.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 50217,
+        "recordedAt": "2026-07-03T13:56:47.174Z",
+        "word": {
+          "id": "fr-word-doigt",
+          "shortId": "doigt",
+          "written": "doigt",
+          "ipa": "/dwa/",
+          "phonemeIds": [
+            "fr-d",
+            "fr-w",
+            "fr-a"
+          ]
+        }
+      },
+      {
+        "id": "fr-donner-mr4zz79o-0c3d98c3-b252-4079-aeef-6e53a9e680f7",
+        "filename": "recordings/fr-donner-mr4zz79o-0c3d98c3-b252-4079-aeef-6e53a9e680f7.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53039,
+        "recordedAt": "2026-07-03T13:57:06.828Z",
+        "word": {
+          "id": "fr-word-donner",
+          "shortId": "donner",
+          "written": "donner",
+          "ipa": "/dɔne/",
+          "phonemeIds": [
+            "fr-d",
+            "fr-open-o",
+            "fr-n",
+            "fr-e"
+          ]
+        }
+      },
+      {
+        "id": "fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76",
+        "filename": "recordings/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53445,
+        "recordedAt": "2026-07-03T14:00:35.002Z",
+        "word": {
+          "id": "fr-word-farce",
+          "shortId": "farce",
+          "written": "farce",
+          "ipa": "/faʁs/",
+          "phonemeIds": [
+            "fr-f",
+            "fr-a",
+            "fr-r",
+            "fr-s"
+          ]
+        }
+      },
+      {
+        "id": "fr-fil-mr503zjf-af61d219-42b9-47d2-abb5-ea17e98902e2",
+        "filename": "recordings/fr-fil-mr503zjf-af61d219-42b9-47d2-abb5-ea17e98902e2.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53962,
+        "recordedAt": "2026-07-03T14:00:50.091Z",
+        "word": {
+          "id": "fr-word-fil",
+          "shortId": "fil",
+          "written": "fil",
+          "ipa": "/fil/",
+          "phonemeIds": [
+            "fr-f",
+            "fr-i",
+            "fr-l"
+          ]
+        }
+      },
+      {
+        "id": "fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9",
+        "filename": "recordings/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54795,
+        "recordedAt": "2026-07-03T14:01:06.536Z",
+        "word": {
+          "id": "fr-word-fille",
+          "shortId": "fille",
+          "written": "fille",
+          "ipa": "/fij/",
+          "phonemeIds": [
+            "fr-f",
+            "fr-i",
+            "fr-j"
+          ]
+        }
+      },
+      {
+        "id": "fr-fou-mr504nu4-67ca65a7-a1e8-42fc-8992-7fe7bf9ef7c3",
+        "filename": "recordings/fr-fou-mr504nu4-67ca65a7-a1e8-42fc-8992-7fe7bf9ef7c3.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54121,
+        "recordedAt": "2026-07-03T14:01:21.580Z",
+        "word": {
+          "id": "fr-word-fou",
+          "shortId": "fou",
+          "written": "fou",
+          "ipa": "/fu/",
+          "phonemeIds": [
+            "fr-f",
+            "fr-u"
+          ]
+        }
+      },
+      {
+        "id": "fr-gagner-mr504z9v-6e485cfc-be47-4120-9488-093c8a093e01",
+        "filename": "recordings/fr-gagner-mr504z9v-6e485cfc-be47-4120-9488-093c8a093e01.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54636,
+        "recordedAt": "2026-07-03T14:01:36.403Z",
+        "word": {
+          "id": "fr-word-gagner",
+          "shortId": "gagner",
+          "written": "gagner",
+          "ipa": "/ɡaɲe/",
+          "phonemeIds": [
+            "fr-g",
+            "fr-a",
+            "fr-ny",
+            "fr-e"
+          ]
+        }
+      },
+      {
+        "id": "fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289",
+        "filename": "recordings/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53712,
+        "recordedAt": "2026-07-03T14:02:05.455Z",
+        "word": {
+          "id": "fr-word-gare",
+          "shortId": "gare",
+          "written": "gare",
+          "ipa": "/ɡaʁ/",
+          "phonemeIds": [
+            "fr-g",
+            "fr-a",
+            "fr-r"
+          ]
+        }
+      },
+      {
+        "id": "fr-glace-mr505xla-b36e2850-e2a1-40d7-a23f-ae60774ec3ee",
+        "filename": "recordings/fr-glace-mr505xla-b36e2850-e2a1-40d7-a23f-ae60774ec3ee.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53512,
+        "recordedAt": "2026-07-03T14:02:20.879Z",
+        "word": {
+          "id": "fr-word-glace",
+          "shortId": "glace",
+          "written": "glace",
+          "ipa": "/ɡlas/",
+          "phonemeIds": [
+            "fr-g",
+            "fr-l",
+            "fr-a",
+            "fr-s"
+          ]
+        }
+      },
+      {
+        "id": "fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706",
+        "filename": "recordings/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54783,
+        "recordedAt": "2026-07-03T14:02:38.482Z",
+        "word": {
+          "id": "fr-word-gong",
+          "shortId": "gong",
+          "written": "gong",
+          "ipa": "/ɡɔŋ/",
+          "phonemeIds": [
+            "fr-g",
+            "fr-open-o",
+            "fr-ng"
+          ]
+        }
+      },
+      {
+        "id": "fr-gout-mr506mik-0c49a24b-0fa0-4fd3-9845-b86dc0401d6f",
+        "filename": "recordings/fr-gout-mr506mik-0c49a24b-0fa0-4fd3-9845-b86dc0401d6f.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53040,
+        "recordedAt": "2026-07-03T14:02:53.180Z",
+        "word": {
+          "id": "fr-word-gout",
+          "shortId": "gout",
+          "written": "goût",
+          "ipa": "/ɡu/",
+          "phonemeIds": [
+            "fr-g",
+            "fr-u"
+          ]
+        }
+      },
+      {
+        "id": "fr-guerre-mr506xsj-84ffd4fa-dfaa-49cf-b145-988c5e3c6938",
+        "filename": "recordings/fr-guerre-mr506xsj-84ffd4fa-dfaa-49cf-b145-988c5e3c6938.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 55758,
+        "recordedAt": "2026-07-03T14:03:07.795Z",
+        "word": {
+          "id": "fr-word-guerre",
+          "shortId": "guerre",
+          "written": "guerre",
+          "ipa": "/ɡɛʁ/",
+          "phonemeIds": [
+            "fr-g",
+            "fr-epsilon",
+            "fr-r"
+          ]
+        }
+      },
+      {
+        "id": "fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d",
+        "filename": "recordings/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 55374,
+        "recordedAt": "2026-07-03T14:03:21.181Z",
+        "word": {
+          "id": "fr-word-guide",
+          "shortId": "guide",
+          "written": "guide",
+          "ipa": "/ɡid/",
+          "phonemeIds": [
+            "fr-g",
+            "fr-i",
+            "fr-d"
+          ]
+        }
+      },
+      {
+        "id": "fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767",
+        "filename": "recordings/fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53803,
+        "recordedAt": "2026-07-03T14:03:36.680Z",
+        "word": {
+          "id": "fr-word-huile",
+          "shortId": "huile",
+          "written": "huile",
+          "ipa": "/ɥil/",
+          "phonemeIds": [
+            "fr-hui",
+            "fr-i",
+            "fr-l"
+          ]
+        }
+      },
+      {
+        "id": "fr-huit-mr507y5i-247aa89a-aa3d-4939-881c-6fdb3b7a01ec",
+        "filename": "recordings/fr-huit-mr507y5i-247aa89a-aa3d-4939-881c-6fdb3b7a01ec.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53768,
+        "recordedAt": "2026-07-03T14:03:54.918Z",
+        "word": {
+          "id": "fr-word-huit",
+          "shortId": "huit",
+          "written": "huit",
+          "ipa": "/ɥit/",
+          "phonemeIds": [
+            "fr-hui",
+            "fr-i",
+            "fr-t"
+          ]
+        }
+      },
+      {
+        "id": "fr-ile-mr508h21-6ed8a854-ecef-4fc0-b7eb-511dcded04cd",
+        "filename": "recordings/fr-ile-mr508h21-6ed8a854-ecef-4fc0-b7eb-511dcded04cd.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54567,
+        "recordedAt": "2026-07-03T14:04:19.417Z",
+        "word": {
+          "id": "fr-word-ile",
+          "shortId": "ile",
+          "written": "île",
+          "ipa": "/il/",
+          "phonemeIds": [
+            "fr-i",
+            "fr-l"
+          ]
+        }
+      },
+      {
+        "id": "fr-je-mr508sa0-3fedebc7-49d8-47e3-b449-99303e12a1e4",
+        "filename": "recordings/fr-je-mr508sa0-3fedebc7-49d8-47e3-b449-99303e12a1e4.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53783,
+        "recordedAt": "2026-07-03T14:04:33.960Z",
+        "word": {
+          "id": "fr-word-je",
+          "shortId": "je",
+          "written": "je",
+          "ipa": "/ʒə/",
+          "phonemeIds": [
+            "fr-zh",
+            "fr-schwa"
+          ]
+        }
+      },
+      {
+        "id": "fr-kilo-mr5093n3-bd8d61dc-be46-4015-9237-36d02b0e0fb6",
+        "filename": "recordings/fr-kilo-mr5093n3-bd8d61dc-be46-4015-9237-36d02b0e0fb6.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53380,
+        "recordedAt": "2026-07-03T14:04:48.688Z",
+        "word": {
+          "id": "fr-word-kilo",
+          "shortId": "kilo",
+          "written": "kilo",
+          "ipa": "/kilo/",
+          "phonemeIds": [
+            "fr-k",
+            "fr-i",
+            "fr-l",
+            "fr-o"
+          ]
+        }
+      },
+      {
+        "id": "fr-lac-mr509e2s-b46db3a7-72ce-4816-a81b-aca13767e143",
+        "filename": "recordings/fr-lac-mr509e2s-b46db3a7-72ce-4816-a81b-aca13767e143.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53872,
+        "recordedAt": "2026-07-03T14:05:02.212Z",
+        "word": {
+          "id": "fr-word-lac",
+          "shortId": "lac",
+          "written": "lac",
+          "ipa": "/lak/",
+          "phonemeIds": [
+            "fr-l",
+            "fr-a",
+            "fr-k"
+          ]
+        }
+      },
+      {
+        "id": "fr-las-mr509o2x-6f8bf91f-6eb3-4593-8410-c0a878c63f0f",
+        "filename": "recordings/fr-las-mr509o2x-6f8bf91f-6eb3-4593-8410-c0a878c63f0f.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 52964,
+        "recordedAt": "2026-07-03T14:05:15.177Z",
+        "word": {
+          "id": "fr-word-las",
+          "shortId": "las",
+          "written": "las",
+          "ipa": "/lɑ/",
+          "phonemeIds": [
+            "fr-l",
+            "fr-back-a"
+          ]
+        }
+      },
+      {
+        "id": "fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b",
+        "filename": "recordings/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54382,
+        "recordedAt": "2026-07-03T14:05:29.046Z",
+        "word": {
+          "id": "fr-word-le",
+          "shortId": "le",
+          "written": "le",
+          "ipa": "/lə/",
+          "phonemeIds": [
+            "fr-l",
+            "fr-schwa"
+          ]
+        }
+      },
+      {
+        "id": "fr-ligne-mr50aj4m-968933da-f901-4a5a-936f-62fc325273ea",
+        "filename": "recordings/fr-ligne-mr50aj4m-968933da-f901-4a5a-936f-62fc325273ea.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 56531,
+        "recordedAt": "2026-07-03T14:05:55.414Z",
+        "word": {
+          "id": "fr-word-ligne",
+          "shortId": "ligne",
+          "written": "ligne",
+          "ipa": "/liɲ/",
+          "phonemeIds": [
+            "fr-l",
+            "fr-i",
+            "fr-ny"
+          ]
+        }
+      },
+      {
+        "id": "fr-lire-mr50auxj-f69ac922-33dd-42cf-81ac-4d5a9d97c58c",
+        "filename": "recordings/fr-lire-mr50auxj-f69ac922-33dd-42cf-81ac-4d5a9d97c58c.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54303,
+        "recordedAt": "2026-07-03T14:06:10.711Z",
+        "word": {
+          "id": "fr-word-lire",
+          "shortId": "lire",
+          "written": "lire",
+          "ipa": "/liʁ/",
+          "phonemeIds": [
+            "fr-l",
+            "fr-i",
+            "fr-r"
+          ]
+        }
+      },
+      {
+        "id": "fr-lit-mr50b5e9-7309eee4-8ee6-41cf-8688-d9605021c993",
+        "filename": "recordings/fr-lit-mr50b5e9-7309eee4-8ee6-41cf-8688-d9605021c993.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53692,
+        "recordedAt": "2026-07-03T14:06:24.273Z",
+        "word": {
+          "id": "fr-word-lit",
+          "shortId": "lit",
+          "written": "lit",
+          "ipa": "/li/",
+          "phonemeIds": [
+            "fr-l",
+            "fr-i"
+          ]
+        }
+      },
+      {
+        "id": "fr-loi-mr50bfm1-09d51d59-b21d-4237-b636-e3d92232969f",
+        "filename": "recordings/fr-loi-mr50bfm1-09d51d59-b21d-4237-b636-e3d92232969f.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 52533,
+        "recordedAt": "2026-07-03T14:06:37.513Z",
+        "word": {
+          "id": "fr-word-loi",
+          "shortId": "loi",
+          "written": "loi",
+          "ipa": "/lwa/",
+          "phonemeIds": [
+            "fr-l",
+            "fr-w",
+            "fr-a"
+          ]
+        }
+      },
+      {
+        "id": "fr-lui-mr50bpxv-9d1d403e-7394-402e-bcfc-bba326228263",
+        "filename": "recordings/fr-lui-mr50bpxv-9d1d403e-7394-402e-bcfc-bba326228263.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 55111,
+        "recordedAt": "2026-07-03T14:06:50.899Z",
+        "word": {
+          "id": "fr-word-lui",
+          "shortId": "lui",
+          "written": "lui",
+          "ipa": "/lɥi/",
+          "phonemeIds": [
+            "fr-l",
+            "fr-hui",
+            "fr-i"
+          ]
+        }
+      },
+      {
+        "id": "fr-lune-mr50c0ss-044d63a5-8e20-4da9-8514-5b0ab8a30123",
+        "filename": "recordings/fr-lune-mr50c0ss-044d63a5-8e20-4da9-8514-5b0ab8a30123.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 55192,
+        "recordedAt": "2026-07-03T14:07:04.972Z",
+        "word": {
+          "id": "fr-word-lune",
+          "shortId": "lune",
+          "written": "lune",
+          "ipa": "/lyn/",
+          "phonemeIds": [
+            "fr-l",
+            "fr-y",
+            "fr-n"
+          ]
+        }
+      },
+      {
+        "id": "fr-mal-mr50cad7-704d9dcd-0728-4d02-bdd3-573092eb7617",
+        "filename": "recordings/fr-mal-mr50cad7-704d9dcd-0728-4d02-bdd3-573092eb7617.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53151,
+        "recordedAt": "2026-07-03T14:07:17.371Z",
+        "word": {
+          "id": "fr-word-mal",
+          "shortId": "mal",
+          "written": "mal",
+          "ipa": "/mal/",
+          "phonemeIds": [
+            "fr-m",
+            "fr-a",
+            "fr-l"
+          ]
+        }
+      },
+      {
+        "id": "fr-male-circ-mr50cnsd-49b7ee07-63c8-4adc-af86-4bdfe0d13b7a",
+        "filename": "recordings/fr-male-circ-mr50cnsd-49b7ee07-63c8-4adc-af86-4bdfe0d13b7a.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54779,
+        "recordedAt": "2026-07-03T14:07:34.766Z",
+        "word": {
+          "id": "fr-word-male-circ",
+          "shortId": "male-circ",
+          "written": "mâle",
+          "ipa": "/mɑl/",
+          "phonemeIds": [
+            "fr-m",
+            "fr-back-a",
+            "fr-l"
+          ]
+        }
+      },
+      {
+        "id": "fr-maman-mr50cygc-b30ebf45-6dcc-4e82-995c-ca0355fc24d6",
+        "filename": "recordings/fr-maman-mr50cygc-b30ebf45-6dcc-4e82-995c-ca0355fc24d6.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 54786,
+        "recordedAt": "2026-07-03T14:07:48.588Z",
+        "word": {
+          "id": "fr-word-maman",
+          "shortId": "maman",
+          "written": "maman",
+          "ipa": "/mamɑ̃/",
+          "phonemeIds": [
+            "fr-m",
+            "fr-a",
+            "fr-an"
+          ]
+        }
+      },
+      {
+        "id": "fr-mardi-mr50d97p-bc03aacd-3dd7-467c-adbb-d4425d99bb5e",
+        "filename": "recordings/fr-mardi-mr50d97p-bc03aacd-3dd7-467c-adbb-d4425d99bb5e.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 52146,
+        "recordedAt": "2026-07-03T14:08:02.533Z",
+        "word": {
+          "id": "fr-word-mardi",
+          "shortId": "mardi",
+          "written": "mardi",
+          "ipa": "/maʁdi/",
+          "phonemeIds": [
+            "fr-m",
+            "fr-a",
+            "fr-r",
+            "fr-d",
+            "fr-i"
+          ]
+        }
+      },
+      {
+        "id": "fr-me-mr50dndy-7c8e1b4b-ea7b-436a-b3af-648a666a71ff",
+        "filename": "recordings/fr-me-mr50dndy-7c8e1b4b-ea7b-436a-b3af-648a666a71ff.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53685,
+        "recordedAt": "2026-07-03T14:08:20.902Z",
+        "word": {
+          "id": "fr-word-me",
+          "shortId": "me",
+          "written": "me",
+          "ipa": "/mə/",
+          "phonemeIds": [
+            "fr-m",
+            "fr-schwa"
+          ]
+        }
+      },
+      {
+        "id": "fr-meeting-mr50dz2o-8dfc068a-bc37-4639-aaee-cf678cee3d11",
+        "filename": "recordings/fr-meeting-mr50dz2o-8dfc068a-bc37-4639-aaee-cf678cee3d11.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 55133,
+        "recordedAt": "2026-07-03T14:08:36.048Z",
+        "word": {
+          "id": "fr-word-meeting",
+          "shortId": "meeting",
+          "written": "meeting",
+          "ipa": "/mitiŋ/",
+          "phonemeIds": [
+            "fr-m",
+            "fr-i",
+            "fr-t",
+            "fr-ng"
+          ]
+        }
+      },
+      {
+        "id": "fr-mer-mr50ebro-999c8436-05e0-4b40-9e9b-9ad7e244e884",
+        "filename": "recordings/fr-mer-mr50ebro-999c8436-05e0-4b40-9e9b-9ad7e244e884.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 53751,
+        "recordedAt": "2026-07-03T14:08:52.500Z",
+        "word": {
+          "id": "fr-word-mer",
+          "shortId": "mer",
+          "written": "mer",
+          "ipa": "/mɛʁ/",
+          "phonemeIds": [
+            "fr-m",
+            "fr-epsilon",
+            "fr-r"
+          ]
+        }
+      },
+      {
+        "id": "fr-moi-mr50ey7p-ef752fa9-19d0-42e4-a9d2-cdf997841a7f",
+        "filename": "recordings/fr-moi-mr50ey7p-ef752fa9-19d0-42e4-a9d2-cdf997841a7f.webm",
+        "mimeType": "audio/webm; codecs=opus",
+        "size": 52531,
+        "recordedAt": "2026-07-03T14:09:21.589Z",
+        "word": {
+          "id": "fr-word-moi",
+          "shortId": "moi",
+          "written": "moi",
+          "ipa": "/mwa/",
+          "phonemeIds": [
+            "fr-m",
+            "fr-w",
+            "fr-a"
+          ]
+        }
+      }
+    ]
+  },
+  "recording": {
+    "id": "fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767",
+    "filename": "recordings/fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767.webm",
+    "mimeType": "audio/webm; codecs=opus",
+    "size": 53803,
+    "recordedAt": "2026-07-03T14:03:36.680Z",
+    "word": {
+      "id": "fr-word-huile",
+      "shortId": "huile",
+      "written": "huile",
+      "ipa": "/ɥil/",
+      "phonemeIds": [
+        "fr-hui",
+        "fr-i",
+        "fr-l"
+      ]
+    }
+  },
+  "word": {
+    "id": "fr-word-huile",
+    "written": "huile",
+    "ipa": "/ɥil/",
+    "phonemeIds": [
+      "fr-hui",
+      "fr-i",
+      "fr-l"
+    ]
+  },
+  "candidate": {
+    "key": "fr-word-huile|User%20contribution%20huile%20fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767|contribution%3Afr%3Afr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49%3Afr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767",
+    "sourceId": "contribution:fr:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767",
+    "sourceName": "Vowel Trowel user contribution",
+    "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767",
+    "fileTitle": "User contribution huile fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767",
+    "audioUrl": null,
+    "localPath": "public/audio/fr/contributions/huile/fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767.webm",
+    "metadataPath": "public/audio/fr/contributions/huile/fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767.webm.metadata.json",
+    "datasetSrc": "audio/fr/contributions/huile/fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767.webm",
+    "license": "CC0 1.0",
+    "licenseShortName": "CC0 1.0",
+    "attribution": "Louis",
+    "targetPhonemeIds": [
+      "fr-hui",
+      "fr-i",
+      "fr-l"
+    ],
+    "reasons": [
+      "User-contributed recording bundle.",
+      "Manifest created at 2026-07-03T14:10:59.778Z.",
+      "Recorded from https://vowel-trowel.pages.dev/?lang=fr&contribute=mode&mode=match&phonemes=fr-sh%2Cfr-zh&tab=phonemes."
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/contributions/huile/fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767",
+      "notes": "User-contributed recording for huile /ɥil/."
+    },
+    "review": {
+      "status": "approved"
+    }
+  },
+  "updatedAt": "2026-07-03T14:26:11.604Z"
+}

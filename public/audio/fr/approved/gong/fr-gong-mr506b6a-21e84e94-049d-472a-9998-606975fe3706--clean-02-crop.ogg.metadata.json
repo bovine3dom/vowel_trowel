@@ -1,0 +1,62 @@
+{
+  "updatedAt": "2026-07-03T14:25:54.127Z",
+  "candidate": {
+    "key": "fr-word-gong|User%20contribution%20gong%20fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706|contribution%3Afr%3Afr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49%3Afr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706",
+    "localPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-02-crop.ogg",
+    "metadataPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-02-crop.ogg.metadata.json",
+    "datasetSrc": "audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-02-crop.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-02-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706",
+      "notes": "User-contributed recording for gong /ɡɔŋ/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706.webm",
+        "metadataPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706.webm.metadata.json",
+        "datasetSrc": "audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706.webm",
+        "suggestedAudioSource": {
+          "src": "audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706.webm",
+          "kind": "contribution",
+          "speaker": "Louis",
+          "license": "CC0 1.0",
+          "attribution": "Louis",
+          "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706",
+          "notes": "User-contributed recording for gong /ɡɔŋ/."
+        }
+      },
+      "history": [
+        {
+          "filter": "noise",
+          "label": "background noise reduction",
+          "tool": "sox",
+          "command": "sox /home/olie/projects/vowel_trowel/public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706.webm -n trim 0 0.25 noiseprof /tmp/vowel-trowel-noise-jVf2gl/noise.prof && sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706.webm /home/olie/projects/vowel_trowel/public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-01-noise.ogg highpass 80 noisered /tmp/vowel-trowel-noise-jVf2gl/noise.prof 0.12",
+          "inputPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706.webm",
+          "outputPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-01-noise.ogg",
+          "datasetSrc": "audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-01-noise.ogg",
+          "metadataPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-01-noise.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:25:49.144Z"
+        },
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-01-noise.ogg /home/olie/projects/vowel_trowel/public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-02-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-01-noise.ogg",
+          "outputPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-02-crop.ogg",
+          "datasetSrc": "audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-02-crop.ogg",
+          "metadataPath": "public/audio/fr/contributions/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-02-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:25:51.566Z"
+        }
+      ],
+      "currentStep": 1
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

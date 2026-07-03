@@ -1,0 +1,62 @@
+{
+  "updatedAt": "2026-07-03T14:23:04.723Z",
+  "candidate": {
+    "key": "fr-word-farce|User%20contribution%20farce%20fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76|contribution%3Afr%3Afr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49%3Afr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76",
+    "localPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-02-crop.ogg",
+    "metadataPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-02-crop.ogg.metadata.json",
+    "datasetSrc": "audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-02-crop.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-02-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76",
+      "notes": "User-contributed recording for farce /faʁs/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76.webm",
+        "metadataPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76.webm.metadata.json",
+        "datasetSrc": "audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76.webm",
+        "suggestedAudioSource": {
+          "src": "audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76.webm",
+          "kind": "contribution",
+          "speaker": "Louis",
+          "license": "CC0 1.0",
+          "attribution": "Louis",
+          "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76",
+          "notes": "User-contributed recording for farce /faʁs/."
+        }
+      },
+      "history": [
+        {
+          "filter": "click",
+          "label": "click removal",
+          "tool": "ffmpeg",
+          "command": "ffmpeg -hide_banner -loglevel error -y -i /home/olie/projects/vowel_trowel/public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76.webm -vn -af adeclick -c:a libvorbis -q:a 5 /home/olie/projects/vowel_trowel/public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-01-click.ogg",
+          "inputPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76.webm",
+          "outputPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-01-click.ogg",
+          "datasetSrc": "audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-01-click.ogg",
+          "metadataPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-01-click.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:22:59.517Z"
+        },
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-01-click.ogg /home/olie/projects/vowel_trowel/public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-02-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-01-click.ogg",
+          "outputPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-02-crop.ogg",
+          "datasetSrc": "audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-02-crop.ogg",
+          "metadataPath": "public/audio/fr/contributions/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-02-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:23:01.889Z"
+        }
+      ],
+      "currentStep": 1
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

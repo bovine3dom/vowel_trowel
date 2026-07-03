@@ -1,0 +1,51 @@
+{
+  "updatedAt": "2026-07-03T14:22:13.422Z",
+  "candidate": {
+    "key": "fr-word-cafe|User%20contribution%20cafe%20fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a|contribution%3Afr%3Afr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49%3Afr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a",
+    "localPath": "public/audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a--clean-01-crop.ogg",
+    "metadataPath": "public/audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a--clean-01-crop.ogg.metadata.json",
+    "datasetSrc": "audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a--clean-01-crop.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a",
+      "notes": "User-contributed recording for café /kafe/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a.webm",
+        "metadataPath": "public/audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a.webm.metadata.json",
+        "datasetSrc": "audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a.webm",
+        "suggestedAudioSource": {
+          "src": "audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a.webm",
+          "kind": "contribution",
+          "speaker": "Louis",
+          "license": "CC0 1.0",
+          "attribution": "Louis",
+          "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a",
+          "notes": "User-contributed recording for café /kafe/."
+        }
+      },
+      "history": [
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a.webm /home/olie/projects/vowel_trowel/public/audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a--clean-01-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a.webm",
+          "outputPath": "public/audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a--clean-01-crop.ogg",
+          "datasetSrc": "audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a--clean-01-crop.ogg",
+          "metadataPath": "public/audio/fr/contributions/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a--clean-01-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:22:12.349Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

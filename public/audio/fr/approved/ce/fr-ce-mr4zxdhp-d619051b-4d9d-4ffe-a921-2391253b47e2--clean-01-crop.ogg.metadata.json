@@ -1,0 +1,51 @@
+{
+  "updatedAt": "2026-07-03T14:22:27.434Z",
+  "candidate": {
+    "key": "fr-word-ce|User%20contribution%20ce%20fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2|contribution%3Afr%3Afr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49%3Afr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2",
+    "localPath": "public/audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2--clean-01-crop.ogg",
+    "metadataPath": "public/audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2--clean-01-crop.ogg.metadata.json",
+    "datasetSrc": "audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2--clean-01-crop.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2",
+      "notes": "User-contributed recording for ce /sə/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2.webm",
+        "metadataPath": "public/audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2.webm.metadata.json",
+        "datasetSrc": "audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2.webm",
+        "suggestedAudioSource": {
+          "src": "audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2.webm",
+          "kind": "contribution",
+          "speaker": "Louis",
+          "license": "CC0 1.0",
+          "attribution": "Louis",
+          "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2",
+          "notes": "User-contributed recording for ce /sə/."
+        }
+      },
+      "history": [
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2.webm /home/olie/projects/vowel_trowel/public/audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2--clean-01-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2.webm",
+          "outputPath": "public/audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2--clean-01-crop.ogg",
+          "datasetSrc": "audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2--clean-01-crop.ogg",
+          "metadataPath": "public/audio/fr/contributions/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2--clean-01-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T14:22:26.418Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

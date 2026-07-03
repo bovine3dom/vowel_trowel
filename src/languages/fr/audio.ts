@@ -12,6 +12,39 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-zh. Common Voice accent: Français de Belgique."
     }
   ],
+  "agneau": [
+    {
+      "src": "audio/fr/approved/agneau/fr-agneau-mr4zs4v5-0aef208d-0369-46c4-8c5a-649dfb75fb7c.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-agneau-mr4zs4v5-0aef208d-0369-46c4-8c5a-649dfb75fb7c",
+      "notes": "User-contributed recording for agneau /aɲo/."
+    }
+  ],
+  "ami": [
+    {
+      "src": "audio/fr/approved/ami/fr-ami-mr4zsrnm-ebbbf08e-1f1b-4437-8451-3b9963a4fda7.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-ami-mr4zsrnm-ebbbf08e-1f1b-4437-8451-3b9963a4fda7",
+      "notes": "User-contributed recording for ami /ami/."
+    }
+  ],
+  "annee": [
+    {
+      "src": "audio/fr/approved/annee/fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce--clean-04-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce",
+      "notes": "User-contributed recording for année /ane/."
+    }
+  ],
   "banc": [
     {
       "src": "audio/fr/approved/banc/common_voice_fr_19101620.opus",
@@ -88,6 +121,39 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-s. Common Voice accent: Français de Belgique."
+    }
+  ],
+  "bateau": [
+    {
+      "src": "audio/fr/approved/bateau/fr-bateau-mr4zttg6-f6e0c9dc-fc8a-4eff-8efe-d38043dafc13--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-bateau-mr4zttg6-f6e0c9dc-fc8a-4eff-8efe-d38043dafc13",
+      "notes": "User-contributed recording for bateau /bato/."
+    }
+  ],
+  "beau": [
+    {
+      "src": "audio/fr/approved/beau/fr-beau-mr4zu65z-dea0f39b-c2cb-476f-9669-0f015b6860d0--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-beau-mr4zu65z-dea0f39b-c2cb-476f-9669-0f015b6860d0",
+      "notes": "User-contributed recording for beau /bo/."
+    }
+  ],
+  "bebe": [
+    {
+      "src": "audio/fr/approved/bebe/fr-bebe-mr4zvdng-0167ed01-996b-4000-8028-f98ae4ad7cce.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-bebe-mr4zvdng-0167ed01-996b-4000-8028-f98ae4ad7cce",
+      "notes": "User-contributed recording for bébé /bebe/."
     }
   ],
   "bleu": [
@@ -288,6 +354,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-sh."
     }
   ],
+  "cafe": [
+    {
+      "src": "audio/fr/approved/cafe/fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a",
+      "notes": "User-contributed recording for café /kafe/."
+    }
+  ],
   "cage": [
     {
       "src": "audio/fr/approved/cage/common_voice_fr_18531789.opus",
@@ -321,6 +398,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-zh."
+    }
+  ],
+  "camping": [
+    {
+      "src": "audio/fr/approved/camping/fr-camping-mr4zwnng-97a0b55d-2691-4fa9-8310-4c31de097688--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-camping-mr4zwnng-97a0b55d-2691-4fa9-8310-4c31de097688",
+      "notes": "User-contributed recording for camping /kɑ̃piŋ/."
     }
   ],
   "case": [
@@ -382,6 +470,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-s."
+    }
+  ],
+  "ce": [
+    {
+      "src": "audio/fr/approved/ce/fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2",
+      "notes": "User-contributed recording for ce /sə/."
     }
   ],
   "ceux": [
@@ -703,6 +802,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-z."
     }
   ],
+  "dame": [
+    {
+      "src": "audio/fr/approved/dame/fr-dame-mr4zxq1k-83afd760-67c1-4ef5-95ff-d6a882e18892--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-dame-mr4zxq1k-83afd760-67c1-4ef5-95ff-d6a882e18892",
+      "notes": "User-contributed recording for dame /dam/."
+    }
+  ],
   "dent": [
     {
       "src": "audio/fr/approved/dent/common_voice_fr_17342997.opus",
@@ -834,6 +944,28 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-eu. Common Voice accent: Français de Suisse."
     }
   ],
+  "dire": [
+    {
+      "src": "audio/fr/approved/dire/fr-dire-mr4zyfqi-f9e44674-b91c-4d24-8dc1-ef3dff869960--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-dire-mr4zyfqi-f9e44674-b91c-4d24-8dc1-ef3dff869960",
+      "notes": "User-contributed recording for dire /diʁ/."
+    }
+  ],
+  "doigt": [
+    {
+      "src": "audio/fr/approved/doigt/fr-doigt-mr4zys3q-9eec25cf-18c1-498b-9a03-5e4c39e060dc--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-doigt-mr4zys3q-9eec25cf-18c1-498b-9a03-5e4c39e060dc",
+      "notes": "User-contributed recording for doigt /dwa/."
+    }
+  ],
   "don": [
     {
       "src": "audio/fr/approved/don/common_voice_fr_19447024.opus",
@@ -867,6 +999,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-on."
+    }
+  ],
+  "donner": [
+    {
+      "src": "audio/fr/approved/donner/fr-donner-mr4zz79o-0c3d98c3-b252-4079-aeef-6e53a9e680f7--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-donner-mr4zz79o-0c3d98c3-b252-4079-aeef-6e53a9e680f7",
+      "notes": "User-contributed recording for donner /dɔne/."
     }
   ],
   "doux": [
@@ -956,6 +1099,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-epsilon. Common Voice accent: Français de Suisse."
     }
   ],
+  "farce": [
+    {
+      "src": "audio/fr/approved/farce/fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76--clean-02-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76",
+      "notes": "User-contributed recording for farce /faʁs/."
+    }
+  ],
   "fee": [
     {
       "src": "audio/fr/approved/fee/common_voice_fr_18548660.opus",
@@ -1021,6 +1175,28 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-eu. Common Voice accent: Français de Belgique."
     }
   ],
+  "fil": [
+    {
+      "src": "audio/fr/approved/fil/fr-fil-mr503zjf-af61d219-42b9-47d2-abb5-ea17e98902e2--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-fil-mr503zjf-af61d219-42b9-47d2-abb5-ea17e98902e2",
+      "notes": "User-contributed recording for fil /fil/."
+    }
+  ],
+  "fille": [
+    {
+      "src": "audio/fr/approved/fille/fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9",
+      "notes": "User-contributed recording for fille /fij/."
+    }
+  ],
   "fleur": [
     {
       "src": "audio/fr/approved/fleur/common_voice_fr_18463080.opus",
@@ -1046,6 +1222,94 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-oe."
+    }
+  ],
+  "fou": [
+    {
+      "src": "audio/fr/approved/fou/fr-fou-mr504nu4-67ca65a7-a1e8-42fc-8992-7fe7bf9ef7c3--clean-01-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-fou-mr504nu4-67ca65a7-a1e8-42fc-8992-7fe7bf9ef7c3",
+      "notes": "User-contributed recording for fou /fu/."
+    }
+  ],
+  "gagner": [
+    {
+      "src": "audio/fr/approved/gagner/fr-gagner-mr504z9v-6e485cfc-be47-4120-9488-093c8a093e01.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gagner-mr504z9v-6e485cfc-be47-4120-9488-093c8a093e01",
+      "notes": "User-contributed recording for gagner /ɡaɲe/."
+    }
+  ],
+  "gare": [
+    {
+      "src": "audio/fr/approved/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289",
+      "notes": "User-contributed recording for gare /ɡaʁ/."
+    }
+  ],
+  "glace": [
+    {
+      "src": "audio/fr/approved/glace/fr-glace-mr505xla-b36e2850-e2a1-40d7-a23f-ae60774ec3ee.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-glace-mr505xla-b36e2850-e2a1-40d7-a23f-ae60774ec3ee",
+      "notes": "User-contributed recording for glace /ɡlas/."
+    }
+  ],
+  "gong": [
+    {
+      "src": "audio/fr/approved/gong/fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706--clean-02-crop.ogg",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706",
+      "notes": "User-contributed recording for gong /ɡɔŋ/."
+    }
+  ],
+  "gout": [
+    {
+      "src": "audio/fr/approved/gout/fr-gout-mr506mik-0c49a24b-0fa0-4fd3-9845-b86dc0401d6f.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gout-mr506mik-0c49a24b-0fa0-4fd3-9845-b86dc0401d6f",
+      "notes": "User-contributed recording for goût /ɡu/."
+    }
+  ],
+  "guerre": [
+    {
+      "src": "audio/fr/approved/guerre/fr-guerre-mr506xsj-84ffd4fa-dfaa-49cf-b145-988c5e3c6938.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-guerre-mr506xsj-84ffd4fa-dfaa-49cf-b145-988c5e3c6938",
+      "notes": "User-contributed recording for guerre /ɡɛʁ/."
+    }
+  ],
+  "guide": [
+    {
+      "src": "audio/fr/approved/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d",
+      "notes": "User-contributed recording for guide /ɡid/."
     }
   ],
   "hache": [
@@ -1111,6 +1375,50 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-o. Common Voice accent: Français de Suisse."
     }
   ],
+  "huile": [
+    {
+      "src": "audio/fr/approved/huile/fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767",
+      "notes": "User-contributed recording for huile /ɥil/."
+    }
+  ],
+  "huit": [
+    {
+      "src": "audio/fr/approved/huit/fr-huit-mr507y5i-247aa89a-aa3d-4939-881c-6fdb3b7a01ec.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-huit-mr507y5i-247aa89a-aa3d-4939-881c-6fdb3b7a01ec",
+      "notes": "User-contributed recording for huit /ɥit/."
+    }
+  ],
+  "ile": [
+    {
+      "src": "audio/fr/approved/ile/fr-ile-mr508h21-6ed8a854-ecef-4fc0-b7eb-511dcded04cd.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-ile-mr508h21-6ed8a854-ecef-4fc0-b7eb-511dcded04cd",
+      "notes": "User-contributed recording for île /il/."
+    }
+  ],
+  "je": [
+    {
+      "src": "audio/fr/approved/je/fr-je-mr508sa0-3fedebc7-49d8-47e3-b449-99303e12a1e4.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-je-mr508sa0-3fedebc7-49d8-47e3-b449-99303e12a1e4",
+      "notes": "User-contributed recording for je /ʒə/."
+    }
+  ],
   "jeune": [
     {
       "src": "audio/fr/approved/jeune/LL-Q150__fra_-DSwissK-jeune.wav",
@@ -1151,6 +1459,28 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-zh. Common Voice accent: Français de Belgique."
     }
   ],
+  "kilo": [
+    {
+      "src": "audio/fr/approved/kilo/fr-kilo-mr5093n3-bd8d61dc-be46-4015-9237-36d02b0e0fb6.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-kilo-mr5093n3-bd8d61dc-be46-4015-9237-36d02b0e0fb6",
+      "notes": "User-contributed recording for kilo /kilo/."
+    }
+  ],
+  "lac": [
+    {
+      "src": "audio/fr/approved/lac/fr-lac-mr509e2s-b46db3a7-72ce-4816-a81b-aca13767e143.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lac-mr509e2s-b46db3a7-72ce-4816-a81b-aca13767e143",
+      "notes": "User-contributed recording for lac /lak/."
+    }
+  ],
   "lait": [
     {
       "src": "audio/fr/approved/lait/common_voice_fr_18058512.opus",
@@ -1160,6 +1490,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-epsilon. Common Voice accent: Français de Belgique."
+    }
+  ],
+  "le": [
+    {
+      "src": "audio/fr/approved/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b",
+      "notes": "User-contributed recording for le /lə/."
     }
   ],
   "lent": [
@@ -1199,6 +1540,39 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-e. Common Voice accent: Français de Belgique."
     }
   ],
+  "lire": [
+    {
+      "src": "audio/fr/approved/lire/fr-lire-mr50auxj-f69ac922-33dd-42cf-81ac-4d5a9d97c58c.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lire-mr50auxj-f69ac922-33dd-42cf-81ac-4d5a9d97c58c",
+      "notes": "User-contributed recording for lire /liʁ/."
+    }
+  ],
+  "lit": [
+    {
+      "src": "audio/fr/approved/lit/fr-lit-mr50b5e9-7309eee4-8ee6-41cf-8688-d9605021c993.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lit-mr50b5e9-7309eee4-8ee6-41cf-8688-d9605021c993",
+      "notes": "User-contributed recording for lit /li/."
+    }
+  ],
+  "loi": [
+    {
+      "src": "audio/fr/approved/loi/fr-loi-mr50bfm1-09d51d59-b21d-4237-b636-e3d92232969f.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-loi-mr50bfm1-09d51d59-b21d-4237-b636-e3d92232969f",
+      "notes": "User-contributed recording for loi /lwa/."
+    }
+  ],
   "long": [
     {
       "src": "audio/fr/approved/long/common_voice_fr_18049501.opus",
@@ -1218,6 +1592,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-u."
+    }
+  ],
+  "lui": [
+    {
+      "src": "audio/fr/approved/lui/fr-lui-mr50bpxv-9d1d403e-7394-402e-bcfc-bba326228263.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lui-mr50bpxv-9d1d403e-7394-402e-bcfc-bba326228263",
+      "notes": "User-contributed recording for lui /lɥi/."
     }
   ],
   "lundi": [
@@ -1258,6 +1643,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-un. Common Voice accent: Français de Belgique."
     }
   ],
+  "lune": [
+    {
+      "src": "audio/fr/approved/lune/fr-lune-mr50c0ss-044d63a5-8e20-4da9-8514-5b0ab8a30123.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lune-mr50c0ss-044d63a5-8e20-4da9-8514-5b0ab8a30123",
+      "notes": "User-contributed recording for lune /lyn/."
+    }
+  ],
   "mais": [
     {
       "src": "audio/fr/approved/mais/common_voice_fr_17306920.opus",
@@ -1269,6 +1665,72 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-epsilon. Common Voice accent: Français de Suisse."
     }
   ],
+  "mal": [
+    {
+      "src": "audio/fr/approved/mal/fr-mal-mr50cad7-704d9dcd-0728-4d02-bdd3-573092eb7617.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-mal-mr50cad7-704d9dcd-0728-4d02-bdd3-573092eb7617",
+      "notes": "User-contributed recording for mal /mal/."
+    }
+  ],
+  "maman": [
+    {
+      "src": "audio/fr/approved/maman/fr-maman-mr50cygc-b30ebf45-6dcc-4e82-995c-ca0355fc24d6.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-maman-mr50cygc-b30ebf45-6dcc-4e82-995c-ca0355fc24d6",
+      "notes": "User-contributed recording for maman /mamɑ̃/."
+    }
+  ],
+  "mardi": [
+    {
+      "src": "audio/fr/approved/mardi/fr-mardi-mr50d97p-bc03aacd-3dd7-467c-adbb-d4425d99bb5e.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-mardi-mr50d97p-bc03aacd-3dd7-467c-adbb-d4425d99bb5e",
+      "notes": "User-contributed recording for mardi /maʁdi/."
+    }
+  ],
+  "me": [
+    {
+      "src": "audio/fr/approved/me/fr-me-mr50dndy-7c8e1b4b-ea7b-436a-b3af-648a666a71ff.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-me-mr50dndy-7c8e1b4b-ea7b-436a-b3af-648a666a71ff",
+      "notes": "User-contributed recording for me /mə/."
+    }
+  ],
+  "meeting": [
+    {
+      "src": "audio/fr/approved/meeting/fr-meeting-mr50dz2o-8dfc068a-bc37-4639-aaee-cf678cee3d11.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-meeting-mr50dz2o-8dfc068a-bc37-4639-aaee-cf678cee3d11",
+      "notes": "User-contributed recording for meeting /mitiŋ/."
+    }
+  ],
+  "mer": [
+    {
+      "src": "audio/fr/approved/mer/fr-mer-mr50ebro-999c8436-05e0-4b40-9e9b-9ad7e244e884.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-mer-mr50ebro-999c8436-05e0-4b40-9e9b-9ad7e244e884",
+      "notes": "User-contributed recording for mer /mɛʁ/."
+    }
+  ],
   "mes": [
     {
       "src": "audio/fr/approved/mes/common_voice_fr_17339244.opus",
@@ -1278,6 +1740,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-e. Common Voice accent: Français de Belgique."
+    }
+  ],
+  "moi": [
+    {
+      "src": "audio/fr/approved/moi/fr-moi-mr50ey7p-ef752fa9-19d0-42e4-a9d2-cdf997841a7f.webm",
+      "kind": "contribution",
+      "speaker": "Louis",
+      "license": "CC0 1.0",
+      "attribution": "Louis",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-moi-mr50ey7p-ef752fa9-19d0-42e4-a9d2-cdf997841a7f",
+      "notes": "User-contributed recording for moi /mwa/."
     }
   ],
   "molle": [
