@@ -220,6 +220,13 @@ h3 {
   font-weight: 650;
 }
 
+.target-practice-status {
+  display: flex;
+  min-height: 5.1em;
+  align-items: center;
+  line-height: 1.35;
+}
+
 .match-board,
 .sort-groups,
 .stat-grid,
@@ -765,6 +772,200 @@ h3 {
   font-weight: 650;
   line-height: 1.35;
   text-align: center;
+}
+
+.target-practice-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 240px);
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.target-practice-chart {
+  margin-bottom: 0;
+}
+
+.target-practice-chart .contribution-formant-frame {
+  width: min(100%, 460px);
+}
+
+.target-practice-controls {
+  display: grid;
+  gap: 12px;
+  border: 1px solid #d6cec2;
+  background: #f4f1ea;
+  padding: 12px;
+}
+
+.target-practice-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.target-practice-actions .primary-button,
+.target-practice-actions .small-button {
+  width: 100%;
+}
+
+.target-practice-readout {
+  display: grid;
+  gap: 3px;
+}
+
+.target-practice-readout span {
+  color: #5f584f;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.target-practice-readout strong {
+  font-size: 1rem;
+}
+
+.target-practice-meter {
+  height: 14px;
+  overflow: hidden;
+  border: 2px solid #202020;
+  background: #fffdfa;
+}
+
+.target-practice-meter span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #b83252;
+  transition: width 80ms linear;
+}
+
+.target-vowel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.target-vowel-button {
+  display: grid;
+  min-height: 76px;
+  gap: 3px;
+  align-content: center;
+  border: 2px solid #202020;
+  background: #fffdfa;
+  box-shadow: 2px 2px 0 #202020;
+  color: #202020;
+  cursor: pointer;
+  padding: 9px;
+  text-align: center;
+}
+
+.target-vowel-button:hover:not(.selected) {
+  background: #f7f7f4;
+}
+
+.target-vowel-button.selected {
+  background: #202020;
+  color: #fffdfa;
+}
+
+.target-vowel-button:focus-visible {
+  outline: 3px solid #866118;
+  outline-offset: 3px;
+}
+
+.target-vowel-button:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
+.target-vowel-button .ipa-text {
+  font-size: 1.45rem;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.target-vowel-button small {
+  color: inherit;
+  font-size: 0.76rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.target-word-practice-list {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #d6cec2;
+}
+
+.target-word-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 8px;
+}
+
+.target-word-card {
+  display: grid;
+  gap: 8px;
+  align-items: stretch;
+  border: 2px solid #202020;
+  background: #fffdfa;
+  box-shadow: 2px 2px 0 #202020;
+  padding: 8px;
+}
+
+.target-word-card.selected {
+  border-color: #264f87;
+  background: #e7eefc;
+  box-shadow: 2px 2px 0 #264f87;
+}
+
+.target-word-select {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  gap: 3px;
+  align-content: center;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: 4px 2px;
+  text-align: left;
+}
+
+.target-word-select:hover span:first-child,
+.target-word-select:focus-visible span:first-child {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.target-word-select:focus-visible {
+  outline: 3px solid #866118;
+  outline-offset: 3px;
+}
+
+.target-word-select span:first-child {
+  overflow: hidden;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.target-word-select .ipa-text,
+.target-word-select small {
+  overflow: hidden;
+  color: #5f584f;
+  font-size: 0.8rem;
+  font-weight: 750;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.target-word-card.selected .target-word-select .ipa-text,
+.target-word-card.selected .target-word-select small {
+  color: #3f3c37;
 }
 
 .spectrogram-panel.expanded .spectrogram-frame canvas {
@@ -1797,6 +1998,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .target-practice-layout {
+    grid-template-columns: 1fr;
+  }
+
   .contribution-session-sidebar {
     position: static;
   }
@@ -1833,6 +2038,14 @@ h3 {
   .contribution-queue-summary,
   .contribution-summary.compact,
   .contribution-session-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .target-vowel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .target-word-grid {
     grid-template-columns: 1fr;
   }
 

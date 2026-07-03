@@ -44,6 +44,12 @@ export interface FormantPoint {
   energy: number;
 }
 
+export interface LiveFormantEstimate {
+  f1: number | null;
+  f2: number | null;
+  energy: number;
+}
+
 export interface PlaybackTiming {
   currentTime: number;
   duration: number | null;
@@ -257,6 +263,26 @@ export function selectSpeechVoice(
   }
 
   return voices.find((voice) => voice.lang.toLowerCase().startsWith(settings.fallbackLang.toLowerCase()));
+}
+
+export function estimateLiveFormants(samples: Float32Array, sampleRate: number): LiveFormantEstimate {
+  if (samples.length < 128 || sampleRate <= 0) {
+    return { f1: null, f2: null, energy: 0 };
+  }
+
+  const targetSampleRate = Math.min(sampleRate, FORMANT_TARGET_SAMPLE_RATE);
+  const resampled = resampleSamples(samples, sampleRate, targetSampleRate);
+  const energy = frameRootMeanSquare(resampled, 0, resampled.length);
+
+  if (resampled.length < 128 || energy < 0.004) {
+    return { f1: null, f2: null, energy };
+  }
+
+  const emphasized = preEmphasizeSamples(resampled);
+  const frame = createWindowedFrame(emphasized, 0, emphasized.length, createHannWindow(emphasized.length));
+  const estimate = estimateFrameFormants(frame, targetSampleRate);
+
+  return { ...estimate, energy };
 }
 
 function stopCurrentPlayback(): void {

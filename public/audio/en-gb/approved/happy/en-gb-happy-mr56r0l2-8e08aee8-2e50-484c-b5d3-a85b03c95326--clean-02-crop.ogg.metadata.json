@@ -1,0 +1,58 @@
+{
+  "updatedAt": "2026-07-03T18:03:01.453Z",
+  "candidate": {
+    "key": "en-gb-word-happy|User%20contribution%20happy%20en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326|contribution%3Aen-GB%3Aen-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d%3Aen-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326",
+    "localPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-02-crop.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-02-crop.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-02-crop.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-02-crop.ogg",
+      "kind": "contribution",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326",
+      "notes": "User-contributed recording for happy /ˈhæpi/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326.webm",
+        "metadataPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326.webm",
+          "kind": "contribution",
+          "license": "CC0 1.0",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326",
+          "notes": "User-contributed recording for happy /ˈhæpi/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326.webm",
+          "outputPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T18:02:56.719Z"
+        },
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-01-volume.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-02-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-01-volume.ogg",
+          "outputPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-02-crop.ogg",
+          "datasetSrc": "audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-02-crop.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/happy/en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326--clean-02-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T18:02:59.826Z"
+        }
+      ],
+      "currentStep": 1
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

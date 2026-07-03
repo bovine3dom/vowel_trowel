@@ -196,6 +196,17 @@ test("opens sort mode from shareable URL parameters", async ({ page }) => {
   await expect(page).toHaveURL(/phonemes=en-gb-kit%2Cen-gb-fleece|phonemes=en-gb-kit,en-gb-fleece/);
 });
 
+test("opens target vowel practice", async ({ page }) => {
+  await page.goto("/?lang=fr&mode=target");
+
+  await expect(page.getByRole("button", { name: "Target vowels" })).toHaveClass(/selected/);
+  await expect(page.getByRole("heading", { name: "Live vowel space" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Start microphone" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /^Play / }).first()).toBeVisible();
+  await expect(page.getByText("Choose one vowel to practise it, or choose two to practise a contrast.")).toBeVisible();
+  await expect(page.locator(".phoneme-card.selected").first()).toBeVisible();
+});
+
 test("explores a sound and returns without adding an extra history entry", async ({ page }) => {
   await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes");
 

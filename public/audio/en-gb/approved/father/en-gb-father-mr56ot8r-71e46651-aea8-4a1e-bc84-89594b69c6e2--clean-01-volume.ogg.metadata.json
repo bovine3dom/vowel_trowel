@@ -1,0 +1,47 @@
+{
+  "updatedAt": "2026-07-03T18:02:24.978Z",
+  "candidate": {
+    "key": "en-gb-word-father|User%20contribution%20father%20en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2|contribution%3Aen-GB%3Aen-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d%3Aen-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2",
+    "localPath": "public/audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2--clean-01-volume.ogg",
+      "kind": "contribution",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2",
+      "notes": "User-contributed recording for father /ˈfɑːðə/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2.webm",
+        "metadataPath": "public/audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2.webm",
+          "kind": "contribution",
+          "license": "CC0 1.0",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2",
+          "notes": "User-contributed recording for father /ˈfɑːðə/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2.webm",
+          "outputPath": "public/audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/father/en-gb-father-mr56ot8r-71e46651-aea8-4a1e-bc84-89594b69c6e2--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T18:02:22.608Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "updatedAt": "2026-07-03T18:02:54.121Z",
+  "candidate": {
+    "key": "en-gb-word-genre|User%20contribution%20genre%20en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf|contribution%3Aen-GB%3Aen-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d%3Aen-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf",
+    "localPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-02-crop.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-02-crop.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-02-crop.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-02-crop.ogg",
+      "kind": "contribution",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf",
+      "notes": "User-contributed recording for genre /ˈʒɒnrə/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf.webm",
+        "metadataPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf.webm",
+          "kind": "contribution",
+          "license": "CC0 1.0",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf",
+          "notes": "User-contributed recording for genre /ˈʒɒnrə/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf.webm",
+          "outputPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T18:02:46.147Z"
+        },
+        {
+          "filter": "crop",
+          "label": "automatic cropping",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-01-volume.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-02-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
+          "inputPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-01-volume.ogg",
+          "outputPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-02-crop.ogg",
+          "datasetSrc": "audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-02-crop.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/genre/en-gb-genre-mr56qcdw-21fa4fea-297a-42d1-8f55-702a703a78cf--clean-02-crop.ogg.metadata.json",
+          "appliedAt": "2026-07-03T18:02:52.851Z"
+        }
+      ],
+      "currentStep": 1
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

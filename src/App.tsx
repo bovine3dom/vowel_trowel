@@ -2,6 +2,7 @@ import { For, Show, createEffect, createMemo, createSignal, onCleanup, onMount }
 import { strToU8, zipSync } from "fflate";
 
 import {
+  estimateLiveFormants,
   getAvailableSpeechVoices,
   getPlaybackVisualizationState,
   getPrecomputedSpectrogram,
@@ -9,6 +10,7 @@ import {
   playTermAudio,
   selectSpeechVoice,
   subscribePlaybackVisualization,
+  type FormantTrack,
   type PrecomputedSpectrogram,
   type PlaybackVisualizationState,
 } from "./audio/playback";
@@ -19,6 +21,7 @@ import {
   createMatchingPrompt,
   createPromptSelections,
   gradeMatchingPrompt,
+  selectClosestWordPairsForPhonemes,
   selectNextMinimalPair,
   selectNextMinimalPairForPhonemes,
   type MatchingPrompt,
@@ -56,7 +59,7 @@ const CONTRIBUTION_COUNTDOWN_DURATION_MS = CONTRIBUTION_COUNTDOWN_SECONDS * 1000
 const CONTRIBUTION_RECORDING_DURATION_MS = 2000;
 const CONTRIBUTION_TIMELINE_DURATION_MS = CONTRIBUTION_COUNTDOWN_DURATION_MS + CONTRIBUTION_RECORDING_DURATION_MS;
 const renderedSpectrograms = new WeakMap<PrecomputedSpectrogram, HTMLCanvasElement>();
-type TrainingMode = "match" | "sort";
+type TrainingMode = "match" | "sort" | "target";
 type CatalogTab = "phonemes" | "contrasts";
 type PhonemePair = readonly [PhonemeId, PhonemeId];
 type UrlHistoryMode = "push" | "replace";
@@ -130,10 +133,16 @@ export default function App() {
     ?? (initialUrlState.mode === "sort"
       ? phonemePairFromSortingPrompt(initialSortingPrompt)
       : phonemePairFromMatchingPrompt(initialPrompt));
+  const initialDraftPhonemeIds = initialUrlState.mode === "target"
+    ? targetPracticeInitialPhonemeIds(dataset, initialUrlState.phonemePair ?? initialActivePhonemePair)
+    : initialActivePhonemePair ?? [];
+  const initialActiveSelection = initialUrlState.mode === "target"
+    ? toPhonemePair(initialDraftPhonemeIds)
+    : initialActivePhonemePair;
   const [mode, setMode] = createSignal<TrainingMode>(initialUrlState.mode);
-  const [lockedPhonemePair, setLockedPhonemePair] = createSignal<PhonemePair | null>(initialUrlState.phonemePair);
-  const [activePhonemePair, setActivePhonemePair] = createSignal<PhonemePair | null>(initialActivePhonemePair);
-  const [draftPhonemeIds, setDraftPhonemeIds] = createSignal<readonly PhonemeId[]>(initialActivePhonemePair ?? []);
+  const [lockedPhonemePair, setLockedPhonemePair] = createSignal<PhonemePair | null>(initialUrlState.mode === "target" ? initialActiveSelection : initialUrlState.phonemePair);
+  const [activePhonemePair, setActivePhonemePair] = createSignal<PhonemePair | null>(initialActiveSelection);
+  const [draftPhonemeIds, setDraftPhonemeIds] = createSignal<readonly PhonemeId[]>(initialDraftPhonemeIds);
   const [catalogTab, setCatalogTab] = createSignal<CatalogTab>(initialUrlState.catalogTab);
   const [explorePhonemeId, setExplorePhonemeId] = createSignal<PhonemeId | null>(initialUrlState.explorePhonemeId);
   const [contributionWordId, setContributionWordId] = createSignal<string | null>(initialUrlState.contributionWordId);
@@ -197,6 +206,10 @@ export default function App() {
       return collectWordAudioCredits(wordsForPhoneme(exploredPhonemeId, practiceDataset()));
     }
 
+    if (mode() === "target") {
+      return [];
+    }
+
     return mode() === "sort"
       ? collectTermAudioCredits(sortingPrompt()?.wordCards ?? [])
       : collectTermAudioCredits(prompt()?.item.terms ?? []);
@@ -236,11 +249,17 @@ export default function App() {
       ?? (state.mode === "sort"
         ? phonemePairFromSortingPrompt(nextSortingPrompt)
         : phonemePairFromMatchingPrompt(nextPrompt));
+    const nextDraftPhonemeIds = state.mode === "target"
+      ? targetPracticeInitialPhonemeIds(dataset, state.phonemePair ?? nextActivePair)
+      : nextActivePair ?? [];
+    const nextActiveSelection = state.mode === "target"
+      ? toPhonemePair(nextDraftPhonemeIds)
+      : nextActivePair;
 
     setMode(state.mode);
-    setLockedPhonemePair(state.phonemePair);
-    setActivePhonemePair(nextActivePair);
-    setDraftPhonemeIds(nextActivePair ?? []);
+    setLockedPhonemePair(state.mode === "target" ? nextActiveSelection : state.phonemePair);
+    setActivePhonemePair(nextActiveSelection);
+    setDraftPhonemeIds(nextDraftPhonemeIds);
     setCatalogTab(state.catalogTab);
     setExplorePhonemeId(state.explorePhonemeId);
     setContributionWordId(state.contributionWordId);
@@ -277,6 +296,18 @@ export default function App() {
   onMount(() => updateUrl({ phonemePair: activePhonemePair() }, "replace"));
 
   const chooseMode = (nextMode: TrainingMode) => {
+    if (nextMode === "target") {
+      const nextDraft = targetPracticeInitialPhonemeIds(dataset, toPhonemePair(draftPhonemeIds()) ?? activePhonemePair());
+      const nextPair = toPhonemePair(nextDraft);
+
+      setMode(nextMode);
+      setDraftPhonemeIds(nextDraft);
+      setLockedPhonemePair(nextPair);
+      setActivePhonemePair(nextPair);
+      updateUrl({ mode: nextMode, phonemePair: nextPair });
+      return;
+    }
+
     setMode(nextMode);
     updateUrl({ mode: nextMode });
   };
@@ -337,11 +368,19 @@ export default function App() {
 
   const selectPhonemeForDraft = (phonemeId: PhonemeId) => {
     const current = draftPhonemeIds();
-    const nextDraft = current.includes(phonemeId)
-      ? current.filter((candidate) => candidate !== phonemeId)
-      : current.length >= 2
-        ? [phonemeId]
-        : [...current, phonemeId];
+    const nextDraft = mode() === "target"
+      ? current.includes(phonemeId)
+        ? current.length === 1
+          ? current
+          : current.filter((candidate) => candidate !== phonemeId)
+        : current.length >= 2
+          ? [current[1] ?? phonemeId, phonemeId]
+          : [...current, phonemeId]
+      : current.includes(phonemeId)
+        ? current.filter((candidate) => candidate !== phonemeId)
+        : current.length >= 2
+          ? [phonemeId]
+          : [...current, phonemeId];
 
     setDraftPhonemeIds(nextDraft);
 
@@ -349,6 +388,10 @@ export default function App() {
 
     if (nextPair) {
       choosePhonemePair(nextPair);
+    } else if (mode() === "target") {
+      setLockedPhonemePair(null);
+      setActivePhonemePair(null);
+      updateUrl({ phonemePair: null }, "replace");
     }
   };
 
@@ -746,47 +789,62 @@ export default function App() {
         >
           Sort words
         </button>
+        <button
+          class={mode() === "target" ? "mode-tab selected" : "mode-tab"}
+          type="button"
+          onClick={() => chooseMode("target")}
+        >
+          Target vowels
+        </button>
       </nav>
 
       <section class="workspace-grid">
-        <Show when={mode() === "match"} fallback={
-          <Show when={sortingPrompt()} fallback={<EmptyDataset />}>
-            {(activePrompt) => (
-              <SortingPanel
-                prompt={activePrompt()}
-                placements={sortingPlacements()}
-                selectedTermId={selectedSortingTermId()}
-                result={sortingResult()}
-                audioError={audioError()}
-                onWordClick={selectSortingWord}
-                onPlaceWord={placeSortingWord}
-                onPlaceSelected={placeSelectedSortingWord}
-                onGroupPlay={playSortingGroup}
-                onDragStart={setDraggedSortingTermId}
-                onDragEnd={() => setDraggedSortingTermId(null)}
-                onSubmit={submitSorting}
-                onPlayAgain={playSortingAgain}
-                onNextContrast={nextSortingContrast}
-              />
-            )}
+        <Show when={mode() === "target"} fallback={
+          <Show when={mode() === "match"} fallback={
+            <Show when={sortingPrompt()} fallback={<EmptyDataset />}>
+              {(activePrompt) => (
+                <SortingPanel
+                  prompt={activePrompt()}
+                  placements={sortingPlacements()}
+                  selectedTermId={selectedSortingTermId()}
+                  result={sortingResult()}
+                  audioError={audioError()}
+                  onWordClick={selectSortingWord}
+                  onPlaceWord={placeSortingWord}
+                  onPlaceSelected={placeSelectedSortingWord}
+                  onGroupPlay={playSortingGroup}
+                  onDragStart={setDraggedSortingTermId}
+                  onDragEnd={() => setDraggedSortingTermId(null)}
+                  onSubmit={submitSorting}
+                  onPlayAgain={playSortingAgain}
+                  onNextContrast={nextSortingContrast}
+                />
+              )}
+            </Show>
+          }>
+            <Show when={prompt()} fallback={<EmptyDataset />}>
+              {(activePrompt) => (
+                <TrainingPanel
+                  prompt={activePrompt()}
+                  selections={selections()}
+                  selectedSlotId={selectedSlotId()}
+                  result={result()}
+                  audioError={audioError()}
+                  onSoundClick={selectSound}
+                  onWordClick={chooseWord}
+                  onSubmit={submit}
+                  onPlayAgain={playMatchingAgain}
+                  onNextContrast={nextMatchingContrast}
+                />
+              )}
+            </Show>
           </Show>
         }>
-          <Show when={prompt()} fallback={<EmptyDataset />}>
-            {(activePrompt) => (
-              <TrainingPanel
-                prompt={activePrompt()}
-                selections={selections()}
-                selectedSlotId={selectedSlotId()}
-                result={result()}
-                audioError={audioError()}
-                onSoundClick={selectSound}
-                onWordClick={chooseWord}
-                onSubmit={submit}
-                onPlayAgain={playMatchingAgain}
-                onNextContrast={nextMatchingContrast}
-              />
-            )}
-          </Show>
+          <TargetPracticePanel
+            language={dataset}
+            selectedPhonemeIds={draftPhonemeIds()}
+            playbackVisualization={playbackVisualization()}
+          />
         </Show>
 
         <aside class="progress-panel">
@@ -840,6 +898,7 @@ export default function App() {
           <h2>{dataset.name} sound library</h2>
         </div>
         <CatalogPanel
+          mode={mode()}
           tab={catalogTab()}
           activePhonemePair={activePhonemePair()}
           draftPhonemeIds={draftPhonemeIds()}
@@ -1307,6 +1366,742 @@ function SortWordCard(props: {
   );
 }
 
+type LiveFormantTrackerStatus = "idle" | "starting" | "listening" | "error";
+
+interface TargetPracticeVowel extends FormantTarget {
+  name: string;
+  audio: readonly AudioSource[];
+}
+
+type TargetPracticeSelectionId = `vowel:${string}` | `pair:${string}`;
+
+const LIVE_FORMANT_FRAME_SECONDS = 0.04;
+const LIVE_FORMANT_ANALYSIS_HOP_MS = 25;
+const LIVE_FORMANT_TRAIL_SECONDS = 2.4;
+const LIVE_FORMANT_DISPLAY_MAX_HZ = 4000;
+
+function TargetPracticePanel(props: {
+  language: LanguageDataset;
+  selectedPhonemeIds: readonly PhonemeId[];
+  playbackVisualization: PlaybackVisualizationState;
+}) {
+  const tracker = createLiveFormantTracker();
+  const targets = createMemo(() => targetPracticeVowelsForLanguage(props.language));
+  const [selectedPracticeId, setSelectedPracticeId] = createSignal<TargetPracticeSelectionId | null>(null);
+  const [exampleSpectrogram, setExampleSpectrogram] = createSignal<PrecomputedSpectrogram | null>(null);
+  const [exampleLabel, setExampleLabel] = createSignal<string | null>(null);
+  const [exampleError, setExampleError] = createSignal<string | null>(null);
+  const [exampleProgress, setExampleProgress] = createSignal(0);
+  const selectedTargets = createMemo((): TargetPracticeVowel[] =>
+    props.selectedPhonemeIds
+      .slice(0, 2)
+      .flatMap((targetId, index): TargetPracticeVowel[] => {
+        const target = targets().find((candidate) => candidate.id === targetId);
+
+        return target
+          ? [{ ...target, style: formantContrastTargetStyle(index) }]
+          : [];
+      })
+  );
+  const selectedTarget = createMemo(() => selectedTargets()[0]);
+  const selectedTargetPair = createMemo((): PhonemePair | null => {
+    const selected = selectedTargets();
+    const first = selected[0]?.id;
+    const second = selected[1]?.id;
+
+    return first && second ? [first, second] : null;
+  });
+  const contrastWordPairs = createMemo(() => {
+    const pair = selectedTargetPair();
+
+    return pair ? selectClosestWordPairsForPhonemes(props.language, pair, 8) : [];
+  });
+  const selectedPracticePair = createMemo(() => {
+    const practiceId = selectedPracticeId();
+
+    if (!practiceId?.startsWith("pair:")) {
+      return undefined;
+    }
+
+    return contrastWordPairs().find((pair) => `pair:${pair.id}` === practiceId);
+  });
+  const selectedTargetWords = createMemo(() => {
+    const target = selectedTarget();
+
+    return target && selectedTargets().length === 1
+      ? props.language.words.filter((word) => word.phonemeIds.includes(target.id))
+      : [];
+  });
+  const selectedTargetPaths = createMemo(() => {
+    const pair = selectedPracticePair();
+    const selected = selectedTargets();
+
+    if (pair) {
+      return pair.terms
+        .map((term) => {
+          const targetIndex = selected.findIndex((target) => target.id === term.phonemeId);
+
+          return formantTargetPathForWord(
+            term.word,
+            props.language,
+            formantContrastWordStyle(targetIndex >= 0 ? targetIndex : 0),
+          );
+        })
+        .filter((path): path is FormantTargetPath => Boolean(path));
+    }
+
+    return [];
+  });
+  const selectedPracticeLabel = createMemo(() => {
+    const pair = selectedPracticePair();
+
+    if (pair) {
+      return pair.terms.map((term) => `"${term.word.written}"`).join(" and ");
+    }
+
+    const selected = selectedTargets();
+
+    return selected.length > 1
+      ? `the ${selected.map((target) => target.label).join(" and ")} sounds`
+      : selected[0]
+        ? `the ${selected[0].label} sound`
+        : "the selected sound";
+  });
+  const selectedExampleWords = createMemo((): WordEntry[] => {
+    const pair = selectedPracticePair();
+
+    if (pair) {
+      return pair.terms.map((term) => term.word);
+    }
+
+    return [];
+  });
+  const selectedExampleAvailable = createMemo(() => {
+    return selectedExampleWords().some((word) => word.audio.length > 0)
+      || selectedTargetWords().some((word) => word.audio.length > 0);
+  });
+  const microphoneStatusText = createMemo(() => {
+    if (tracker.status() === "starting") {
+      return "Starting";
+    }
+
+    if (tracker.status() === "listening") {
+      return "Listening";
+    }
+
+    if (tracker.status() === "error") {
+      return "Needs attention";
+    }
+
+    return "Off";
+  });
+  const statusText = createMemo(() => {
+    if (tracker.status() === "starting") {
+      return "Opening microphone...";
+    }
+
+    if (tracker.status() === "listening") {
+      const point = tracker.latest();
+
+      if (point && point.f1 !== null && point.f2 !== null) {
+        return "Your voice is on the chart. Keep the sound steady and move toward the target.";
+      }
+
+      return "Listening. Make the selected sound and hold it steady.";
+    }
+
+    return "Pick one or two vowel sounds below, then start the microphone when you are ready.";
+  });
+
+  createEffect(() => {
+    const selected = selectedTargets();
+    const practiceId = selectedPracticeId();
+
+    if (selected.length === 0) {
+      setSelectedPracticeId(null);
+      return;
+    }
+
+    if (selected.length === 2) {
+      const pairs = contrastWordPairs();
+
+      if (!practiceId?.startsWith("pair:") || !pairs.some((pair) => `pair:${pair.id}` === practiceId)) {
+        setSelectedPracticeId(pairs[0] ? `pair:${pairs[0].id}` : null);
+      }
+
+      return;
+    }
+
+    const target = selected[0];
+
+    if (!target) {
+      return;
+    }
+
+    if (
+      !practiceId
+      || practiceId.startsWith("pair:")
+    ) {
+      setSelectedPracticeId(`vowel:${target.id}`);
+    }
+  });
+
+  createEffect(() => {
+    selectedPracticeId();
+    setExampleSpectrogram(null);
+    setExampleLabel(null);
+    setExampleError(null);
+    setExampleProgress(0);
+  });
+
+  createEffect(() => {
+    const visualization = props.playbackVisualization;
+    const label = exampleLabel();
+
+    if (!label || visualization.label !== label) {
+      return;
+    }
+
+    let frame: number | undefined;
+    const tick = () => {
+      const timing = visualization.getTiming?.();
+      const progress = timing?.duration
+        ? Math.max(0, Math.min(1, timing.currentTime / timing.duration))
+        : visualization.status === "ended"
+          ? 1
+          : 0;
+
+      setExampleProgress(progress);
+
+      if (visualization.status === "playing") {
+        frame = window.requestAnimationFrame(tick);
+      }
+    };
+
+    tick();
+    onCleanup(() => {
+      if (frame !== undefined) {
+        window.cancelAnimationFrame(frame);
+      }
+    });
+  });
+
+  const playExample = async (label: string, fallbackText: string, sources: readonly AudioSource[]) => {
+    const source = chooseRandomAudioSource(sources);
+
+    if (!source) {
+      setExampleError("No recorded example is available for this target yet.");
+      return;
+    }
+
+    setExampleError(null);
+    setExampleLabel(label);
+    setExampleProgress(0);
+
+    void getPrecomputedSpectrogram(resolveAudioSourceForAnalysis(source.src))
+      .then(setExampleSpectrogram)
+      .catch((error) => {
+        setExampleSpectrogram(null);
+        setExampleError(error instanceof Error ? error.message : "Could not draw example formants.");
+      });
+
+    try {
+      await playAudioSources(
+        [source],
+        fallbackText,
+        {
+          fallbackLang: props.language.defaultSpeechLang,
+          preferredLangs: props.language.speechLangs,
+          ttsEnabled: false,
+        },
+        label,
+        getAudioFeedbackPath(source),
+      );
+    } catch (playError) {
+      setExampleError(playError instanceof Error ? playError.message : "Could not play the example.");
+    }
+  };
+
+  const playSelectedExample = async (word: WordEntry) => {
+    await playExample(word.written, word.speechText ?? word.written, word.audio);
+  };
+
+  const playRandomSelectedVowelExample = async () => {
+    const word = chooseRandomWordWithRecording(selectedTargetWords());
+
+    if (!word) {
+      setExampleError("No recorded example is available yet.");
+      return;
+    }
+
+    await playSelectedExample(word);
+  };
+
+  return (
+    <section class="training-panel target-practice-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Target practice</p>
+        <h2>Live vowel space</h2>
+      </div>
+      <p class="instructions">
+        Choose one or two vowel sounds from the sound library below, listen to examples, then use the microphone to guide your voice toward the target on the chart.
+      </p>
+      <p class="interaction-hint target-practice-status">{statusText()}</p>
+
+      <Show when={tracker.error()}>
+        {(message) => <p class="error-message">{message()}</p>}
+      </Show>
+      <Show when={exampleError()}>
+        {(message) => <p class="error-message">{message()}</p>}
+      </Show>
+
+      <Show when={targets().length > 0} fallback={<p class="muted">This language does not have vowel targets yet.</p>}>
+        <div class="target-practice-layout">
+          <div>
+            <TargetPracticeFormantChart
+              targets={selectedTargets()}
+              targetPaths={selectedTargetPaths()}
+              liveFormants={tracker.track()}
+              exampleFormants={exampleSpectrogram()?.formants}
+              exampleProgress={exampleProgress()}
+              selectedLabel={selectedPracticeLabel()}
+              exampleLabel={exampleLabel()}
+            />
+          </div>
+
+          <aside class="target-practice-controls">
+            <div class="target-practice-actions">
+              <button
+                class="primary-button"
+                type="button"
+                disabled={!tracker.micAvailable() || tracker.status() === "starting" || tracker.status() === "listening"}
+                onClick={() => void tracker.start()}
+              >
+                Start microphone
+              </button>
+              <button
+                class="primary-button secondary"
+                type="button"
+                disabled={tracker.status() !== "listening" && tracker.status() !== "starting"}
+                onClick={tracker.stop}
+              >
+                Stop microphone
+              </button>
+              <Show when={selectedExampleWords().length > 0} fallback={
+                <button
+                  class="small-button"
+                  type="button"
+                  disabled={!selectedExampleAvailable()}
+                  onClick={() => void playRandomSelectedVowelExample()}
+                >
+                  Play example
+                </button>
+              }>
+                <For each={selectedExampleWords()}>
+                  {(word) => (
+                    <button
+                      class="small-button"
+                      type="button"
+                      disabled={word.audio.length === 0 || !selectedExampleAvailable()}
+                      onClick={() => void playSelectedExample(word)}
+                    >
+                      Play {word.written}
+                    </button>
+                  )}
+                </For>
+              </Show>
+            </div>
+            <div class="target-practice-readout">
+              <span>Microphone</span>
+              <strong>{microphoneStatusText()}</strong>
+            </div>
+            <div class="target-practice-meter" aria-label="Microphone level">
+              <span style={`width: ${Math.round(tracker.level() * 100)}%;`} />
+            </div>
+            <p class="muted">
+              A quiet room helps the chart follow your voice more clearly.
+            </p>
+          </aside>
+        </div>
+
+        <Show when={selectedTargetPair()}>
+          <section class="target-word-practice-list">
+            <div class="column-title">
+              <h3>Choose what to practise</h3>
+              <span>Closest word pairs for these sounds</span>
+            </div>
+            <div class="target-word-grid">
+              <Show when={contrastWordPairs().length > 0} fallback={<p class="muted">No word pairs are available for these sounds yet.</p>}>
+                <For each={contrastWordPairs()}>
+                  {(pair) => (
+                    <div class={selectedPracticeId() === `pair:${pair.id}` ? "target-word-card selected" : "target-word-card"}>
+                      <button
+                        class="target-word-select"
+                        type="button"
+                        onClick={() => setSelectedPracticeId(`pair:${pair.id}`)}
+                      >
+                        <span>{pair.terms.map((term) => term.word.written).join(" / ")}</span>
+                        <small class="ipa-text">{pair.terms.map((term) => term.word.ipa).join(" vs ")}</small>
+                      </button>
+                    </div>
+                  )}
+                </For>
+              </Show>
+            </div>
+          </section>
+        </Show>
+      </Show>
+    </section>
+  );
+}
+
+function TargetPracticeFormantChart(props: {
+  targets: readonly FormantTarget[];
+  targetPaths: readonly FormantTargetPath[];
+  liveFormants: FormantTrack;
+  exampleFormants?: FormantTrack;
+  exampleProgress: number;
+  selectedLabel: string;
+  exampleLabel: string | null;
+}) {
+  let canvas: HTMLCanvasElement | undefined;
+  const draw = () => paintFormantTargetChart(
+    canvas,
+    props.targets,
+    props.exampleFormants,
+    props.exampleFormants ? props.exampleProgress : 0,
+    props.liveFormants,
+    props.targetPaths,
+  );
+
+  createEffect(draw);
+
+  onMount(() => {
+    draw();
+
+    if (!canvas || typeof ResizeObserver === "undefined") {
+      return;
+    }
+
+    const observer = new ResizeObserver(draw);
+
+    observer.observe(canvas);
+    onCleanup(() => observer.disconnect());
+  });
+
+  return (
+    <div class="contribution-formant-target target-practice-chart">
+      <div class="formant-legend contribution-formant-legend" aria-hidden="true">
+        <span>Target</span>
+        <span>Your voice</span>
+      </div>
+      <div class="formant-frame contribution-formant-frame">
+        <canvas
+          ref={(element) => { canvas = element; }}
+          aria-label="Live target vowel formant positions"
+        />
+      </div>
+      <Show when={props.targets.length > 0 || props.targetPaths.length > 0} fallback={<p class="muted">Pick a vowel target.</p>}>
+        <p class="contribution-formant-caption">
+          Aim for {props.selectedLabel}. The red trail shows your voice.
+          {props.exampleLabel ? <> The example recording is shown in blue.</> : null}
+        </p>
+      </Show>
+    </div>
+  );
+}
+
+function createLiveFormantTracker() {
+  let audioContext: AudioContext | undefined;
+  let source: MediaStreamAudioSourceNode | undefined;
+  let processor: ScriptProcessorNode | undefined;
+  let silentGain: GainNode | undefined;
+  let stream: MediaStream | undefined;
+  let rollingSamples: Float32Array<ArrayBuffer> = new Float32Array(0);
+  let frameSampleCount = 0;
+  let startedAt = 0;
+  let lastAnalysisAt = 0;
+  let smoothedF1: number | null = null;
+  let smoothedF2: number | null = null;
+  const [status, setStatus] = createSignal<LiveFormantTrackerStatus>("idle");
+  const [error, setError] = createSignal<string | null>(null);
+  const [track, setTrack] = createSignal<FormantTrack>(emptyLiveFormantTrack());
+  const [latest, setLatest] = createSignal<FormantTrack["points"][number] | null>(null);
+  const [level, setLevel] = createSignal(0);
+  const micAvailable = () =>
+    typeof window !== "undefined"
+    && typeof navigator !== "undefined"
+    && Boolean(navigator.mediaDevices?.getUserMedia)
+    && Boolean(window.AudioContext ?? (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext);
+
+  const resetAnalysis = () => {
+    rollingSamples = new Float32Array(0);
+    frameSampleCount = 0;
+    startedAt = 0;
+    lastAnalysisAt = 0;
+    smoothedF1 = null;
+    smoothedF2 = null;
+    setTrack(emptyLiveFormantTrack());
+    setLatest(null);
+    setLevel(0);
+  };
+
+  const stopAudio = () => {
+    processor?.disconnect();
+    silentGain?.disconnect();
+    source?.disconnect();
+    processor = undefined;
+    silentGain = undefined;
+    source = undefined;
+
+    if (audioContext?.state !== "closed") {
+      void audioContext?.close();
+    }
+
+    audioContext = undefined;
+    stopStream(stream);
+    stream = undefined;
+  };
+
+  const appendAudio = (samples: Float32Array<ArrayBufferLike>, maxLength: number) => {
+    rollingSamples = appendLiveSamples(rollingSamples, samples, maxLength);
+  };
+
+  const analyzeFrame = (sampleRate: number) => {
+    const now = performance.now();
+
+    if (rollingSamples.length < frameSampleCount || now - lastAnalysisAt < LIVE_FORMANT_ANALYSIS_HOP_MS) {
+      return;
+    }
+
+    lastAnalysisAt = now;
+    const frame = rollingSamples.slice(rollingSamples.length - frameSampleCount);
+    const estimate = estimateLiveFormants(frame, sampleRate);
+    const normalizedEnergy = Math.max(0, Math.min(1, estimate.energy / 0.045));
+    const time = Math.max(0, (now - startedAt) / 1000);
+    let f1: number | null = null;
+    let f2: number | null = null;
+
+    setLevel(normalizedEnergy);
+
+    if (estimate.f1 !== null && estimate.f2 !== null) {
+      smoothedF1 = smoothedF1 === null ? estimate.f1 : smoothedF1 * 0.68 + estimate.f1 * 0.32;
+      smoothedF2 = smoothedF2 === null ? estimate.f2 : smoothedF2 * 0.68 + estimate.f2 * 0.32;
+      f1 = Math.round(smoothedF1);
+      f2 = Math.round(smoothedF2);
+    } else if (normalizedEnergy < 0.12) {
+      smoothedF1 = null;
+      smoothedF2 = null;
+    }
+
+    const point = { time, f1, f2, energy: normalizedEnergy };
+
+    setLatest(point);
+    setTrack((current) => ({
+      ...current,
+      points: [...current.points, point].filter((candidate) => time - candidate.time <= LIVE_FORMANT_TRAIL_SECONDS),
+      duration: Math.max(LIVE_FORMANT_TRAIL_SECONDS, time),
+    }));
+  };
+
+  const handleAudioProcess = (event: AudioProcessingEvent) => {
+    const context = audioContext;
+
+    if (!context || frameSampleCount <= 0 || startedAt <= 0) {
+      return;
+    }
+
+    const input = event.inputBuffer.getChannelData(0);
+    const output = event.outputBuffer.getChannelData(0);
+
+    output.fill(0);
+    appendAudio(input, Math.max(frameSampleCount * 3, input.length));
+    analyzeFrame(context.sampleRate);
+  };
+
+  const start = async () => {
+    if (status() === "starting" || status() === "listening") {
+      return;
+    }
+
+    if (!micAvailable()) {
+      setStatus("error");
+      setError("Microphone input is not available in this browser.");
+      return;
+    }
+
+    stopAudio();
+    resetAnalysis();
+    setStatus("starting");
+    setError(null);
+
+    try {
+      const AudioContextConstructor = window.AudioContext
+        ?? (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+
+      if (!AudioContextConstructor) {
+        throw new Error("Web Audio is not available in this browser.");
+      }
+
+      stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: false,
+        },
+      });
+      audioContext = new AudioContextConstructor();
+
+      if (audioContext.state === "suspended") {
+        await audioContext.resume();
+      }
+
+      frameSampleCount = Math.max(512, Math.round(audioContext.sampleRate * LIVE_FORMANT_FRAME_SECONDS));
+      startedAt = performance.now();
+      lastAnalysisAt = 0;
+      source = audioContext.createMediaStreamSource(stream);
+      processor = audioContext.createScriptProcessor(2048, 1, 1);
+      silentGain = audioContext.createGain();
+      silentGain.gain.value = 0;
+      processor.onaudioprocess = handleAudioProcess;
+      source.connect(processor);
+      processor.connect(silentGain);
+      silentGain.connect(audioContext.destination);
+      setStatus("listening");
+    } catch (startError) {
+      stopAudio();
+      resetAnalysis();
+      setStatus("error");
+      setError(startError instanceof Error ? startError.message : "Could not start microphone target practice.");
+    }
+  };
+
+  const stop = () => {
+    stopAudio();
+    setStatus("idle");
+    setError(null);
+    setLevel(0);
+    setLatest(null);
+  };
+
+  onCleanup(stop);
+
+  return {
+    status,
+    error,
+    track,
+    latest,
+    level,
+    micAvailable,
+    start,
+    stop,
+  };
+}
+
+function emptyLiveFormantTrack(): FormantTrack {
+  return {
+    points: [],
+    duration: LIVE_FORMANT_TRAIL_SECONDS,
+    minHz: 0,
+    maxHz: LIVE_FORMANT_DISPLAY_MAX_HZ,
+  };
+}
+
+function appendLiveSamples(
+  current: Float32Array<ArrayBuffer>,
+  incoming: Float32Array<ArrayBufferLike>,
+  maxLength: number,
+): Float32Array<ArrayBuffer> {
+  const incomingLength = Math.min(incoming.length, maxLength);
+  const incomingSamples = new Float32Array(incomingLength);
+
+  incomingSamples.set(incoming.subarray(incoming.length - incomingLength));
+  const retainedLength = Math.min(current.length, Math.max(0, maxLength - incomingSamples.length));
+  const next = new Float32Array(retainedLength + incomingSamples.length);
+
+  if (retainedLength > 0) {
+    next.set(current.subarray(current.length - retainedLength), 0);
+  }
+
+  next.set(incomingSamples, retainedLength);
+  return next;
+}
+
+function targetPracticeVowelsForLanguage(sourceDataset: LanguageDataset): TargetPracticeVowel[] {
+  return sourceDataset.phonemes.flatMap((phoneme) => {
+    const target = formantTargetForPhoneme(phoneme);
+
+    if (!target) {
+      return [];
+    }
+
+    return [{
+      name: phoneme.label,
+      audio: phoneme.audio ?? [],
+      ...target,
+    }];
+  });
+}
+
+function targetPracticeInitialPhonemeIds(
+  sourceDataset: LanguageDataset,
+  preferredPhonemeIds: readonly PhonemeId[] | null,
+): PhonemeId[] {
+  const preferredTargets = (preferredPhonemeIds ?? [])
+    .filter((phonemeId) => {
+      const phoneme = sourceDataset.phonemes.find((candidate) => candidate.id === phonemeId);
+
+      return Boolean(phoneme && formantTargetForPhoneme(phoneme));
+    })
+    .slice(0, 2);
+
+  if (preferredTargets.length > 0) {
+    return preferredTargets;
+  }
+
+  const firstTarget = sourceDataset.phonemes.find((phoneme) => Boolean(formantTargetForPhoneme(phoneme)));
+
+  return firstTarget ? [firstTarget.id] : [];
+}
+
+function formantContrastTargetStyle(index: number): FormantPathStyle {
+  return FORMANT_CONTRAST_CHART_STYLES[Math.max(0, index) % FORMANT_CONTRAST_CHART_STYLES.length]?.target
+    ?? TARGET_FORMANT_PATH_STYLE;
+}
+
+function formantContrastWordStyle(index: number): FormantPathStyle {
+  return FORMANT_CONTRAST_CHART_STYLES[Math.max(0, index) % FORMANT_CONTRAST_CHART_STYLES.length]?.word
+    ?? WORD_FORMANT_PATH_STYLE;
+}
+
+function formantTargetPathForWord(
+  word: WordEntry,
+  sourceDataset: LanguageDataset,
+  style?: FormantPathStyle,
+): FormantTargetPath | undefined {
+  const points = word.phonemeIds.flatMap((phonemeId): FormantTargetPathPoint[] => {
+    const phoneme = sourceDataset.phonemes.find((candidate) => candidate.id === phonemeId);
+    const target = phoneme ? formantTargetForPhoneme(phoneme) : undefined;
+
+    if (!target) {
+      return [];
+    }
+
+    return formantPathPointsForTarget(target);
+  });
+
+  if (points.length === 0) {
+    return undefined;
+  }
+
+  return {
+    id: `word:${word.id}`,
+    label: word.written,
+    points,
+    style,
+  };
+}
+
 function ContributionModeCallout(props: {
   queue: readonly ContributionQueueItem[];
   onStart: () => void;
@@ -1330,6 +2125,7 @@ function ContributionModeCallout(props: {
 }
 
 function CatalogPanel(props: {
+  mode: TrainingMode;
   tab: CatalogTab;
   activePhonemePair: PhonemePair | null;
   draftPhonemeIds: readonly PhonemeId[];
@@ -1389,6 +2185,7 @@ function CatalogPanel(props: {
           when={exploredPhoneme()}
           fallback={
             <PhonemePicker
+              mode={props.mode}
               availableDataset={props.availableDataset}
               showUnrecordedPhonemes={props.showUnrecordedPhonemes}
               activePhonemePair={props.activePhonemePair}
@@ -1421,6 +2218,7 @@ function CatalogPanel(props: {
 }
 
 function PhonemePicker(props: {
+  mode: TrainingMode;
   availableDataset: LanguageDataset;
   showUnrecordedPhonemes: boolean;
   activePhonemePair: PhonemePair | null;
@@ -1431,8 +2229,11 @@ function PhonemePicker(props: {
   onPairSelect: (phonemePair: PhonemePair, mode?: TrainingMode) => void;
   onPairClear: () => void;
 }) {
-  const recordedPhonemes = createMemo(() => dataset.phonemes.filter((phoneme) => phonemeHasWordRecording(phoneme.id, props.availableDataset)));
-  const unrecordedPhonemes = createMemo(() => dataset.phonemes.filter((phoneme) => !phonemeHasWordRecording(phoneme.id, props.availableDataset)));
+  const selectablePhonemes = createMemo(() => dataset.phonemes.filter((phoneme) =>
+    props.mode !== "target" || Boolean(formantTargetForPhoneme(phoneme))
+  ));
+  const recordedPhonemes = createMemo(() => selectablePhonemes().filter((phoneme) => phonemeHasWordRecording(phoneme.id, props.availableDataset)));
+  const unrecordedPhonemes = createMemo(() => selectablePhonemes().filter((phoneme) => !phonemeHasWordRecording(phoneme.id, props.availableDataset)));
   const visiblePhonemes = createMemo(() => props.showUnrecordedPhonemes
     ? [...recordedPhonemes(), ...unrecordedPhonemes()]
     : recordedPhonemes()
@@ -1441,18 +2242,27 @@ function PhonemePicker(props: {
   return (
     <>
       <div class="phoneme-selection-bar">
-        <Show
-          when={props.activePhonemePair}
-          fallback={<p>Pick any two sounds to make your own practice round.</p>}
-        >
-          {(phonemePair) => (
-            <p>
-              Current practice: <strong class="ipa-text">{phonemePairLabel(phonemePair())}</strong>
-            </p>
-          )}
-        </Show>
-        <Show when={props.draftPhonemeIds.length === 1}>
-          <p class="muted">Selected <span class="ipa-text">{phonemeLabel(props.draftPhonemeIds[0] ?? "")}</span>. Pick one more.</p>
+        <Show when={props.mode === "target"} fallback={
+          <>
+            <Show
+              when={props.activePhonemePair}
+              fallback={<p>Pick any two sounds to make your own practice round.</p>}
+            >
+              {(phonemePair) => (
+                <p>
+                  Current practice: <strong class="ipa-text">{phonemePairLabel(phonemePair())}</strong>
+                </p>
+              )}
+            </Show>
+            <Show when={props.draftPhonemeIds.length === 1}>
+              <p class="muted">Selected <span class="ipa-text">{phonemeLabel(props.draftPhonemeIds[0] ?? "")}</span>. Pick one more.</p>
+            </Show>
+          </>
+        }>
+          <p>Choose one vowel to practise it, or choose two to practise a contrast.</p>
+          <Show when={props.draftPhonemeIds.length > 0}>
+            <p class="muted">Targeting <span class="ipa-text">{phonemeIdsLabel(props.draftPhonemeIds)}</span>.</p>
+          </Show>
         </Show>
         <div class="selection-actions">
           <Show when={props.activePhonemePair}>
@@ -3364,9 +4174,179 @@ interface FormantTarget {
   label: string;
   f1: number;
   f2: number;
+  endF1?: number;
+  endF2?: number;
+  style?: FormantPathStyle;
 }
 
-const APPROXIMATE_PHONEME_FORMANTS: Record<string, { f1: number; f2: number }> = {
+interface FormantTargetPathPoint {
+  label: string;
+  f1: number;
+  f2: number;
+}
+
+interface FormantTargetPath {
+  id: string;
+  label: string;
+  points: readonly FormantTargetPathPoint[];
+  style?: FormantPathStyle;
+}
+
+interface FormantLabelBox {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+}
+
+type FormantPosition = Pick<FormantTarget, "f1" | "f2" | "endF1" | "endF2">;
+
+interface FormantPathStyle {
+  outerStroke: string;
+  middleStroke: string;
+  innerStroke: string;
+  pointFill: string;
+  pointStroke: string;
+  pointOutline: string;
+  targetLabelFill?: string;
+  targetLabelStroke?: string;
+  targetLabelText?: string;
+  componentLabelFill?: string;
+  componentLabelStroke?: string;
+  componentLabelText?: string;
+  mainLabelFill?: string;
+  mainLabelStroke?: string;
+  mainLabelText?: string;
+  labelPreference?: "above" | "below";
+}
+
+const RECORDED_FORMANT_PATH_STYLE: FormantPathStyle = {
+  outerStroke: "rgba(255, 253, 250, 0.92)",
+  middleStroke: "rgba(243, 185, 69, 0.72)",
+  innerStroke: "#264f87",
+  pointFill: "#f3b945",
+  pointStroke: "#fffdfa",
+  pointOutline: "#264f87",
+};
+
+const LIVE_FORMANT_PATH_STYLE: FormantPathStyle = {
+  outerStroke: "rgba(255, 253, 250, 0.95)",
+  middleStroke: "rgba(32, 32, 32, 0.28)",
+  innerStroke: "#b83252",
+  pointFill: "#b83252",
+  pointStroke: "#fffdfa",
+  pointOutline: "#202020",
+};
+
+const TARGET_FORMANT_PATH_STYLE: FormantPathStyle = {
+  outerStroke: "rgba(255, 253, 250, 0.96)",
+  middleStroke: "rgba(243, 185, 69, 0.92)",
+  innerStroke: "#264f87",
+  pointFill: "rgba(243, 185, 69, 0.94)",
+  pointStroke: "#fffdfa",
+  pointOutline: "#8a6814",
+  targetLabelFill: "rgba(243, 185, 69, 0.94)",
+  targetLabelStroke: "#8a6814",
+  targetLabelText: "#202020",
+  componentLabelFill: "#8a6814",
+  componentLabelStroke: "#6f5410",
+  componentLabelText: "#fffdfa",
+  mainLabelFill: "rgba(248, 240, 213, 0.96)",
+  mainLabelStroke: "#8a6814",
+  mainLabelText: "#202020",
+  labelPreference: "above",
+};
+
+const WORD_FORMANT_PATH_STYLE: FormantPathStyle = {
+  outerStroke: "rgba(255, 253, 250, 0.96)",
+  middleStroke: "rgba(232, 214, 244, 0.94)",
+  innerStroke: "#74448c",
+  pointFill: "#fffdfa",
+  pointStroke: "#fffdfa",
+  pointOutline: "#74448c",
+  componentLabelFill: "rgba(255, 253, 250, 0.92)",
+  componentLabelStroke: "rgba(116, 68, 140, 0.66)",
+  componentLabelText: "#74448c",
+  mainLabelFill: "rgba(232, 214, 244, 0.96)",
+  mainLabelStroke: "#74448c",
+  mainLabelText: "#202020",
+  labelPreference: "below",
+};
+
+const FORMANT_CONTRAST_CHART_STYLES: readonly { target: FormantPathStyle; word: FormantPathStyle }[] = [
+  {
+    target: {
+      outerStroke: "rgba(255, 253, 250, 0.96)",
+      middleStroke: "rgba(183, 206, 242, 0.96)",
+      innerStroke: "#2f5e9e",
+      pointFill: "#264f87",
+      pointStroke: "#fffdfa",
+      pointOutline: "#1f3f6d",
+      targetLabelFill: "#264f87",
+      targetLabelStroke: "#1f3f6d",
+      targetLabelText: "#fffdfa",
+      componentLabelFill: "#264f87",
+      componentLabelStroke: "#1f3f6d",
+      componentLabelText: "#fffdfa",
+      mainLabelFill: "rgba(231, 238, 252, 0.96)",
+      mainLabelStroke: "#2f5e9e",
+      mainLabelText: "#202020",
+      labelPreference: "above",
+    },
+    word: {
+      outerStroke: "rgba(255, 253, 250, 0.96)",
+      middleStroke: "rgba(231, 238, 252, 0.96)",
+      innerStroke: "rgba(47, 94, 158, 0.72)",
+      pointFill: "#e7eefc",
+      pointStroke: "#fffdfa",
+      pointOutline: "#2f5e9e",
+      componentLabelFill: "rgba(231, 238, 252, 0.94)",
+      componentLabelStroke: "rgba(47, 94, 158, 0.66)",
+      componentLabelText: "#264f87",
+      mainLabelFill: "rgba(231, 238, 252, 0.96)",
+      mainLabelStroke: "#2f5e9e",
+      mainLabelText: "#202020",
+      labelPreference: "below",
+    },
+  },
+  {
+    target: {
+      outerStroke: "rgba(255, 253, 250, 0.96)",
+      middleStroke: "rgba(240, 197, 178, 0.96)",
+      innerStroke: "#a24f2f",
+      pointFill: "#853f27",
+      pointStroke: "#fffdfa",
+      pointOutline: "#6c321e",
+      targetLabelFill: "#853f27",
+      targetLabelStroke: "#6c321e",
+      targetLabelText: "#fffdfa",
+      componentLabelFill: "#853f27",
+      componentLabelStroke: "#6c321e",
+      componentLabelText: "#fffdfa",
+      mainLabelFill: "rgba(248, 232, 223, 0.96)",
+      mainLabelStroke: "#a24f2f",
+      mainLabelText: "#202020",
+      labelPreference: "above",
+    },
+    word: {
+      outerStroke: "rgba(255, 253, 250, 0.96)",
+      middleStroke: "rgba(248, 232, 223, 0.96)",
+      innerStroke: "rgba(162, 79, 47, 0.72)",
+      pointFill: "#f8e8df",
+      pointStroke: "#fffdfa",
+      pointOutline: "#a24f2f",
+      componentLabelFill: "rgba(248, 232, 223, 0.94)",
+      componentLabelStroke: "rgba(162, 79, 47, 0.66)",
+      componentLabelText: "#853f27",
+      mainLabelFill: "rgba(248, 232, 223, 0.96)",
+      mainLabelStroke: "#a24f2f",
+      mainLabelText: "#202020",
+      labelPreference: "below",
+    },
+  },
+];
+
+const APPROXIMATE_PHONEME_FORMANTS: Record<string, FormantPosition> = {
   "fr-i": { f1: 280, f2: 2400 },
   "fr-y": { f1: 300, f2: 1700 },
   "fr-u": { f1: 320, f2: 850 },
@@ -3398,17 +4378,17 @@ const APPROXIMATE_PHONEME_FORMANTS: Record<string, { f1: number; f2: number }> =
   "en-gb-goose": { f1: 320, f2: 850 },
   "en-gb-nurse": { f1: 500, f2: 1500 },
   "en-gb-schwa": { f1: 550, f2: 1500 },
-  "en-gb-face": { f1: 400, f2: 2100 },
-  "en-gb-goat": { f1: 430, f2: 1100 },
-  "en-gb-price": { f1: 650, f2: 1700 },
-  "en-gb-choice": { f1: 500, f2: 1250 },
-  "en-gb-mouth": { f1: 650, f2: 1300 },
-  "en-gb-near": { f1: 420, f2: 2000 },
-  "en-gb-square": { f1: 520, f2: 1900 },
-  "en-gb-cure": { f1: 450, f2: 1300 },
+  "en-gb-face": { f1: 430, f2: 2050, endF1: 300, endF2: 2400 },
+  "en-gb-goat": { f1: 550, f2: 1500, endF1: 330, endF2: 850 },
+  "en-gb-price": { f1: 850, f2: 1450, endF1: 320, endF2: 2350 },
+  "en-gb-choice": { f1: 600, f2: 1000, endF1: 320, endF2: 2350 },
+  "en-gb-mouth": { f1: 850, f2: 1450, endF1: 330, endF2: 850 },
+  "en-gb-near": { f1: 390, f2: 2150, endF1: 550, endF2: 1500 },
+  "en-gb-square": { f1: 430, f2: 2050, endF1: 550, endF2: 1500 },
+  "en-gb-cure": { f1: 430, f2: 1100, endF1: 550, endF2: 1500 },
 };
 
-const APPROXIMATE_IPA_FORMANTS: Record<string, { f1: number; f2: number }> = {
+const APPROXIMATE_IPA_FORMANTS: Record<string, FormantPosition> = {
   "i": { f1: 280, f2: 2400 },
   "iː": { f1: 280, f2: 2400 },
   "ɪ": { f1: 400, f2: 2100 },
@@ -3435,14 +4415,14 @@ const APPROXIMATE_IPA_FORMANTS: Record<string, { f1: number; f2: number }> = {
   "ɛ̃": { f1: 550, f2: 1900 },
   "ɔ̃": { f1: 600, f2: 950 },
   "œ̃": { f1: 600, f2: 1550 },
-  "eɪ": { f1: 400, f2: 2100 },
-  "əʊ": { f1: 430, f2: 1100 },
-  "aɪ": { f1: 650, f2: 1700 },
-  "ɔɪ": { f1: 500, f2: 1250 },
-  "aʊ": { f1: 650, f2: 1300 },
-  "ɪə": { f1: 420, f2: 2000 },
-  "eə": { f1: 520, f2: 1900 },
-  "ʊə": { f1: 450, f2: 1300 },
+  "eɪ": { f1: 430, f2: 2050, endF1: 300, endF2: 2400 },
+  "əʊ": { f1: 550, f2: 1500, endF1: 330, endF2: 850 },
+  "aɪ": { f1: 850, f2: 1450, endF1: 320, endF2: 2350 },
+  "ɔɪ": { f1: 600, f2: 1000, endF1: 320, endF2: 2350 },
+  "aʊ": { f1: 850, f2: 1450, endF1: 330, endF2: 850 },
+  "ɪə": { f1: 390, f2: 2150, endF1: 550, endF2: 1500 },
+  "eə": { f1: 430, f2: 2050, endF1: 550, endF2: 1500 },
+  "ʊə": { f1: 430, f2: 1100, endF1: 550, endF2: 1500 },
 };
 
 function formantChartRange(formants: PrecomputedSpectrogram["formants"]): FormantChartRange {
@@ -3466,28 +4446,47 @@ function formantTargetsForWord(word: WordEntry, sourceDataset: LanguageDataset):
     seen.add(phonemeId);
 
     const phoneme = sourceDataset.phonemes.find((candidate) => candidate.id === phonemeId);
+    const target = phoneme ? formantTargetForPhoneme(phoneme) : undefined;
 
-    if (!phoneme || phoneme.category !== "vowel") {
+    if (!target) {
       continue;
     }
 
-    const position = formantPositionForPhoneme(phoneme);
-
-    if (!position) {
-      continue;
-    }
-
-    targets.push({
-      id: phoneme.id,
-      label: phoneme.ipa,
-      ...position,
-    });
+    targets.push(target);
   }
 
   return targets;
 }
 
-function formantPositionForPhoneme(phoneme: Phoneme): { f1: number; f2: number } | undefined {
+function formantTargetForPhoneme(phoneme: Phoneme): FormantTarget | undefined {
+  if (phoneme.category !== "vowel") {
+    return undefined;
+  }
+
+  const position = formantPositionForPhoneme(phoneme);
+
+  if (!position) {
+    return undefined;
+  }
+
+  return {
+    id: phoneme.id,
+    label: phoneme.ipa,
+    ...position,
+  };
+}
+
+function formantPathPointsForTarget(target: FormantTarget): FormantTargetPathPoint[] {
+  const targetPath = formantTargetPathFromTarget(target);
+
+  if (targetPath) {
+    return [...targetPath.points];
+  }
+
+  return [{ label: target.label, f1: target.f1, f2: target.f2 }];
+}
+
+function formantPositionForPhoneme(phoneme: Phoneme): FormantPosition | undefined {
   return APPROXIMATE_PHONEME_FORMANTS[phoneme.id]
     ?? APPROXIMATE_IPA_FORMANTS[normalizePhonemeIpa(phoneme.ipa)];
 }
@@ -3501,6 +4500,8 @@ function paintFormantTargetChart(
   targets: readonly FormantTarget[],
   measuredFormants: PrecomputedSpectrogram["formants"] | undefined,
   measuredProgress: number,
+  liveFormants?: FormantTrack,
+  targetPaths: readonly FormantTargetPath[] = [],
 ): void {
   if (!canvas?.isConnected) {
     return;
@@ -3513,15 +4514,21 @@ function paintFormantTargetChart(
   ctx.fillRect(0, 0, width, height);
   paintFormantGrid(ctx, width, height, range);
   paintReferenceVowels(ctx, width, height, range);
+  const occupiedLabels: FormantLabelBox[] = [];
 
-  if (targets.length === 0) {
+  if (targets.length === 0 && targetPaths.length === 0) {
     paintFormantMessage(ctx, width, height, "No mapped vowel target");
   } else {
-    paintFormantTargets(ctx, width, height, range, targets);
+    paintFormantTargetPaths(ctx, width, height, range, targetPaths, occupiedLabels);
+    paintFormantTargets(ctx, width, height, range, targets, occupiedLabels);
   }
 
   if (measuredFormants && measuredProgress > 0) {
     paintFormantPath(ctx, measuredFormants, measuredProgress, width, height, range);
+  }
+
+  if (liveFormants?.points.some((point) => point.f1 !== null && point.f2 !== null)) {
+    paintFormantPath(ctx, liveFormants, 1, width, height, range, LIVE_FORMANT_PATH_STYLE);
   }
 }
 
@@ -3634,6 +4641,7 @@ function paintFormantTargets(
   height: number,
   range: FormantChartRange,
   targets: readonly FormantTarget[],
+  occupiedLabels: FormantLabelBox[],
 ): void {
   const area = formantPlotArea(width, height);
   const scale = formantScale(width, height);
@@ -3647,6 +4655,28 @@ function paintFormantTargets(
   ctx.textBaseline = "middle";
 
   for (const target of targets) {
+    const style = target.style ?? TARGET_FORMANT_PATH_STYLE;
+
+    if (isFormantPathTarget(target)) {
+      const targetPath = formantTargetPathFromTarget(target);
+
+      if (targetPath) {
+        paintFormantTargetPath(
+          ctx,
+          width,
+          height,
+          range,
+          targetPath,
+          fontSize,
+          paddingX,
+          pillHeight,
+          style,
+          occupiedLabels,
+        );
+      }
+      continue;
+    }
+
     const x = formantX(target.f2, range, area);
     const y = formantY(target.f1, range, area);
     const labelWidth = ctx.measureText(target.label).width;
@@ -3654,17 +4684,412 @@ function paintFormantTargets(
     const left = Math.max(area.left, Math.min(area.right - pillWidth, x - pillWidth / 2));
     const top = Math.max(area.top, Math.min(area.bottom - pillHeight, y - pillHeight / 2));
 
-    ctx.fillStyle = "rgba(243, 185, 69, 0.88)";
-    ctx.strokeStyle = "#264f87";
+    ctx.fillStyle = style.targetLabelFill ?? style.pointFill;
+    ctx.strokeStyle = style.targetLabelStroke ?? style.pointOutline;
     ctx.lineWidth = Math.max(2, Math.floor(scale / 420));
     roundedRectPath(ctx, left, top, pillWidth, pillHeight, pillHeight / 2);
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = "#202020";
+    ctx.fillStyle = style.targetLabelText ?? style.mainLabelText ?? "#202020";
     ctx.fillText(target.label, left + pillWidth / 2, top + pillHeight / 2 + 0.5);
   }
 
+  ctx.restore();
+}
+
+function paintFormantTargetPaths(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  range: FormantChartRange,
+  paths: readonly FormantTargetPath[],
+  occupiedLabels: FormantLabelBox[],
+): void {
+  const scale = formantScale(width, height);
+  const fontSize = Math.max(18, Math.min(38, Math.floor(scale / 18)));
+  const paddingX = Math.max(8, Math.floor(fontSize * 0.56));
+  const pillHeight = Math.max(28, Math.floor(fontSize * 1.55));
+
+  ctx.save();
+  ctx.font = `900 ${fontSize}px sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  for (const path of paths) {
+    paintFormantTargetPath(
+      ctx,
+      width,
+      height,
+      range,
+      path,
+      fontSize,
+      paddingX,
+      pillHeight,
+      path.style ?? WORD_FORMANT_PATH_STYLE,
+      occupiedLabels,
+    );
+  }
+
+  ctx.restore();
+}
+
+function isFormantPathTarget(target: FormantTarget): target is FormantTarget & { endF1: number; endF2: number } {
+  return Number.isFinite(target.endF1) && Number.isFinite(target.endF2);
+}
+
+function formantTargetPathFromTarget(target: FormantTarget): FormantTargetPath | undefined {
+  if (!isFormantPathTarget(target)) {
+    return undefined;
+  }
+
+  const [startLabel, endLabel] = diphthongComponentLabels(target.label);
+
+  return {
+    id: target.id,
+    label: target.label,
+    points: [
+      { label: startLabel, f1: target.f1, f2: target.f2 },
+      { label: endLabel, f1: target.endF1, f2: target.endF2 },
+    ],
+  };
+}
+
+function diphthongComponentLabels(label: string): readonly [string, string] {
+  const normalized = normalizePhonemeIpa(label);
+  const components: Record<string, readonly [string, string]> = {
+    "eɪ": ["/e/", "/ɪ/"],
+    "əʊ": ["/ə/", "/ʊ/"],
+    "aɪ": ["/a/", "/ɪ/"],
+    "ɔɪ": ["/ɔ/", "/ɪ/"],
+    "aʊ": ["/a/", "/ʊ/"],
+    "ɪə": ["/ɪ/", "/ə/"],
+    "eə": ["/e/", "/ə/"],
+    "ʊə": ["/ʊ/", "/ə/"],
+  };
+
+  return components[normalized] ?? ["start", "finish"];
+}
+
+function paintFormantTargetPath(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  range: FormantChartRange,
+  path: FormantTargetPath,
+  fontSize: number,
+  paddingX: number,
+  pillHeight: number,
+  style: FormantPathStyle,
+  occupiedLabels: FormantLabelBox[],
+): void {
+  const area = formantPlotArea(width, height);
+  const scale = formantScale(width, height);
+  const points = path.points.map((point) => ({
+    ...point,
+    x: formantX(point.f2, range, area),
+    y: formantY(point.f1, range, area),
+  }));
+
+  if (points.length === 0) {
+    return;
+  }
+
+  const lineWidth = Math.max(3, Math.min(10, Math.floor(scale / 100)));
+  const startRadius = Math.max(6, Math.min(17, Math.floor(scale / 58)));
+  const labelWidth = ctx.measureText(path.label).width;
+  const pillWidth = Math.max(pillHeight, labelWidth + paddingX * 2);
+
+  ctx.save();
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+
+  const strokeTargetPath = (strokeStyle: string, strokeWidth: number) => {
+    if (points.length < 2) {
+      return;
+    }
+
+    ctx.strokeStyle = strokeStyle;
+    ctx.lineWidth = strokeWidth;
+    ctx.beginPath();
+
+    points.forEach((point, index) => {
+      if (index === 0) {
+        ctx.moveTo(point.x, point.y);
+      } else {
+        ctx.lineTo(point.x, point.y);
+      }
+    });
+
+    ctx.stroke();
+  };
+
+  strokeTargetPath(style.outerStroke, lineWidth + Math.max(5, Math.floor(scale / 90)));
+  strokeTargetPath(style.middleStroke, lineWidth + Math.max(2, Math.floor(scale / 160)));
+  strokeTargetPath(style.innerStroke, lineWidth);
+
+  if (points.length > 1) {
+    const arrowSize = Math.max(11, Math.min(24, Math.floor(scale / 34)));
+
+    for (let index = 1; index < points.length; index += 1) {
+      const previous = points[index - 1];
+      const current = points[index];
+
+      if (!previous || !current) {
+        continue;
+      }
+
+      const dx = current.x - previous.x;
+      const dy = current.y - previous.y;
+      const length = Math.hypot(dx, dy);
+
+      if (length <= 8) {
+        continue;
+      }
+
+      paintFormantArrowHead(
+        ctx,
+        previous.x + dx * 0.52,
+        previous.y + dy * 0.52,
+        Math.atan2(dy, dx),
+        arrowSize,
+        style,
+      );
+    }
+  }
+
+  points.forEach((point, index) => {
+    ctx.fillStyle = index === points.length - 1 ? style.pointFill : "#fffdfa";
+    ctx.strokeStyle = style.pointOutline;
+    ctx.lineWidth = Math.max(2, Math.floor(scale / 420));
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, startRadius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = style.pointOutline;
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, Math.max(2, startRadius * 0.35), 0, Math.PI * 2);
+    ctx.fill();
+    paintFormantPointLabel(ctx, point.label, point.x, point.y, area, scale, index, style, occupiedLabels);
+  });
+
+  const labelAnchor = formantPathLabelAnchor(points, area, pillWidth, pillHeight, scale, style.labelPreference);
+  const labelBox = placeFormantLabelBox(labelAnchor, pillWidth, pillHeight, area, scale, occupiedLabels, style.labelPreference);
+  const pillLeft = labelBox.left;
+  const pillTop = labelBox.top;
+
+  ctx.fillStyle = style.mainLabelFill ?? style.middleStroke;
+  ctx.strokeStyle = style.mainLabelStroke ?? style.innerStroke;
+  ctx.lineWidth = Math.max(2, Math.floor(scale / 420));
+  roundedRectPath(ctx, pillLeft, pillTop, pillWidth, pillHeight, pillHeight / 2);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = style.mainLabelText ?? "#202020";
+  ctx.font = `900 ${fontSize}px sans-serif`;
+  ctx.fillText(path.label, pillLeft + pillWidth / 2, pillTop + pillHeight / 2 + 0.5);
+  occupiedLabels.push(labelBox);
+  ctx.restore();
+}
+
+function formantPathLabelAnchor(
+  points: readonly (FormantTargetPathPoint & { x: number; y: number })[],
+  area: { top: number; right: number; bottom: number; left: number },
+  labelWidth: number,
+  labelHeight: number,
+  scale: number,
+  labelPreference: FormantPathStyle["labelPreference"] = "above",
+): { x: number; y: number } {
+  const fallback = points[0] ?? { x: (area.left + area.right) / 2, y: (area.top + area.bottom) / 2 };
+  const offset = Math.max(44, Math.min(92, Math.floor(scale / 3.8)));
+  const preferredDirection = labelPreference === "below" ? 1 : -1;
+  let anchor = { x: fallback.x, y: fallback.y + offset * preferredDirection };
+
+  if (points.length > 1) {
+    const middleIndex = Math.floor((points.length - 1) / 2);
+    const from = points[middleIndex] ?? fallback;
+    const to = points[middleIndex + 1] ?? points[middleIndex] ?? fallback;
+    const dx = to.x - from.x;
+    const dy = to.y - from.y;
+    const length = Math.max(1, Math.hypot(dx, dy));
+    const mid = { x: from.x + dx * 0.5, y: from.y + dy * 0.5 };
+    let normal = { x: -dy / length, y: dx / length };
+
+    if (normal.y * preferredDirection < 0) {
+      normal = { x: -normal.x, y: -normal.y };
+    }
+
+    anchor = {
+      x: mid.x + normal.x * offset,
+      y: mid.y + normal.y * offset,
+    };
+  }
+
+  return {
+    x: Math.max(area.left + labelWidth / 2, Math.min(area.right - labelWidth / 2, anchor.x)),
+    y: Math.max(area.top + labelHeight / 2, Math.min(area.bottom - labelHeight / 2, anchor.y)),
+  };
+}
+
+function paintFormantPointLabel(
+  ctx: CanvasRenderingContext2D,
+  label: string,
+  x: number,
+  y: number,
+  area: { top: number; right: number; bottom: number; left: number },
+  scale: number,
+  index: number,
+  style: FormantPathStyle,
+  occupiedLabels: FormantLabelBox[],
+): void {
+  const fontSize = Math.max(12, Math.min(24, Math.floor(scale / 24)));
+  const paddingX = Math.max(5, Math.floor(fontSize * 0.42));
+  const labelHeight = Math.max(18, Math.floor(fontSize * 1.45));
+  const offsetY = index % 2 === 0 ? -Math.max(22, Math.floor(scale / 18)) : Math.max(22, Math.floor(scale / 18));
+
+  ctx.save();
+  ctx.font = `850 ${fontSize}px sans-serif`;
+  const labelWidth = Math.max(labelHeight, ctx.measureText(label).width + paddingX * 2);
+  const labelPreference = offsetY > 0 ? "below" : "above";
+  const labelBox = placeFormantLabelBox(
+    { x, y: y + offsetY },
+    labelWidth,
+    labelHeight,
+    area,
+    scale,
+    occupiedLabels,
+    labelPreference,
+  );
+  const left = labelBox.left;
+  const top = labelBox.top;
+
+  ctx.fillStyle = style.componentLabelFill ?? "rgba(255, 253, 250, 0.9)";
+  ctx.strokeStyle = style.componentLabelStroke ?? style.innerStroke;
+  ctx.lineWidth = Math.max(1, Math.floor(scale / 700));
+  roundedRectPath(ctx, left, top, labelWidth, labelHeight, labelHeight / 2);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = style.componentLabelText ?? style.innerStroke;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(label, left + labelWidth / 2, top + labelHeight / 2 + 0.5);
+  occupiedLabels.push(labelBox);
+  ctx.restore();
+}
+
+function placeFormantLabelBox(
+  preferredCenter: { x: number; y: number },
+  width: number,
+  height: number,
+  area: { top: number; right: number; bottom: number; left: number },
+  scale: number,
+  occupiedLabels: readonly FormantLabelBox[],
+  labelPreference: FormantPathStyle["labelPreference"] = "above",
+): FormantLabelBox {
+  const gap = Math.max(4, Math.floor(scale / 150));
+  const stepX = Math.max(10, Math.floor(width * 0.38));
+  const stepY = Math.max(10, Math.floor(height * 0.82));
+  const preferredDirection = labelPreference === "below" ? 1 : -1;
+  const verticalSteps = [0, 1, -1, 2, -2, 3, -3, 4, -4];
+  const horizontalSteps = [0, -1, 1, -2, 2, -3, 3, -4, 4];
+  let bestBox = formantLabelBoxForCenter(preferredCenter.x, preferredCenter.y, width, height, area);
+  let bestWeightedScore = formantLabelOverlapScore(bestBox, occupiedLabels, gap);
+
+  for (const verticalStep of verticalSteps) {
+    for (const horizontalStep of horizontalSteps) {
+      if (Math.abs(verticalStep) + Math.abs(horizontalStep) > 6) {
+        continue;
+      }
+
+      const candidate = formantLabelBoxForCenter(
+        preferredCenter.x + horizontalStep * stepX,
+        preferredCenter.y + verticalStep * preferredDirection * stepY,
+        width,
+        height,
+        area,
+      );
+      const score = formantLabelOverlapScore(candidate, occupiedLabels, gap);
+
+      if (score === 0) {
+        return candidate;
+      }
+
+      const distancePenalty = Math.abs(horizontalStep) * width + Math.abs(verticalStep) * height;
+      const weightedScore = score + distancePenalty * 0.001;
+
+      if (weightedScore < bestWeightedScore) {
+        bestBox = candidate;
+        bestWeightedScore = weightedScore;
+      }
+    }
+  }
+
+  return bestBox;
+}
+
+function formantLabelBoxForCenter(
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  area: { top: number; right: number; bottom: number; left: number },
+): FormantLabelBox {
+  const left = Math.max(area.left, Math.min(area.right - width, x - width / 2));
+  const top = Math.max(area.top, Math.min(area.bottom - height, y - height / 2));
+
+  return {
+    left,
+    top,
+    right: left + width,
+    bottom: top + height,
+  };
+}
+
+function formantLabelOverlapScore(box: FormantLabelBox, occupiedLabels: readonly FormantLabelBox[], gap: number): number {
+  let score = 0;
+
+  for (const occupied of occupiedLabels) {
+    const overlapWidth = Math.max(0, Math.min(box.right + gap, occupied.right) - Math.max(box.left - gap, occupied.left));
+    const overlapHeight = Math.max(0, Math.min(box.bottom + gap, occupied.bottom) - Math.max(box.top - gap, occupied.top));
+
+    score += overlapWidth * overlapHeight;
+  }
+
+  return score;
+}
+
+function paintFormantArrowHead(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  angle: number,
+  size: number,
+  style: FormantPathStyle,
+): void {
+  const tip = {
+    x: x + Math.cos(angle) * size * 0.55,
+    y: y + Math.sin(angle) * size * 0.55,
+  };
+  const base = {
+    x: x - Math.cos(angle) * size * 0.45,
+    y: y - Math.sin(angle) * size * 0.45,
+  };
+  const perpendicular = {
+    x: -Math.sin(angle) * size * 0.46,
+    y: Math.cos(angle) * size * 0.46,
+  };
+
+  ctx.save();
+  ctx.fillStyle = style.innerStroke;
+  ctx.strokeStyle = "#fffdfa";
+  ctx.lineWidth = Math.max(2, Math.floor(size / 7));
+  ctx.beginPath();
+  ctx.moveTo(tip.x, tip.y);
+  ctx.lineTo(base.x + perpendicular.x, base.y + perpendicular.y);
+  ctx.lineTo(base.x - perpendicular.x, base.y - perpendicular.y);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
   ctx.restore();
 }
 
@@ -3698,6 +5123,7 @@ function paintFormantPath(
   width: number,
   height: number,
   range = formantChartRange(formants),
+  style = RECORDED_FORMANT_PATH_STYLE,
 ): void {
   const maxTime = Math.max(0.001, formants.duration * progress);
   const area = formantPlotArea(width, height);
@@ -3746,19 +5172,19 @@ function paintFormantPath(
   };
 
   ctx.save();
-  strokePath("rgba(255, 253, 250, 0.92)", lineWidth + Math.max(2, Math.floor(scale / 520)));
-  strokePath("rgba(243, 185, 69, 0.72)", lineWidth + Math.max(1, Math.floor(scale / 700)));
-  const lastPoint = strokePath("#264f87", lineWidth);
+  strokePath(style.outerStroke, lineWidth + Math.max(2, Math.floor(scale / 520)));
+  strokePath(style.middleStroke, lineWidth + Math.max(1, Math.floor(scale / 700)));
+  const lastPoint = strokePath(style.innerStroke, lineWidth);
 
   if (lastPoint) {
-    ctx.fillStyle = "#f3b945";
-    ctx.strokeStyle = "#fffdfa";
+    ctx.fillStyle = style.pointFill;
+    ctx.strokeStyle = style.pointStroke;
     ctx.lineWidth = Math.max(2, Math.floor(scale / 460));
     ctx.beginPath();
     ctx.arc(lastPoint.x, lastPoint.y, Math.max(5, Math.min(26, Math.floor(scale / 38))), 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
-    ctx.strokeStyle = "#264f87";
+    ctx.strokeStyle = style.pointOutline;
     ctx.lineWidth = Math.max(1, Math.floor(scale / 720));
     ctx.stroke();
   }
@@ -4557,6 +5983,16 @@ function chooseRandomAudioSource(sources: readonly AudioSource[]): AudioSource |
   return sources[Math.floor(Math.random() * sources.length)] ?? sources[0];
 }
 
+function chooseRandomWordWithRecording(words: readonly WordEntry[]): WordEntry | undefined {
+  const recordedWords = words.filter((word) => word.audio.length > 0);
+
+  if (recordedWords.length === 0) {
+    return undefined;
+  }
+
+  return recordedWords[Math.floor(Math.random() * recordedWords.length)] ?? recordedWords[0];
+}
+
 function stopStream(stream: MediaStream | undefined): void {
   for (const track of stream?.getTracks() ?? []) {
     track.stop();
@@ -4882,6 +6318,17 @@ function getAudioFeedbackPath(source: AudioSource | undefined): string | undefin
   return source.src;
 }
 
+function resolveAudioSourceForAnalysis(src: string): string {
+  if (/^(https?:|data:|blob:|\/)/.test(src)) {
+    return src;
+  }
+
+  const base = import.meta.env.BASE_URL || "./";
+  const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+
+  return `${normalizedBase}${src}`;
+}
+
 function createNextPrompt(
   currentProgress: ReturnType<typeof loadProgress>,
   phonemePair: PhonemePair | null,
@@ -4999,7 +6446,7 @@ function writeUrlState(state: UrlState, historyMode: UrlHistoryMode): void {
 }
 
 function parseMode(value: string | null): TrainingMode | null {
-  return value === "match" || value === "sort" ? value : null;
+  return value === "match" || value === "sort" || value === "target" ? value : null;
 }
 
 function parseCatalogTab(value: string | null): CatalogTab | null {

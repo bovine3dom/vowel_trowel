@@ -1,0 +1,47 @@
+{
+  "updatedAt": "2026-07-03T18:03:07.035Z",
+  "candidate": {
+    "key": "en-gb-word-jury|User%20contribution%20jury%20en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d|contribution%3Aen-GB%3Aen-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d%3Aen-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d",
+    "localPath": "public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg",
+      "kind": "contribution",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d",
+      "notes": "User-contributed recording for jury /ˈdʒʊəri/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d.webm",
+        "metadataPath": "public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d.webm",
+          "kind": "contribution",
+          "license": "CC0 1.0",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d",
+          "notes": "User-contributed recording for jury /ˈdʒʊəri/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d.webm",
+          "outputPath": "public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T18:03:04.306Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}
