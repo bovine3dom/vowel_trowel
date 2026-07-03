@@ -375,6 +375,16 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431",
       "notes": "User-contributed recording for bet /bet/."
+    },
+    {
+      "src": "audio/en-gb/approved/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431",
+      "notes": "Listen before approving. User-contributed recording for bet /bet/."
     }
   ],
   "bin": [
@@ -469,6 +479,16 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 4.0",
       "attribution": "Sylvanmoon",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-buzz.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881--clean-01-noise.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881",
+      "notes": "User-contributed recording for buzz /bʌz/."
     }
   ],
   "cab": [
@@ -634,6 +654,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "No machine-readable author provided. Celestianpower assumed (based on copyright claims).",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-caught.ogg",
       "notes": "Regional candidate: British English"
+    }
+  ],
+  "chair": [
+    {
+      "src": "audio/en-gb/approved/chair/en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61.webm",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-chair-mr4uu0i0-8e3adf45-47f4-4d53-ba46-a067871aef61",
+      "notes": "User-contributed recording for chair /tʃeə/."
     }
   ],
   "cheap": [
@@ -2104,6 +2136,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-pot.ogg"
     }
   ],
+  "prize": [
+    {
+      "src": "audio/en-gb/approved/prize/en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2",
+      "notes": "User-contributed recording for prize /praɪz/."
+    }
+  ],
   "pull": [
     {
       "src": "audio/en-gb/approved/pull/En-us-pull.ogg",
@@ -2422,6 +2466,16 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-sh. Common Voice accent: England English."
+    },
+    {
+      "src": "audio/en-gb/approved/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782",
+      "notes": "User-contributed recording for share /ʃeə/."
     }
   ],
   "sheep": [
@@ -3172,6 +3226,14 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC0 1.0",
       "sourceUrl": "vowel-trowel-contribution:en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a",
       "notes": "User-contributed recording for wing /wɪŋ/."
+    },
+    {
+      "src": "audio/en-gb/approved/wing/en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a--clean-01-crop.ogg",
+      "kind": "contribution",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a",
+      "notes": "Listen before approving. User-contributed recording for wing /wɪŋ/."
     },
     {
       "src": "audio/en-gb/approved/wing/en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a--clean-01-crop.ogg",

@@ -1,0 +1,65 @@
+{
+  "updatedAt": "2026-07-03T11:36:11.719Z",
+  "candidate": {
+    "key": "en-gb-word-share|User%20contribution%20share%20en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782|contribution%3Aen-GB%3Aen-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316%3Aen-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782",
+    "localPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782",
+      "notes": "User-contributed recording for share /ʃeə/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782.webm",
+        "metadataPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782.webm",
+          "kind": "contribution",
+          "speaker": "bovine3dom",
+          "accent": "British English",
+          "license": "CC0 1.0",
+          "attribution": "bovine3dom",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782",
+          "notes": "User-contributed recording for share /ʃeə/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782.webm",
+          "outputPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T11:35:58.358Z"
+        },
+        {
+          "filter": "click",
+          "label": "click removal",
+          "tool": "ffmpeg",
+          "command": "ffmpeg -hide_banner -loglevel error -y -i /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg -vn -af adeclick -c:a libvorbis -q:a 5 /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-02-click.ogg",
+          "inputPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-01-volume.ogg",
+          "outputPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-02-click.ogg",
+          "datasetSrc": "audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-02-click.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/share/en-gb-share-mr4uuu0x-dbd864e6-0a81-4fbf-9f49-497306209782--clean-02-click.ogg.metadata.json",
+          "appliedAt": "2026-07-03T11:36:06.241Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    }
+  }
+}

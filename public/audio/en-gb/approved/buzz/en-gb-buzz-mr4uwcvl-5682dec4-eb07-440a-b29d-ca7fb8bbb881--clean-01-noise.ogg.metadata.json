@@ -1,0 +1,54 @@
+{
+  "updatedAt": "2026-07-03T11:35:34.700Z",
+  "candidate": {
+    "key": "en-gb-word-buzz|User%20contribution%20buzz%20en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881|contribution%3Aen-GB%3Aen-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316%3Aen-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881",
+    "localPath": "public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881--clean-01-noise.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881--clean-01-noise.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881--clean-01-noise.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881--clean-01-noise.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881",
+      "notes": "User-contributed recording for buzz /bʌz/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881.webm",
+        "metadataPath": "public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881.webm",
+          "kind": "contribution",
+          "speaker": "bovine3dom",
+          "accent": "British English",
+          "license": "CC0 1.0",
+          "attribution": "bovine3dom",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881",
+          "notes": "User-contributed recording for buzz /bʌz/."
+        }
+      },
+      "history": [
+        {
+          "filter": "noise",
+          "label": "background noise reduction",
+          "tool": "sox",
+          "command": "sox /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881.webm -n trim 0 0.25 noiseprof /tmp/vowel-trowel-noise-vepfSZ/noise.prof && sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881--clean-01-noise.ogg highpass 80 noisered /tmp/vowel-trowel-noise-vepfSZ/noise.prof 0.12",
+          "inputPath": "public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881.webm",
+          "outputPath": "public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881--clean-01-noise.ogg",
+          "datasetSrc": "audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881--clean-01-noise.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/buzz/en-gb-buzz-mr4uwcvl-5682dec4-eb07-440a-b29d-ca7fb8bbb881--clean-01-noise.ogg.metadata.json",
+          "appliedAt": "2026-07-03T11:35:32.080Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    }
+  }
+}
