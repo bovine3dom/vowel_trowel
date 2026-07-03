@@ -981,6 +981,26 @@ h3 {
   padding: 12px;
 }
 
+.missing-recordings-section {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 2px dashed #d6cec2;
+}
+
+.missing-recordings-section h4 {
+  margin: 0;
+}
+
+.missing-recordings-section > .muted {
+  margin: -4px 0 0;
+}
+
+.missing-recordings-section .explore-word-card {
+  background: #fbfaf7;
+}
+
 .explore-word-heading {
   display: flex;
   gap: 12px;
@@ -1071,6 +1091,15 @@ h3 {
   border: 2px solid #202020;
   background: #fffdfa;
   box-shadow: 2px 2px 0 #202020;
+}
+
+.contribution-card.current-contribution-step {
+  background: #fffaf0;
+  box-shadow: inset 0 0 0 3px rgba(243, 185, 69, 0.34), 2px 2px 0 #202020;
+}
+
+.contribution-card.current-contribution-step .eyebrow {
+  color: #8f2f1b;
 }
 
 .contribution-card h3 {
@@ -1225,6 +1254,34 @@ h3 {
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+}
+
+.contribution-retry-button {
+  min-height: 38px;
+  border: 2px solid #202020;
+  background: #fffdfa;
+  box-shadow: 2px 2px 0 #202020;
+  color: #202020;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  line-height: 1.2;
+  padding: 7px 10px;
+}
+
+.contribution-retry-button:hover,
+.contribution-retry-button:focus-visible {
+  background: #f7f7f4;
+}
+
+.contribution-retry-button:focus-visible {
+  outline: 2px solid #202020;
+  outline-offset: 3px;
+}
+
+.contribution-retry-button:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
 }
 
 .recording-status {

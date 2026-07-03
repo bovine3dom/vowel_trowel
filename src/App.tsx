@@ -53,6 +53,7 @@ type CatalogTab = "phonemes" | "contrasts";
 type PhonemePair = readonly [PhonemeId, PhonemeId];
 type UrlHistoryMode = "push" | "replace";
 type ContributionLicence = "CC0-1.0" | "CC-BY-4.0";
+type ContributionDownloadStatus = "idle" | "downloading" | "downloaded";
 
 interface ContributionDetails {
   schemaVersion: 1;
@@ -1403,12 +1404,10 @@ function PhonemeExplorer(props: {
   onContribute: (word: WordEntry) => void;
 }) {
   const [showMissingWords, setShowMissingWords] = createSignal(false);
-  const words = createMemo(() =>
-    wordsForPhoneme(props.phoneme.id, showMissingWords() ? dataset : props.availableDataset)
-  );
-  const hiddenWordCount = createMemo(() =>
-    wordsForPhoneme(props.phoneme.id, dataset).length - wordsForPhoneme(props.phoneme.id, props.availableDataset).length
-  );
+  const recordedWords = createMemo(() => wordsForPhoneme(props.phoneme.id, props.availableDataset));
+  const missingWords = createMemo(() => wordsForPhoneme(props.phoneme.id, dataset).filter((word) => word.audio.length === 0));
+  const visibleMissingWords = createMemo(() => showMissingWords() ? missingWords() : []);
+  const visibleWordCount = createMemo(() => recordedWords().length + visibleMissingWords().length);
 
   return (
     <section class="phoneme-explorer">
@@ -1419,7 +1418,7 @@ function PhonemeExplorer(props: {
         <span class="phoneme-ipa large">{props.phoneme.ipa}</span>
         <div>
           <h3>{props.phoneme.label}</h3>
-          <p>{props.phoneme.notes ?? `${words().length} words here use this sound.`}</p>
+          <p>{props.phoneme.notes ?? `${visibleWordCount()} words here use this sound.`}</p>
         </div>
       </div>
 
@@ -1428,74 +1427,94 @@ function PhonemeExplorer(props: {
       </Show>
 
       <div class="explore-word-list">
-        <Show when={words().length > 0} fallback={<p class="muted">{props.ttsEnabled ? "No words for this sound yet." : "No recorded words for this sound yet."}</p>}>
-          <For each={words()}>
-          {(word) => (
-            <article class="explore-word-card">
-              <div class="explore-word-heading">
-                <div>
-                  <strong>{word.written}</strong>
-                  <span class="ipa-text">{word.ipa}</span>
-                </div>
-                <div class="explore-actions">
-                  <button
-                    class="small-button"
-                    type="button"
-                    disabled={word.audio.length === 0}
-                    onClick={() => props.onRandomRecordingPlay(word)}
-                  >
-                    Play random recording
-                  </button>
-                  <Show when={props.ttsEnabled}>
-                    <button class="small-button" type="button" onClick={() => props.onWordTtsPlay(word)}>
-                      Browser voice
-                    </button>
-                  </Show>
-                  <button class="small-button" type="button" onClick={() => props.onContribute(word)}>
-                    Contribute a recording
-                  </button>
-                </div>
-              </div>
-
-              <Show
-                when={word.audio.length > 0}
-                fallback={props.ttsEnabled
-                  ? <p class="muted">No recording yet; browser voice is available.</p>
-                  : <p class="muted">No recording yet.</p>}
-              >
-                <div class="track-list">
-                  <For each={word.audio}>
-                    {(source, index) => (
-                      <div class="track-row">
-                        <button class="text-button compact" type="button" onClick={() => props.onTrackPlay(word, source)}>
-                          Play track {index() + 1}
-                        </button>
-                        <AudioFeedbackButton path={getAudioFeedbackPath(source)} />
-                        <span>
-                          {[source.accent, source.license].filter(Boolean).join(" · ") || source.kind}
-                        </span>
-                      </div>
-                    )}
-                  </For>
-                </div>
-              </Show>
-            </article>
-          )}
+        <Show when={visibleWordCount() > 0} fallback={<p class="muted">{props.ttsEnabled ? "No words for this sound yet." : "No recorded words for this sound yet."}</p>}>
+          <For each={recordedWords()}>
+            {(word) => <ExploreWordCard word={word} {...props} />}
           </For>
-        </Show>
-        <label class="explorer-option">
-          <input
-            type="checkbox"
-            checked={showMissingWords()}
-            onInput={(event) => setShowMissingWords(event.currentTarget.checked)}
-          />
-          Show words missing recordings
-          <Show when={hiddenWordCount() > 0}>
-            <span>({hiddenWordCount()} hidden)</span>
+          <Show when={visibleMissingWords().length > 0}>
+            <section class="missing-recordings-section">
+              <h4>Missing recordings</h4>
+              <p class="muted">These words use this sound but do not have recordings yet.</p>
+              <For each={visibleMissingWords()}>
+                {(word) => <ExploreWordCard word={word} {...props} />}
+              </For>
+            </section>
           </Show>
-        </label>
+        </Show>
+        <Show when={missingWords().length > 0}>
+          <label class="explorer-option">
+            <input
+              type="checkbox"
+              checked={showMissingWords()}
+              onInput={(event) => setShowMissingWords(event.currentTarget.checked)}
+            />
+            Show words missing recordings
+            <span>({missingWords().length} hidden)</span>
+          </label>
+        </Show>
       </div>
     </section>
+  );
+}
+
+function ExploreWordCard(props: {
+  word: WordEntry;
+  ttsEnabled: boolean;
+  onRandomRecordingPlay: (word: WordEntry) => void;
+  onWordTtsPlay: (word: WordEntry) => void;
+  onTrackPlay: (word: WordEntry, source: AudioSource) => void;
+  onContribute: (word: WordEntry) => void;
+}) {
+  return (
+    <article class="explore-word-card">
+      <div class="explore-word-heading">
+        <div>
+          <strong>{props.word.written}</strong>
+          <span class="ipa-text">{props.word.ipa}</span>
+        </div>
+        <div class="explore-actions">
+          <button
+            class="small-button"
+            type="button"
+            disabled={props.word.audio.length === 0}
+            onClick={() => props.onRandomRecordingPlay(props.word)}
+          >
+            Play random recording
+          </button>
+          <Show when={props.ttsEnabled}>
+            <button class="small-button" type="button" onClick={() => props.onWordTtsPlay(props.word)}>
+              Browser voice
+            </button>
+          </Show>
+          <button class="small-button" type="button" onClick={() => props.onContribute(props.word)}>
+            Contribute a recording
+          </button>
+        </div>
+      </div>
+
+      <Show
+        when={props.word.audio.length > 0}
+        fallback={props.ttsEnabled
+          ? <p class="muted">No recording yet; browser voice is available.</p>
+          : <p class="muted">No recording yet.</p>}
+      >
+        <div class="track-list">
+          <For each={props.word.audio}>
+            {(source, index) => (
+              <div class="track-row">
+                <button class="text-button compact" type="button" onClick={() => props.onTrackPlay(props.word, source)}>
+                  Play track {index() + 1}
+                </button>
+                <AudioFeedbackButton path={getAudioFeedbackPath(source)} />
+                <span>
+                  {[source.accent, source.license].filter(Boolean).join(" · ") || source.kind}
+                </span>
+              </div>
+            )}
+          </For>
+        </div>
+      </Show>
+    </article>
   );
 }
 
@@ -1523,6 +1542,7 @@ function ContributionPage(props: {
   const [licence, setLicence] = createSignal<ContributionLicence>(savedContributionDetails.licence);
   const [speakerName, setSpeakerName] = createSignal(savedContributionDetails.speakerName);
   const [accent, setAccent] = createSignal(savedContributionDetails.accent);
+  const [downloadStatus, setDownloadStatus] = createSignal<ContributionDownloadStatus>("idle");
   const [error, setError] = createSignal<string | null>(null);
 
   const recorderAvailable = () =>
@@ -1534,6 +1554,20 @@ function ContributionPage(props: {
     Boolean(recordingBlob()) && (!requiresAttributionName() || speakerName().trim().length > 0)
   );
   const recordingInProgress = createMemo(() => status() === "preparing" || status() === "countdown" || status() === "recording");
+  const downloadButtonText = createMemo(() => {
+    if (downloadStatus() === "downloading") {
+      return "Downloading...";
+    }
+
+    if (downloadStatus() === "downloaded") {
+      return "Downloaded";
+    }
+
+    return "Download contribution zip";
+  });
+  const recordingStepActive = createMemo(() => !recordingBlob() || recordingInProgress());
+  const detailsStepActive = createMemo(() => Boolean(recordingBlob()) && downloadStatus() !== "downloaded");
+  const sendStepActive = createMemo(() => downloadStatus() === "downloaded");
   const countdownProgressPercent = createMemo(() =>
     Math.min(100, Math.max(0, (timelineElapsedMs() / countdownDurationMs) * 100))
   );
@@ -1572,7 +1606,7 @@ function ContributionPage(props: {
       return "Recording...";
     }
 
-    return recordingBlob() ? "Record again" : "Start recording";
+    return "Start recording";
   });
 
   createEffect(() => {
@@ -1617,6 +1651,7 @@ function ContributionPage(props: {
     setRecordingBlob(null);
     setRecordingUrl(null);
     setTimelineElapsedMs(0);
+    setDownloadStatus("idle");
     setStatus("preparing");
     chunks = [];
 
@@ -1760,37 +1795,67 @@ function ContributionPage(props: {
     setRecordingBlob(null);
     setRecordingUrl(null);
     setTimelineElapsedMs(0);
+    setDownloadStatus("idle");
     setStatus("idle");
     setError(null);
+  };
+
+  const discardAndRecordAgain = async () => {
+    discardRecording();
+    await startRecording();
+  };
+
+  const updateLicence = (nextLicence: ContributionLicence) => {
+    setLicence(nextLicence);
+    setDownloadStatus("idle");
+  };
+
+  const updateSpeakerName = (nextSpeakerName: string) => {
+    setSpeakerName(nextSpeakerName);
+    setDownloadStatus("idle");
+  };
+
+  const updateAccent = (nextAccent: string) => {
+    setAccent(nextAccent);
+    setDownloadStatus("idle");
   };
 
   const downloadBundle = async () => {
     const blob = recordingBlob();
 
-    if (!blob || !canDownload()) {
+    if (!blob || !canDownload() || downloadStatus() === "downloading") {
       return;
     }
 
-    const recordingFilename = `recording.${extensionForMimeType(blob.type)}`;
-    const manifest = createContributionManifest({
-      language: props.language,
-      word: props.word,
-      recordingFilename,
-      mimeType: blob.type || "audio/webm",
-      recordingSize: blob.size,
-      licence: licence(),
-      speakerName: speakerName().trim(),
-      accent: accent().trim(),
-    });
-    const archive = zipSync({
-      "manifest.json": strToU8(`${JSON.stringify(manifest, null, 2)}\n`),
-      [recordingFilename]: new Uint8Array(await blob.arrayBuffer()),
-    }, { level: 0 });
+    setDownloadStatus("downloading");
+    setError(null);
 
-    downloadBlob(
-      new Blob([archive], { type: "application/zip" }),
-      `${manifest.id}.zip`,
-    );
+    try {
+      const recordingFilename = `recording.${extensionForMimeType(blob.type)}`;
+      const manifest = createContributionManifest({
+        language: props.language,
+        word: props.word,
+        recordingFilename,
+        mimeType: blob.type || "audio/webm",
+        recordingSize: blob.size,
+        licence: licence(),
+        speakerName: speakerName().trim(),
+        accent: accent().trim(),
+      });
+      const archive = zipSync({
+        "manifest.json": strToU8(`${JSON.stringify(manifest, null, 2)}\n`),
+        [recordingFilename]: new Uint8Array(await blob.arrayBuffer()),
+      }, { level: 0 });
+
+      downloadBlob(
+        new Blob([archive], { type: "application/zip" }),
+        `${manifest.id}.zip`,
+      );
+      setDownloadStatus("downloaded");
+    } catch (downloadError) {
+      setDownloadStatus("idle");
+      setError(downloadError instanceof Error ? downloadError.message : "Could not download contribution.");
+    }
   };
 
   return (
@@ -1830,7 +1895,7 @@ function ContributionPage(props: {
       </dl>
 
       <div class="contribution-grid">
-        <section class="contribution-card recorder-card">
+        <section class={`contribution-card recorder-card${recordingStepActive() ? " current-contribution-step" : ""}`}>
           <p class="eyebrow">Step 1</p>
           <h3>Record your sample</h3>
           <p class="contribution-card-copy">Use a quiet room. After the countdown, say the word once, naturally.</p>
@@ -1866,17 +1931,23 @@ function ContributionPage(props: {
             <p class="error-message">Recording is not available in this browser.</p>
           }>
             <div class="recorder-actions">
-              <button
-                class="primary-button"
-                type="button"
-                disabled={recordingInProgress()}
-                onClick={() => void startRecording()}
+              <Show
+                when={recordingBlob()}
+                fallback={
+                  <button
+                    class="primary-button"
+                    type="button"
+                    disabled={recordingInProgress()}
+                    onClick={() => void startRecording()}
+                  >
+                    {recordButtonText()}
+                  </button>
+                }
               >
-                {recordButtonText()}
-              </button>
-              <button class="small-button" type="button" disabled={!recordingBlob() || recordingInProgress()} onClick={discardRecording}>
-                Discard
-              </button>
+                <button class="contribution-retry-button" type="button" onClick={() => void discardAndRecordAgain()}>
+                  Discard and record again
+                </button>
+              </Show>
             </div>
           </Show>
           <Show when={recordingUrl()}>
@@ -1892,13 +1963,13 @@ function ContributionPage(props: {
           </Show>
         </section>
 
-        <section class="contribution-card contribution-form-card">
+        <section class={`contribution-card contribution-form-card${detailsStepActive() ? " current-contribution-step" : ""}`}>
           <p class="eyebrow">Step 2</p>
           <h3>Licence and download</h3>
           <p class="contribution-card-copy">CC0 is easiest. Pick CC BY 4.0 if you require your name to be attached.</p>
           <label class="field-label">
             Licence
-            <select value={licence()} onInput={(event) => setLicence(event.currentTarget.value as ContributionLicence)}>
+            <select value={licence()} onInput={(event) => updateLicence(event.currentTarget.value as ContributionLicence)}>
               <option value="CC0-1.0">CC0 1.0 public domain dedication</option>
               <option value="CC-BY-4.0">CC BY 4.0 attribution</option>
             </select>
@@ -1908,7 +1979,7 @@ function ContributionPage(props: {
             <input
               type="text"
               value={speakerName()}
-              onInput={(event) => setSpeakerName(event.currentTarget.value)}
+              onInput={(event) => updateSpeakerName(event.currentTarget.value)}
               placeholder="How you want to be credited"
             />
           </label>
@@ -1917,19 +1988,19 @@ function ContributionPage(props: {
             <input
               type="text"
               value={accent()}
-              onInput={(event) => setAccent(event.currentTarget.value)}
+              onInput={(event) => updateAccent(event.currentTarget.value)}
               placeholder="e.g. Belgian French"
             />
           </label>
-          <button class="primary-button" type="button" disabled={!canDownload()} onClick={() => void downloadBundle()}>
-            Download contribution zip
+          <button class="primary-button" type="button" disabled={!canDownload() || downloadStatus() !== "idle"} onClick={() => void downloadBundle()}>
+            {downloadButtonText()}
           </button>
           <Show when={requiresAttributionName() && speakerName().trim().length === 0}>
             <p class="muted">CC BY 4.0 needs a name for attribution. CC0 does not.</p>
           </Show>
         </section>
 
-        <section class="contribution-card contribution-send-card">
+        <section class={`contribution-card contribution-send-card${sendStepActive() ? " current-contribution-step" : ""}`}>
           <p class="eyebrow">Step 3</p>
           <h3>Send your contribution</h3>
           <p class="contribution-card-copy">
