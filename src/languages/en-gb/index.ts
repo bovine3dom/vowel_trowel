@@ -153,8 +153,8 @@ const words: WordEntry[] = [
   word("leaf", "leaf", "/liːf/", ["en-gb-l", "en-gb-fleece", "en-gb-f"]),
   word("safe", "safe", "/seɪf/", ["en-gb-s", "en-gb-face", "en-gb-f"]),
   word("save", "save", "/seɪv/", ["en-gb-s", "en-gb-face", "en-gb-v"]),
-  word("ferry", "ferry", "/ˈferi/", ["en-gb-f", "en-gb-dress", "en-gb-r"]),
-  word("very", "very", "/ˈveri/", ["en-gb-v", "en-gb-dress", "en-gb-r"]),
+  word("ferry", "ferry", "/ˈferi/", ["en-gb-f", "en-gb-dress", "en-gb-r", "en-gb-happy"]),
+  word("very", "very", "/ˈveri/", ["en-gb-v", "en-gb-dress", "en-gb-r", "en-gb-happy"]),
 
   word("chip", "chip", "/tʃɪp/", ["en-gb-ch", "en-gb-kit", "en-gb-p"]),
   word("shop", "shop", "/ʃɒp/", ["en-gb-sh", "en-gb-lot", "en-gb-p"]),
@@ -190,6 +190,7 @@ const words: WordEntry[] = [
   word("thing", "thing", "/θɪŋ/", ["en-gb-theta", "en-gb-kit", "en-gb-ng"]),
   word("sing", "sing", "/sɪŋ/", ["en-gb-s", "en-gb-kit", "en-gb-ng"]),
   word("rang", "rang", "/ræŋ/", ["en-gb-r", "en-gb-trap", "en-gb-ng"]),
+  word("win", "win", "/wɪn/", ["en-gb-w", "en-gb-kit", "en-gb-n"]),
   word("wing", "wing", "/wɪŋ/", ["en-gb-w", "en-gb-kit", "en-gb-ng"]),
   word("ban", "ban", "/bæn/", ["en-gb-b", "en-gb-trap", "en-gb-n"]),
   word("bang", "bang", "/bæŋ/", ["en-gb-b", "en-gb-trap", "en-gb-ng"]),
@@ -262,7 +263,7 @@ const words: WordEntry[] = [
   word("measure", "measure", "/ˈmeʒə/", ["en-gb-m", "en-gb-dress", "en-gb-zh", "en-gb-schwa"]),
   word("leisure", "leisure", "/ˈleʒə/", ["en-gb-l", "en-gb-dress", "en-gb-zh", "en-gb-schwa"]),
   word("treasure", "treasure", "/ˈtreʒə/", ["en-gb-t", "en-gb-r", "en-gb-dress", "en-gb-zh", "en-gb-schwa"]),
-  word("beige", "beige", "/beʒ/", ["en-gb-b", "en-gb-dress", "en-gb-zh"]),
+  word("beige", "beige", "/beɪʒ/", ["en-gb-b", "en-gb-face", "en-gb-zh"]),
   word("genre", "genre", "/ˈʒɒnrə/", ["en-gb-zh", "en-gb-lot", "en-gb-n", "en-gb-r", "en-gb-schwa"]),
   word("yes", "yes", "/jes/", ["en-gb-y", "en-gb-dress", "en-gb-s"]),
   word("you", "you", "/juː/", ["en-gb-y", "en-gb-goose"]),
@@ -285,7 +286,7 @@ const words: WordEntry[] = [
   word("loch", "loch", "/lɒx/", ["en-gb-l", "en-gb-lot", "en-gb-x"]),
   word("bach", "Bach", "/bɑːx/", ["en-gb-b", "en-gb-palm", "en-gb-x"]),
   word("chutzpah", "chutzpah", "/ˈxʊtspə/", ["en-gb-x", "en-gb-foot", "en-gb-t", "en-gb-s", "en-gb-p", "en-gb-schwa"]),
-  word("chanukah", "Chanukah", "/ˈxɑːnəkə/", ["en-gb-x", "en-gb-palm", "en-gb-n", "en-gb-schwa", "en-gb-k"]),
+  word("chanukah", "Chanukah", "/ˈxɑːnəkə/", ["en-gb-x", "en-gb-palm", "en-gb-n", "en-gb-schwa", "en-gb-k", "en-gb-schwa"]),
   word("challah", "challah", "/ˈxɑːlə/", ["en-gb-x", "en-gb-palm", "en-gb-l", "en-gb-schwa"]),
 ];
 
@@ -478,7 +479,7 @@ export const britishEnglishDataset: LanguageDataset = {
       pair("en-gb-n-ng-thin-thing", ["thin", "en-gb-n"], ["thing", "en-gb-ng"]),
       pair("en-gb-n-ng-sin-sing", ["sin", "en-gb-n"], ["sing", "en-gb-ng"]),
       pair("en-gb-n-ng-ran-rang", ["ran", "en-gb-n"], ["rang", "en-gb-ng"]),
-      pair("en-gb-n-ng-win-wing", ["wine", "en-gb-n"], ["wing", "en-gb-ng"]),
+      pair("en-gb-n-ng-win-wing", ["win", "en-gb-n"], ["wing", "en-gb-ng"]),
       pair("en-gb-n-ng-ban-bang", ["ban", "en-gb-n"], ["bang", "en-gb-ng"]),
     ], "consonant"),
     contrast("en-gb-v-w", ["en-gb-v", "en-gb-w"], "/v/ vs /w/", "Labiodental /v/ against labial-velar /w/.", [

@@ -1276,7 +1276,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706",
-      "notes": "User-contributed recording for gong /ɡɔŋ/."
+      "notes": "User-contributed recording for gong /ɡɔ̃ɡ/."
     }
   ],
   "gout": [
