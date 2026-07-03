@@ -1573,8 +1573,21 @@ h3 {
   cursor: pointer;
   font: inherit;
   font-size: 0.88rem;
+  font-weight: 800;
   line-height: 1.2;
   padding: 7px 10px;
+}
+
+.keep-next-button {
+  min-height: 40px;
+  border-color: #245c37;
+  background: #2f7f4f;
+  box-shadow: 2px 2px 0 #245c37;
+  padding: 9px 16px;
+}
+
+.keep-next-button:hover:not(:disabled) {
+  background: #266a42;
 }
 
 .contribution-retry-button:hover,
@@ -1612,8 +1625,42 @@ h3 {
   margin: 0;
 }
 
-.recording-preview audio {
-  width: 100%;
+.recording-preview-button {
+  justify-self: start;
+  min-height: 40px;
+  border: 2px solid #202020;
+  background: #202020;
+  box-shadow: 2px 2px 0 #202020;
+  color: #fffdfa;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  line-height: 1.2;
+  padding: 9px 16px;
+}
+
+.recording-preview-button:hover,
+.recording-preview-button:focus-visible {
+  background: #34302a;
+}
+
+.recording-preview-button:focus-visible {
+  outline: 3px solid #866118;
+  outline-offset: 3px;
+}
+
+.recording-preview-button:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
+.recording-preview-audio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .field-label {

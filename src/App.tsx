@@ -1946,6 +1946,19 @@ function createContributionRecorder(getWordWritten: () => string) {
     await startRecording();
   };
 
+  const restoreRecording = (blob: Blob) => {
+    clearRecordingTimers();
+    stopStream(activeStream);
+    activeStream = undefined;
+    recorder = undefined;
+    chunks = [];
+    setError(null);
+    setRecordingBlob(blob);
+    setRecordingUrl(URL.createObjectURL(blob));
+    setTimelineElapsedMs(CONTRIBUTION_TIMELINE_DURATION_MS);
+    setStatus("recorded");
+  };
+
   return {
     status,
     timelineElapsedMs,
@@ -1961,6 +1974,7 @@ function createContributionRecorder(getWordWritten: () => string) {
     startRecording,
     discardRecording,
     discardAndRecordAgain,
+    restoreRecording,
   };
 }
 
@@ -2019,6 +2033,9 @@ function ContributionModePage(props: {
   const [downloadStatus, setDownloadStatus] = createSignal<ContributionDownloadStatus>("idle");
   const [downloadError, setDownloadError] = createSignal<string | null>(null);
   const [recordingPreviewProgress, setRecordingPreviewProgress] = createSignal(0);
+  const [recordingPreviewRequested, setRecordingPreviewRequested] = createSignal(false);
+  const [recordingPreviewPlayed, setRecordingPreviewPlayed] = createSignal(false);
+  let recordingPreviewAudio: HTMLAudioElement | undefined;
 
   const keptWordIds = createMemo(() => new Set(keptRecordings().map((recording) => recording.word.id)));
   const skippedWordIdSet = createMemo(() => new Set(skippedWordIds()));
@@ -2028,8 +2045,15 @@ function ContributionModePage(props: {
   const activeItem = createMemo(() => remainingItems()[0]);
   const upcomingItems = createMemo(() => remainingItems().slice(1, 6));
   const requiresAttributionName = createMemo(() => licence() === "CC-BY-4.0");
+  const hasCurrentRecording = createMemo(() => Boolean(activeItem() && recorder.recordingBlob()));
   const canDownload = createMemo(() =>
-    keptRecordings().length > 0 && (!requiresAttributionName() || speakerName().trim().length > 0)
+    (keptRecordings().length > 0 || hasCurrentRecording())
+    && (!requiresAttributionName() || speakerName().trim().length > 0)
+  );
+  const canUndoLastKeptRecording = createMemo(() =>
+    keptRecordings().length > 0
+    && !recorder.recordingInProgress()
+    && !recorder.recordingBlob()
   );
   const pageError = createMemo(() => recorder.error() ?? downloadError());
   const downloadButtonText = createMemo(() => {
@@ -2060,9 +2084,17 @@ function ContributionModePage(props: {
 
   createEffect(() => {
     activeItem();
-    recorder.recordingUrl();
+    const recordingUrl = recorder.recordingUrl();
+
     recordingPreviewTracker.stop();
+    if (!recordingUrl) {
+      recordingPreviewAudio = undefined;
+    } else if (recordingPreviewAudio) {
+      loadRecordingPreviewAudio(recordingPreviewAudio);
+    }
     setRecordingPreviewProgress(0);
+    setRecordingPreviewRequested(false);
+    setRecordingPreviewPlayed(false);
   });
 
   onCleanup(recordingPreviewTracker.stop);
@@ -2080,7 +2112,7 @@ function ContributionModePage(props: {
     await recorder.discardAndRecordAgain();
   };
 
-  const keepCurrentRecording = (): KeptContributionRecording | null => {
+  const createCurrentRecording = (): KeptContributionRecording | null => {
     const item = activeItem();
     const blob = recorder.recordingBlob();
 
@@ -2096,6 +2128,16 @@ function ContributionModePage(props: {
       recordedAt: new Date().toISOString(),
     };
 
+    return recording;
+  };
+
+  const keepCurrentRecording = (): KeptContributionRecording | null => {
+    const recording = createCurrentRecording();
+
+    if (!recording) {
+      return null;
+    }
+
     setKeptRecordings((current) => [...current, recording]);
     setDownloadStatus("idle");
     setDownloadError(null);
@@ -2103,21 +2145,65 @@ function ContributionModePage(props: {
   };
 
   const keepAndNext = () => {
-    if (keepCurrentRecording()) {
+    if (recordingPreviewPlayed() && keepCurrentRecording()) {
       recorder.discardRecording();
     }
   };
 
-  const keepAndDownload = async () => {
-    const previousRecordings = keptRecordings();
-    const recording = keepCurrentRecording();
+  const recordingsForDownload = (): KeptContributionRecording[] => {
+    const currentRecording = createCurrentRecording();
+
+    return currentRecording ? [...keptRecordings(), currentRecording] : keptRecordings();
+  };
+
+  const undoLastKeptRecording = () => {
+    if (!canUndoLastKeptRecording()) {
+      return;
+    }
+
+    const recording = keptRecordings().at(-1);
 
     if (!recording) {
       return;
     }
 
-    recorder.discardRecording();
-    await downloadBatch([...previousRecordings, recording]);
+    setKeptRecordings((current) => current.slice(0, -1));
+    recorder.restoreRecording(recording.blob);
+    setDownloadStatus("idle");
+    setDownloadError(null);
+  };
+
+  const setRecordingPreviewAudioElement = (audio: HTMLAudioElement) => {
+    recordingPreviewAudio = audio;
+    loadRecordingPreviewAudio(audio);
+  };
+
+  const playRecordingPreview = async () => {
+    const recordingUrl = recorder.recordingUrl();
+
+    if (!recordingUrl || !recordingPreviewAudio) {
+      setDownloadError("Could not prepare recording preview.");
+      return;
+    }
+
+    setRecordingPreviewRequested(true);
+    setDownloadError(null);
+
+    try {
+      if (recordingPreviewAudio.getAttribute("src") !== recordingUrl) {
+        recordingPreviewAudio.src = recordingUrl;
+        recordingPreviewAudio.load();
+      }
+
+      recordingPreviewAudio.pause();
+      if (recordingPreviewAudio.readyState > 0) {
+        recordingPreviewAudio.currentTime = 0;
+      }
+      await recordingPreviewAudio.play();
+      setRecordingPreviewPlayed(true);
+    } catch (playError) {
+      setDownloadError(playError instanceof Error ? playError.message : "Could not play recording preview.");
+    }
   };
 
   const skipCurrent = () => {
@@ -2150,7 +2236,7 @@ function ContributionModePage(props: {
     setDownloadError(null);
   };
 
-  const downloadBatch = async (recordings = keptRecordings()) => {
+  const downloadBatch = async (recordings = recordingsForDownload()) => {
     if (!canDownloadRecordings(recordings) || downloadStatus() === "downloading") {
       if (requiresAttributionName() && speakerName().trim().length === 0) {
         setDownloadError("CC BY 4.0 needs a name for attribution.");
@@ -2303,16 +2389,29 @@ function ContributionModePage(props: {
                         </button>
                       }
                     >
-                      <button class="primary-button" type="button" onClick={keepAndNext}>
-                        Keep and next
+                      <button class="recording-preview-button" type="button" onClick={() => void playRecordingPreview()}>
+                        {recordingPreviewRequested() ? "Replay" : "Play"}
                       </button>
-                      <button class="small-button" type="button" onClick={() => void keepAndDownload()}>
-                        Keep and download
+                      <button
+                        class="primary-button keep-next-button"
+                        type="button"
+                        disabled={!recordingPreviewPlayed()}
+                        onClick={keepAndNext}
+                      >
+                        Keep and next
                       </button>
                       <button class="contribution-retry-button" type="button" onClick={() => void retryRecording()}>
                         Retry
                       </button>
                     </Show>
+                    <button
+                      class="text-button compact"
+                      type="button"
+                      disabled={!canUndoLastKeptRecording()}
+                      onClick={undoLastKeptRecording}
+                    >
+                      Undo
+                    </button>
                     <button class="text-button compact" type="button" disabled={recorder.recordingInProgress()} onClick={skipCurrent}>
                       Skip
                     </button>
@@ -2323,26 +2422,26 @@ function ContributionModePage(props: {
                   {(url) => (
                     <div class="recording-preview">
                       <p>Listen back before keeping this recording.</p>
-                        <audio
-                          controls
-                          preload="auto"
-                          ref={loadRecordingPreviewAudio}
-                          src={url()}
-                          onLoadedMetadata={(event) => recordingPreviewTracker.update(event.currentTarget, "loadedmetadata")}
-                          onLoadedData={(event) => recordingPreviewTracker.update(event.currentTarget, "loadeddata")}
-                          onCanPlay={(event) => recordingPreviewTracker.update(event.currentTarget, "canplay")}
-                          onPlay={(event) => recordingPreviewTracker.start(event.currentTarget, "play")}
-                          onPlaying={(event) => recordingPreviewTracker.start(event.currentTarget, "playing")}
-                          onTimeUpdate={(event) => recordingPreviewTracker.update(event.currentTarget, "timeupdate")}
-                          onSeeking={(event) => recordingPreviewTracker.update(event.currentTarget, "seeking")}
-                          onSeeked={(event) => recordingPreviewTracker.update(event.currentTarget, "seeked")}
-                          onWaiting={(event) => recordingPreviewTracker.note(event.currentTarget, "waiting")}
-                          onStalled={(event) => recordingPreviewTracker.note(event.currentTarget, "stalled")}
-                          onSuspend={(event) => recordingPreviewTracker.note(event.currentTarget, "suspend")}
-                          onError={(event) => recordingPreviewTracker.note(event.currentTarget, "error")}
-                          onPause={(event) => recordingPreviewTracker.pause(event.currentTarget)}
-                          onEnded={() => recordingPreviewTracker.end()}
-                        />
+                      <audio
+                        class="recording-preview-audio"
+                        preload="auto"
+                        ref={setRecordingPreviewAudioElement}
+                        src={url()}
+                        onLoadedMetadata={(event) => recordingPreviewTracker.update(event.currentTarget, "loadedmetadata")}
+                        onLoadedData={(event) => recordingPreviewTracker.update(event.currentTarget, "loadeddata")}
+                        onCanPlay={(event) => recordingPreviewTracker.update(event.currentTarget, "canplay")}
+                        onPlay={(event) => recordingPreviewTracker.start(event.currentTarget, "play")}
+                        onPlaying={(event) => recordingPreviewTracker.start(event.currentTarget, "playing")}
+                        onTimeUpdate={(event) => recordingPreviewTracker.update(event.currentTarget, "timeupdate")}
+                        onSeeking={(event) => recordingPreviewTracker.update(event.currentTarget, "seeking")}
+                        onSeeked={(event) => recordingPreviewTracker.update(event.currentTarget, "seeked")}
+                        onWaiting={(event) => recordingPreviewTracker.note(event.currentTarget, "waiting")}
+                        onStalled={(event) => recordingPreviewTracker.note(event.currentTarget, "stalled")}
+                        onSuspend={(event) => recordingPreviewTracker.note(event.currentTarget, "suspend")}
+                        onError={(event) => recordingPreviewTracker.note(event.currentTarget, "error")}
+                        onPause={(event) => recordingPreviewTracker.pause(event.currentTarget)}
+                        onEnded={() => recordingPreviewTracker.end()}
+                      />
                     </div>
                   )}
                 </Show>
