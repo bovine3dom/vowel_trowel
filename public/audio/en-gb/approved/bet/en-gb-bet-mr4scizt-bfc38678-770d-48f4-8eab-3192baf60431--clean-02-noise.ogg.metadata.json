@@ -1,0 +1,65 @@
+{
+  "updatedAt": "2026-07-03T10:47:11.410Z",
+  "candidate": {
+    "key": "en-gb-word-bet|User%20contribution%20bet%20en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431|contribution%3Aen-GB%3Aen-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431",
+    "localPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431",
+      "notes": "User-contributed recording for bet /bet/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431.webm",
+        "metadataPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431.webm",
+          "kind": "contribution",
+          "speaker": "bovine3dom",
+          "accent": "British English",
+          "license": "CC0 1.0",
+          "attribution": "bovine3dom",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431",
+          "notes": "User-contributed recording for bet /bet/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431.webm",
+          "outputPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T10:47:00.596Z"
+        },
+        {
+          "filter": "noise",
+          "label": "background noise reduction",
+          "tool": "sox",
+          "command": "sox /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-01-volume.ogg -n trim 0 0.25 noiseprof /tmp/vowel-trowel-noise-kweMfU/noise.prof && sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-01-volume.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg highpass 80 noisered /tmp/vowel-trowel-noise-kweMfU/noise.prof 0.12",
+          "inputPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-01-volume.ogg",
+          "outputPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg",
+          "datasetSrc": "audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg.metadata.json",
+          "appliedAt": "2026-07-03T10:47:04.040Z"
+        }
+      ],
+      "currentStep": 1
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    }
+  }
+}

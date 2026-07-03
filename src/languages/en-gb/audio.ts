@@ -365,6 +365,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress, en-gb-d. Common Voice accent: England English."
     }
   ],
+  "bet": [
+    {
+      "src": "audio/en-gb/approved/bet/en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431--clean-02-noise.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-bet-mr4scizt-bfc38678-770d-48f4-8eab-3192baf60431",
+      "notes": "User-contributed recording for bet /bet/."
+    }
+  ],
   "bin": [
     {
       "src": "audio/en-gb/approved/bin/En-us-bin.ogg",
@@ -3152,6 +3164,46 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC0 1.0",
       "sourceUrl": "vowel-trowel-contribution:en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a",
       "notes": "User-contributed recording for wing /wɪŋ/."
+    },
+    {
+      "src": "audio/en-gb/approved/wing/en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a--clean-01-crop.ogg",
+      "kind": "contribution",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a",
+      "notes": "User-contributed recording for wing /wɪŋ/."
+    },
+    {
+      "src": "audio/en-gb/approved/wing/en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a--clean-01-crop.ogg",
+      "kind": "contribution",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a",
+      "notes": "Listen before approving. User-contributed recording for wing /wɪŋ/."
+    },
+    {
+      "src": "audio/en-gb/approved/wing/en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a--clean-01-crop.ogg",
+      "kind": "contribution",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a",
+      "notes": "Listen before approving. User-contributed recording for wing /wɪŋ/."
+    },
+    {
+      "src": "audio/en-gb/approved/wing/en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a--clean-01-crop.ogg",
+      "kind": "contribution",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a",
+      "notes": "Listen before approving. User-contributed recording for wing /wɪŋ/."
+    },
+    {
+      "src": "audio/en-gb/approved/wing/en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a--clean-01-crop.ogg",
+      "kind": "contribution",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-wing-mr4oji91-1f4992c4-7089-4435-a4cc-94f663c7a88a",
+      "notes": "Listen before approving. User-contributed recording for wing /wɪŋ/."
     }
   ],
   "worse": [
