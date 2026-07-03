@@ -2295,14 +2295,6 @@ function ContributionModePage(props: {
             )}
           </Show>
 
-          <section class={`contribution-card contribution-send-card${downloadStatus() === "downloaded" ? " current-contribution-step" : ""}`}>
-            <p class="eyebrow">Send your batch</p>
-            <h3>Send your contribution</h3>
-            <p class="contribution-card-copy">
-              Send the downloaded ZIP to bovine3dom on <a href="https://github.com/bovine3dom/vowel_trowel/issues/new" target="_blank" rel="noreferrer">GitHub</a>,
-              or however you usually talk to him.
-            </p>
-          </section>
         </div>
 
         <aside class="contribution-card contribution-session-sidebar">
@@ -2360,6 +2352,15 @@ function ContributionModePage(props: {
             </Show>
           </div>
         </aside>
+
+        <section class={`contribution-card contribution-send-card${downloadStatus() === "downloaded" ? " current-contribution-step" : ""}`}>
+          <p class="eyebrow">Send your batch</p>
+          <h3>Send your contribution</h3>
+          <p class="contribution-card-copy">
+            Send the downloaded ZIP to bovine3dom on <a href="https://github.com/bovine3dom/vowel_trowel/issues/new" target="_blank" rel="noreferrer">GitHub</a>,
+            or however you usually talk to him.
+          </p>
+        </section>
       </div>
     </section>
   );
