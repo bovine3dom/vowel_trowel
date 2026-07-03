@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-07-03T11:35:55.859Z",
+  "updatedAt": "2026-07-03T13:12:53.071Z",
   "candidate": {
-    "key": "en-gb-word-prize|User%20contribution%20prize%20en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2|contribution%3Aen-GB%3Aen-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316%3Aen-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2",
+    "key": "en-gb-word-prize|User%20contribution%20prize%20en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2|contribution%3Aen-GB%3Aen-gb-batch-mr4uvzdj-a3cdbd62-bceb-4ddb-92b2-60d09c24cb20%3Aen-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2",
     "localPath": "public/audio/en-gb/contributions/prize/en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2--clean-01-volume.ogg",
     "metadataPath": "public/audio/en-gb/contributions/prize/en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2--clean-01-volume.ogg.metadata.json",
     "datasetSrc": "audio/en-gb/contributions/prize/en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2--clean-01-volume.ogg",
@@ -12,8 +12,8 @@
       "accent": "British English",
       "license": "CC0 1.0",
       "attribution": "bovine3dom",
-      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2",
-      "notes": "User-contributed recording for prize /praɪz/."
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uvzdj-a3cdbd62-bceb-4ddb-92b2-60d09c24cb20:en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2",
+      "notes": "Rejected during audio review."
     },
     "audioProcessing": {
       "original": {
@@ -27,7 +27,7 @@
           "accent": "British English",
           "license": "CC0 1.0",
           "attribution": "bovine3dom",
-          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uvzdj-a3cdbd62-bceb-4ddb-92b2-60d09c24cb20:en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2",
           "notes": "User-contributed recording for prize /praɪz/."
         }
       },
@@ -41,14 +41,15 @@
           "outputPath": "public/audio/en-gb/contributions/prize/en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/prize/en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/prize/en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T11:35:51.862Z"
+          "appliedAt": "2026-07-03T13:12:41.415Z"
         }
       ],
       "currentStep": 0
     },
     "review": {
-      "status": "approved",
-      "accent": "British English"
+      "status": "rejected",
+      "accent": "British English",
+      "notes": "Rejected during audio review."
     }
   }
 }
