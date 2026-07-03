@@ -217,9 +217,11 @@ test("explores a sound and returns without adding an extra history entry", async
   await expect(page.getByText("Current practice:")).toBeVisible();
 });
 
-test("shows fallback-only words when TTS flag is enabled", async ({ page }) => {
+test("can show fallback-only words when TTS flag is enabled", async ({ page }) => {
   await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes&explore=fr-u&tts=1");
 
+  await expect(page.locator(".phoneme-explorer").getByText("roue")).toHaveCount(0);
+  await page.getByLabel("Show words missing recordings").check();
   await expect(page.locator(".phoneme-explorer").getByText("roue")).toBeVisible();
   await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" }).first()).toBeVisible();
   await expect(page.getByText("Browser voice", { exact: true }).first()).toBeVisible();
@@ -255,10 +257,10 @@ test("can submit a matching answer", async ({ page }) => {
   await page.getByRole("button", { name: "Check answer" }).click();
 
   await expect(page.getByText(/Correct|Not quite/)).toBeVisible();
-  await expect(page.getByRole("button", { name: "Play again" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "New pair" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Next contrast" })).toBeVisible();
 
-  await page.getByRole("button", { name: "Play again" }).click();
+  await page.getByRole("button", { name: "New pair" }).click();
 
   await expect(page.getByText(/Correct|Not quite/)).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Check answer" })).toBeDisabled();

@@ -2668,6 +2668,7 @@ function Metric(props: { label: string; value: string }) {
 
 function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) {
   let canvas: HTMLCanvasElement | undefined;
+  let formantCanvas: HTMLCanvasElement | undefined;
   let stopSpectrogram: (() => void) | undefined;
   let paintedStateId: number | undefined;
   let paintedExpanded = false;
@@ -2694,12 +2695,13 @@ function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) 
       paintedExpanded = isExpanded;
       revealedColumn = 0;
       paintSpectrogramBase(canvas, visualization);
+      paintFormantBase(formantCanvas, visualization);
     }
 
     stopDrawing();
 
     if (visualization.status === "playing" && visualization.spectrogram) {
-      stopSpectrogram = drawPrecomputedSpectrogram(canvas, visualization, {
+      stopSpectrogram = drawPrecomputedSpectrogram(canvas, formantCanvas, visualization, {
         get: () => revealedColumn,
         set: (column) => { revealedColumn = column; },
       });
@@ -2708,6 +2710,7 @@ function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) 
 
     if (visualization.status === "ended" && visualization.spectrogram) {
       revealedColumn = paintSpectrogramToProgress(canvas, visualization, 1, revealedColumn);
+      paintFormantsToProgress(formantCanvas, visualization, 1);
     }
   });
 
@@ -2755,6 +2758,15 @@ function SpectrogramPanel(props: { visualization: PlaybackVisualizationState }) 
         <canvas
           ref={(element) => { canvas = element; }}
           aria-label="Audio spectrogram"
+        />
+      </div>
+      <div class="formant-legend" aria-hidden="true">
+        <span class="eyebrow">Approximate formant path</span>
+      </div>
+      <div class="formant-frame">
+        <canvas
+          ref={(element) => { formantCanvas = element; }}
+          aria-label="Estimated F1 and F2 formant path"
         />
       </div>
       <div class="spectrogram-meta">
@@ -2855,6 +2867,7 @@ function paintSpectrogramBase(canvas: HTMLCanvasElement, visualization: Playback
 
 function drawPrecomputedSpectrogram(
   canvas: HTMLCanvasElement,
+  formantCanvas: HTMLCanvasElement | undefined,
   visualization: PlaybackVisualizationState,
   revealedColumn: { get: () => number; set: (column: number) => void },
 ): () => void {
@@ -2878,6 +2891,7 @@ function drawPrecomputedSpectrogram(
     const nextColumn = paintSpectrogramToProgress(canvas, visualization, progress, revealedColumn.get());
 
     revealedColumn.set(nextColumn);
+    paintFormantsToProgress(formantCanvas, visualization, progress);
 
     frameId = requestAnimationFrame(draw);
   };
@@ -2947,6 +2961,279 @@ function paintSpectrogramSlice(
     targetWidth,
     height,
   );
+}
+
+function paintFormantBase(canvas: HTMLCanvasElement | undefined, visualization: PlaybackVisualizationState): void {
+  if (!canvas?.isConnected) {
+    return;
+  }
+
+  const { ctx, width, height } = prepareFormantCanvas(canvas);
+  const formants = visualization.spectrogram?.formants;
+  const range = formantChartRange(formants);
+
+  ctx.fillStyle = "#f4f1ea";
+  ctx.fillRect(0, 0, width, height);
+  paintFormantGrid(ctx, width, height, range);
+  paintReferenceVowels(ctx, width, height, range);
+
+  if (formants) {
+    return;
+  }
+
+  if (visualization.mode === "recording" && visualization.spectrogram) {
+    paintFormantMessage(ctx, width, height, "No stable F1/F2 estimate for this recording");
+    return;
+  }
+
+  if (visualization.mode === "voice") {
+    paintFormantMessage(ctx, width, height, "Formants need a recording, not browser voice");
+    return;
+  }
+
+  paintFormantMessage(ctx, width, height, "F1/F2 trace appears here for recordings");
+}
+
+function paintFormantsToProgress(
+  canvas: HTMLCanvasElement | undefined,
+  visualization: PlaybackVisualizationState,
+  progress: number,
+): void {
+  if (!canvas?.isConnected) {
+    return;
+  }
+
+  paintFormantBase(canvas, visualization);
+
+  const formants = visualization.spectrogram?.formants;
+
+  if (!formants) {
+    return;
+  }
+
+  const { ctx, width, height } = prepareFormantCanvas(canvas);
+  const clampedProgress = Math.max(0, Math.min(1, progress));
+
+  paintFormantPath(ctx, formants, clampedProgress, width, height);
+}
+
+interface FormantChartRange {
+  minF1: number;
+  maxF1: number;
+  minF2: number;
+  maxF2: number;
+}
+
+function formantChartRange(formants: PrecomputedSpectrogram["formants"]): FormantChartRange {
+  return {
+    minF1: 150,
+    maxF1: 1200,
+    minF2: 500,
+    maxF2: Math.min(3500, formants?.maxHz ?? 3500),
+  };
+}
+
+function paintFormantGrid(ctx: CanvasRenderingContext2D, width: number, height: number, range: FormantChartRange): void {
+  const area = formantPlotArea(width, height);
+  const scale = formantScale(width, height);
+
+  ctx.save();
+  ctx.strokeStyle = "rgba(138, 104, 20, 0.18)";
+  ctx.fillStyle = "rgba(63, 60, 55, 0.68)";
+  ctx.lineWidth = Math.max(1, Math.floor(scale / 520));
+  ctx.font = `700 ${Math.max(18, Math.min(42, Math.floor(scale / 20)))}px sans-serif`;
+  ctx.textAlign = "right";
+  ctx.textBaseline = "middle";
+
+  for (const hz of [300, 600, 900]) {
+    if (hz < range.minF1 || hz > range.maxF1) {
+      continue;
+    }
+
+    const y = formantY(hz, range, area);
+
+    ctx.beginPath();
+    ctx.moveTo(area.left, y);
+    ctx.lineTo(area.right, y);
+    ctx.stroke();
+    ctx.fillText(String(hz), area.left - 7, y);
+  }
+
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+
+  for (const hz of [500, 1000, 1500, 2000, 2500, 3000]) {
+    if (hz < range.minF2 || hz > range.maxF2) {
+      continue;
+    }
+
+    const x = formantX(hz, range, area);
+
+    ctx.beginPath();
+    ctx.moveTo(x, area.top);
+    ctx.lineTo(x, area.bottom);
+    ctx.stroke();
+    ctx.fillText(hz >= 1000 ? `${hz / 1000}k` : String(hz), x, area.bottom + 7);
+  }
+
+  ctx.strokeStyle = "rgba(32, 32, 32, 0.34)";
+  ctx.beginPath();
+  ctx.moveTo(area.left, area.top);
+  ctx.lineTo(area.left, area.bottom);
+  ctx.lineTo(area.right, area.bottom);
+  ctx.stroke();
+  ctx.fillStyle = "rgba(32, 32, 32, 0.72)";
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+  ctx.fillText("F1", area.left + 5, area.top + 5);
+  ctx.textAlign = "right";
+  ctx.textBaseline = "bottom";
+  ctx.fillText("F2", area.right - 5, area.bottom - 5);
+  ctx.restore();
+}
+
+function paintFormantMessage(ctx: CanvasRenderingContext2D, width: number, height: number, message: string): void {
+  ctx.save();
+  ctx.fillStyle = "rgba(63, 60, 55, 0.72)";
+  ctx.font = `${Math.max(14, Math.min(24, Math.floor(height / 7)))}px sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(message, width / 2, height / 2);
+  ctx.restore();
+}
+
+function paintReferenceVowels(ctx: CanvasRenderingContext2D, width: number, height: number, range: FormantChartRange): void {
+  const area = formantPlotArea(width, height);
+  const scale = formantScale(width, height);
+  const labels = [
+    { label: "/i/", f1: 280, f2: 2400 },
+    { label: "/u/", f1: 320, f2: 850 },
+    { label: "/a/", f1: 850, f2: 1450 },
+  ];
+
+  ctx.save();
+  ctx.font = `800 ${Math.max(18, Math.min(38, Math.floor(scale / 18)))}px sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  for (const vowel of labels) {
+    const x = formantX(vowel.f2, range, area);
+    const y = formantY(vowel.f1, range, area);
+    const radius = Math.max(14, Math.min(34, Math.floor(scale / 42)));
+
+    ctx.fillStyle = "rgba(255, 253, 250, 0.72)";
+    ctx.strokeStyle = "rgba(138, 104, 20, 0.32)";
+    ctx.lineWidth = Math.max(1, Math.floor(scale / 520));
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "rgba(38, 79, 135, 0.64)";
+    ctx.fillText(vowel.label, x, y + 0.5);
+  }
+
+  ctx.restore();
+}
+
+function paintFormantPath(
+  ctx: CanvasRenderingContext2D,
+  formants: NonNullable<PrecomputedSpectrogram["formants"]>,
+  progress: number,
+  width: number,
+  height: number,
+): void {
+  const maxTime = Math.max(0.001, formants.duration * progress);
+  const area = formantPlotArea(width, height);
+  const range = formantChartRange(formants);
+  const scale = formantScale(width, height);
+  const lineWidth = Math.max(2, Math.min(9, Math.floor(scale / 130)));
+
+  const strokePath = (strokeStyle: string, strokeWidth: number): { x: number; y: number } | null => {
+    let pathStarted = false;
+    let lastPoint: { x: number; y: number } | null = null;
+    let previousTime: number | null = null;
+
+    ctx.beginPath();
+
+    for (const point of formants.points) {
+      if (point.time > maxTime) {
+        break;
+      }
+
+      if (point.f1 === null || point.f2 === null) {
+        pathStarted = false;
+        previousTime = null;
+        continue;
+      }
+
+      const x = formantX(point.f2, range, area);
+      const y = formantY(point.f1, range, area);
+
+      if (!pathStarted || (previousTime !== null && point.time - previousTime > 0.045)) {
+        ctx.moveTo(x, y);
+        pathStarted = true;
+      } else {
+        ctx.lineTo(x, y);
+      }
+
+      previousTime = point.time;
+      lastPoint = { x, y };
+    }
+
+    ctx.strokeStyle = strokeStyle;
+    ctx.lineWidth = strokeWidth;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.stroke();
+
+    return lastPoint;
+  };
+
+  ctx.save();
+  strokePath("rgba(255, 253, 250, 0.92)", lineWidth + Math.max(2, Math.floor(scale / 520)));
+  strokePath("rgba(243, 185, 69, 0.72)", lineWidth + Math.max(1, Math.floor(scale / 700)));
+  const lastPoint = strokePath("#264f87", lineWidth);
+
+  if (lastPoint) {
+    ctx.fillStyle = "#f3b945";
+    ctx.strokeStyle = "#fffdfa";
+    ctx.lineWidth = Math.max(2, Math.floor(scale / 460));
+    ctx.beginPath();
+    ctx.arc(lastPoint.x, lastPoint.y, Math.max(5, Math.min(26, Math.floor(scale / 38))), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.strokeStyle = "#264f87";
+    ctx.lineWidth = Math.max(1, Math.floor(scale / 720));
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+function formantScale(width: number, height: number): number {
+  return Math.min(width, height);
+}
+
+function formantPlotArea(width: number, height: number): { top: number; right: number; bottom: number; left: number } {
+  return {
+    top: Math.max(24, Math.floor(height * 0.09)),
+    right: width - Math.max(18, Math.floor(width * 0.08)),
+    bottom: height - Math.max(48, Math.floor(height * 0.16)),
+    left: Math.max(56, Math.floor(width * 0.17)),
+  };
+}
+
+function formantX(f2: number, range: FormantChartRange, area: { right: number; left: number }): number {
+  const normalized = (range.maxF2 - f2) / Math.max(1, range.maxF2 - range.minF2);
+
+  return area.left + Math.max(0, Math.min(1, normalized)) * (area.right - area.left);
+}
+
+function formantY(f1: number, range: FormantChartRange, area: { top: number; bottom: number }): number {
+  const normalized = (f1 - range.minF1) / Math.max(1, range.maxF1 - range.minF1);
+
+  return area.top + Math.max(0, Math.min(1, normalized)) * (area.bottom - area.top);
 }
 
 function getRenderedSpectrogram(spectrogram: PrecomputedSpectrogram): HTMLCanvasElement {
@@ -3025,6 +3312,36 @@ function prepareSpectrogramCanvas(canvas: HTMLCanvasElement): {
 
   if (!ctx) {
     throw new Error("Could not create spectrogram canvas context.");
+  }
+
+  return { ctx, width, height, resized };
+}
+
+function prepareFormantCanvas(canvas: HTMLCanvasElement): {
+  ctx: CanvasRenderingContext2D;
+  width: number;
+  height: number;
+  resized: boolean;
+} {
+  const rect = canvas.getBoundingClientRect();
+  const expanded = Boolean(canvas.closest(".spectrogram-panel.expanded"));
+  const deviceRatio = window.devicePixelRatio || 1;
+  const ratio = Math.min(deviceRatio * (expanded ? 2.25 : 1.75), expanded ? 4 : 3);
+  const cssWidth = Math.max(280, Math.floor(rect.width || 420));
+  const cssHeight = Math.max(280, Math.floor(rect.height || cssWidth));
+  const width = Math.floor(cssWidth * ratio);
+  const height = Math.floor(cssHeight * ratio);
+  const resized = canvas.width !== width || canvas.height !== height;
+
+  if (resized) {
+    canvas.width = width;
+    canvas.height = height;
+  }
+
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx) {
+    throw new Error("Could not create formant canvas context.");
   }
 
   return { ctx, width, height, resized };
