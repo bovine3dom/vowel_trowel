@@ -20,7 +20,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-agneau-mr4zs4v5-0aef208d-0369-46c4-8c5a-649dfb75fb7c",
-      "notes": "User-contributed recording for agneau /aɲo/."
+      "notes": "Listen before approving. User-contributed recording for agneau /aɲo/."
     }
   ],
   "ami": [
@@ -31,7 +31,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-ami-mr4zsrnm-ebbbf08e-1f1b-4437-8451-3b9963a4fda7",
-      "notes": "User-contributed recording for ami /ami/."
+      "notes": "Listen before approving. User-contributed recording for ami /ami/."
     }
   ],
   "annee": [
@@ -42,7 +42,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-annee-mr4zt2at-a69a781a-fb4e-44ed-aabd-ab00a30819ce",
-      "notes": "User-contributed recording for année /ane/."
+      "notes": "Listen before approving. User-contributed recording for année /ane/."
     }
   ],
   "banc": [
@@ -131,7 +131,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-bateau-mr4zttg6-f6e0c9dc-fc8a-4eff-8efe-d38043dafc13",
-      "notes": "User-contributed recording for bateau /bato/."
+      "notes": "Listen before approving. User-contributed recording for bateau /bato/."
     }
   ],
   "beau": [
@@ -142,7 +142,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-beau-mr4zu65z-dea0f39b-c2cb-476f-9669-0f015b6860d0",
-      "notes": "User-contributed recording for beau /bo/."
+      "notes": "Listen before approving. User-contributed recording for beau /bo/."
     }
   ],
   "bebe": [
@@ -153,7 +153,18 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-bebe-mr4zvdng-0167ed01-996b-4000-8028-f98ae4ad7cce",
-      "notes": "User-contributed recording for bébé /bebe/."
+      "notes": "Listen before approving. User-contributed recording for bébé /bebe/."
+    }
+  ],
+  "billet": [
+    {
+      "src": "audio/fr/approved/billet/fr-billet-mr5f9ldg-ed5191bd-4646-49fd-a6be-b92032711b07--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-billet-mr5f9ldg-ed5191bd-4646-49fd-a6be-b92032711b07",
+      "notes": "User-contributed recording for billet /bijɛ/."
     }
   ],
   "bleu": [
@@ -319,6 +330,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-un. Common Voice accent: Français de Belgique."
     }
   ],
+  "bu": [
+    {
+      "src": "audio/fr/approved/bu/fr-bu-mr5fftzr-da9c055a-269d-459d-8db4-5222fcdfa745--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-bu-mr5fftzr-da9c055a-269d-459d-8db4-5222fcdfa745",
+      "notes": "User-contributed recording for bu /by/."
+    }
+  ],
   "cache": [
     {
       "src": "audio/fr/approved/cache/common_voice_fr_18184876.opus",
@@ -362,7 +384,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-cafe-mr4zw56n-b4b676e6-6bcb-420a-af8d-8f045a189d2a",
-      "notes": "User-contributed recording for café /kafe/."
+      "notes": "Listen before approving. User-contributed recording for café /kafe/."
     }
   ],
   "cage": [
@@ -408,6 +430,15 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-camping-mr4zwnng-97a0b55d-2691-4fa9-8310-4c31de097688",
+      "notes": "Listen before approving. User-contributed recording for camping /kɑ̃piŋ/."
+    },
+    {
+      "src": "audio/fr/approved/camping/fr-camping-mr5fflki-733fc02d-04f8-4934-9ae8-6277d0de78ac--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-camping-mr5fflki-733fc02d-04f8-4934-9ae8-6277d0de78ac",
       "notes": "User-contributed recording for camping /kɑ̃piŋ/."
     }
   ],
@@ -480,28 +511,10 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-ce-mr4zxdhp-d619051b-4d9d-4ffe-a921-2391253b47e2",
-      "notes": "User-contributed recording for ce /sə/."
+      "notes": "Listen before approving. User-contributed recording for ce /sə/."
     }
   ],
   "ceux": [
-    {
-      "src": "audio/fr/approved/ceux/common_voice_fr_17311724.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-eu, fr-s. Common Voice accent: Français de Suisse."
-    },
-    {
-      "src": "audio/fr/approved/ceux/common_voice_fr_17327715.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-eu, fr-s. Common Voice accent: Français de Suisse."
-    },
     {
       "src": "audio/fr/approved/ceux/common_voice_fr_17311724.opus",
       "kind": "external",
@@ -679,7 +692,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0-1.0",
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-un, fr-open-o. Common Voice accent: Français de Suisse."
+      "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches fr-un, fr-open-o."
     },
     {
       "src": "audio/fr/approved/commun/common_voice_fr_17410419.opus",
@@ -689,15 +702,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-un, fr-open-o. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/commun/common_voice_fr_17470802.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches fr-un, fr-open-o."
     },
     {
       "src": "audio/fr/approved/commun/LL-Q150__fra_-Arthur_Crbz-commun.wav",
@@ -810,7 +814,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-dame-mr4zxq1k-83afd760-67c1-4ef5-95ff-d6a882e18892",
-      "notes": "User-contributed recording for dame /dam/."
+      "notes": "Listen before approving. User-contributed recording for dame /dam/."
     }
   ],
   "dent": [
@@ -952,7 +956,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-dire-mr4zyfqi-f9e44674-b91c-4d24-8dc1-ef3dff869960",
-      "notes": "User-contributed recording for dire /diʁ/."
+      "notes": "Listen before approving. User-contributed recording for dire /diʁ/."
     }
   ],
   "doigt": [
@@ -963,7 +967,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-doigt-mr4zys3q-9eec25cf-18c1-498b-9a03-5e4c39e060dc",
-      "notes": "User-contributed recording for doigt /dwa/."
+      "notes": "Listen before approving. User-contributed recording for doigt /dwa/."
     }
   ],
   "don": [
@@ -1009,7 +1013,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-donner-mr4zz79o-0c3d98c3-b252-4079-aeef-6e53a9e680f7",
-      "notes": "User-contributed recording for donner /dɔne/."
+      "notes": "Listen before approving. User-contributed recording for donner /dɔne/."
     }
   ],
   "doux": [
@@ -1107,7 +1111,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-farce-mr503nw9-35325788-ccab-4608-894c-d191f691db76",
-      "notes": "User-contributed recording for farce /faʁs/."
+      "notes": "Listen before approving. User-contributed recording for farce /faʁs/."
     }
   ],
   "fee": [
@@ -1183,7 +1187,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-fil-mr503zjf-af61d219-42b9-47d2-abb5-ea17e98902e2",
-      "notes": "User-contributed recording for fil /fil/."
+      "notes": "Listen before approving. User-contributed recording for fil /fil/."
     }
   ],
   "fille": [
@@ -1194,7 +1198,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-fille-mr504c88-f7bd7494-ef1c-45da-a295-049989323da9",
-      "notes": "User-contributed recording for fille /fij/."
+      "notes": "Listen before approving. User-contributed recording for fille /fij/."
     }
   ],
   "fleur": [
@@ -1232,7 +1236,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-fou-mr504nu4-67ca65a7-a1e8-42fc-8992-7fe7bf9ef7c3",
-      "notes": "User-contributed recording for fou /fu/."
+      "notes": "Listen before approving. User-contributed recording for fou /fu/."
     }
   ],
   "gagner": [
@@ -1243,7 +1247,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gagner-mr504z9v-6e485cfc-be47-4120-9488-093c8a093e01",
-      "notes": "User-contributed recording for gagner /ɡaɲe/."
+      "notes": "Listen before approving. User-contributed recording for gagner /ɡaɲe/."
     }
   ],
   "gare": [
@@ -1254,7 +1258,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289",
-      "notes": "User-contributed recording for gare /ɡaʁ/."
+      "notes": "Listen before approving. User-contributed recording for gare /ɡaʁ/."
     }
   ],
   "glace": [
@@ -1265,7 +1269,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-glace-mr505xla-b36e2850-e2a1-40d7-a23f-ae60774ec3ee",
-      "notes": "User-contributed recording for glace /ɡlas/."
+      "notes": "Listen before approving. User-contributed recording for glace /ɡlas/."
     }
   ],
   "gong": [
@@ -1276,7 +1280,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gong-mr506b6a-21e84e94-049d-472a-9998-606975fe3706",
-      "notes": "User-contributed recording for gong /ɡɔ̃ɡ/."
+      "notes": "Listen before approving. User-contributed recording for gong /ɡɔ̃ɡ/."
     }
   ],
   "gout": [
@@ -1287,7 +1291,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gout-mr506mik-0c49a24b-0fa0-4fd3-9845-b86dc0401d6f",
-      "notes": "User-contributed recording for goût /ɡu/."
+      "notes": "Listen before approving. User-contributed recording for goût /ɡu/."
     }
   ],
   "guerre": [
@@ -1298,7 +1302,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-guerre-mr506xsj-84ffd4fa-dfaa-49cf-b145-988c5e3c6938",
-      "notes": "User-contributed recording for guerre /ɡɛʁ/."
+      "notes": "Listen before approving. User-contributed recording for guerre /ɡɛʁ/."
     }
   ],
   "guide": [
@@ -1309,7 +1313,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d",
-      "notes": "User-contributed recording for guide /ɡid/."
+      "notes": "Listen before approving. User-contributed recording for guide /ɡid/."
     }
   ],
   "hache": [
@@ -1383,7 +1387,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-huile-mr507k2w-d414c09d-5234-4c0b-8cf4-957208d68767",
-      "notes": "User-contributed recording for huile /ɥil/."
+      "notes": "Listen before approving. User-contributed recording for huile /ɥil/."
     }
   ],
   "huit": [
@@ -1394,7 +1398,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-huit-mr507y5i-247aa89a-aa3d-4939-881c-6fdb3b7a01ec",
-      "notes": "User-contributed recording for huit /ɥit/."
+      "notes": "Listen before approving. User-contributed recording for huit /ɥit/."
     }
   ],
   "ile": [
@@ -1405,7 +1409,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-ile-mr508h21-6ed8a854-ecef-4fc0-b7eb-511dcded04cd",
-      "notes": "User-contributed recording for île /il/."
+      "notes": "Listen before approving. User-contributed recording for île /il/."
     }
   ],
   "je": [
@@ -1416,7 +1420,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-je-mr508sa0-3fedebc7-49d8-47e3-b449-99303e12a1e4",
-      "notes": "User-contributed recording for je /ʒə/."
+      "notes": "Listen before approving. User-contributed recording for je /ʒə/."
     }
   ],
   "jeune": [
@@ -1467,7 +1471,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-kilo-mr5093n3-bd8d61dc-be46-4015-9237-36d02b0e0fb6",
-      "notes": "User-contributed recording for kilo /kilo/."
+      "notes": "Listen before approving. User-contributed recording for kilo /kilo/."
     }
   ],
   "lac": [
@@ -1478,7 +1482,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lac-mr509e2s-b46db3a7-72ce-4816-a81b-aca13767e143",
-      "notes": "User-contributed recording for lac /lak/."
+      "notes": "Listen before approving. User-contributed recording for lac /lak/."
     }
   ],
   "lait": [
@@ -1500,7 +1504,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b",
-      "notes": "User-contributed recording for le /lə/."
+      "notes": "Listen before approving. User-contributed recording for le /lə/."
     }
   ],
   "lent": [
@@ -1540,6 +1544,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-e. Common Voice accent: Français de Belgique."
     }
   ],
+  "ligne": [
+    {
+      "src": "audio/fr/approved/ligne/fr-ligne-mr5famat-7ebecd92-01c1-4312-abca-57c88c67a130--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-ligne-mr5famat-7ebecd92-01c1-4312-abca-57c88c67a130",
+      "notes": "User-contributed recording for ligne /liɲ/."
+    }
+  ],
   "lire": [
     {
       "src": "audio/fr/approved/lire/fr-lire-mr50auxj-f69ac922-33dd-42cf-81ac-4d5a9d97c58c.webm",
@@ -1548,7 +1563,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lire-mr50auxj-f69ac922-33dd-42cf-81ac-4d5a9d97c58c",
-      "notes": "User-contributed recording for lire /liʁ/."
+      "notes": "Listen before approving. User-contributed recording for lire /liʁ/."
     }
   ],
   "lit": [
@@ -1559,7 +1574,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lit-mr50b5e9-7309eee4-8ee6-41cf-8688-d9605021c993",
-      "notes": "User-contributed recording for lit /li/."
+      "notes": "Listen before approving. User-contributed recording for lit /li/."
     }
   ],
   "loi": [
@@ -1570,7 +1585,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-loi-mr50bfm1-09d51d59-b21d-4237-b636-e3d92232969f",
-      "notes": "User-contributed recording for loi /lwa/."
+      "notes": "Listen before approving. User-contributed recording for loi /lwa/."
     }
   ],
   "long": [
@@ -1602,7 +1617,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lui-mr50bpxv-9d1d403e-7394-402e-bcfc-bba326228263",
-      "notes": "User-contributed recording for lui /lɥi/."
+      "notes": "Listen before approving. User-contributed recording for lui /lɥi/."
     }
   ],
   "lundi": [
@@ -1651,7 +1666,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-lune-mr50c0ss-044d63a5-8e20-4da9-8514-5b0ab8a30123",
-      "notes": "User-contributed recording for lune /lyn/."
+      "notes": "Listen before approving. User-contributed recording for lune /lyn/."
     }
   ],
   "mais": [
@@ -1673,7 +1688,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-mal-mr50cad7-704d9dcd-0728-4d02-bdd3-573092eb7617",
-      "notes": "User-contributed recording for mal /mal/."
+      "notes": "Listen before approving. User-contributed recording for mal /mal/."
     }
   ],
   "maman": [
@@ -1684,7 +1699,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-maman-mr50cygc-b30ebf45-6dcc-4e82-995c-ca0355fc24d6",
-      "notes": "User-contributed recording for maman /mamɑ̃/."
+      "notes": "Listen before approving. User-contributed recording for maman /mamɑ̃/."
     }
   ],
   "mardi": [
@@ -1695,7 +1710,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-mardi-mr50d97p-bc03aacd-3dd7-467c-adbb-d4425d99bb5e",
-      "notes": "User-contributed recording for mardi /maʁdi/."
+      "notes": "Listen before approving. User-contributed recording for mardi /maʁdi/."
     }
   ],
   "me": [
@@ -1706,7 +1721,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-me-mr50dndy-7c8e1b4b-ea7b-436a-b3af-648a666a71ff",
-      "notes": "User-contributed recording for me /mə/."
+      "notes": "Listen before approving. User-contributed recording for me /mə/."
     }
   ],
   "meeting": [
@@ -1717,7 +1732,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-meeting-mr50dz2o-8dfc068a-bc37-4639-aaee-cf678cee3d11",
-      "notes": "User-contributed recording for meeting /mitiŋ/."
+      "notes": "Listen before approving. User-contributed recording for meeting /mitiŋ/."
     }
   ],
   "mer": [
@@ -1728,7 +1743,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-mer-mr50ebro-999c8436-05e0-4b40-9e9b-9ad7e244e884",
-      "notes": "User-contributed recording for mer /mɛʁ/."
+      "notes": "Listen before approving. User-contributed recording for mer /mɛʁ/."
     }
   ],
   "mes": [
@@ -1750,7 +1765,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-moi-mr50ey7p-ef752fa9-19d0-42e4-a9d2-cdf997841a7f",
-      "notes": "User-contributed recording for moi /mwa/."
+      "notes": "Listen before approving. User-contributed recording for moi /mwa/."
     }
   ],
   "molle": [
@@ -1787,6 +1802,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-open-o."
+    }
+  ],
+  "montagne": [
+    {
+      "src": "audio/fr/approved/montagne/fr-montagne-mr5fbrra-5e40a215-747b-4947-acb2-e38804ed4800--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-montagne-mr5fbrra-5e40a215-747b-4947-acb2-e38804ed4800",
+      "notes": "User-contributed recording for montagne /mɔ̃taɲ/."
     }
   ],
   "moue": [
@@ -1849,6 +1875,28 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-oe. Common Voice accent: Français de Suisse."
     }
   ],
+  "nez": [
+    {
+      "src": "audio/fr/approved/nez/fr-nez-mr5fbz8e-0649cfe2-adba-4e32-8d71-94c182613e65--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-nez-mr5fbz8e-0649cfe2-adba-4e32-8d71-94c182613e65",
+      "notes": "User-contributed recording for nez /ne/."
+    }
+  ],
+  "nid": [
+    {
+      "src": "audio/fr/approved/nid/fr-nid-mr5fg27c-ebbaeb6b-bcb9-40c3-bc3e-74cbac313828--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-nid-mr5fg27c-ebbaeb6b-bcb9-40c3-bc3e-74cbac313828",
+      "notes": "User-contributed recording for nid /ni/."
+    }
+  ],
   "notre": [
     {
       "src": "audio/fr/approved/notre/common_voice_fr_17308620.opus",
@@ -1907,6 +1955,61 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-o. Common Voice accent: Français de Belgique."
     }
   ],
+  "nuit": [
+    {
+      "src": "audio/fr/approved/nuit/fr-nuit-mr5fcgz7-98ac651e-f89d-4e30-9c2b-fec242f34c30--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-nuit-mr5fcgz7-98ac651e-f89d-4e30-9c2b-fec242f34c30",
+      "notes": "User-contributed recording for nuit /nɥi/."
+    }
+  ],
+  "ouest": [
+    {
+      "src": "audio/fr/approved/ouest/fr-ouest-mr5fcrec-cf810863-1d20-4e91-aa9e-a0714d0e1a24--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-ouest-mr5fcrec-cf810863-1d20-4e91-aa9e-a0714d0e1a24",
+      "notes": "User-contributed recording for ouest /wɛst/."
+    }
+  ],
+  "oui": [
+    {
+      "src": "audio/fr/approved/oui/fr-oui-mr5fdvhb-4312826b-d79b-4140-9ec0-5d23568f4193--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-oui-mr5fdvhb-4312826b-d79b-4140-9ec0-5d23568f4193",
+      "notes": "User-contributed recording for oui /wi/."
+    }
+  ],
+  "paille": [
+    {
+      "src": "audio/fr/approved/paille/fr-paille-mr5f9u4d-fa320760-469d-43c7-ace4-9ff8b1af61ad--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-paille-mr5f9u4d-fa320760-469d-43c7-ace4-9ff8b1af61ad",
+      "notes": "User-contributed recording for paille /paj/."
+    }
+  ],
+  "papa": [
+    {
+      "src": "audio/fr/approved/papa/fr-papa-mr5favbd-c22f2596-0596-4459-908e-b8af132e6b65--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-papa-mr5favbd-c22f2596-0596-4459-908e-b8af132e6b65",
+      "notes": "User-contributed recording for papa /papa/."
+    }
+  ],
   "parfum": [
     {
       "src": "audio/fr/approved/parfum/common_voice_fr_19650695.opus",
@@ -1915,6 +2018,94 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-un."
+    }
+  ],
+  "parking": [
+    {
+      "src": "audio/fr/approved/parking/fr-parking-mr5fb3ed-fd9b1cbf-8e0e-4c8b-bae9-5ef2b11b6ce9--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-parking-mr5fb3ed-fd9b1cbf-8e0e-4c8b-bae9-5ef2b11b6ce9",
+      "notes": "User-contributed recording for parking /paʁkiŋ/."
+    }
+  ],
+  "pas": [
+    {
+      "src": "audio/fr/approved/pas/fr-pas-mr5fe4ku-779563c9-c3b0-4a4e-b316-2c178eb43468--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-pas-mr5fe4ku-779563c9-c3b0-4a4e-b316-2c178eb43468",
+      "notes": "User-contributed recording for pas /pa/."
+    }
+  ],
+  "peigne": [
+    {
+      "src": "audio/fr/approved/peigne/fr-peigne-mr5fepdr-48744b5b-e0e5-490f-8382-025aea70b588--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-peigne-mr5fepdr-48744b5b-e0e5-490f-8382-025aea70b588",
+      "notes": "User-contributed recording for peigne /pɛɲ/."
+    }
+  ],
+  "petit": [
+    {
+      "src": "audio/fr/approved/petit/fr-petit-mr5fgakg-f61c7a20-af78-44ed-a232-dd65b6e9c8ae--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-petit-mr5fgakg-f61c7a20-af78-44ed-a232-dd65b6e9c8ae",
+      "notes": "User-contributed recording for petit /pəti/."
+    }
+  ],
+  "pluie": [
+    {
+      "src": "audio/fr/approved/pluie/fr-pluie-mr5fexgk-a13820c0-7b2d-4d86-8d1f-f915b7dcdf58--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-pluie-mr5fexgk-a13820c0-7b2d-4d86-8d1f-f915b7dcdf58",
+      "notes": "User-contributed recording for pluie /plɥi/."
+    }
+  ],
+  "puis": [
+    {
+      "src": "audio/fr/approved/puis/fr-puis-mr5fgix9-b74fb262-208d-4ed7-9e19-a04dc668b1f0--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-puis-mr5fgix9-b74fb262-208d-4ed7-9e19-a04dc668b1f0",
+      "notes": "User-contributed recording for puis /pɥi/."
+    }
+  ],
+  "quoi": [
+    {
+      "src": "audio/fr/approved/quoi/fr-quoi-mr5fgrtq-a97414d9-2a20-4e42-b1fd-f0c9fe13f491--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-quoi-mr5fgrtq-a97414d9-2a20-4e42-b1fd-f0c9fe13f491",
+      "notes": "User-contributed recording for quoi /kwa/."
+    }
+  ],
+  "rive": [
+    {
+      "src": "audio/fr/approved/rive/fr-rive-mr5f8yjd-dd480dc2-e8ea-482a-b525-177adaae0e4f--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-rive-mr5f8yjd-dd480dc2-e8ea-482a-b525-177adaae0e4f",
+      "notes": "User-contributed recording for rive /ʁiv/."
     }
   ],
   "rue": [
@@ -1975,6 +2166,28 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-oe, fr-s. Common Voice accent: Français de Belgique."
     }
   ],
+  "signal": [
+    {
+      "src": "audio/fr/approved/signal/fr-signal-mr5fh7yj-6a8a135c-6236-4bc1-8e6c-94e6ef460e02--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-signal-mr5fh7yj-6a8a135c-6236-4bc1-8e6c-94e6ef460e02",
+      "notes": "User-contributed recording for signal /siɲal/."
+    }
+  ],
+  "smoking": [
+    {
+      "src": "audio/fr/approved/smoking/fr-smoking-mr5fd4bo-7a520491-ed37-4486-8c7e-509fc8414c5e--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-smoking-mr5fd4bo-7a520491-ed37-4486-8c7e-509fc8414c5e",
+      "notes": "User-contributed recording for smoking /smɔkiŋ/."
+    }
+  ],
   "soeur": [
     {
       "src": "audio/fr/approved/soeur/common_voice_fr_17339158.opus",
@@ -2011,6 +2224,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-oe, fr-s. Common Voice accent: Français de Belgique."
+    }
+  ],
+  "soleil": [
+    {
+      "src": "audio/fr/approved/soleil/fr-soleil-mr5ff5ru-4657b465-7bf2-49b5-acf3-900b5f11c82c--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-soleil-mr5ff5ru-4657b465-7bf2-49b5-acf3-900b5f11c82c",
+      "notes": "User-contributed recording for soleil /sɔlɛj/."
     }
   ],
   "son": [
@@ -2062,6 +2286,17 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-u. Common Voice accent: Français de Belgique."
     }
   ],
+  "table": [
+    {
+      "src": "audio/fr/approved/table/fr-table-mr5fhmjg-662f44f5-f969-46b5-ac07-aa098b13c10d--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-table-mr5fhmjg-662f44f5-f969-46b5-ac07-aa098b13c10d",
+      "notes": "User-contributed recording for table /tabl/."
+    }
+  ],
   "tout": [
     {
       "src": "audio/fr/approved/tout/common_voice_fr_17349660.opus",
@@ -2071,6 +2306,50 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-u. Common Voice accent: Français de Belgique."
+    }
+  ],
+  "travail": [
+    {
+      "src": "audio/fr/approved/travail/fr-travail-mr5fa3lf-e450bcc8-93ae-4cc0-8b8d-6952a8b93c2c--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-travail-mr5fa3lf-e450bcc8-93ae-4cc0-8b8d-6952a8b93c2c",
+      "notes": "User-contributed recording for travail /tʁavaj/."
+    }
+  ],
+  "vache": [
+    {
+      "src": "audio/fr/approved/vache/fr-vache-mr5fbb2a-c67a3aa8-7210-42c7-a0c1-f0000d3fbd7d--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-vache-mr5fbb2a-c67a3aa8-7210-42c7-a0c1-f0000d3fbd7d",
+      "notes": "User-contributed recording for vache /vaʃ/."
+    }
+  ],
+  "velo": [
+    {
+      "src": "audio/fr/approved/velo/fr-velo-mr5fddi6-a5943e68-06b5-4214-acc3-e91113a6efa0--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-velo-mr5fddi6-a5943e68-06b5-4214-acc3-e91113a6efa0",
+      "notes": "User-contributed recording for vélo /velo/."
+    }
+  ],
+  "vie": [
+    {
+      "src": "audio/fr/approved/vie/fr-vie-mr5ffdf0-f63877fc-3781-4388-bb87-6d05b6194b3c--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "cube",
+      "license": "CC0 1.0",
+      "attribution": "cube",
+      "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-vie-mr5ffdf0-f63877fc-3781-4388-bb87-6d05b6194b3c",
+      "notes": "User-contributed recording for vie /vi/."
     }
   ]
 };

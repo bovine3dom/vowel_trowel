@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T14:12:04.645Z",
+  "importedAt": "2026-07-03T21:22:42.364Z",
   "bundlePath": "/home/olie/Downloads/fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49.zip",
   "manifest": {
     "version": 2,
@@ -980,8 +980,8 @@
       "notes": "User-contributed recording for lac /lak/."
     },
     "review": {
-      "status": "approved"
+      "status": "pending",
+      "notes": "Listen before approving. User-contributed recording for lac /lak/."
     }
-  },
-  "updatedAt": "2026-07-03T14:26:25.120Z"
+  }
 }

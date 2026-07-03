@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T14:12:04.633Z",
+  "importedAt": "2026-07-03T21:22:41.415Z",
   "bundlePath": "/home/olie/Downloads/fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49.zip",
   "manifest": {
     "version": 2,
@@ -980,38 +980,8 @@
       "notes": "User-contributed recording for gare /ɡaʁ/."
     },
     "review": {
-      "status": "approved"
-    },
-    "audioProcessing": {
-      "original": {
-        "localPath": "public/audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289.webm",
-        "metadataPath": "public/audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289.webm.metadata.json",
-        "datasetSrc": "audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289.webm",
-        "suggestedAudioSource": {
-          "src": "audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289.webm",
-          "kind": "contribution",
-          "speaker": "Louis",
-          "license": "CC0 1.0",
-          "attribution": "Louis",
-          "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289",
-          "notes": "User-contributed recording for gare /ɡaʁ/."
-        }
-      },
-      "history": [
-        {
-          "filter": "crop",
-          "label": "automatic cropping",
-          "tool": "sox",
-          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289.webm /home/olie/projects/vowel_trowel/public/audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289--clean-01-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
-          "inputPath": "public/audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289.webm",
-          "outputPath": "public/audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289--clean-01-crop.ogg",
-          "datasetSrc": "audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289--clean-01-crop.ogg",
-          "metadataPath": "public/audio/fr/contributions/gare/fr-gare-mr505lov-c11dee98-b391-4b94-9ab7-00e49451c289--clean-01-crop.ogg.metadata.json",
-          "appliedAt": "2026-07-03T14:25:33.099Z"
-        }
-      ],
-      "currentStep": -1
+      "status": "pending",
+      "notes": "Listen before approving. User-contributed recording for gare /ɡaʁ/."
     }
-  },
-  "updatedAt": "2026-07-03T14:25:37.926Z"
+  }
 }

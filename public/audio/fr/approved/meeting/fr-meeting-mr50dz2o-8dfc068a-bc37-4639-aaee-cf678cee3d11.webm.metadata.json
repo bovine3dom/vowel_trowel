@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T14:12:04.662Z",
+  "importedAt": "2026-07-03T21:22:43.506Z",
   "bundlePath": "/home/olie/Downloads/fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49.zip",
   "manifest": {
     "version": 2,
@@ -983,8 +983,8 @@
       "notes": "User-contributed recording for meeting /mitiŋ/."
     },
     "review": {
-      "status": "approved"
+      "status": "pending",
+      "notes": "Listen before approving. User-contributed recording for meeting /mitiŋ/."
     }
-  },
-  "updatedAt": "2026-07-03T14:28:48.111Z"
+  }
 }

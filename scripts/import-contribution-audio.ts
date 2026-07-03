@@ -148,10 +148,21 @@ interface AudioProcessingState {
   currentStep: number;
 }
 
+interface LegacyContributionWordValidation {
+  ipa?: readonly string[];
+  phonemeIds?: readonly (readonly string[])[];
+}
+
 const SOURCE_NAME = "Vowel Trowel user contribution";
 const LEGACY_CONTRIBUTION_PHONEME_IDS: Record<string, string> = {
   "en-gb-bath": "en-gb-palm",
   "en-gb-cloth": "en-gb-lot",
+};
+const LEGACY_CONTRIBUTION_WORDS: Record<string, LegacyContributionWordValidation> = {
+  "fr-word-gong": {
+    ipa: ["/ɡɔŋ/"],
+    phonemeIds: [["fr-g", "fr-open-o", "fr-ng"]],
+  },
 };
 const options = parseArgs(process.argv.slice(2));
 const imported: ImportedContribution[] = [];
@@ -447,17 +458,25 @@ function validateManifestWord(word: WordEntry, manifestWord: ContributionManifes
     throw new Error(`Contribution ${label}.written ${manifestWord?.written ?? "unknown"} does not match ${word.written}.`);
   }
 
-  if (manifestWord?.ipa !== word.ipa) {
+  if (manifestWord?.ipa !== word.ipa && !isLegacyContributionWordIpa(word, manifestWord?.ipa)) {
     throw new Error(`Contribution ${label}.ipa ${manifestWord?.ipa ?? "unknown"} does not match ${word.ipa}.`);
   }
 
   const manifestPhonemeIds = normalizeLegacyContributionPhonemeIds(manifestWord?.phonemeIds ?? []);
 
-  if (!sameStringList(manifestPhonemeIds, word.phonemeIds)) {
+  if (!sameStringList(manifestPhonemeIds, word.phonemeIds) && !isLegacyContributionWordPhonemeIds(word, manifestWord?.phonemeIds ?? [])) {
     throw new Error(
       `Contribution ${label}.phonemeIds ${manifestWord?.phonemeIds?.join(", ") ?? "unknown"} do not match ${word.id} (${word.phonemeIds.join(", ")}).`,
     );
   }
+}
+
+function isLegacyContributionWordIpa(word: WordEntry, ipa: string | undefined): boolean {
+  return ipa !== undefined && LEGACY_CONTRIBUTION_WORDS[word.id]?.ipa?.includes(ipa) === true;
+}
+
+function isLegacyContributionWordPhonemeIds(word: WordEntry, phonemeIds: readonly string[]): boolean {
+  return LEGACY_CONTRIBUTION_WORDS[word.id]?.phonemeIds?.some((legacyPhonemeIds) => sameStringList(phonemeIds, legacyPhonemeIds)) === true;
 }
 
 function normalizeLegacyContributionPhonemeIds(phonemeIds: readonly string[]): string[] {

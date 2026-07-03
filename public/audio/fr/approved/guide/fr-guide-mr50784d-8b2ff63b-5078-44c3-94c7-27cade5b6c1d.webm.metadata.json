@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T14:12:04.638Z",
+  "importedAt": "2026-07-03T21:22:41.825Z",
   "bundlePath": "/home/olie/Downloads/fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49.zip",
   "manifest": {
     "version": 2,
@@ -980,38 +980,8 @@
       "notes": "User-contributed recording for guide /ɡid/."
     },
     "review": {
-      "status": "approved"
-    },
-    "audioProcessing": {
-      "original": {
-        "localPath": "public/audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d.webm",
-        "metadataPath": "public/audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d.webm.metadata.json",
-        "datasetSrc": "audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d.webm",
-        "suggestedAudioSource": {
-          "src": "audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d.webm",
-          "kind": "contribution",
-          "speaker": "Louis",
-          "license": "CC0 1.0",
-          "attribution": "Louis",
-          "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d",
-          "notes": "User-contributed recording for guide /ɡid/."
-        }
-      },
-      "history": [
-        {
-          "filter": "crop",
-          "label": "automatic cropping",
-          "tool": "sox",
-          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d.webm /home/olie/projects/vowel_trowel/public/audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d--clean-01-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
-          "inputPath": "public/audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d.webm",
-          "outputPath": "public/audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d--clean-01-crop.ogg",
-          "datasetSrc": "audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d--clean-01-crop.ogg",
-          "metadataPath": "public/audio/fr/contributions/guide/fr-guide-mr50784d-8b2ff63b-5078-44c3-94c7-27cade5b6c1d--clean-01-crop.ogg.metadata.json",
-          "appliedAt": "2026-07-03T14:26:03.261Z"
-        }
-      ],
-      "currentStep": -1
+      "status": "pending",
+      "notes": "Listen before approving. User-contributed recording for guide /ɡid/."
     }
-  },
-  "updatedAt": "2026-07-03T14:26:08.349Z"
+  }
 }

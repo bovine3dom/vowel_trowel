@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T14:12:04.647Z",
+  "importedAt": "2026-07-03T21:22:42.527Z",
   "bundlePath": "/home/olie/Downloads/fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49.zip",
   "manifest": {
     "version": 2,
@@ -977,38 +977,8 @@
       "notes": "User-contributed recording for le /lə/."
     },
     "review": {
-      "status": "approved"
-    },
-    "audioProcessing": {
-      "original": {
-        "localPath": "public/audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b.webm",
-        "metadataPath": "public/audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b.webm.metadata.json",
-        "datasetSrc": "audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b.webm",
-        "suggestedAudioSource": {
-          "src": "audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b.webm",
-          "kind": "contribution",
-          "speaker": "Louis",
-          "license": "CC0 1.0",
-          "attribution": "Louis",
-          "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b",
-          "notes": "User-contributed recording for le /lə/."
-        }
-      },
-      "history": [
-        {
-          "filter": "crop",
-          "label": "automatic cropping",
-          "tool": "sox",
-          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b.webm /home/olie/projects/vowel_trowel/public/audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b--clean-01-crop.ogg silence 1 0.05 -45d reverse silence 1 0.10 -45d reverse pad 0.06 0.08",
-          "inputPath": "public/audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b.webm",
-          "outputPath": "public/audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b--clean-01-crop.ogg",
-          "datasetSrc": "audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b--clean-01-crop.ogg",
-          "metadataPath": "public/audio/fr/contributions/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b--clean-01-crop.ogg.metadata.json",
-          "appliedAt": "2026-07-03T14:27:05.096Z"
-        }
-      ],
-      "currentStep": -1
+      "status": "pending",
+      "notes": "Listen before approving. User-contributed recording for le /lə/."
     }
-  },
-  "updatedAt": "2026-07-03T14:27:09.753Z"
+  }
 }
