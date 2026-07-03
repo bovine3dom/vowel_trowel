@@ -28,6 +28,30 @@ interface ImportedContribution {
   reportPath: string;
 }
 
+interface ContributionManifestWord {
+  id?: string;
+  shortId?: string;
+  written?: string;
+  ipa?: string;
+  phonemeIds?: string[];
+  speechText?: string;
+}
+
+interface ContributionManifestRecording {
+  id?: string;
+  filename?: string;
+  mimeType?: string;
+  size?: number;
+  recordedAt?: string;
+  word?: ContributionManifestWord;
+}
+
+interface ContributionManifestContribution {
+  licence?: "CC0-1.0" | "CC-BY-4.0";
+  speakerName?: string;
+  accent?: string;
+}
+
 interface ContributionManifest {
   version?: number;
   type?: string;
@@ -40,24 +64,19 @@ interface ContributionManifest {
     name?: string;
     autonym?: string;
   };
-  word?: {
-    id?: string;
-    shortId?: string;
-    written?: string;
-    ipa?: string;
-    phonemeIds?: string[];
-    speechText?: string;
-  };
-  recording?: {
-    filename?: string;
-    mimeType?: string;
-    size?: number;
-  };
-  contribution?: {
-    licence?: "CC0-1.0" | "CC-BY-4.0";
-    speakerName?: string;
-    accent?: string;
-  };
+  word?: ContributionManifestWord;
+  recording?: ContributionManifestRecording;
+  recordings?: ContributionManifestRecording[];
+  contribution?: ContributionManifestContribution;
+}
+
+interface NormalizedContributionRecording {
+  manifest: ContributionManifest;
+  bundleId: string;
+  recordingId: string;
+  recording: ContributionManifestRecording;
+  word: WordEntry;
+  shortWordId: string;
 }
 
 interface ContributionReport {
@@ -108,61 +127,69 @@ const options = parseArgs(process.argv.slice(2));
 const imported: ImportedContribution[] = [];
 
 for (const bundlePath of options.bundles) {
-  imported.push(await importContributionBundle(bundlePath, options));
+  imported.push(...await importContributionBundle(bundlePath, options));
 }
 
 await reviewAndApplyImportedContributions(imported, options);
 
-async function importContributionBundle(bundlePath: string, opts: CliOptions): Promise<ImportedContribution> {
+async function importContributionBundle(bundlePath: string, opts: CliOptions): Promise<ImportedContribution[]> {
   const zipEntries = unzipSync(new Uint8Array(await readFile(bundlePath)));
   const manifest = readManifest(zipEntries);
   const dataset = getLanguageDataset(manifest.language?.id);
   const slug = getLanguageSlug(dataset.id);
-  const word = getManifestWord(dataset, manifest);
-  const shortWordId = stripWordPrefix(word.id, dataset.id);
-  const recordingFilename = path.basename(requireString(manifest.recording?.filename, "recording.filename"));
-  const recording = findZipEntry(zipEntries, recordingFilename);
-  const contributionId = sanitizeFilename(manifest.id || createFallbackContributionId(slug, shortWordId));
-  const extension = path.extname(recordingFilename) || extensionForMimeType(manifest.recording?.mimeType);
   const stagingDir = opts.stagingDir ?? `public/audio/${slug}/contributions`;
-  const localPath = path.join(stagingDir, sanitizeFilename(shortWordId), `${contributionId}${extension}`);
-  const metadataPath = `${localPath}.metadata.json`;
-  const datasetSrc = toDatasetAudioSrc(localPath);
-  const candidate = createCandidate(dataset, word, manifest, contributionId, localPath, metadataPath, datasetSrc);
   const reportPath = opts.report ?? `reports/${slug}-contribution-audio-candidates.json`;
+  const recordings = normalizeContributionRecordings(manifest, dataset, slug);
+  const imported: ImportedContribution[] = [];
 
-  validateManifestWord(word, manifest);
   validateLicence(manifest);
 
-  if (opts.dryRun) {
-    console.log(`Would import ${bundlePath}`);
-    console.log(`Would write ${localPath}.`);
-    console.log(`Would write ${metadataPath}.`);
-    console.log(`Would update ${reportPath}.`);
-  } else {
-    await mkdir(path.dirname(path.resolve(localPath)), { recursive: true });
-    await writeFile(localPath, recording);
-    await writeJson(metadataPath, {
-      importedAt: new Date().toISOString(),
-      bundlePath,
-      manifest,
-      word: {
-        id: word.id,
-        written: word.written,
-        ipa: word.ipa,
-        phonemeIds: word.phonemeIds,
-      },
-      candidate,
-    });
+  for (const normalized of recordings) {
+    const recordingFilename = requireString(normalized.recording.filename, "recording.filename");
+    const recordingBasename = path.basename(recordingFilename);
+    const recording = findZipEntry(zipEntries, recordingFilename);
+    const extension = path.extname(recordingBasename) || extensionForMimeType(normalized.recording.mimeType);
+    const localPath = path.join(
+      stagingDir,
+      sanitizeFilename(normalized.shortWordId),
+      `${sanitizeFilename(normalized.recordingId)}${extension}`,
+    );
+    const metadataPath = `${localPath}.metadata.json`;
+    const datasetSrc = toDatasetAudioSrc(localPath);
+    const candidate = createCandidate(dataset, normalized, localPath, metadataPath, datasetSrc);
 
-    const report = await loadContributionReport(reportPath, dataset);
-    upsertCandidate(report, word, candidate);
-    await writeJson(reportPath, report);
+    if (opts.dryRun) {
+      console.log(`Would import ${bundlePath}`);
+      console.log(`Would write ${localPath}.`);
+      console.log(`Would write ${metadataPath}.`);
+      console.log(`Would update ${reportPath}.`);
+    } else {
+      await mkdir(path.dirname(path.resolve(localPath)), { recursive: true });
+      await writeFile(localPath, recording);
+      await writeJson(metadataPath, {
+        importedAt: new Date().toISOString(),
+        bundlePath,
+        manifest,
+        recording: normalized.recording,
+        word: {
+          id: normalized.word.id,
+          written: normalized.word.written,
+          ipa: normalized.word.ipa,
+          phonemeIds: normalized.word.phonemeIds,
+        },
+        candidate,
+      });
+
+      const report = await loadContributionReport(reportPath, dataset);
+      upsertCandidate(report, normalized.word, candidate);
+      await writeJson(reportPath, report);
+    }
+
+    console.log(`${opts.dryRun ? "Checked" : "Imported"} contribution for ${normalized.word.written} (${normalized.word.id}).`);
+    imported.push({ dataset, word: normalized.word, shortWordId: normalized.shortWordId, reportPath });
   }
 
-  console.log(`${opts.dryRun ? "Checked" : "Imported"} contribution for ${word.written} (${word.id}).`);
-
-  return { dataset, word, shortWordId, reportPath };
+  return imported;
 }
 
 async function reviewAndApplyImportedContributions(
@@ -265,15 +292,63 @@ function readManifest(entries: Record<string, Uint8Array>): ContributionManifest
 
   const manifest = JSON.parse(strFromU8(manifestBytes)) as ContributionManifest;
 
-  if (manifest.version !== 1 || manifest.type !== "vowel-trowel-contribution") {
+  if ((manifest.version !== 1 && manifest.version !== 2) || manifest.type !== "vowel-trowel-contribution") {
     throw new Error("Contribution manifest has an unsupported version or type.");
   }
 
   return manifest;
 }
 
-function getManifestWord(dataset: LanguageDataset, manifest: ContributionManifest): WordEntry {
-  const wordId = requireString(manifest.word?.id, "word.id");
+function normalizeContributionRecordings(
+  manifest: ContributionManifest,
+  dataset: LanguageDataset,
+  slug: string,
+): NormalizedContributionRecording[] {
+  if (manifest.version === 1) {
+    const word = getManifestWord(dataset, manifest.word, "word");
+    const shortWordId = stripWordPrefix(word.id, dataset.id);
+    const bundleId = sanitizeFilename(manifest.id || createFallbackContributionId(slug, shortWordId));
+    const recording = manifest.recording ?? {};
+
+    validateManifestWord(word, manifest.word, "word");
+
+    return [{
+      manifest,
+      bundleId,
+      recordingId: bundleId,
+      recording,
+      word,
+      shortWordId,
+    }];
+  }
+
+  if (!Array.isArray(manifest.recordings) || manifest.recordings.length === 0) {
+    throw new Error("Contribution manifest is missing recordings.");
+  }
+
+  const bundleId = sanitizeFilename(manifest.id || createFallbackContributionBatchId(slug));
+
+  return manifest.recordings.map((recording, index) => {
+    const word = getManifestWord(dataset, recording.word, `recordings[${index}].word`);
+    const shortWordId = stripWordPrefix(word.id, dataset.id);
+    const fallbackRecordingId = `${createFallbackContributionId(slug, shortWordId)}-${index + 1}`;
+    const recordingId = sanitizeFilename(recording.id || fallbackRecordingId);
+
+    validateManifestWord(word, recording.word, `recordings[${index}].word`);
+
+    return {
+      manifest,
+      bundleId,
+      recordingId,
+      recording,
+      word,
+      shortWordId,
+    };
+  });
+}
+
+function getManifestWord(dataset: LanguageDataset, manifestWord: ContributionManifestWord | undefined, label: string): WordEntry {
+  const wordId = requireString(manifestWord?.id, `${label}.id`);
   const word = dataset.words.find((candidate) => candidate.id === wordId);
 
   if (!word) {
@@ -283,17 +358,17 @@ function getManifestWord(dataset: LanguageDataset, manifest: ContributionManifes
   return word;
 }
 
-function validateManifestWord(word: WordEntry, manifest: ContributionManifest): void {
-  if (manifest.word?.written !== word.written) {
-    throw new Error(`Contribution written form ${manifest.word?.written ?? "unknown"} does not match ${word.written}.`);
+function validateManifestWord(word: WordEntry, manifestWord: ContributionManifestWord | undefined, label: string): void {
+  if (manifestWord?.written !== word.written) {
+    throw new Error(`Contribution ${label}.written ${manifestWord?.written ?? "unknown"} does not match ${word.written}.`);
   }
 
-  if (manifest.word?.ipa !== word.ipa) {
-    throw new Error(`Contribution IPA ${manifest.word?.ipa ?? "unknown"} does not match ${word.ipa}.`);
+  if (manifestWord?.ipa !== word.ipa) {
+    throw new Error(`Contribution ${label}.ipa ${manifestWord?.ipa ?? "unknown"} does not match ${word.ipa}.`);
   }
 
-  if (!sameStringList(manifest.word?.phonemeIds ?? [], word.phonemeIds)) {
-    throw new Error(`Contribution phoneme IDs do not match ${word.id}.`);
+  if (!sameStringList(manifestWord?.phonemeIds ?? [], word.phonemeIds)) {
+    throw new Error(`Contribution ${label}.phonemeIds do not match ${word.id}.`);
   }
 }
 
@@ -328,16 +403,19 @@ function findZipEntry(entries: Record<string, Uint8Array>, filename: string): Ui
 
 function createCandidate(
   dataset: LanguageDataset,
-  word: WordEntry,
-  manifest: ContributionManifest,
-  contributionId: string,
+  normalized: NormalizedContributionRecording,
   localPath: string,
   metadataPath: string,
   datasetSrc: string,
 ): ContributionCandidate {
-  const shortWordId = stripWordPrefix(word.id, dataset.id);
-  const sourceId = `contribution:${dataset.id}:${contributionId}`;
-  const sourceUrl = `vowel-trowel-contribution:${contributionId}`;
+  const { bundleId, manifest, recordingId, shortWordId, word } = normalized;
+  const singleRecordingBundle = bundleId === recordingId;
+  const sourceId = singleRecordingBundle
+    ? `contribution:${dataset.id}:${recordingId}`
+    : `contribution:${dataset.id}:${bundleId}:${recordingId}`;
+  const sourceUrl = singleRecordingBundle
+    ? `vowel-trowel-contribution:${recordingId}`
+    : `vowel-trowel-contribution:${bundleId}:${recordingId}`;
   const licence = manifest.contribution?.licence === "CC-BY-4.0" ? "CC BY 4.0" : "CC0 1.0";
   const speakerName = manifest.contribution?.speakerName?.trim() || undefined;
   const accent = manifest.contribution?.accent?.trim() || undefined;
@@ -352,7 +430,7 @@ function createCandidate(
     sourceUrl,
     notes: `User-contributed recording for ${word.written} ${word.ipa}.`,
   });
-  const fileTitle = `User contribution ${shortWordId} ${contributionId}`;
+  const fileTitle = `User contribution ${shortWordId} ${recordingId}`;
 
   return {
     key: createCandidateKey({ wordId: word.id, fileTitle, sourceId }),
@@ -537,6 +615,10 @@ function extensionForMimeType(mimeType: string | undefined): string {
 
 function createFallbackContributionId(slug: string, shortWordId: string): string {
   return `${slug}-${shortWordId}-${Date.now().toString(36)}`;
+}
+
+function createFallbackContributionBatchId(slug: string): string {
+  return `${slug}-batch-${Date.now().toString(36)}`;
 }
 
 function stripWordPrefix(wordId: string, languageId: string): string {

@@ -47,6 +47,12 @@ import {
 const dataset = getInitialDataset();
 const SPEECH_VOICE_STORAGE_KEY = "vowel-trowel:tts-voice-uri";
 const CONTRIBUTION_DETAILS_STORAGE_KEY = "vowel-trowel:contribution-details:v1";
+const CONTRIBUTION_HISTORY_STORAGE_KEY = "vowel-trowel:contribution-history:v1";
+const CONTRIBUTION_TARGET_RECORDINGS = 4;
+const CONTRIBUTION_COUNTDOWN_SECONDS = 3;
+const CONTRIBUTION_COUNTDOWN_DURATION_MS = CONTRIBUTION_COUNTDOWN_SECONDS * 1000;
+const CONTRIBUTION_RECORDING_DURATION_MS = 2000;
+const CONTRIBUTION_TIMELINE_DURATION_MS = CONTRIBUTION_COUNTDOWN_DURATION_MS + CONTRIBUTION_RECORDING_DURATION_MS;
 const renderedSpectrograms = new WeakMap<PrecomputedSpectrogram, HTMLCanvasElement>();
 type TrainingMode = "match" | "sort";
 type CatalogTab = "phonemes" | "contrasts";
@@ -54,12 +60,44 @@ type PhonemePair = readonly [PhonemeId, PhonemeId];
 type UrlHistoryMode = "push" | "replace";
 type ContributionLicence = "CC0-1.0" | "CC-BY-4.0";
 type ContributionDownloadStatus = "idle" | "downloading" | "downloaded";
+type ContributionRecorderStatus = "idle" | "preparing" | "countdown" | "recording" | "recorded";
+
+interface ContributionQueueItem {
+  word: WordEntry;
+  shortWordId: string;
+  wordRecordingCount: number;
+  phonemeCoverage: number;
+  priorityPhonemeId: PhonemeId;
+  priorityPhonemeRecordingCount: number;
+}
+
+interface KeptContributionRecording {
+  id: string;
+  word: WordEntry;
+  blob: Blob;
+  mimeType: string;
+  recordedAt: string;
+}
+
+interface ContributionBatchRecordingForManifest {
+  id: string;
+  word: WordEntry;
+  filename: string;
+  mimeType: string;
+  recordingSize: number;
+  recordedAt: string;
+}
 
 interface ContributionDetails {
   schemaVersion: 1;
   licence: ContributionLicence;
   speakerName: string;
   accent: string;
+}
+
+interface ContributionHistory {
+  schemaVersion: 1;
+  downloadedWordIds: string[];
 }
 
 interface UrlState {
@@ -69,6 +107,7 @@ interface UrlState {
   catalogTab: CatalogTab;
   explorePhonemeId: PhonemeId | null;
   contributionWordId: string | null;
+  contributionModeOpen: boolean;
   ttsEnabled: boolean;
 }
 
@@ -95,6 +134,7 @@ export default function App() {
   const [catalogTab, setCatalogTab] = createSignal<CatalogTab>(initialUrlState.catalogTab);
   const [explorePhonemeId, setExplorePhonemeId] = createSignal<PhonemeId | null>(initialUrlState.explorePhonemeId);
   const [contributionWordId, setContributionWordId] = createSignal<string | null>(initialUrlState.contributionWordId);
+  const [contributionModeOpen, setContributionModeOpen] = createSignal(initialUrlState.contributionModeOpen);
   const [ttsEnabled, setTtsEnabled] = createSignal(initialUrlState.ttsEnabled);
   const [progress, setProgress] = createSignal(initialProgress);
   const [prompt, setPrompt] = createSignal<MatchingPrompt | undefined>(initialPrompt);
@@ -112,6 +152,7 @@ export default function App() {
   const [selectedVoiceURI, setSelectedVoiceURI] = createSignal(loadSpeechVoiceURI());
   const [audioError, setAudioError] = createSignal<string | null>(null);
   const [playbackVisualization, setPlaybackVisualization] = createSignal(getPlaybackVisualizationState());
+  const [downloadedContributionWordIds, setDownloadedContributionWordIds] = createSignal(loadDownloadedContributionWordIds());
 
   const languageProgress = createMemo(() => getLanguageProgress(progress(), dataset.id));
   const practiceDataset = createMemo(() => createPracticeDataset(dataset, ttsEnabled()));
@@ -134,13 +175,15 @@ export default function App() {
     ),
   );
   const activeSpeechVoice = createMemo(() => selectSpeechVoice(speechVoices(), speechSettings()));
+  const downloadedContributionWordIdSet = createMemo(() => new Set(downloadedContributionWordIds()));
+  const contributionQueue = createMemo(() => createContributionQueue(dataset, downloadedContributionWordIdSet()));
   const contributionWord = createMemo(() => {
     const wordId = contributionWordId();
 
     return wordId ? dataset.words.find((word) => word.id === wordId) : undefined;
   });
   const currentAudioCredits = createMemo(() => {
-    if (contributionWordId()) {
+    if (contributionWordId() || contributionModeOpen()) {
       return [];
     }
 
@@ -197,6 +240,7 @@ export default function App() {
     setCatalogTab(state.catalogTab);
     setExplorePhonemeId(state.explorePhonemeId);
     setContributionWordId(state.contributionWordId);
+    setContributionModeOpen(state.contributionModeOpen);
     setTtsEnabled(state.ttsEnabled);
 
     setPrompt(nextPrompt);
@@ -219,6 +263,7 @@ export default function App() {
       catalogTab: patch.catalogTab ?? catalogTab(),
       explorePhonemeId: patch.explorePhonemeId === undefined ? explorePhonemeId() : patch.explorePhonemeId,
       contributionWordId: patch.contributionWordId === undefined ? contributionWordId() : patch.contributionWordId,
+      contributionModeOpen: patch.contributionModeOpen ?? contributionModeOpen(),
       ttsEnabled: patch.ttsEnabled ?? ttsEnabled(),
     }, historyMode);
   };
@@ -252,12 +297,31 @@ export default function App() {
 
   const openContributionPage = (word: WordEntry) => {
     setContributionWordId(word.id);
-    updateUrl({ contributionWordId: word.id });
+    setContributionModeOpen(false);
+    updateUrl({ contributionWordId: word.id, contributionModeOpen: false });
   };
 
   const closeContributionPage = () => {
     setContributionWordId(null);
     updateUrl({ contributionWordId: null }, "replace");
+  };
+
+  const openContributionMode = () => {
+    setContributionWordId(null);
+    setContributionModeOpen(true);
+    updateUrl({ contributionWordId: null, contributionModeOpen: true });
+  };
+
+  const closeContributionMode = () => {
+    setContributionModeOpen(false);
+    updateUrl({ contributionModeOpen: false }, "replace");
+  };
+
+  const markContributionWordsDownloaded = (wordIds: readonly string[]) => {
+    const nextWordIds = mergeDownloadedContributionWordIds(downloadedContributionWordIds(), wordIds);
+
+    setDownloadedContributionWordIds(nextWordIds);
+    saveDownloadedContributionWordIds(nextWordIds);
   };
 
   const selectPhonemeForDraft = (phonemeId: PhonemeId) => {
@@ -650,9 +714,12 @@ export default function App() {
       </section>
 
       <Show
-        when={contributionWord()}
+        when={contributionModeOpen()}
         fallback={
-          <>
+          <Show
+            when={contributionWord()}
+            fallback={
+              <>
       <nav class="mode-tabs" aria-label="Training mode">
         <button
           class={mode() === "match" ? "mode-tab selected" : "mode-tab"}
@@ -781,18 +848,29 @@ export default function App() {
           onContribute={openContributionPage}
         />
         <AudioCreditsPanel credits={currentAudioCredits()} ttsEnabled={ttsEnabled()} />
+        <ContributionModeCallout queue={contributionQueue()} onStart={openContributionMode} />
       </section>
 
-          </>
+              </>
+            }
+          >
+            {(word) => (
+              <ContributionPage
+                language={dataset}
+                word={word()}
+                onBack={closeContributionPage}
+                onContributionDownloaded={markContributionWordsDownloaded}
+              />
+            )}
+          </Show>
         }
       >
-        {(word) => (
-          <ContributionPage
-            language={dataset}
-            word={word()}
-            onBack={closeContributionPage}
-          />
-        )}
+        <ContributionModePage
+          language={dataset}
+          queue={contributionQueue()}
+          onBack={closeContributionMode}
+          onContributionDownloaded={markContributionWordsDownloaded}
+        />
       </Show>
 
       <footer class="app-footer">
@@ -1216,6 +1294,34 @@ function SortWordCard(props: {
   );
 }
 
+function ContributionModeCallout(props: {
+  queue: readonly ContributionQueueItem[];
+  onStart: () => void;
+}) {
+  const topItem = createMemo(() => props.queue[0]);
+
+  return (
+    <section class="contribution-mode-callout">
+      <div>
+        <p class="eyebrow">Help expand the sound library</p>
+        <Show
+          when={topItem()}
+          fallback={<p>Every word in this language already has {CONTRIBUTION_TARGET_RECORDINGS} recordings.</p>}
+        >
+          {(item) => (
+            <p>
+              {props.queue.length} words need recordings.
+            </p>
+          )}
+        </Show>
+      </div>
+      <button class="primary-button" type="button" disabled={props.queue.length === 0} onClick={props.onStart}>
+        Contribute recordings
+      </button>
+    </section>
+  );
+}
+
 function CatalogPanel(props: {
   tab: CatalogTab;
   activePhonemePair: PhonemePair | null;
@@ -1518,61 +1624,30 @@ function ExploreWordCard(props: {
   );
 }
 
-function ContributionPage(props: {
-  language: LanguageDataset;
-  word: WordEntry;
-  onBack: () => void;
-}) {
-  const savedContributionDetails = loadContributionDetails();
-  const countdownSecondsTotal = 3;
-  const countdownDurationMs = countdownSecondsTotal * 1000;
-  const recordingDurationMs = 2000;
-  const recordingTimelineDurationMs = countdownDurationMs + recordingDurationMs;
+function createContributionRecorder(getWordWritten: () => string) {
   let recorder: MediaRecorder | undefined;
   let activeStream: MediaStream | undefined;
   let countdownInterval: number | undefined;
   let stopTimeout: number | undefined;
   let timelineFrame: number | undefined;
   let chunks: BlobPart[] = [];
-  const [status, setStatus] = createSignal<"idle" | "preparing" | "countdown" | "recording" | "recorded">("idle");
-  const [countdownSeconds, setCountdownSeconds] = createSignal(countdownSecondsTotal);
+  const [status, setStatus] = createSignal<ContributionRecorderStatus>("idle");
+  const [countdownSeconds, setCountdownSeconds] = createSignal(CONTRIBUTION_COUNTDOWN_SECONDS);
   const [timelineElapsedMs, setTimelineElapsedMs] = createSignal(0);
   const [recordingBlob, setRecordingBlob] = createSignal<Blob | null>(null);
   const [recordingUrl, setRecordingUrl] = createSignal<string | null>(null);
-  const [licence, setLicence] = createSignal<ContributionLicence>(savedContributionDetails.licence);
-  const [speakerName, setSpeakerName] = createSignal(savedContributionDetails.speakerName);
-  const [accent, setAccent] = createSignal(savedContributionDetails.accent);
-  const [downloadStatus, setDownloadStatus] = createSignal<ContributionDownloadStatus>("idle");
   const [error, setError] = createSignal<string | null>(null);
 
   const recorderAvailable = () =>
     typeof navigator !== "undefined"
     && Boolean(navigator.mediaDevices?.getUserMedia)
     && typeof MediaRecorder !== "undefined";
-  const requiresAttributionName = createMemo(() => licence() === "CC-BY-4.0");
-  const canDownload = createMemo(() =>
-    Boolean(recordingBlob()) && (!requiresAttributionName() || speakerName().trim().length > 0)
-  );
   const recordingInProgress = createMemo(() => status() === "preparing" || status() === "countdown" || status() === "recording");
-  const downloadButtonText = createMemo(() => {
-    if (downloadStatus() === "downloading") {
-      return "Downloading...";
-    }
-
-    if (downloadStatus() === "downloaded") {
-      return "Downloaded";
-    }
-
-    return "Download contribution zip";
-  });
-  const recordingStepActive = createMemo(() => !recordingBlob() || recordingInProgress());
-  const detailsStepActive = createMemo(() => Boolean(recordingBlob()) && downloadStatus() !== "downloaded");
-  const sendStepActive = createMemo(() => downloadStatus() === "downloaded");
   const countdownProgressPercent = createMemo(() =>
-    Math.min(100, Math.max(0, (timelineElapsedMs() / countdownDurationMs) * 100))
+    Math.min(100, Math.max(0, (timelineElapsedMs() / CONTRIBUTION_COUNTDOWN_DURATION_MS) * 100))
   );
   const recordingProgressPercent = createMemo(() =>
-    Math.min(100, Math.max(0, ((timelineElapsedMs() - countdownDurationMs) / recordingDurationMs) * 100))
+    Math.min(100, Math.max(0, ((timelineElapsedMs() - CONTRIBUTION_COUNTDOWN_DURATION_MS) / CONTRIBUTION_RECORDING_DURATION_MS) * 100))
   );
   const timelineMessage = createMemo(() => {
     if (status() === "preparing") {
@@ -1584,11 +1659,11 @@ function ContributionPage(props: {
     }
 
     if (status() === "recording") {
-      return `Recording now. Say “${props.word.written}”.`;
+      return `Recording now. Say “${getWordWritten()}”.`;
     }
 
     if (status() === "recorded") {
-      return "Recorded. Listen back, then download it if it sounds right.";
+      return "Recorded. Listen back, then keep it if it sounds right.";
     }
 
     return "Press start, wait through the three second countdown, then speak during the final two second segment.";
@@ -1619,15 +1694,6 @@ function ContributionPage(props: {
     });
   });
 
-  createEffect(() => {
-    saveContributionDetails({
-      schemaVersion: 1,
-      licence: licence(),
-      speakerName: speakerName().trim(),
-      accent: accent().trim(),
-    });
-  });
-
   onCleanup(() => {
     clearRecordingTimers();
     if (recorder?.state === "recording") {
@@ -1651,7 +1717,6 @@ function ContributionPage(props: {
     setRecordingBlob(null);
     setRecordingUrl(null);
     setTimelineElapsedMs(0);
-    setDownloadStatus("idle");
     setStatus("preparing");
     chunks = [];
 
@@ -1669,7 +1734,7 @@ function ContributionPage(props: {
         const blob = new Blob(chunks, { type: recorder?.mimeType || mimeType || "audio/webm" });
 
         clearRecordingTimers();
-        setTimelineElapsedMs(recordingTimelineDurationMs);
+        setTimelineElapsedMs(CONTRIBUTION_TIMELINE_DURATION_MS);
         stopStream(activeStream);
         activeStream = undefined;
         recorder = undefined;
@@ -1690,7 +1755,7 @@ function ContributionPage(props: {
   };
 
   const beginRecordingCountdown = () => {
-    let remaining = countdownSecondsTotal;
+    let remaining = CONTRIBUTION_COUNTDOWN_SECONDS;
 
     setCountdownSeconds(remaining);
     setStatus("countdown");
@@ -1727,7 +1792,7 @@ function ContributionPage(props: {
         if (recorder?.state === "recording") {
           recorder.stop();
         }
-      }, recordingDurationMs);
+      }, CONTRIBUTION_RECORDING_DURATION_MS);
     } catch (recordingError) {
       clearRecordingTimers();
       stopStream(activeStream);
@@ -1762,10 +1827,10 @@ function ContributionPage(props: {
     clearTimelineProgress();
     setTimelineElapsedMs(0);
     const tick = (now: number) => {
-      const elapsed = Math.min(recordingTimelineDurationMs, now - startedAt);
+      const elapsed = Math.min(CONTRIBUTION_TIMELINE_DURATION_MS, now - startedAt);
 
       setTimelineElapsedMs(elapsed);
-      if (elapsed < recordingTimelineDurationMs && (status() === "countdown" || status() === "recording")) {
+      if (elapsed < CONTRIBUTION_TIMELINE_DURATION_MS && (status() === "countdown" || status() === "recording")) {
         timelineFrame = window.requestAnimationFrame(tick);
         return;
       }
@@ -1795,7 +1860,6 @@ function ContributionPage(props: {
     setRecordingBlob(null);
     setRecordingUrl(null);
     setTimelineElapsedMs(0);
-    setDownloadStatus("idle");
     setStatus("idle");
     setError(null);
   };
@@ -1805,30 +1869,545 @@ function ContributionPage(props: {
     await startRecording();
   };
 
+  return {
+    status,
+    timelineElapsedMs,
+    recordingBlob,
+    recordingUrl,
+    error,
+    recorderAvailable,
+    recordingInProgress,
+    countdownProgressPercent,
+    recordingProgressPercent,
+    timelineMessage,
+    recordButtonText,
+    startRecording,
+    discardRecording,
+    discardAndRecordAgain,
+  };
+}
+
+function RecordingTimeline(props: {
+  status: ContributionRecorderStatus;
+  timelineElapsedMs: number;
+  countdownProgressPercent: number;
+  recordingProgressPercent: number;
+  message: string;
+}) {
+  return (
+    <div
+      class="recording-timeline"
+      data-state={props.status}
+      role="progressbar"
+      aria-label="Recording countdown and capture progress"
+      aria-valuemin={0}
+      aria-valuemax={CONTRIBUTION_TIMELINE_DURATION_MS / 1000}
+      aria-valuenow={Math.round(props.timelineElapsedMs / 100) / 10}
+      style={`--countdown-progress: ${props.countdownProgressPercent}%; --recording-progress: ${props.recordingProgressPercent}%;`}
+    >
+      <div class="recording-timeline-bar" aria-hidden="true">
+        <div class="recording-timeline-segment countdown-segment">
+          <div class="recording-timeline-segment-fill countdown-fill" />
+          <span>Get ready</span>
+          <strong>{CONTRIBUTION_COUNTDOWN_SECONDS}s</strong>
+        </div>
+        <div class="recording-timeline-segment recording-segment">
+          <div class="recording-timeline-segment-fill recording-fill" />
+          <span>Speak</span>
+          <strong>{CONTRIBUTION_RECORDING_DURATION_MS / 1000}s</strong>
+        </div>
+      </div>
+      <div class="recording-timeline-labels" aria-hidden="true">
+        <span>Countdown</span>
+        <span>Recording</span>
+      </div>
+      <p class="recording-timeline-help">{props.message}</p>
+    </div>
+  );
+}
+
+function ContributionModePage(props: {
+  language: LanguageDataset;
+  queue: readonly ContributionQueueItem[];
+  onBack: () => void;
+  onContributionDownloaded: (wordIds: readonly string[]) => void;
+}) {
+  const savedContributionDetails = loadContributionDetails();
+  const recorder = createContributionRecorder(() => activeItem()?.word.written ?? "the word");
+  const [keptRecordings, setKeptRecordings] = createSignal<KeptContributionRecording[]>([]);
+  const [skippedWordIds, setSkippedWordIds] = createSignal<string[]>([]);
+  const [licence, setLicence] = createSignal<ContributionLicence>(savedContributionDetails.licence);
+  const [speakerName, setSpeakerName] = createSignal(savedContributionDetails.speakerName);
+  const [accent, setAccent] = createSignal(savedContributionDetails.accent);
+  const [downloadStatus, setDownloadStatus] = createSignal<ContributionDownloadStatus>("idle");
+  const [downloadError, setDownloadError] = createSignal<string | null>(null);
+
+  const keptWordIds = createMemo(() => new Set(keptRecordings().map((recording) => recording.word.id)));
+  const skippedWordIdSet = createMemo(() => new Set(skippedWordIds()));
+  const remainingItems = createMemo(() =>
+    props.queue.filter((item) => !keptWordIds().has(item.word.id) && !skippedWordIdSet().has(item.word.id))
+  );
+  const activeItem = createMemo(() => remainingItems()[0]);
+  const upcomingItems = createMemo(() => remainingItems().slice(1, 6));
+  const topItem = createMemo(() => props.queue[0]);
+  const requiresAttributionName = createMemo(() => licence() === "CC-BY-4.0");
+  const canDownload = createMemo(() =>
+    keptRecordings().length > 0 && (!requiresAttributionName() || speakerName().trim().length > 0)
+  );
+  const pageError = createMemo(() => recorder.error() ?? downloadError());
+  const downloadButtonText = createMemo(() => {
+    if (downloadStatus() === "downloading") {
+      return "Downloading...";
+    }
+
+    if (downloadStatus() === "downloaded") {
+      return "Downloaded";
+    }
+
+    return "Finish and download ZIP";
+  });
+
+  createEffect(() => {
+    saveContributionDetails({
+      schemaVersion: 1,
+      licence: licence(),
+      speakerName: speakerName().trim(),
+      accent: accent().trim(),
+    });
+  });
+
+  const canDownloadRecordings = (recordings: readonly KeptContributionRecording[]) =>
+    recordings.length > 0 && (!requiresAttributionName() || speakerName().trim().length > 0);
+
+  const startRecording = async () => {
+    setDownloadError(null);
+    await recorder.startRecording();
+  };
+
+  const retryRecording = async () => {
+    setDownloadError(null);
+    await recorder.discardAndRecordAgain();
+  };
+
+  const keepCurrentRecording = (): KeptContributionRecording | null => {
+    const item = activeItem();
+    const blob = recorder.recordingBlob();
+
+    if (!item || !blob) {
+      return null;
+    }
+
+    const recording: KeptContributionRecording = {
+      id: createContributionId(props.language.id, item.shortWordId),
+      word: item.word,
+      blob,
+      mimeType: blob.type || "audio/webm",
+      recordedAt: new Date().toISOString(),
+    };
+
+    setKeptRecordings((current) => [...current, recording]);
+    setDownloadStatus("idle");
+    setDownloadError(null);
+    return recording;
+  };
+
+  const keepAndNext = () => {
+    if (keepCurrentRecording()) {
+      recorder.discardRecording();
+    }
+  };
+
+  const keepAndDownload = async () => {
+    const previousRecordings = keptRecordings();
+    const recording = keepCurrentRecording();
+
+    if (!recording) {
+      return;
+    }
+
+    recorder.discardRecording();
+    await downloadBatch([...previousRecordings, recording]);
+  };
+
+  const skipCurrent = () => {
+    const item = activeItem();
+
+    if (!item || recorder.recordingInProgress()) {
+      return;
+    }
+
+    setSkippedWordIds((current) => current.includes(item.word.id) ? current : [...current, item.word.id]);
+    recorder.discardRecording();
+    setDownloadError(null);
+  };
+
   const updateLicence = (nextLicence: ContributionLicence) => {
     setLicence(nextLicence);
     setDownloadStatus("idle");
+    setDownloadError(null);
   };
 
   const updateSpeakerName = (nextSpeakerName: string) => {
     setSpeakerName(nextSpeakerName);
     setDownloadStatus("idle");
+    setDownloadError(null);
   };
 
   const updateAccent = (nextAccent: string) => {
     setAccent(nextAccent);
     setDownloadStatus("idle");
+    setDownloadError(null);
+  };
+
+  const downloadBatch = async (recordings = keptRecordings()) => {
+    if (!canDownloadRecordings(recordings) || downloadStatus() === "downloading") {
+      if (requiresAttributionName() && speakerName().trim().length === 0) {
+        setDownloadError("CC BY 4.0 needs a name for attribution.");
+      }
+      return;
+    }
+
+    setDownloadStatus("downloading");
+    setDownloadError(null);
+
+    try {
+      const bundleId = createContributionBatchId(props.language.id);
+      const archiveEntries: Record<string, Uint8Array> = {};
+      const manifestRecordings: ContributionBatchRecordingForManifest[] = [];
+
+      for (const recording of recordings) {
+        const filename = `recordings/${recording.id}.${extensionForMimeType(recording.mimeType)}`;
+
+        archiveEntries[filename] = new Uint8Array(await recording.blob.arrayBuffer());
+        manifestRecordings.push({
+          id: recording.id,
+          word: recording.word,
+          filename,
+          mimeType: recording.mimeType,
+          recordingSize: recording.blob.size,
+          recordedAt: recording.recordedAt,
+        });
+      }
+
+      const manifest = createContributionBatchManifest({
+        language: props.language,
+        id: bundleId,
+        recordings: manifestRecordings,
+        licence: licence(),
+        speakerName: speakerName().trim(),
+        accent: accent().trim(),
+      });
+      const archive = zipSync({
+        "manifest.json": strToU8(`${JSON.stringify(manifest, null, 2)}\n`),
+        ...archiveEntries,
+      }, { level: 0 });
+
+      downloadBlob(
+        new Blob([archive], { type: "application/zip" }),
+        `${manifest.id}.zip`,
+      );
+      props.onContributionDownloaded(recordings.map((recording) => recording.word.id));
+      setDownloadStatus("downloaded");
+    } catch (downloadError) {
+      setDownloadStatus("idle");
+      setDownloadError(downloadError instanceof Error ? downloadError.message : "Could not download contribution batch.");
+    }
+  };
+
+  return (
+    <section class="content-panel contribution-panel contribution-mode-panel">
+      <div class="contribution-nav">
+        <button class="text-button compact" type="button" onClick={props.onBack}>
+          Back to sound library
+        </button>
+      </div>
+
+      <div class="panel-heading contribution-heading">
+        <p class="eyebrow">Contribution mode</p>
+        <h2>Record a useful batch</h2>
+        <p>
+          Record one word at a time. The queue avoids asking the same speaker for the same word twice, because the target is more useful with different speakers and accents.
+        </p>
+      </div>
+
+      <section class="contribution-queue-summary">
+        <div>
+          <strong>{props.queue.length}</strong>
+          <span>useful words need recordings</span>
+        </div>
+        <div>
+          <strong>{CONTRIBUTION_TARGET_RECORDINGS}</strong>
+          <span>recordings per word target</span>
+        </div>
+        <div>
+          <strong>{keptRecordings().length}</strong>
+          <span>kept this session</span>
+        </div>
+        <Show when={topItem()}>
+          {(item) => (
+            <p>
+              Prioritising <span class="ipa-text">{phonemeLabelForDataset(item().priorityPhonemeId, props.language)}</span>
+              {" "}because it has {item().priorityPhonemeRecordingCount} recordings overall.
+            </p>
+          )}
+        </Show>
+      </section>
+
+      <div class="contribution-session-grid">
+        <div class="contribution-session-main">
+          <Show
+            when={activeItem()}
+            fallback={
+              <section class="contribution-card current-contribution-step">
+                <p class="eyebrow">Queue complete</p>
+                <h3>No more queued words</h3>
+                <p class="contribution-card-copy">
+                  You can download your kept recordings now, or go back to the sound library.
+                </p>
+              </section>
+            }
+          >
+            {(item) => (
+              <section class="contribution-card current-contribution-step contribution-session-recorder">
+                <p class="eyebrow">Current word</p>
+                <div class="contribution-word-heading">
+                  <div>
+                    <h3>{item().word.written}</h3>
+                    <p class="ipa-text">{item().word.ipa}</p>
+                  </div>
+                  <span>{item().wordRecordingCount}/{CONTRIBUTION_TARGET_RECORDINGS} recordings</span>
+                </div>
+
+                <dl class="contribution-summary compact">
+                  <div>
+                    <dt>Language</dt>
+                    <dd>{props.language.name}</dd>
+                  </div>
+                  <div>
+                    <dt>Sound IDs</dt>
+                    <dd>{item().word.phonemeIds.join(", ")}</dd>
+                  </div>
+                  <div>
+                    <dt>Lowest sound coverage</dt>
+                    <dd>{item().phonemeCoverage}</dd>
+                  </div>
+                </dl>
+
+                <p class="contribution-why">
+                  <strong>Why this word?</strong>{" "}
+                  <span class="ipa-text">{phonemeLabelForDataset(item().priorityPhonemeId, props.language)}</span>
+                  {" "}has {item().priorityPhonemeRecordingCount} recordings overall; {item().word.written} has {item().wordRecordingCount}/{CONTRIBUTION_TARGET_RECORDINGS}.
+                </p>
+
+                <RecordingTimeline
+                  status={recorder.status()}
+                  timelineElapsedMs={recorder.timelineElapsedMs()}
+                  countdownProgressPercent={recorder.countdownProgressPercent()}
+                  recordingProgressPercent={recorder.recordingProgressPercent()}
+                  message={recorder.timelineMessage()}
+                />
+
+                <Show when={recorder.recorderAvailable()} fallback={
+                  <p class="error-message">Recording is not available in this browser.</p>
+                }>
+                  <div class="recorder-actions">
+                    <Show
+                      when={recorder.recordingBlob()}
+                      fallback={
+                        <button
+                          class="primary-button"
+                          type="button"
+                          disabled={recorder.recordingInProgress()}
+                          onClick={() => void startRecording()}
+                        >
+                          {recorder.recordButtonText()}
+                        </button>
+                      }
+                    >
+                      <button class="primary-button" type="button" onClick={keepAndNext}>
+                        Keep and next
+                      </button>
+                      <button class="small-button" type="button" onClick={() => void keepAndDownload()}>
+                        Keep and finish
+                      </button>
+                      <button class="contribution-retry-button" type="button" onClick={() => void retryRecording()}>
+                        Retry
+                      </button>
+                    </Show>
+                    <button class="text-button compact" type="button" disabled={recorder.recordingInProgress()} onClick={skipCurrent}>
+                      Skip
+                    </button>
+                  </div>
+                </Show>
+
+                <Show when={recorder.recordingUrl()}>
+                  {(url) => (
+                    <div class="recording-preview">
+                      <p>Listen back before keeping this recording.</p>
+                      <audio controls src={url()} />
+                    </div>
+                  )}
+                </Show>
+                <Show when={pageError()}>
+                  {(message) => <p class="error-message">{message()}</p>}
+                </Show>
+              </section>
+            )}
+          </Show>
+
+          <section class={`contribution-card contribution-send-card${downloadStatus() === "downloaded" ? " current-contribution-step" : ""}`}>
+            <p class="eyebrow">Send your batch</p>
+            <h3>Send your contribution</h3>
+            <p class="contribution-card-copy">
+              Send the downloaded ZIP to bovine3dom on <a href="https://github.com/bovine3dom/vowel_trowel/issues/new" target="_blank" rel="noreferrer">GitHub</a>,
+              or however you usually talk to him.
+            </p>
+          </section>
+        </div>
+
+        <aside class="contribution-card contribution-session-sidebar">
+          <p class="eyebrow">Session</p>
+          <h3>Progress</h3>
+          <div class="contribution-session-stats">
+            <div><strong>{keptRecordings().length}</strong><span>kept</span></div>
+            <div><strong>{skippedWordIds().length}</strong><span>skipped</span></div>
+            <div><strong>{remainingItems().length}</strong><span>remaining</span></div>
+          </div>
+
+          <label class="field-label">
+            Licence
+            <select value={licence()} onInput={(event) => updateLicence(event.currentTarget.value as ContributionLicence)}>
+              <option value="CC0-1.0">CC0 1.0 public domain dedication</option>
+              <option value="CC-BY-4.0">CC BY 4.0 attribution</option>
+            </select>
+          </label>
+          <label class="field-label">
+            Name {requiresAttributionName() ? <span>(required for CC BY 4.0)</span> : <span>(optional for CC0)</span>}
+            <input
+              type="text"
+              value={speakerName()}
+              onInput={(event) => updateSpeakerName(event.currentTarget.value)}
+              placeholder="How you want to be credited"
+            />
+          </label>
+          <label class="field-label">
+            Accent or region <span>(optional)</span>
+            <input
+              type="text"
+              value={accent()}
+              onInput={(event) => updateAccent(event.currentTarget.value)}
+              placeholder="e.g. Belgian French"
+            />
+          </label>
+          <button class="primary-button" type="button" disabled={!canDownload() || downloadStatus() !== "idle"} onClick={() => void downloadBatch()}>
+            {downloadButtonText()}
+          </button>
+          <Show when={requiresAttributionName() && speakerName().trim().length === 0}>
+            <p class="muted">CC BY 4.0 needs a name for attribution. CC0 does not.</p>
+          </Show>
+
+          <div class="upcoming-contribution-list">
+            <h4>Upcoming words</h4>
+            <Show when={upcomingItems().length > 0} fallback={<p class="muted">No upcoming words.</p>}>
+              <For each={upcomingItems()}>
+                {(item) => (
+                  <div class="upcoming-contribution-word">
+                    <strong>{item.word.written}</strong>
+                    <span class="ipa-text">{item.word.ipa}</span>
+                    <small>{item.wordRecordingCount}/{CONTRIBUTION_TARGET_RECORDINGS}</small>
+                  </div>
+                )}
+              </For>
+            </Show>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+function ContributionPage(props: {
+  language: LanguageDataset;
+  word: WordEntry;
+  onBack: () => void;
+  onContributionDownloaded: (wordIds: readonly string[]) => void;
+}) {
+  const savedContributionDetails = loadContributionDetails();
+  const recorder = createContributionRecorder(() => props.word.written);
+  const [licence, setLicence] = createSignal<ContributionLicence>(savedContributionDetails.licence);
+  const [speakerName, setSpeakerName] = createSignal(savedContributionDetails.speakerName);
+  const [accent, setAccent] = createSignal(savedContributionDetails.accent);
+  const [downloadStatus, setDownloadStatus] = createSignal<ContributionDownloadStatus>("idle");
+  const [downloadError, setDownloadError] = createSignal<string | null>(null);
+
+  const requiresAttributionName = createMemo(() => licence() === "CC-BY-4.0");
+  const canDownload = createMemo(() =>
+    Boolean(recorder.recordingBlob()) && (!requiresAttributionName() || speakerName().trim().length > 0)
+  );
+  const downloadButtonText = createMemo(() => {
+    if (downloadStatus() === "downloading") {
+      return "Downloading...";
+    }
+
+    if (downloadStatus() === "downloaded") {
+      return "Downloaded";
+    }
+
+    return "Download contribution zip";
+  });
+  const pageError = createMemo(() => recorder.error() ?? downloadError());
+  const recordingStepActive = createMemo(() => !recorder.recordingBlob() || recorder.recordingInProgress());
+  const detailsStepActive = createMemo(() => Boolean(recorder.recordingBlob()) && downloadStatus() !== "downloaded");
+  const sendStepActive = createMemo(() => downloadStatus() === "downloaded");
+
+  createEffect(() => {
+    saveContributionDetails({
+      schemaVersion: 1,
+      licence: licence(),
+      speakerName: speakerName().trim(),
+      accent: accent().trim(),
+    });
+  });
+
+  const startRecording = async () => {
+    setDownloadStatus("idle");
+    setDownloadError(null);
+    await recorder.startRecording();
+  };
+
+  const discardAndRecordAgain = async () => {
+    setDownloadStatus("idle");
+    setDownloadError(null);
+    await recorder.discardAndRecordAgain();
+  };
+
+  const updateLicence = (nextLicence: ContributionLicence) => {
+    setLicence(nextLicence);
+    setDownloadStatus("idle");
+    setDownloadError(null);
+  };
+
+  const updateSpeakerName = (nextSpeakerName: string) => {
+    setSpeakerName(nextSpeakerName);
+    setDownloadStatus("idle");
+    setDownloadError(null);
+  };
+
+  const updateAccent = (nextAccent: string) => {
+    setAccent(nextAccent);
+    setDownloadStatus("idle");
+    setDownloadError(null);
   };
 
   const downloadBundle = async () => {
-    const blob = recordingBlob();
+    const blob = recorder.recordingBlob();
 
     if (!blob || !canDownload() || downloadStatus() === "downloading") {
       return;
     }
 
     setDownloadStatus("downloading");
-    setError(null);
+    setDownloadError(null);
 
     try {
       const recordingFilename = `recording.${extensionForMimeType(blob.type)}`;
@@ -1851,10 +2430,11 @@ function ContributionPage(props: {
         new Blob([archive], { type: "application/zip" }),
         `${manifest.id}.zip`,
       );
+      props.onContributionDownloaded([props.word.id]);
       setDownloadStatus("downloaded");
     } catch (downloadError) {
       setDownloadStatus("idle");
-      setError(downloadError instanceof Error ? downloadError.message : "Could not download contribution.");
+      setDownloadError(downloadError instanceof Error ? downloadError.message : "Could not download contribution.");
     }
   };
 
@@ -1899,48 +2479,27 @@ function ContributionPage(props: {
           <p class="eyebrow">Step 1</p>
           <h3>Record your sample</h3>
           <p class="contribution-card-copy">Use a quiet room. After the countdown, say the word once, naturally.</p>
-          <div
-            class="recording-timeline"
-            data-state={status()}
-            role="progressbar"
-            aria-label="Recording countdown and capture progress"
-            aria-valuemin={0}
-            aria-valuemax={5}
-            aria-valuenow={Math.round(timelineElapsedMs() / 100) / 10}
-            style={`--countdown-progress: ${countdownProgressPercent()}%; --recording-progress: ${recordingProgressPercent()}%;`}
-          >
-            <div class="recording-timeline-bar" aria-hidden="true">
-              <div class="recording-timeline-segment countdown-segment">
-                <div class="recording-timeline-segment-fill countdown-fill" />
-                <span>Get ready</span>
-                <strong>3s</strong>
-              </div>
-              <div class="recording-timeline-segment recording-segment">
-                <div class="recording-timeline-segment-fill recording-fill" />
-                <span>Speak</span>
-                <strong>2s</strong>
-              </div>
-            </div>
-            <div class="recording-timeline-labels" aria-hidden="true">
-              <span>Countdown</span>
-              <span>Recording</span>
-            </div>
-            <p class="recording-timeline-help">{timelineMessage()}</p>
-          </div>
-          <Show when={recorderAvailable()} fallback={
+          <RecordingTimeline
+            status={recorder.status()}
+            timelineElapsedMs={recorder.timelineElapsedMs()}
+            countdownProgressPercent={recorder.countdownProgressPercent()}
+            recordingProgressPercent={recorder.recordingProgressPercent()}
+            message={recorder.timelineMessage()}
+          />
+          <Show when={recorder.recorderAvailable()} fallback={
             <p class="error-message">Recording is not available in this browser.</p>
           }>
             <div class="recorder-actions">
               <Show
-                when={recordingBlob()}
+                when={recorder.recordingBlob()}
                 fallback={
                   <button
                     class="primary-button"
                     type="button"
-                    disabled={recordingInProgress()}
+                    disabled={recorder.recordingInProgress()}
                     onClick={() => void startRecording()}
                   >
-                    {recordButtonText()}
+                    {recorder.recordButtonText()}
                   </button>
                 }
               >
@@ -1950,7 +2509,7 @@ function ContributionPage(props: {
               </Show>
             </div>
           </Show>
-          <Show when={recordingUrl()}>
+          <Show when={recorder.recordingUrl()}>
             {(url) => (
               <div class="recording-preview">
                 <p>Listen back before downloading.</p>
@@ -1958,7 +2517,7 @@ function ContributionPage(props: {
               </div>
             )}
           </Show>
-          <Show when={error()}>
+          <Show when={pageError()}>
             {(message) => <p class="error-message">{message()}</p>}
           </Show>
         </section>
@@ -2739,7 +3298,11 @@ function pairClass(index: number): string {
 }
 
 function phonemeLabel(phonemeId: PhonemeId): string {
-  return dataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.ipa ?? phonemeId;
+  return phonemeLabelForDataset(phonemeId, dataset);
+}
+
+function phonemeLabelForDataset(phonemeId: PhonemeId, sourceDataset: LanguageDataset): string {
+  return sourceDataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.ipa ?? phonemeId;
 }
 
 function phonemePairLabel(phonemePair: PhonemePair): string {
@@ -2783,6 +3346,67 @@ function contrastCardClass(
 
 function wordsForPhoneme(phonemeId: PhonemeId, sourceDataset = dataset): WordEntry[] {
   return sourceDataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
+}
+
+function createContributionQueue(
+  sourceDataset: LanguageDataset,
+  excludedWordIds: ReadonlySet<string> = new Set(),
+): ContributionQueueItem[] {
+  const phonemeRecordingCounts = new Map<PhonemeId, number>();
+
+  for (const phoneme of sourceDataset.phonemes) {
+    phonemeRecordingCounts.set(phoneme.id, 0);
+  }
+
+  for (const word of sourceDataset.words) {
+    const cappedWordRecordingCount = Math.min(word.audio.length, CONTRIBUTION_TARGET_RECORDINGS);
+
+    for (const phonemeId of word.phonemeIds) {
+      phonemeRecordingCounts.set(
+        phonemeId,
+        (phonemeRecordingCounts.get(phonemeId) ?? 0) + cappedWordRecordingCount,
+      );
+    }
+  }
+
+  return sourceDataset.words
+    .filter((word) => word.audio.length < CONTRIBUTION_TARGET_RECORDINGS && !excludedWordIds.has(word.id))
+    .map((word) => {
+      const priorityPhonemeId = findLowestCoveragePhoneme(word.phonemeIds, phonemeRecordingCounts);
+      const priorityPhonemeRecordingCount = phonemeRecordingCounts.get(priorityPhonemeId) ?? 0;
+
+      return {
+        word,
+        shortWordId: stripWordPrefix(word.id, sourceDataset.id),
+        wordRecordingCount: word.audio.length,
+        phonemeCoverage: priorityPhonemeRecordingCount,
+        priorityPhonemeId,
+        priorityPhonemeRecordingCount,
+      };
+    })
+    .sort((left, right) =>
+      left.phonemeCoverage - right.phonemeCoverage
+      || left.wordRecordingCount - right.wordRecordingCount
+      || left.word.written.localeCompare(right.word.written)
+      || left.word.id.localeCompare(right.word.id)
+    );
+}
+
+function findLowestCoveragePhoneme(
+  phonemeIds: readonly PhonemeId[],
+  phonemeRecordingCounts: ReadonlyMap<PhonemeId, number>,
+): PhonemeId {
+  const firstPhonemeId = phonemeIds[0];
+
+  if (!firstPhonemeId) {
+    return "";
+  }
+
+  return phonemeIds.reduce((lowest, phonemeId) =>
+    (phonemeRecordingCounts.get(phonemeId) ?? 0) < (phonemeRecordingCounts.get(lowest) ?? 0)
+      ? phonemeId
+      : lowest
+  , firstPhonemeId);
 }
 
 function phonemeHasAudio(phonemeId: PhonemeId): boolean {
@@ -2911,6 +3535,64 @@ function saveContributionDetails(details: ContributionDetails): void {
   localStorage.setItem(CONTRIBUTION_DETAILS_STORAGE_KEY, JSON.stringify(details));
 }
 
+function createDefaultContributionHistory(): ContributionHistory {
+  return {
+    schemaVersion: 1,
+    downloadedWordIds: [],
+  };
+}
+
+function loadDownloadedContributionWordIds(): string[] {
+  if (typeof localStorage === "undefined") {
+    return createDefaultContributionHistory().downloadedWordIds;
+  }
+
+  const raw = localStorage.getItem(CONTRIBUTION_HISTORY_STORAGE_KEY);
+
+  if (!raw) {
+    return createDefaultContributionHistory().downloadedWordIds;
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as Partial<ContributionHistory>;
+
+    if (parsed.schemaVersion !== 1 || !Array.isArray(parsed.downloadedWordIds)) {
+      return createDefaultContributionHistory().downloadedWordIds;
+    }
+
+    return [...new Set(parsed.downloadedWordIds.filter((wordId): wordId is string => typeof wordId === "string" && wordId.length > 0))];
+  } catch {
+    return createDefaultContributionHistory().downloadedWordIds;
+  }
+}
+
+function saveDownloadedContributionWordIds(downloadedWordIds: readonly string[]): void {
+  if (typeof localStorage === "undefined") {
+    return;
+  }
+
+  localStorage.setItem(CONTRIBUTION_HISTORY_STORAGE_KEY, JSON.stringify({
+    schemaVersion: 1,
+    downloadedWordIds: [...downloadedWordIds],
+  } satisfies ContributionHistory));
+}
+
+function mergeDownloadedContributionWordIds(current: readonly string[], additions: readonly string[]): string[] {
+  const next = [...current];
+  const seen = new Set(next);
+
+  for (const wordId of additions) {
+    if (!wordId || seen.has(wordId)) {
+      continue;
+    }
+
+    seen.add(wordId);
+    next.push(wordId);
+  }
+
+  return next;
+}
+
 function isContributionLicence(value: unknown): value is ContributionLicence {
   return value === "CC0-1.0" || value === "CC-BY-4.0";
 }
@@ -3009,20 +3691,8 @@ function createContributionManifest(options: {
     id,
     createdAt: new Date().toISOString(),
     pageUrl: typeof window === "undefined" ? undefined : window.location.href,
-    language: {
-      id: options.language.id,
-      slug: getLanguageSlug(options.language.id),
-      name: options.language.name,
-      autonym: options.language.autonym,
-    },
-    word: {
-      id: options.word.id,
-      shortId: shortWordId,
-      written: options.word.written,
-      ipa: options.word.ipa,
-      phonemeIds: options.word.phonemeIds,
-      speechText: options.word.speechText,
-    },
+    language: createContributionManifestLanguage(options.language),
+    word: createContributionManifestWord(options.language, options.word),
     recording: {
       filename: options.recordingFilename,
       mimeType: options.mimeType,
@@ -3033,6 +3703,57 @@ function createContributionManifest(options: {
       speakerName: options.speakerName || undefined,
       accent: options.accent || undefined,
     },
+  };
+}
+
+function createContributionBatchManifest(options: {
+  language: LanguageDataset;
+  id: string;
+  recordings: readonly ContributionBatchRecordingForManifest[];
+  licence: ContributionLicence;
+  speakerName: string;
+  accent: string;
+}) {
+  return {
+    version: 2,
+    type: "vowel-trowel-contribution",
+    id: options.id,
+    createdAt: new Date().toISOString(),
+    pageUrl: typeof window === "undefined" ? undefined : window.location.href,
+    language: createContributionManifestLanguage(options.language),
+    contribution: {
+      licence: options.licence,
+      speakerName: options.speakerName || undefined,
+      accent: options.accent || undefined,
+    },
+    recordings: options.recordings.map((recording) => ({
+      id: recording.id,
+      filename: recording.filename,
+      mimeType: recording.mimeType,
+      size: recording.recordingSize,
+      recordedAt: recording.recordedAt,
+      word: createContributionManifestWord(options.language, recording.word),
+    })),
+  };
+}
+
+function createContributionManifestLanguage(language: LanguageDataset) {
+  return {
+    id: language.id,
+    slug: getLanguageSlug(language.id),
+    name: language.name,
+    autonym: language.autonym,
+  };
+}
+
+function createContributionManifestWord(language: LanguageDataset, word: WordEntry) {
+  return {
+    id: word.id,
+    shortId: stripWordPrefix(word.id, language.id),
+    written: word.written,
+    ipa: word.ipa,
+    phonemeIds: word.phonemeIds,
+    speechText: word.speechText,
   };
 }
 
@@ -3048,6 +3769,14 @@ function createContributionId(languageId: string, shortWordId: string): string {
     : Math.random().toString(36).slice(2);
 
   return sanitizeFilename(`${getLanguageSlug(languageId)}-${shortWordId}-${Date.now().toString(36)}-${random}`);
+}
+
+function createContributionBatchId(languageId: string): string {
+  const random = typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : Math.random().toString(36).slice(2);
+
+  return sanitizeFilename(`${getLanguageSlug(languageId)}-batch-${Date.now().toString(36)}-${random}`);
 }
 
 function downloadBlob(blob: Blob, filename: string): void {
@@ -3110,13 +3839,16 @@ function readUrlState(): UrlState {
       catalogTab: "phonemes",
       explorePhonemeId: null,
       contributionWordId: null,
+      contributionModeOpen: false,
       ttsEnabled: false,
     };
   }
 
   const params = new URLSearchParams(window.location.search);
   const explorePhonemeId = parsePhonemeId(params.get("explore"));
-  const contributionWordId = parseWordId(params.get("contribute"));
+  const contributionParam = params.get("contribute");
+  const contributionModeOpen = contributionParam === "mode";
+  const contributionWordId = contributionModeOpen ? null : parseWordId(contributionParam);
 
   return {
     languageId: parseLanguageId(params.get("lang")) ?? dataset.id,
@@ -3125,6 +3857,7 @@ function readUrlState(): UrlState {
     catalogTab: explorePhonemeId ? "phonemes" : parseCatalogTab(params.get("tab")) ?? "phonemes",
     explorePhonemeId,
     contributionWordId,
+    contributionModeOpen,
     ttsEnabled: parseBooleanFlag(params.get("tts")),
   };
 }
@@ -3153,7 +3886,9 @@ function writeUrlState(state: UrlState, historyMode: UrlHistoryMode): void {
     params.delete("explore");
   }
 
-  if (state.contributionWordId) {
+  if (state.contributionModeOpen) {
+    params.set("contribute", "mode");
+  } else if (state.contributionWordId) {
     params.set("contribute", state.contributionWordId);
   } else {
     params.delete("contribute");

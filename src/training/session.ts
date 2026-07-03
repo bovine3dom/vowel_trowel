@@ -3,6 +3,7 @@ import type {
   MinimalPairItem,
   MinimalPairTerm,
   PhonemeId,
+  WordEntry,
 } from "../languages/types";
 import { getResolvedMinimalPairs } from "../languages/resolve";
 import type { AppProgress } from "../storage/progress";
@@ -211,12 +212,13 @@ function createCustomMinimalPair(
   phonemeIds: readonly [PhonemeId, PhonemeId],
 ): MinimalPairItem | undefined {
   const [firstPhonemeId, secondPhonemeId] = phonemeIds;
-  const firstWord = sampleWordForPhoneme(dataset, firstPhonemeId, secondPhonemeId);
-  const secondWord = sampleWordForPhoneme(dataset, secondPhonemeId, firstPhonemeId);
+  const wordPair = selectClosestCustomWordPair(dataset, firstPhonemeId, secondPhonemeId);
 
-  if (!firstWord || !secondWord) {
+  if (!wordPair) {
     return undefined;
   }
+
+  const [firstWord, secondWord] = wordPair;
 
   return {
     id: `custom:${firstPhonemeId}:${secondPhonemeId}:${firstWord.id}:${secondWord.id}`,
@@ -243,15 +245,114 @@ function sampleWordForPhoneme(
   dataset: LanguageDataset,
   phonemeId: PhonemeId,
   excludedPhonemeId: PhonemeId,
-) {
+): WordEntry | undefined {
+  return sample(candidateWordsForPhoneme(dataset, phonemeId, excludedPhonemeId));
+}
+
+function selectClosestCustomWordPair(
+  dataset: LanguageDataset,
+  firstPhonemeId: PhonemeId,
+  secondPhonemeId: PhonemeId,
+): readonly [WordEntry, WordEntry] | undefined {
+  const firstWords = candidateWordsForPhoneme(dataset, firstPhonemeId, secondPhonemeId);
+  const secondWords = candidateWordsForPhoneme(dataset, secondPhonemeId, firstPhonemeId);
+  const firstPhonemeIpa = phonemeIpa(dataset, firstPhonemeId);
+  const secondPhonemeIpa = phonemeIpa(dataset, secondPhonemeId);
+
+  if (firstWords.length === 0 || secondWords.length === 0) {
+    return undefined;
+  }
+
+  if (!firstPhonemeIpa || !secondPhonemeIpa) {
+    const firstWord = sampleWordForPhoneme(dataset, firstPhonemeId, secondPhonemeId);
+    const secondWord = sampleWordForPhoneme(dataset, secondPhonemeId, firstPhonemeId);
+
+    return firstWord && secondWord ? [firstWord, secondWord] : undefined;
+  }
+
+  let best: { words: readonly [WordEntry, WordEntry]; score: number } | undefined;
+
+  for (const firstWord of firstWords) {
+    const firstShell = ipaShell(firstWord.ipa, firstPhonemeIpa);
+
+    for (const secondWord of secondWords) {
+      const secondShell = ipaShell(secondWord.ipa, secondPhonemeIpa);
+      const score = firstShell && secondShell
+        ? levenshteinDistance(firstShell, secondShell)
+        : Number.POSITIVE_INFINITY;
+
+      if (!best || score < best.score || (score === best.score && Math.random() < 0.5)) {
+        best = { words: [firstWord, secondWord], score };
+      }
+    }
+  }
+
+  if (best && Number.isFinite(best.score)) {
+    return best.words;
+  }
+
+  const firstWord = sample(firstWords);
+  const secondWord = sample(secondWords);
+
+  return firstWord && secondWord ? [firstWord, secondWord] : undefined;
+}
+
+function candidateWordsForPhoneme(
+  dataset: LanguageDataset,
+  phonemeId: PhonemeId,
+  excludedPhonemeId: PhonemeId,
+): WordEntry[] {
   const exactWords = dataset.words.filter((word) =>
     word.phonemeIds.includes(phonemeId) && !word.phonemeIds.includes(excludedPhonemeId)
   );
-  const fallbackWords = exactWords.length > 0
+
+  return exactWords.length > 0
     ? exactWords
     : dataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
+}
 
-  return sample(fallbackWords);
+function phonemeIpa(dataset: LanguageDataset, phonemeId: PhonemeId): string | undefined {
+  return dataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.ipa;
+}
+
+function ipaShell(wordIpa: string, targetPhonemeIpa: string): string {
+  const word = normalizeIpaText(wordIpa);
+  const target = normalizeIpaText(targetPhonemeIpa);
+
+  return target ? word.replace(target, "") : word;
+}
+
+function normalizeIpaText(value: string): string {
+  return value
+    .normalize("NFC")
+    .replace(/[\/\[\]]/g, "")
+    .replace(/[ˈˌ.\s]/g, "");
+}
+
+function levenshteinDistance(left: string, right: string): number {
+  const leftSymbols = [...left];
+  const rightSymbols = [...right];
+  const previous = Array.from({ length: rightSymbols.length + 1 }, (_, index) => index);
+  const current = Array.from({ length: rightSymbols.length + 1 }, () => 0);
+
+  for (let leftIndex = 1; leftIndex <= leftSymbols.length; leftIndex += 1) {
+    current[0] = leftIndex;
+
+    for (let rightIndex = 1; rightIndex <= rightSymbols.length; rightIndex += 1) {
+      const substitutionCost = leftSymbols[leftIndex - 1] === rightSymbols[rightIndex - 1] ? 0 : 1;
+      current[rightIndex] = Math.min(
+        (previous[rightIndex] ?? 0) + 1,
+        (current[rightIndex - 1] ?? 0) + 1,
+        (previous[rightIndex - 1] ?? 0) + substitutionCost,
+      );
+    }
+
+    for (let index = 0; index < previous.length; index += 1) {
+      previous[index] = current[index] ?? 0;
+    }
+  }
+
+  return previous[rightSymbols.length] ?? 0;
 }
 
 function samePhonemePair(
