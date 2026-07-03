@@ -149,6 +149,10 @@ interface AudioProcessingState {
 }
 
 const SOURCE_NAME = "Vowel Trowel user contribution";
+const LEGACY_CONTRIBUTION_PHONEME_IDS: Record<string, string> = {
+  "en-gb-bath": "en-gb-palm",
+  "en-gb-cloth": "en-gb-lot",
+};
 const options = parseArgs(process.argv.slice(2));
 const imported: ImportedContribution[] = [];
 
@@ -447,9 +451,17 @@ function validateManifestWord(word: WordEntry, manifestWord: ContributionManifes
     throw new Error(`Contribution ${label}.ipa ${manifestWord?.ipa ?? "unknown"} does not match ${word.ipa}.`);
   }
 
-  if (!sameStringList(manifestWord?.phonemeIds ?? [], word.phonemeIds)) {
-    throw new Error(`Contribution ${label}.phonemeIds do not match ${word.id}.`);
+  const manifestPhonemeIds = normalizeLegacyContributionPhonemeIds(manifestWord?.phonemeIds ?? []);
+
+  if (!sameStringList(manifestPhonemeIds, word.phonemeIds)) {
+    throw new Error(
+      `Contribution ${label}.phonemeIds ${manifestWord?.phonemeIds?.join(", ") ?? "unknown"} do not match ${word.id} (${word.phonemeIds.join(", ")}).`,
+    );
   }
+}
+
+function normalizeLegacyContributionPhonemeIds(phonemeIds: readonly string[]): string[] {
+  return phonemeIds.map((phonemeId) => LEGACY_CONTRIBUTION_PHONEME_IDS[phonemeId] ?? phonemeId);
 }
 
 function validateLicence(manifest: ContributionManifest): void {
