@@ -1,0 +1,54 @@
+{
+  "updatedAt": "2026-07-03T16:25:12.376Z",
+  "candidate": {
+    "key": "en-gb-word-cough|User%20contribution%20cough%20en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854|contribution%3Aen-GB%3Aen-gb-batch-mr5588fb-471061f5-64aa-49dc-9bed-1ab1dba196e9%3Aen-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854",
+    "localPath": "public/audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5588fb-471061f5-64aa-49dc-9bed-1ab1dba196e9:en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854",
+      "notes": "User-contributed recording for cough /kɒf/."
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854.webm",
+        "metadataPath": "public/audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854.webm",
+          "kind": "contribution",
+          "speaker": "bovine3dom",
+          "accent": "British English",
+          "license": "CC0 1.0",
+          "attribution": "bovine3dom",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5588fb-471061f5-64aa-49dc-9bed-1ab1dba196e9:en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854",
+          "notes": "User-contributed recording for cough /kɒf/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854.webm",
+          "outputPath": "public/audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/cough/en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-03T16:25:10.048Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    }
+  }
+}
