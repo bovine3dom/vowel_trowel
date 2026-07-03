@@ -1088,9 +1088,9 @@ function resolvePlayer(playerArg: string | null): PlayerSpec | null {
   }
 
   const candidates: PlayerSpec[] = [
-    { command: "mpv", args: ["--really-quiet", "--no-video"] },
     { command: "ffplay", args: ["-nodisp", "-autoexit", "-loglevel", "error"] },
     { command: "play", args: [] },
+    { command: "mpv", args: ["--really-quiet", "--no-video"] },
   ];
 
   return candidates.find((candidate) => commandExists(candidate.command)) ?? null;
