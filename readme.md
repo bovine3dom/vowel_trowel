@@ -121,6 +121,8 @@ bun run audio:review
 bun run audio:review -- --source=mswc --language=en-GB
 ```
 
+The same interactive reviewer is used by `audio:review`, `audio:wizard`, and `audio:import`. During review, use `v` to normalize volume, `n` to reduce background noise, `k` to remove clicks, `c` to crop silence, and `z`/`y` to undo/redo audio filters before approving.
+
 Apply approved candidates:
 
 ```bash

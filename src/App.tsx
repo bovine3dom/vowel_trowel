@@ -46,12 +46,20 @@ import {
 
 const dataset = getInitialDataset();
 const SPEECH_VOICE_STORAGE_KEY = "vowel-trowel:tts-voice-uri";
+const CONTRIBUTION_DETAILS_STORAGE_KEY = "vowel-trowel:contribution-details:v1";
 const renderedSpectrograms = new WeakMap<PrecomputedSpectrogram, HTMLCanvasElement>();
 type TrainingMode = "match" | "sort";
 type CatalogTab = "phonemes" | "contrasts";
 type PhonemePair = readonly [PhonemeId, PhonemeId];
 type UrlHistoryMode = "push" | "replace";
 type ContributionLicence = "CC0-1.0" | "CC-BY-4.0";
+
+interface ContributionDetails {
+  schemaVersion: 1;
+  licence: ContributionLicence;
+  speakerName: string;
+  accent: string;
+}
 
 interface UrlState {
   languageId: string;
@@ -1496,15 +1504,25 @@ function ContributionPage(props: {
   word: WordEntry;
   onBack: () => void;
 }) {
+  const savedContributionDetails = loadContributionDetails();
+  const countdownSecondsTotal = 3;
+  const countdownDurationMs = countdownSecondsTotal * 1000;
+  const recordingDurationMs = 2000;
+  const recordingTimelineDurationMs = countdownDurationMs + recordingDurationMs;
   let recorder: MediaRecorder | undefined;
   let activeStream: MediaStream | undefined;
+  let countdownInterval: number | undefined;
+  let stopTimeout: number | undefined;
+  let timelineFrame: number | undefined;
   let chunks: BlobPart[] = [];
-  const [status, setStatus] = createSignal<"idle" | "recording" | "recorded">("idle");
+  const [status, setStatus] = createSignal<"idle" | "preparing" | "countdown" | "recording" | "recorded">("idle");
+  const [countdownSeconds, setCountdownSeconds] = createSignal(countdownSecondsTotal);
+  const [timelineElapsedMs, setTimelineElapsedMs] = createSignal(0);
   const [recordingBlob, setRecordingBlob] = createSignal<Blob | null>(null);
   const [recordingUrl, setRecordingUrl] = createSignal<string | null>(null);
-  const [licence, setLicence] = createSignal<ContributionLicence>("CC0-1.0");
-  const [speakerName, setSpeakerName] = createSignal("");
-  const [accent, setAccent] = createSignal("");
+  const [licence, setLicence] = createSignal<ContributionLicence>(savedContributionDetails.licence);
+  const [speakerName, setSpeakerName] = createSignal(savedContributionDetails.speakerName);
+  const [accent, setAccent] = createSignal(savedContributionDetails.accent);
   const [error, setError] = createSignal<string | null>(null);
 
   const recorderAvailable = () =>
@@ -1515,6 +1533,47 @@ function ContributionPage(props: {
   const canDownload = createMemo(() =>
     Boolean(recordingBlob()) && (!requiresAttributionName() || speakerName().trim().length > 0)
   );
+  const recordingInProgress = createMemo(() => status() === "preparing" || status() === "countdown" || status() === "recording");
+  const countdownProgressPercent = createMemo(() =>
+    Math.min(100, Math.max(0, (timelineElapsedMs() / countdownDurationMs) * 100))
+  );
+  const recordingProgressPercent = createMemo(() =>
+    Math.min(100, Math.max(0, ((timelineElapsedMs() - countdownDurationMs) / recordingDurationMs) * 100))
+  );
+  const timelineMessage = createMemo(() => {
+    if (status() === "preparing") {
+      return "Preparing the microphone, then the countdown will begin.";
+    }
+
+    if (status() === "countdown") {
+      return `Get ready. Recording starts in ${countdownSeconds()}...`;
+    }
+
+    if (status() === "recording") {
+      return `Recording now. Say “${props.word.written}”.`;
+    }
+
+    if (status() === "recorded") {
+      return "Recorded. Listen back, then download it if it sounds right.";
+    }
+
+    return "Press start, wait through the three second countdown, then speak during the final two second segment.";
+  });
+  const recordButtonText = createMemo(() => {
+    if (status() === "preparing") {
+      return "Preparing...";
+    }
+
+    if (status() === "countdown") {
+      return `Get ready: ${countdownSeconds()}`;
+    }
+
+    if (status() === "recording") {
+      return "Recording...";
+    }
+
+    return recordingBlob() ? "Record again" : "Start recording";
+  });
 
   createEffect(() => {
     const url = recordingUrl();
@@ -1526,7 +1585,17 @@ function ContributionPage(props: {
     });
   });
 
+  createEffect(() => {
+    saveContributionDetails({
+      schemaVersion: 1,
+      licence: licence(),
+      speakerName: speakerName().trim(),
+      accent: accent().trim(),
+    });
+  });
+
   onCleanup(() => {
+    clearRecordingTimers();
     if (recorder?.state === "recording") {
       recorder.stop();
     }
@@ -1534,14 +1603,21 @@ function ContributionPage(props: {
   });
 
   const startRecording = async () => {
+    if (recordingInProgress()) {
+      return;
+    }
+
     if (!recorderAvailable()) {
       setError("Recording is not available in this browser.");
       return;
     }
 
+    clearRecordingTimers();
     setError(null);
     setRecordingBlob(null);
     setRecordingUrl(null);
+    setTimelineElapsedMs(0);
+    setStatus("preparing");
     chunks = [];
 
     try {
@@ -1557,19 +1633,118 @@ function ContributionPage(props: {
       recorder.addEventListener("stop", () => {
         const blob = new Blob(chunks, { type: recorder?.mimeType || mimeType || "audio/webm" });
 
+        clearRecordingTimers();
+        setTimelineElapsedMs(recordingTimelineDurationMs);
         stopStream(activeStream);
         activeStream = undefined;
+        recorder = undefined;
         setRecordingBlob(blob);
         setRecordingUrl(URL.createObjectURL(blob));
         setStatus("recorded");
       }, { once: true });
-      recorder.start();
-      setStatus("recording");
+      beginRecordingCountdown();
     } catch (recordingError) {
+      clearRecordingTimers();
       stopStream(activeStream);
       activeStream = undefined;
+      recorder = undefined;
+      setTimelineElapsedMs(0);
       setStatus("idle");
       setError(recordingError instanceof Error ? recordingError.message : "Could not start recording.");
+    }
+  };
+
+  const beginRecordingCountdown = () => {
+    let remaining = countdownSecondsTotal;
+
+    setCountdownSeconds(remaining);
+    setStatus("countdown");
+    startTimelineProgress();
+    countdownInterval = window.setInterval(() => {
+      remaining -= 1;
+
+      if (remaining <= 0) {
+        clearCountdownTimer();
+        beginTimedRecording();
+        return;
+      }
+
+      setCountdownSeconds(remaining);
+    }, 1000);
+  };
+
+  const beginTimedRecording = () => {
+    if (!recorder || recorder.state !== "inactive") {
+      clearRecordingTimers();
+      stopStream(activeStream);
+      activeStream = undefined;
+      recorder = undefined;
+      setTimelineElapsedMs(0);
+      setStatus("idle");
+      setError("Could not start recording.");
+      return;
+    }
+
+    try {
+      recorder.start();
+      setStatus("recording");
+      stopTimeout = window.setTimeout(() => {
+        if (recorder?.state === "recording") {
+          recorder.stop();
+        }
+      }, recordingDurationMs);
+    } catch (recordingError) {
+      clearRecordingTimers();
+      stopStream(activeStream);
+      activeStream = undefined;
+      recorder = undefined;
+      setTimelineElapsedMs(0);
+      setStatus("idle");
+      setError(recordingError instanceof Error ? recordingError.message : "Could not start recording.");
+    }
+  };
+
+  const clearRecordingTimers = () => {
+    clearCountdownTimer();
+    clearTimelineProgress();
+
+    if (stopTimeout !== undefined) {
+      window.clearTimeout(stopTimeout);
+      stopTimeout = undefined;
+    }
+  };
+
+  const clearCountdownTimer = () => {
+    if (countdownInterval !== undefined) {
+      window.clearInterval(countdownInterval);
+      countdownInterval = undefined;
+    }
+  };
+
+  const startTimelineProgress = () => {
+    const startedAt = performance.now();
+
+    clearTimelineProgress();
+    setTimelineElapsedMs(0);
+    const tick = (now: number) => {
+      const elapsed = Math.min(recordingTimelineDurationMs, now - startedAt);
+
+      setTimelineElapsedMs(elapsed);
+      if (elapsed < recordingTimelineDurationMs && (status() === "countdown" || status() === "recording")) {
+        timelineFrame = window.requestAnimationFrame(tick);
+        return;
+      }
+
+      timelineFrame = undefined;
+    };
+
+    timelineFrame = window.requestAnimationFrame(tick);
+  };
+
+  const clearTimelineProgress = () => {
+    if (timelineFrame !== undefined) {
+      window.cancelAnimationFrame(timelineFrame);
+      timelineFrame = undefined;
     }
   };
 
@@ -1580,8 +1755,11 @@ function ContributionPage(props: {
   };
 
   const discardRecording = () => {
+    clearRecordingTimers();
+    stopRecording();
     setRecordingBlob(null);
     setRecordingUrl(null);
+    setTimelineElapsedMs(0);
     setStatus("idle");
     setError(null);
   };
@@ -1655,28 +1833,51 @@ function ContributionPage(props: {
         <section class="contribution-card recorder-card">
           <p class="eyebrow">Step 1</p>
           <h3>Record your sample</h3>
-          <p class="contribution-card-copy">Use a quiet room and say the word once, naturally.</p>
+          <p class="contribution-card-copy">Use a quiet room. After the countdown, say the word once, naturally.</p>
+          <div
+            class="recording-timeline"
+            data-state={status()}
+            role="progressbar"
+            aria-label="Recording countdown and capture progress"
+            aria-valuemin={0}
+            aria-valuemax={5}
+            aria-valuenow={Math.round(timelineElapsedMs() / 100) / 10}
+            style={`--countdown-progress: ${countdownProgressPercent()}%; --recording-progress: ${recordingProgressPercent()}%;`}
+          >
+            <div class="recording-timeline-bar" aria-hidden="true">
+              <div class="recording-timeline-segment countdown-segment">
+                <div class="recording-timeline-segment-fill countdown-fill" />
+                <span>Get ready</span>
+                <strong>3s</strong>
+              </div>
+              <div class="recording-timeline-segment recording-segment">
+                <div class="recording-timeline-segment-fill recording-fill" />
+                <span>Speak</span>
+                <strong>2s</strong>
+              </div>
+            </div>
+            <div class="recording-timeline-labels" aria-hidden="true">
+              <span>Countdown</span>
+              <span>Recording</span>
+            </div>
+            <p class="recording-timeline-help">{timelineMessage()}</p>
+          </div>
           <Show when={recorderAvailable()} fallback={
             <p class="error-message">Recording is not available in this browser.</p>
           }>
             <div class="recorder-actions">
-              <Show when={status() === "recording"} fallback={
-                <button class="primary-button" type="button" onClick={() => void startRecording()}>
-                  Start recording
-                </button>
-              }>
-                <button class="primary-button" type="button" onClick={stopRecording}>
-                  Stop recording
-                </button>
-              </Show>
-              <button class="small-button" type="button" disabled={!recordingBlob()} onClick={discardRecording}>
+              <button
+                class="primary-button"
+                type="button"
+                disabled={recordingInProgress()}
+                onClick={() => void startRecording()}
+              >
+                {recordButtonText()}
+              </button>
+              <button class="small-button" type="button" disabled={!recordingBlob() || recordingInProgress()} onClick={discardRecording}>
                 Discard
               </button>
             </div>
-          </Show>
-
-          <Show when={status() === "recording"}>
-            <p class="recording-status">Recording now...</p>
           </Show>
           <Show when={recordingUrl()}>
             {(url) => (
@@ -1694,7 +1895,7 @@ function ContributionPage(props: {
         <section class="contribution-card contribution-form-card">
           <p class="eyebrow">Step 2</p>
           <h3>Licence and download</h3>
-          <p class="contribution-card-copy">CC0 is easiest. Pick CC BY 4.0 if you want your name attached.</p>
+          <p class="contribution-card-copy">CC0 is easiest. Pick CC BY 4.0 if you require your name to be attached.</p>
           <label class="field-label">
             Licence
             <select value={licence()} onInput={(event) => setLicence(event.currentTarget.value as ContributionLicence)}>
@@ -1726,6 +1927,15 @@ function ContributionPage(props: {
           <Show when={requiresAttributionName() && speakerName().trim().length === 0}>
             <p class="muted">CC BY 4.0 needs a name for attribution. CC0 does not.</p>
           </Show>
+        </section>
+
+        <section class="contribution-card contribution-send-card">
+          <p class="eyebrow">Step 3</p>
+          <h3>Send your contribution</h3>
+          <p class="contribution-card-copy">
+            Send the downloaded ZIP to bovine3dom on <a href="https://github.com/bovine3dom/vowel_trowel/issues/new" target="_blank" rel="noreferrer">GitHub</a>,
+            or however you usually talk to him.
+          </p>
         </section>
       </div>
     </section>
@@ -2582,6 +2792,56 @@ function saveSpeechVoiceURI(voiceURI: string | null): void {
   }
 
   localStorage.removeItem(SPEECH_VOICE_STORAGE_KEY);
+}
+
+function createDefaultContributionDetails(): ContributionDetails {
+  return {
+    schemaVersion: 1,
+    licence: "CC0-1.0",
+    speakerName: "",
+    accent: "",
+  };
+}
+
+function loadContributionDetails(): ContributionDetails {
+  if (typeof localStorage === "undefined") {
+    return createDefaultContributionDetails();
+  }
+
+  const raw = localStorage.getItem(CONTRIBUTION_DETAILS_STORAGE_KEY);
+
+  if (!raw) {
+    return createDefaultContributionDetails();
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as Partial<ContributionDetails>;
+
+    if (parsed.schemaVersion !== 1) {
+      return createDefaultContributionDetails();
+    }
+
+    return {
+      schemaVersion: 1,
+      licence: isContributionLicence(parsed.licence) ? parsed.licence : "CC0-1.0",
+      speakerName: typeof parsed.speakerName === "string" ? parsed.speakerName : "",
+      accent: typeof parsed.accent === "string" ? parsed.accent : "",
+    };
+  } catch {
+    return createDefaultContributionDetails();
+  }
+}
+
+function saveContributionDetails(details: ContributionDetails): void {
+  if (typeof localStorage === "undefined") {
+    return;
+  }
+
+  localStorage.setItem(CONTRIBUTION_DETAILS_STORAGE_KEY, JSON.stringify(details));
+}
+
+function isContributionLicence(value: unknown): value is ContributionLicence {
+  return value === "CC0-1.0" || value === "CC-BY-4.0";
 }
 
 function createPracticeDataset(sourceDataset: LanguageDataset, ttsEnabled: boolean): LanguageDataset {

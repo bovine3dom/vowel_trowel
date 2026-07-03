@@ -1,5 +1,6 @@
-import { execFileSync, spawn } from "node:child_process";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { execFileSync, spawn, spawnSync } from "node:child_process";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import * as path from "node:path";
 import { stdin as input, stdout as output } from "node:process";
 import { emitKeypressEvents } from "node:readline";
@@ -33,6 +34,32 @@ interface CliOptions {
 }
 
 type AudioCandidateSource = "wiktionary" | "mswc" | "contribution";
+type AudioCleanupFilterId = "volume" | "noise" | "click" | "crop";
+
+interface CandidateAudioPointer {
+  localPath: string;
+  metadataPath?: string;
+  datasetSrc?: string;
+  suggestedAudioSource?: AudioSource;
+}
+
+interface AudioProcessingStep {
+  filter: AudioCleanupFilterId;
+  label: string;
+  tool: string;
+  command: string;
+  inputPath: string;
+  outputPath: string;
+  datasetSrc: string;
+  metadataPath: string;
+  appliedAt: string;
+}
+
+interface AudioProcessingState {
+  original: CandidateAudioPointer;
+  history: AudioProcessingStep[];
+  currentStep: number;
+}
 
 interface ReviewedReport {
   words?: ReviewedWord[];
@@ -89,6 +116,7 @@ interface ReviewedCandidate {
     notes?: string[];
   };
   suggestedAudioSource?: AudioSource;
+  audioProcessing?: AudioProcessingState;
   review?: {
     status?: string;
     accent?: string;
@@ -126,6 +154,11 @@ const options = parseArgs(process.argv.slice(2));
 const report = JSON.parse(await readFile(options.report, "utf8")) as ReviewedReport;
 let reviewState = await loadReviewState(options.reviewStatePath);
 const decisionHistory: DecisionHistoryEntry[] = [];
+let pipedCommandBuffer: string[] | null = null;
+const cleanupTools = {
+  sox: commandExists("sox"),
+  ffmpeg: commandExists("ffmpeg"),
+};
 
 const mergedStoredReviews = applyStoredReviewsToReport(report, reviewState);
 const synced = syncReportReviewsToState(report, reviewState);
@@ -152,7 +185,7 @@ if (options.play && !player) {
   throw new Error("No audio player found. Install mpv, ffplay, or sox/play; pass --player=<command>; or use --no-play.");
 }
 
-const rl = createInterface({ input, output });
+const rl = input.isTTY ? createInterface({ input, output }) : null;
 
 try {
   let reviewed = 0;
@@ -211,14 +244,14 @@ try {
   console.log(`Reviewed ${reviewed} candidate${reviewed === 1 ? "" : "s"}.`);
   console.log(`Updated ${options.report} and ${options.reviewStatePath}.`);
 } finally {
-  rl.close();
+  rl?.close();
 }
 
 async function reviewItem(
   item: ReviewItem,
   index: number,
   total: number,
-  rl: Interface,
+  rl: Interface | null,
   player: PlayerSpec | null,
   opts: CliOptions,
 ): Promise<ReviewOutcome> {
@@ -229,7 +262,10 @@ async function reviewItem(
   }
 
   while (true) {
-    const command = await readCommandKey(rl, "Choice [a]pprove [r]eject [s]kip [w]ord [p]lay [u]ndo [q]uit: ");
+    const command = await readCommandKey(
+      rl,
+      "Choice [a]pprove [r]eject [s]kip [w]ord [p]lay [u]ndo decision [q]uit | filters [v]olume [n]oise [k]lick [c]rop [z]undo [y]redo: ",
+    );
 
     if (command === "p") {
       if (!player) {
@@ -251,6 +287,36 @@ async function reviewItem(
 
     if (command === "u") {
       return "undo";
+    }
+
+    if (command === "v") {
+      await applyCleanupFilter(item, "volume", player);
+      continue;
+    }
+
+    if (command === "n") {
+      await applyCleanupFilter(item, "noise", player);
+      continue;
+    }
+
+    if (command === "k") {
+      await applyCleanupFilter(item, "click", player);
+      continue;
+    }
+
+    if (command === "c") {
+      await applyCleanupFilter(item, "crop", player);
+      continue;
+    }
+
+    if (command === "z") {
+      await moveCleanupHistory(item, -1, player);
+      continue;
+    }
+
+    if (command === "y") {
+      await moveCleanupHistory(item, 1, player);
+      continue;
     }
 
     if (command === "q") {
@@ -279,13 +345,17 @@ async function reviewItem(
       return "reviewed";
     }
 
-    console.log("Unknown choice. Use a, r, s, w, p, u, or q.");
+    console.log("Unknown choice. Use a, r, s, w, p, u, q, v, n, k, c, z, or y.");
   }
 }
 
-async function readCommandKey(rl: Interface, prompt: string): Promise<string> {
-  if (!input.isTTY || typeof input.setRawMode !== "function") {
-    return ((await rl.question(prompt)).trim().toLowerCase()[0] ?? "");
+async function readCommandKey(rl: Interface | null, prompt: string): Promise<string> {
+  if (!input.isTTY || typeof input.setRawMode !== "function" || !rl) {
+    pipedCommandBuffer ??= await readPipedCommands();
+    const command = pipedCommandBuffer.shift() ?? "q";
+
+    output.write(`${prompt}${command}\n`);
+    return command;
   }
 
   emitKeypressEvents(input);
@@ -322,6 +392,20 @@ async function readCommandKey(rl: Interface, prompt: string): Promise<string> {
 
     input.on("keypress", onKeypress);
   });
+}
+
+async function readPipedCommands(): Promise<string[]> {
+  const chunks: Buffer[] = [];
+
+  for await (const chunk of input) {
+    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+  }
+
+  return Buffer.concat(chunks)
+    .toString("utf8")
+    .split(/\r?\n/)
+    .map((line) => line.trim().toLowerCase()[0] ?? "")
+    .filter(Boolean);
 }
 
 async function promptApprovalDetails(
@@ -382,10 +466,7 @@ async function undoLastDecision(): Promise<ReviewItem | null> {
 
   const key = createCandidateKey(getCandidateIdentity(previous.item.word, previous.item.candidate));
 
-  Object.keys(previous.item.candidate).forEach((candidateKey) => {
-    delete previous.item.candidate[candidateKey as keyof ReviewableCandidate];
-  });
-  Object.assign(previous.item.candidate, previous.previousCandidate);
+  restoreCandidate(previous.item.candidate, previous.previousCandidate);
 
   if (previous.previousStoredReview) {
     reviewState = upsertStoredReview(reviewState, previous.previousStoredReview);
@@ -405,6 +486,298 @@ async function undoLastDecision(): Promise<ReviewItem | null> {
   console.log("Undid last decision.");
 
   return previous.item;
+}
+
+async function applyCleanupFilter(
+  item: ReviewItem,
+  filterId: AudioCleanupFilterId,
+  player: PlayerSpec | null,
+): Promise<void> {
+  const filter = getCleanupFilter(filterId);
+
+  if (!filter) {
+    console.log(`Unknown audio filter ${filterId}.`);
+    return;
+  }
+
+  if (!isCleanupFilterAvailable(filterId)) {
+    console.log(`${filter.label} requires ${requiredCleanupTool(filterId)}.`);
+    return;
+  }
+
+  const state = getAudioProcessingState(item.candidate);
+  const retainedHistory = state.history.slice(0, state.currentStep + 1);
+  const outputPath = createProcessedAudioPath(state.original.localPath, filterId, retainedHistory.length + 1);
+  const metadataPath = `${outputPath}.metadata.json`;
+  const previousCandidate = cloneCandidate(item.candidate);
+
+  try {
+    await mkdir(path.dirname(path.resolve(outputPath)), { recursive: true });
+    const command = await runCleanupFilter(filterId, item.candidate.localPath, outputPath);
+    const step: AudioProcessingStep = {
+      filter: filterId,
+      label: filter.label,
+      tool: requiredCleanupTool(filterId),
+      command,
+      inputPath: item.candidate.localPath,
+      outputPath,
+      datasetSrc: toDatasetAudioSrc(outputPath),
+      metadataPath,
+      appliedAt: new Date().toISOString(),
+    };
+
+    item.candidate.audioProcessing = {
+      original: state.original,
+      history: [...retainedHistory, step],
+      currentStep: retainedHistory.length,
+    };
+    setCandidateAudioPointer(item.candidate, pointerFromStep(step));
+
+    await persistAudioEdit(item);
+    console.log(`Applied ${filter.label}. Current file: ${item.candidate.localPath}`);
+  } catch (error) {
+    restoreCandidate(item.candidate, previousCandidate);
+    await rm(outputPath, { force: true }).catch(() => undefined);
+    console.log(`Could not apply ${filter.label}: ${formatErrorMessage(error)}`);
+    return;
+  }
+
+  await playAfterAudioEdit(player, item.candidate.localPath);
+}
+
+async function moveCleanupHistory(
+  item: ReviewItem,
+  direction: -1 | 1,
+  player: PlayerSpec | null,
+): Promise<void> {
+  const state = getAudioProcessingState(item.candidate);
+  const nextStep = state.currentStep + direction;
+
+  if (nextStep < -1) {
+    console.log("No audio filter change to undo.");
+    return;
+  }
+
+  if (nextStep >= state.history.length) {
+    console.log("No audio filter change to redo.");
+    return;
+  }
+
+  item.candidate.audioProcessing = {
+    ...state,
+    currentStep: nextStep,
+  };
+  setCandidateAudioPointer(
+    item.candidate,
+    nextStep >= 0 ? pointerFromStep(state.history[nextStep] as AudioProcessingStep) : state.original,
+  );
+
+  await persistAudioEdit(item);
+  console.log(`${direction < 0 ? "Undid" : "Redid"} audio filter change. Current file: ${item.candidate.localPath}`);
+  await playAfterAudioEdit(player, item.candidate.localPath);
+}
+
+async function persistAudioEdit(item: ReviewItem): Promise<void> {
+  await writeJson(options.report, report);
+  await updateMetadataFile(item.candidate);
+}
+
+async function playAfterAudioEdit(player: PlayerSpec | null, localPath: string): Promise<void> {
+  if (!player) {
+    return;
+  }
+
+  try {
+    await playCandidate(player, localPath);
+  } catch (error) {
+    console.log(`Could not play edited audio: ${formatErrorMessage(error)}`);
+  }
+}
+
+function restoreCandidate(candidate: ReviewableCandidate, previous: ReviewableCandidate): void {
+  Object.keys(candidate).forEach((candidateKey) => {
+    delete candidate[candidateKey as keyof ReviewableCandidate];
+  });
+  Object.assign(candidate, previous);
+}
+
+function getCleanupFilter(filterId: AudioCleanupFilterId): { label: string } | null {
+  switch (filterId) {
+    case "volume":
+      return { label: "volume normalization" };
+    case "noise":
+      return { label: "background noise reduction" };
+    case "click":
+      return { label: "click removal" };
+    case "crop":
+      return { label: "automatic cropping" };
+  }
+}
+
+function isCleanupFilterAvailable(filterId: AudioCleanupFilterId): boolean {
+  return requiredCleanupTool(filterId) === "sox" ? cleanupTools.sox : cleanupTools.ffmpeg;
+}
+
+function requiredCleanupTool(filterId: AudioCleanupFilterId): "sox" | "ffmpeg" {
+  return filterId === "click" ? "ffmpeg" : "sox";
+}
+
+async function runCleanupFilter(
+  filterId: AudioCleanupFilterId,
+  inputPath: string,
+  outputPath: string,
+): Promise<string> {
+  switch (filterId) {
+    case "volume":
+      return runAudioCommand("sox", ["-G", path.resolve(inputPath), path.resolve(outputPath), "norm", "-3"]);
+    case "crop":
+      return runAudioCommand("sox", [
+        "-G",
+        path.resolve(inputPath),
+        path.resolve(outputPath),
+        "silence",
+        "1",
+        "0.05",
+        "-45d",
+        "reverse",
+        "silence",
+        "1",
+        "0.10",
+        "-45d",
+        "reverse",
+        "pad",
+        "0.06",
+        "0.08",
+      ]);
+    case "noise":
+      return await runNoiseReduction(inputPath, outputPath);
+    case "click":
+      return runAudioCommand("ffmpeg", [
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-y",
+        "-i",
+        path.resolve(inputPath),
+        "-vn",
+        "-af",
+        "adeclick",
+        "-c:a",
+        "libvorbis",
+        "-q:a",
+        "5",
+        path.resolve(outputPath),
+      ]);
+  }
+}
+
+async function runNoiseReduction(inputPath: string, outputPath: string): Promise<string> {
+  const tempDir = await mkdtemp(path.join(tmpdir(), "vowel-trowel-noise-"));
+  const profilePath = path.join(tempDir, "noise.prof");
+
+  try {
+    const profileCommand = runAudioCommand("sox", [
+      path.resolve(inputPath),
+      "-n",
+      "trim",
+      "0",
+      "0.25",
+      "noiseprof",
+      profilePath,
+    ]);
+    const reduceCommand = runAudioCommand("sox", [
+      "-G",
+      path.resolve(inputPath),
+      path.resolve(outputPath),
+      "highpass",
+      "80",
+      "noisered",
+      profilePath,
+      "0.12",
+    ]);
+
+    return `${profileCommand} && ${reduceCommand}`;
+  } finally {
+    await rm(tempDir, { recursive: true, force: true });
+  }
+}
+
+function runAudioCommand(command: string, args: readonly string[]): string {
+  const result = spawnSync(command, args, { encoding: "utf8" });
+
+  if (result.error) {
+    throw result.error;
+  }
+
+  if (result.status !== 0) {
+    const details = result.stderr?.trim() || result.stdout?.trim();
+    throw new Error(`${command} exited with code ${result.status ?? "unknown"}${details ? `: ${details}` : ""}`);
+  }
+
+  return formatCommand(command, args);
+}
+
+function formatCommand(command: string, args: readonly string[]): string {
+  return [command, ...args].map(formatCommandPart).join(" ");
+}
+
+function formatCommandPart(value: string): string {
+  return /^[a-zA-Z0-9_./:=@+-]+$/.test(value) ? value : JSON.stringify(value);
+}
+
+function createProcessedAudioPath(originalPath: string, filterId: AudioCleanupFilterId, stepNumber: number): string {
+  const parsed = path.parse(originalPath);
+  const paddedStep = stepNumber.toString().padStart(2, "0");
+
+  return path.join(parsed.dir, `${parsed.name}--clean-${paddedStep}-${filterId}.ogg`);
+}
+
+function getAudioProcessingState(candidate: ReviewableCandidate): AudioProcessingState {
+  const existing = candidate.audioProcessing;
+  const history = existing?.history ?? [];
+  const currentStep = existing && Number.isInteger(existing.currentStep)
+    ? Math.max(-1, Math.min(existing.currentStep, history.length - 1))
+    : history.length - 1;
+
+  return {
+    original: existing?.original ?? {
+      localPath: candidate.localPath,
+      metadataPath: candidate.metadataPath,
+      datasetSrc: candidate.datasetSrc,
+      suggestedAudioSource: candidate.suggestedAudioSource,
+    },
+    history,
+    currentStep,
+  };
+}
+
+function pointerFromStep(step: AudioProcessingStep): CandidateAudioPointer {
+  return {
+    localPath: step.outputPath,
+    metadataPath: step.metadataPath,
+    datasetSrc: step.datasetSrc,
+  };
+}
+
+function setCandidateAudioPointer(candidate: ReviewableCandidate, pointer: CandidateAudioPointer): void {
+  candidate.localPath = pointer.localPath;
+  candidate.metadataPath = pointer.metadataPath ?? `${pointer.localPath}.metadata.json`;
+  candidate.datasetSrc = pointer.datasetSrc ?? toDatasetAudioSrc(pointer.localPath);
+  candidate.suggestedAudioSource = pointer.suggestedAudioSource
+    ? { ...pointer.suggestedAudioSource, src: candidate.datasetSrc }
+    : compactAudioSource({
+      ...(candidate.suggestedAudioSource ?? createAudioSource(
+        candidate,
+        candidate.datasetSrc,
+        candidate.review?.accent,
+        meaningfulNotes(candidate.review?.notes),
+      )),
+      src: candidate.datasetSrc,
+    });
+}
+
+function formatErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
 }
 
 function setCandidateDecision(
@@ -497,32 +870,38 @@ async function updateMetadataFile(candidate: ReviewableCandidate): Promise<void>
     return;
   }
 
-  try {
-    const metadata = JSON.parse(await readFile(candidate.metadataPath, "utf8")) as unknown;
+  let metadata: Record<string, unknown> = {};
 
-    if (!isRecord(metadata)) {
+  try {
+    const parsed = JSON.parse(await readFile(candidate.metadataPath, "utf8")) as unknown;
+
+    if (!isRecord(parsed)) {
       return;
     }
 
-    const existingCandidate = isRecord(metadata.candidate) ? metadata.candidate : {};
-
-    await writeJson(candidate.metadataPath, {
-      ...metadata,
-      candidate: {
-        ...existingCandidate,
-        key: candidate.key,
-        localPath: candidate.localPath,
-        metadataPath: candidate.metadataPath,
-        datasetSrc: candidate.datasetSrc,
-        suggestedAudioSource: candidate.suggestedAudioSource,
-        review: candidate.review,
-      },
-    });
+    metadata = parsed;
   } catch (error) {
     if (!isMissingFileError(error)) {
       throw error;
     }
   }
+
+  const existingCandidate = isRecord(metadata.candidate) ? metadata.candidate : {};
+
+  await writeJson(candidate.metadataPath, {
+    ...metadata,
+    updatedAt: new Date().toISOString(),
+    candidate: {
+      ...existingCandidate,
+      key: candidate.key,
+      localPath: candidate.localPath,
+      metadataPath: candidate.metadataPath,
+      datasetSrc: candidate.datasetSrc,
+      suggestedAudioSource: candidate.suggestedAudioSource,
+      audioProcessing: candidate.audioProcessing,
+      review: candidate.review,
+    },
+  });
 }
 
 function applyStoredReviewsToReport(report: ReviewedReport, state: AudioReviewState): boolean {
@@ -641,6 +1020,7 @@ function printCandidate(item: ReviewItem, index: number, total: number): void {
   console.log(`Attribution: ${candidate.attribution ?? candidate.artist ?? candidate.credit ?? "unknown"}`);
   console.log(`Regions: ${candidate.regions?.length ? candidate.regions.join(", ") : "none detected"}`);
   console.log(`Target phonemes: ${candidate.targetPhonemeIds?.length ? candidate.targetPhonemeIds.join(", ") : word.phonemeIds?.join(", ") ?? "unknown"}`);
+  console.log(`Processing: ${formatAudioProcessing(candidate)}`);
   console.log(`IPA check: ${formatCandidateIpaCheck(candidate)}`);
 
   if (candidate.graphemeCheck) {
@@ -654,6 +1034,22 @@ function printCandidate(item: ReviewItem, index: number, total: number): void {
   if (candidate.score !== undefined) {
     console.log(`Score: ${candidate.score}${candidate.reasons?.length ? ` (${candidate.reasons.join("; ")})` : ""}`);
   }
+}
+
+function formatAudioProcessing(candidate: ReviewedCandidate): string {
+  const state = candidate.audioProcessing;
+
+  if (!state?.history.length) {
+    return "original";
+  }
+
+  const currentStep = Math.max(-1, Math.min(state.currentStep, state.history.length - 1));
+  const applied = currentStep >= 0
+    ? state.history.slice(0, currentStep + 1).map((step) => step.label).join(" -> ")
+    : "original";
+  const redoCount = state.history.length - currentStep - 1;
+
+  return redoCount > 0 ? `${applied}; ${redoCount} redo step${redoCount === 1 ? "" : "s"} available` : applied;
 }
 
 function formatCandidateIpaCheck(candidate: ReviewedCandidate): string {
@@ -804,6 +1200,7 @@ function parseArgs(args: string[]): CliOptions {
 function printUsage(): void {
   console.log("Usage: bun run audio:review -- [options]");
   console.log("Options: --source=wiktionary|mswc|contribution --language=en-GB --words=ship,sheep --limit=10 --include-reviewed --player=mpv --no-autoplay --no-play");
+  console.log("During review: v=normalize volume, n=reduce noise, k=remove clicks, c=crop silence, z/y=undo/redo audio filters.");
 }
 
 function getLanguagePathDefaults(languageId: string, source: AudioCandidateSource): { report: string; reviewState: string } {
