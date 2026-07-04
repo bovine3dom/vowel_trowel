@@ -1,7 +1,7 @@
 import { getLanguageSlug } from "../languages";
 import type { LanguageDataset, PhonemeId, WordEntry } from "../languages/types";
 
-export const DEFAULT_CONTRIBUTION_TARGET_RECORDINGS = 4;
+export const DEFAULT_CONTRIBUTION_TARGET_RECORDINGS = 6;
 
 export interface ContributionQueueItem {
   word: WordEntry;
