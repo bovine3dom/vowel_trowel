@@ -9,16 +9,49 @@ import type {
 
 export function getResolvedMinimalPairs(dataset: LanguageDataset): MinimalPairItem[] {
   return dataset.contrasts.flatMap((contrast) =>
-    contrast.minimalPairs.map((pair) => ({
-      id: pair.id,
-      contrastId: contrast.id,
-      terms: [
-        resolveMinimalPairTerm(dataset, contrast, pair.id, pair.terms[0]),
-        resolveMinimalPairTerm(dataset, contrast, pair.id, pair.terms[1]),
-      ],
-      tags: pair.tags,
-      notes: pair.notes,
-    })),
+    getResolvedMinimalPairsForPhonemes(dataset, contrast.phonemeIds, contrast.id)
+  );
+}
+
+export function getResolvedMinimalPairsForPhonemes(
+  dataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+  contrastId = `custom:${phonemeIds[0]}:${phonemeIds[1]}`,
+): MinimalPairItem[] {
+  const [firstPhonemeId, secondPhonemeId] = phonemeIds;
+  const firstWords = candidateWordsForPhoneme(dataset, firstPhonemeId, secondPhonemeId);
+  const secondWords = candidateWordsForPhoneme(dataset, secondPhonemeId, firstPhonemeId);
+
+  return firstWords.flatMap((firstWord) =>
+    secondWords.flatMap((secondWord): MinimalPairItem[] => {
+      if (firstWord.id === secondWord.id) {
+        return [];
+      }
+
+      return [{
+        id: `${contrastId}:${firstWord.id}:${secondWord.id}`,
+        contrastId,
+        terms: [
+          createWordTerm(firstWord, firstPhonemeId),
+          createWordTerm(secondWord, secondPhonemeId),
+        ],
+        tags: ["generated"],
+      }];
+    })
+  );
+}
+
+export function countResolvedMinimalPairsForPhonemes(
+  dataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+): number {
+  const [firstPhonemeId, secondPhonemeId] = phonemeIds;
+  const firstWords = candidateWordsForPhoneme(dataset, firstPhonemeId, secondPhonemeId);
+  const secondWords = candidateWordsForPhoneme(dataset, secondPhonemeId, firstPhonemeId);
+
+  return firstWords.reduce(
+    (total, firstWord) => total + secondWords.filter((secondWord) => secondWord.id !== firstWord.id).length,
+    0,
   );
 }
 
@@ -42,24 +75,18 @@ export function findWord(dataset: LanguageDataset, wordId: string): WordEntry | 
   return dataset.words.find((word) => word.id === wordId);
 }
 
-function resolveMinimalPairTerm(
+function candidateWordsForPhoneme(
   dataset: LanguageDataset,
-  contrast: PhonemeContrast,
-  pairId: string,
-  term: { id?: string; wordId: string; phonemeId: PhonemeId },
-): MinimalPairTerm {
-  const word = findWord(dataset, term.wordId);
+  phonemeId: PhonemeId,
+  excludedPhonemeId: PhonemeId,
+): WordEntry[] {
+  const exactWords = dataset.words.filter((word) =>
+    word.phonemeIds.includes(phonemeId) && !word.phonemeIds.includes(excludedPhonemeId)
+  );
 
-  if (!word) {
-    throw new Error(`Minimal pair ${pairId} in ${contrast.id} references missing word ${term.wordId}.`);
-  }
-
-  return {
-    id: term.id ?? term.wordId,
-    wordId: term.wordId,
-    phonemeId: term.phonemeId,
-    word,
-  };
+  return exactWords.length > 0
+    ? exactWords
+    : dataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
 }
 
 function createWordTerm(word: WordEntry, phonemeId: PhonemeId): MinimalPairTerm {

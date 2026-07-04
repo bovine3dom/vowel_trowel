@@ -223,9 +223,9 @@ test("opens target vowel practice", async ({ page }) => {
 });
 
 test("explores a sound and returns without adding an extra history entry", async ({ page }) => {
-  await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes");
+  await page.goto("/?lang=fr&mode=match&phonemes=fr-s,fr-z&tab=phonemes");
 
-  const firstSoundCard = page.locator(".phoneme-card").filter({ hasText: "/u/" }).first();
+  const firstSoundCard = page.locator(".phoneme-card").filter({ hasText: "voiceless alveolar fricative" }).first();
   await expect(firstSoundCard.locator(".phoneme-examples")).toBeVisible();
   const exampleWordCount = await firstSoundCard.locator(".phoneme-example-word").count();
   expect(exampleWordCount).toBeGreaterThan(0);
@@ -244,14 +244,14 @@ test("explores a sound and returns without adding an extra history entry", async
 
   await firstSoundCard.getByRole("button", { name: "Explore words" }).click();
 
-  await expect(page).toHaveURL(/explore=fr-u/);
-  await expect(page.getByRole("heading", { name: "close back rounded vowel" })).toBeVisible();
+  await expect(page).toHaveURL(/explore=fr-s/);
+  await expect(page.getByRole("heading", { name: "voiceless alveolar fricative" })).toBeVisible();
   await expect(page.locator(".phoneme-explorer .explore-word-card").first()).toBeVisible();
-  await expect(page.locator(".phoneme-explorer").getByText("coussin")).toHaveCount(0);
+  await expect(page.locator(".phoneme-explorer").getByText("saule")).toHaveCount(0);
   await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" })).toHaveCount(0);
 
   await page.getByLabel("Show words missing recordings").check();
-  await expect(page.locator(".phoneme-explorer").getByText("coussin")).toBeVisible();
+  await expect(page.locator(".phoneme-explorer").getByText("saule")).toBeVisible();
 
   await page.getByRole("button", { name: "Back to sounds" }).click();
 
@@ -260,11 +260,11 @@ test("explores a sound and returns without adding an extra history entry", async
 });
 
 test("can show fallback-only words when TTS flag is enabled", async ({ page }) => {
-  await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes&explore=fr-u&tts=1");
+  await page.goto("/?lang=fr&mode=match&phonemes=fr-s,fr-z&tab=phonemes&explore=fr-s&tts=1");
 
-  await expect(page.locator(".phoneme-explorer").getByText("coussin")).toHaveCount(0);
+  await expect(page.locator(".phoneme-explorer").getByText("saule")).toHaveCount(0);
   await page.getByLabel("Show words missing recordings").check();
-  await expect(page.locator(".phoneme-explorer").getByText("coussin")).toBeVisible();
+  await expect(page.locator(".phoneme-explorer").getByText("saule")).toBeVisible();
   await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" }).first()).toBeVisible();
   await expect(page.getByText("Browser voice", { exact: true }).first()).toBeVisible();
   await expect(page).toHaveURL(/tts=1/);

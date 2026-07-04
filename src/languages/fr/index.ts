@@ -1,4 +1,4 @@
-import type { LanguageDataset, MinimalPairDefinition, PhonemeId, WordEntry } from "../types";
+import type { LanguageDataset, PhonemeId, WordEntry } from "../types";
 import { approvedFrenchAudio } from "./audio";
 
 const words: WordEntry[] = [
@@ -287,18 +287,6 @@ export const frenchDataset: LanguageDataset = {
       category: "vowel",
       description: "Back rounded /u/ against front rounded /y/.",
       tags: ["rounded", "front-back"],
-      minimalPairs: [
-        pair("fr-u-y-roue-rue", ["roue", "fr-u"], ["rue", "fr-y"]),
-        pair("fr-u-y-vous-vu", ["vous", "fr-u"], ["vu", "fr-y"]),
-        pair("fr-u-y-tout-tu", ["tout", "fr-u"], ["tu", "fr-y"]),
-        pair("fr-u-y-nous-nu", ["nous", "fr-u"], ["nu", "fr-y"]),
-        pair("fr-u-y-sous-su", ["sous", "fr-u"], ["su", "fr-y"]),
-        pair("fr-u-y-doux-du", ["doux", "fr-u"], ["du", "fr-y"]),
-        pair("fr-u-y-loup-lu", ["loup", "fr-u"], ["lu", "fr-y"]),
-        pair("fr-u-y-boue-bu", ["boue", "fr-u"], ["bu", "fr-y"]),
-        pair("fr-u-y-moue-mue", ["moue", "fr-u"], ["mue", "fr-y"]),
-        pair("fr-u-y-poux-pu", ["poux", "fr-u"], ["pu", "fr-y"]),
-      ],
     },
     {
       id: "fr-e-epsilon",
@@ -307,16 +295,6 @@ export const frenchDataset: LanguageDataset = {
       category: "vowel",
       description: "Close-mid /e/ against open-mid /ɛ/.",
       tags: ["mid-vowels"],
-      minimalPairs: [
-        pair("fr-e-epsilon-des-des", ["des", "fr-e"], ["des-grave", "fr-epsilon"]),
-        pair("fr-e-epsilon-pre-pres", ["pre", "fr-e"], ["pres", "fr-epsilon"]),
-        pair("fr-e-epsilon-fee-fait", ["fee", "fr-e"], ["fait", "fr-epsilon"]),
-        pair("fr-e-epsilon-the-taie", ["the", "fr-e"], ["taie", "fr-epsilon"]),
-        pair("fr-e-epsilon-les-lait", ["les", "fr-e"], ["lait", "fr-epsilon"]),
-        pair("fr-e-epsilon-mes-mais", ["mes", "fr-e"], ["mais", "fr-epsilon"]),
-        pair("fr-e-epsilon-ne-nait", ["ne", "fr-e"], ["nait", "fr-epsilon"]),
-        pair("fr-e-epsilon-ses-sait", ["ses", "fr-e"], ["sait", "fr-epsilon"]),
-      ],
     },
     {
       id: "fr-o-open-o",
@@ -325,15 +303,6 @@ export const frenchDataset: LanguageDataset = {
       category: "vowel",
       description: "Close-mid /o/ against open-mid /ɔ/.",
       tags: ["mid-vowels", "rounded"],
-      minimalPairs: [
-        pair("fr-o-open-o-paume-pomme", ["paume", "fr-o"], ["pomme", "fr-open-o"]),
-        pair("fr-o-open-o-saule-sol", ["saule", "fr-o"], ["sol", "fr-open-o"]),
-        pair("fr-o-open-o-cote-cotte", ["cote", "fr-o"], ["cotte", "fr-open-o"]),
-        pair("fr-o-open-o-saute-sotte", ["saute", "fr-o"], ["sotte", "fr-open-o"]),
-        pair("fr-o-open-o-haute-hotte", ["haute", "fr-o"], ["hotte", "fr-open-o"]),
-        pair("fr-o-open-o-mole-molle", ["mole", "fr-o"], ["molle", "fr-open-o"]),
-        pair("fr-o-open-o-notre", ["notre-circ", "fr-o"], ["notre", "fr-open-o"]),
-      ],
     },
     {
       id: "fr-oe-eu",
@@ -342,9 +311,6 @@ export const frenchDataset: LanguageDataset = {
       category: "vowel",
       description: "Open-mid front rounded /œ/ against close-mid front rounded /ø/.",
       tags: ["rounded", "mid-vowels"],
-      minimalPairs: [
-        pair("fr-oe-eu-jeune-jeune-circ", ["jeune", "fr-oe"], ["jeune-circ", "fr-eu"]),
-      ],
     },
     {
       id: "fr-an-in",
@@ -353,14 +319,6 @@ export const frenchDataset: LanguageDataset = {
       category: "vowel",
       description: "Two common French nasal vowels.",
       tags: ["nasal"],
-      minimalPairs: [
-        pair("fr-an-in-vent-vin", ["vent", "fr-an"], ["vin", "fr-in"]),
-        pair("fr-an-in-sang-sein", ["sang", "fr-an"], ["sein", "fr-in"]),
-        pair("fr-an-in-tant-teint", ["tant", "fr-an"], ["teint", "fr-in"]),
-        pair("fr-an-in-dent-daim", ["dent", "fr-an"], ["daim", "fr-in"]),
-        pair("fr-an-in-lent-lin", ["lent", "fr-an"], ["lin", "fr-in"]),
-        pair("fr-an-in-banc-bain", ["banc", "fr-an"], ["bain", "fr-in"]),
-      ],
     },
     {
       id: "fr-an-on",
@@ -369,14 +327,6 @@ export const frenchDataset: LanguageDataset = {
       category: "vowel",
       description: "Back nasal vowel contrast.",
       tags: ["nasal"],
-      minimalPairs: [
-        pair("fr-an-on-banc-bon", ["banc", "fr-an"], ["bon", "fr-on"]),
-        pair("fr-an-on-vent-vont", ["vent", "fr-an"], ["vont", "fr-on"]),
-        pair("fr-an-on-sans-son", ["sans", "fr-an"], ["son", "fr-on"]),
-        pair("fr-an-on-tant-ton", ["tant", "fr-an"], ["ton", "fr-on"]),
-        pair("fr-an-on-lent-long", ["lent", "fr-an"], ["long", "fr-on"]),
-        pair("fr-an-on-dans-don", ["dans", "fr-an"], ["don", "fr-on"]),
-      ],
     },
     {
       id: "fr-un-in",
@@ -385,9 +335,6 @@ export const frenchDataset: LanguageDataset = {
       category: "vowel",
       description: "The brun/brin contrast, preserved by some speakers and merged by others.",
       tags: ["nasal", "regional"],
-      minimalPairs: [
-        pair("fr-un-in-brun-brin", ["brun", "fr-un"], ["brin", "fr-in"]),
-      ],
     },
     {
       id: "fr-s-z",
@@ -396,15 +343,6 @@ export const frenchDataset: LanguageDataset = {
       category: "consonant",
       description: "Voiceless against voiced alveolar fricative.",
       tags: ["voicing", "fricatives"],
-      minimalPairs: [
-        pair("fr-s-z-poisson-poison", ["poisson", "fr-s"], ["poison", "fr-z"]),
-        pair("fr-s-z-coussin-cousin", ["coussin", "fr-s"], ["cousin", "fr-z"]),
-        pair("fr-s-z-dessert-desert", ["dessert", "fr-s"], ["desert", "fr-z"]),
-        pair("fr-s-z-basse-base", ["basse", "fr-s"], ["base", "fr-z"]),
-        pair("fr-s-z-casse-case", ["casse", "fr-s"], ["case", "fr-z"]),
-        pair("fr-s-z-race-rase", ["race", "fr-s"], ["rase", "fr-z"]),
-        pair("fr-s-z-visser-viser", ["visser", "fr-s"], ["viser", "fr-z"]),
-      ],
     },
     {
       id: "fr-sh-zh",
@@ -413,13 +351,6 @@ export const frenchDataset: LanguageDataset = {
       category: "consonant",
       description: "Voiceless against voiced postalveolar fricative.",
       tags: ["voicing", "fricatives"],
-      minimalPairs: [
-        pair("fr-sh-zh-chou-joue", ["chou", "fr-sh"], ["joue", "fr-zh"]),
-        pair("fr-sh-zh-cache-cage", ["cache", "fr-sh"], ["cage", "fr-zh"]),
-        pair("fr-sh-zh-bouche-bouge", ["bouche", "fr-sh"], ["bouge", "fr-zh"]),
-        pair("fr-sh-zh-hache-age", ["hache", "fr-sh"], ["age", "fr-zh"]),
-        pair("fr-sh-zh-manche-mange", ["manche", "fr-sh"], ["mange", "fr-zh"]),
-      ],
     },
   ],
 };
@@ -436,20 +367,5 @@ function word(
     ipa,
     phonemeIds,
     audio: approvedFrenchAudio[id] ?? [],
-  };
-}
-
-function pair(
-  id: string,
-  first: readonly [string, PhonemeId],
-  second: readonly [string, PhonemeId],
-): MinimalPairDefinition {
-  return {
-    id,
-    terms: [
-      { wordId: `fr-word-${first[0]}`, phonemeId: first[1] },
-      { wordId: `fr-word-${second[0]}`, phonemeId: second[1] },
-    ] as const,
-    tags: ["starter", "tts-placeholder"],
   };
 }

@@ -4,6 +4,7 @@ import * as path from "node:path";
 import { createInterface } from "node:readline";
 
 import { getLanguageDataset, getLanguageSlug, sameLanguageId } from "../src/languages";
+import { getWordsForContrastPhoneme } from "../src/languages/resolve";
 import type { AudioSource, LanguageDataset, Phoneme, PhonemeId, WordEntry } from "../src/languages/types";
 import {
   createDefaultVolumeProcessingState,
@@ -607,8 +608,8 @@ function createWordTargetInfo(
   const byWord = new Map<string, { targetPhonemeIds: Set<string>; targetContrasts: Set<string> }>();
 
   for (const contrast of dataset.contrasts) {
-    for (const pair of contrast.minimalPairs) {
-      for (const term of pair.terms) {
+    for (const phonemeId of contrast.phonemeIds) {
+      for (const term of getWordsForContrastPhoneme(dataset, contrast, phonemeId)) {
         const info = byWord.get(term.wordId) ?? { targetPhonemeIds: new Set<string>(), targetContrasts: new Set<string>() };
 
         info.targetPhonemeIds.add(term.phonemeId);

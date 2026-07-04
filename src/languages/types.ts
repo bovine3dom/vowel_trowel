@@ -20,7 +20,6 @@ export interface PhonemeContrast {
   phonemeIds: readonly [PhonemeId, PhonemeId];
   label: string;
   category: PhonemeCategory;
-  minimalPairs: readonly MinimalPairDefinition[];
   description?: string;
   tags?: readonly string[];
 }
@@ -45,19 +44,6 @@ export interface WordEntry {
   phonemeIds: readonly PhonemeId[];
   audio: readonly AudioSource[];
   speechText?: string;
-  notes?: string;
-}
-
-export interface MinimalPairTermRef {
-  id?: string;
-  wordId: WordId;
-  phonemeId: PhonemeId;
-}
-
-export interface MinimalPairDefinition {
-  id: MinimalPairId;
-  terms: readonly [MinimalPairTermRef, MinimalPairTermRef];
-  tags?: readonly string[];
   notes?: string;
 }
 

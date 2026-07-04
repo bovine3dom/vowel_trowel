@@ -5,7 +5,7 @@ import type {
   PhonemeId,
   WordEntry,
 } from "../languages/types";
-import { getResolvedMinimalPairs } from "../languages/resolve";
+import { getResolvedMinimalPairsForPhonemes } from "../languages/resolve";
 import type { AppProgress } from "../storage/progress";
 import { lockTermAudio } from "./audio";
 
@@ -33,6 +33,11 @@ export interface RankedWordPair {
   score: number;
 }
 
+interface RankedMinimalPair {
+  item: MinimalPairItem;
+  score: number;
+}
+
 export type PromptSelections = Record<PromptSlotId, string | null>;
 
 export interface PromptAnswer {
@@ -54,6 +59,8 @@ export interface PromptResult {
   recordedAt: number;
 }
 
+const pairTieBreakers = new Map<string, Map<string, number>>();
+
 export function createPromptSelections(prompt?: MatchingPrompt): PromptSelections {
   if (!prompt) {
     return {};
@@ -69,7 +76,13 @@ export function selectNextMinimalPair(
 ): MinimalPairItem | undefined {
   let best: { item: MinimalPairItem; score: number } | undefined;
 
-  for (const item of getResolvedMinimalPairs(dataset)) {
+  for (const contrast of dataset.contrasts) {
+    const item = selectNextMinimalPairForPhonemes(dataset, contrast.phonemeIds, progress);
+
+    if (!item) {
+      continue;
+    }
+
     const score = scoreMinimalPair(dataset.id, item, progress, now);
 
     if (!best || score > best.score) {
@@ -84,23 +97,24 @@ export function selectNextMinimalPairForPhonemes(
   dataset: LanguageDataset,
   phonemeIds: readonly [PhonemeId, PhonemeId],
   progress: AppProgress,
-  now = Date.now(),
+  afterItemId?: string,
 ): MinimalPairItem | undefined {
-  let best: { item: MinimalPairItem; score: number } | undefined;
+  const contrastId = dataset.contrasts.find((contrast) => samePhonemePair(contrast.phonemeIds, phonemeIds))?.id
+    ?? createCustomContrastId(phonemeIds);
+  const rankedPairs = getRankedMinimalPairsForPhonemes(dataset, phonemeIds, contrastId, true);
 
-  for (const item of getResolvedMinimalPairs(dataset)) {
-    if (!samePhonemePair(item.terms.map((term) => term.phonemeId), phonemeIds)) {
-      continue;
-    }
-
-    const score = scoreMinimalPair(dataset.id, item, progress, now);
-
-    if (!best || score > best.score) {
-      best = { item, score };
-    }
+  if (rankedPairs.length === 0) {
+    return undefined;
   }
 
-  return best?.item ?? createCustomMinimalPair(dataset, phonemeIds);
+  if (!afterItemId) {
+    return rankedPairs[0]?.item;
+  }
+
+  const currentIndex = rankedPairs.findIndex((pair) => pair.item.id === afterItemId);
+  const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % rankedPairs.length : 0;
+
+  return rankedPairs[nextIndex]?.item;
 }
 
 export function selectClosestWordPairsForPhonemes(
@@ -108,53 +122,24 @@ export function selectClosestWordPairsForPhonemes(
   phonemeIds: readonly [PhonemeId, PhonemeId],
   limit = 8,
 ): RankedWordPair[] {
-  const [firstPhonemeId, secondPhonemeId] = phonemeIds;
-  const firstWords = candidateWordsForPhoneme(dataset, firstPhonemeId, secondPhonemeId);
-  const secondWords = candidateWordsForPhoneme(dataset, secondPhonemeId, firstPhonemeId);
-  const firstPhonemeIpa = phonemeIpa(dataset, firstPhonemeId);
-  const secondPhonemeIpa = phonemeIpa(dataset, secondPhonemeId);
+  const contrastId = dataset.contrasts.find((contrast) => samePhonemePair(contrast.phonemeIds, phonemeIds))?.id
+    ?? createCustomContrastId(phonemeIds);
 
-  if (firstWords.length === 0 || secondWords.length === 0) {
-    return [];
-  }
+  return getRankedMinimalPairsForPhonemes(dataset, phonemeIds, contrastId, false)
+    .slice(0, limit)
+    .map(({ item, score }) => ({ id: item.id, terms: item.terms, score }));
+}
 
-  return firstWords
-    .flatMap((firstWord): RankedWordPair[] => secondWords.flatMap((secondWord) => {
-      if (firstWord.id === secondWord.id) {
-        return [];
-      }
+export function countPerfectWordPairsForPhonemes(
+  dataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+): number {
+  const contrastId = dataset.contrasts.find((contrast) => samePhonemePair(contrast.phonemeIds, phonemeIds))?.id
+    ?? createCustomContrastId(phonemeIds);
 
-      const score = firstPhonemeIpa && secondPhonemeIpa
-        ? scoreWordPairDistance(firstWord, secondWord, firstPhonemeIpa, secondPhonemeIpa)
-        : Number.POSITIVE_INFINITY;
-
-      return [{
-        id: `${firstPhonemeId}:${firstWord.id}:${secondPhonemeId}:${secondWord.id}`,
-        terms: [
-          {
-            id: `${firstPhonemeId}:${firstWord.id}`,
-            wordId: firstWord.id,
-            phonemeId: firstPhonemeId,
-            word: firstWord,
-          },
-          {
-            id: `${secondPhonemeId}:${secondWord.id}`,
-            wordId: secondWord.id,
-            phonemeId: secondPhonemeId,
-            word: secondWord,
-          },
-        ],
-        score,
-      }];
-    }))
-    .sort((left, right) => {
-      if (left.score !== right.score) {
-        return left.score - right.score;
-      }
-
-      return wordPairLabel(left).localeCompare(wordPairLabel(right));
-    })
-    .slice(0, limit);
+  return getRankedMinimalPairsForPhonemes(dataset, phonemeIds, contrastId, false)
+    .filter((pair) => pair.score === 0)
+    .length;
 }
 
 export function createMatchingPrompt(item: MinimalPairItem): MatchingPrompt {
@@ -267,91 +252,66 @@ function gradeSlot(
   };
 }
 
-function createCustomMinimalPair(
+function getRankedMinimalPairsForPhonemes(
   dataset: LanguageDataset,
   phonemeIds: readonly [PhonemeId, PhonemeId],
-): MinimalPairItem | undefined {
+  contrastId: string,
+  shuffleEqualScores: boolean,
+): RankedMinimalPair[] {
   const [firstPhonemeId, secondPhonemeId] = phonemeIds;
-  const wordPair = selectClosestCustomWordPair(dataset, firstPhonemeId, secondPhonemeId);
-
-  if (!wordPair) {
-    return undefined;
-  }
-
-  const [firstWord, secondWord] = wordPair;
-
-  return {
-    id: `custom:${firstPhonemeId}:${secondPhonemeId}:${firstWord.id}:${secondWord.id}`,
-    contrastId: createCustomContrastId(phonemeIds),
-    terms: [
-      {
-        id: `${firstPhonemeId}:${firstWord.id}`,
-        wordId: firstWord.id,
-        phonemeId: firstPhonemeId,
-        word: firstWord,
-      },
-      {
-        id: `${secondPhonemeId}:${secondWord.id}`,
-        wordId: secondWord.id,
-        phonemeId: secondPhonemeId,
-        word: secondWord,
-      },
-    ],
-    tags: ["custom"],
-  };
-}
-
-function sampleWordForPhoneme(
-  dataset: LanguageDataset,
-  phonemeId: PhonemeId,
-  excludedPhonemeId: PhonemeId,
-): WordEntry | undefined {
-  return sample(candidateWordsForPhoneme(dataset, phonemeId, excludedPhonemeId));
-}
-
-function selectClosestCustomWordPair(
-  dataset: LanguageDataset,
-  firstPhonemeId: PhonemeId,
-  secondPhonemeId: PhonemeId,
-): readonly [WordEntry, WordEntry] | undefined {
-  const firstWords = candidateWordsForPhoneme(dataset, firstPhonemeId, secondPhonemeId);
-  const secondWords = candidateWordsForPhoneme(dataset, secondPhonemeId, firstPhonemeId);
   const firstPhonemeIpa = phonemeIpa(dataset, firstPhonemeId);
   const secondPhonemeIpa = phonemeIpa(dataset, secondPhonemeId);
+  const tieBreakerScope = `${dataset.id}:${contrastId}:${firstPhonemeId}:${secondPhonemeId}`;
 
-  if (firstWords.length === 0 || secondWords.length === 0) {
-    return undefined;
-  }
-
-  if (!firstPhonemeIpa || !secondPhonemeIpa) {
-    const firstWord = sampleWordForPhoneme(dataset, firstPhonemeId, secondPhonemeId);
-    const secondWord = sampleWordForPhoneme(dataset, secondPhonemeId, firstPhonemeId);
-
-    return firstWord && secondWord ? [firstWord, secondWord] : undefined;
-  }
-
-  let best: { words: readonly [WordEntry, WordEntry]; score: number } | undefined;
-
-  for (const firstWord of firstWords) {
-    for (const secondWord of secondWords) {
+  return getResolvedMinimalPairsForPhonemes(dataset, phonemeIds, contrastId)
+    .map((item): RankedMinimalPair => {
+      const firstTerm = item.terms[0];
+      const secondTerm = item.terms[1];
       const score = firstPhonemeIpa && secondPhonemeIpa
-        ? scoreWordPairDistance(firstWord, secondWord, firstPhonemeIpa, secondPhonemeIpa)
+        ? scoreWordPairDistance(firstTerm.word, secondTerm.word, firstPhonemeIpa, secondPhonemeIpa)
         : Number.POSITIVE_INFINITY;
 
-      if (!best || score < best.score || (score === best.score && Math.random() < 0.5)) {
-        best = { words: [firstWord, secondWord], score };
-      }
+      return { item, score };
+    })
+    .sort((left, right) => compareRankedMinimalPairs(left, right, tieBreakerScope, shuffleEqualScores));
+}
+
+function compareRankedMinimalPairs(
+  left: RankedMinimalPair,
+  right: RankedMinimalPair,
+  tieBreakerScope: string,
+  shuffleEqualScores: boolean,
+): number {
+  if (left.score !== right.score) {
+    return left.score - right.score;
+  }
+
+  if (shuffleEqualScores) {
+    const leftTieBreaker = pairTieBreaker(tieBreakerScope, left.item.id);
+    const rightTieBreaker = pairTieBreaker(tieBreakerScope, right.item.id);
+
+    if (leftTieBreaker !== rightTieBreaker) {
+      return leftTieBreaker - rightTieBreaker;
     }
   }
 
-  if (best && Number.isFinite(best.score)) {
-    return best.words;
+  return wordPairLabel(left.item).localeCompare(wordPairLabel(right.item));
+}
+
+function pairTieBreaker(scope: string, itemId: string): number {
+  const scopedTieBreakers = pairTieBreakers.get(scope) ?? new Map<string, number>();
+  const existing = scopedTieBreakers.get(itemId);
+
+  if (existing !== undefined) {
+    return existing;
   }
 
-  const firstWord = sample(firstWords);
-  const secondWord = sample(secondWords);
+  const next = Math.random();
 
-  return firstWord && secondWord ? [firstWord, secondWord] : undefined;
+  scopedTieBreakers.set(itemId, next);
+  pairTieBreakers.set(scope, scopedTieBreakers);
+
+  return next;
 }
 
 function candidateWordsForPhoneme(
@@ -382,7 +342,7 @@ function scoreWordPairDistance(
     : Number.POSITIVE_INFINITY;
 }
 
-function wordPairLabel(pair: RankedWordPair): string {
+function wordPairLabel(pair: { terms: readonly [MinimalPairTerm, MinimalPairTerm] }): string {
   return `${pair.terms[0].word.written}:${pair.terms[1].word.written}`;
 }
 
@@ -394,7 +354,7 @@ function ipaShell(wordIpa: string, targetPhonemeIpa: string): string {
   const word = normalizeIpaText(wordIpa);
   const target = normalizeIpaText(targetPhonemeIpa);
 
-  return target ? word.replace(target, "") : word;
+  return target ? word.replace(target, "_") : word;
 }
 
 function normalizeIpaText(value: string): string {
@@ -442,10 +402,6 @@ function samePhonemePair(
 
 function createCustomContrastId(phonemeIds: readonly [PhonemeId, PhonemeId]): string {
   return `custom:${phonemeIds[0]}:${phonemeIds[1]}`;
-}
-
-function sample<T>(items: readonly T[]): T | undefined {
-  return items[Math.floor(Math.random() * items.length)];
 }
 
 function createSlotId(index: number): PromptSlotId {

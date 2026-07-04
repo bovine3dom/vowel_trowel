@@ -21,9 +21,11 @@ import {
   type ContributionQueueItem,
 } from "./contributions/queue";
 import { getLanguageDataset, getLanguageSlug, languageDatasets, sameLanguageId } from "./languages";
+import { countResolvedMinimalPairsForPhonemes } from "./languages/resolve";
 import type { AudioSource, LanguageDataset, MinimalPairTerm, Phoneme, PhonemeContrast, PhonemeId, WordEntry } from "./languages/types";
 import {
   canSubmitPrompt,
+  countPerfectWordPairsForPhonemes,
   createMatchingPrompt,
   createPromptSelections,
   gradeMatchingPrompt,
@@ -569,8 +571,9 @@ export default function App() {
   };
 
   const playMatchingAgain = () => {
-    const currentPair = phonemePairFromMatchingPrompt(prompt()) ?? activePhonemePair();
-    const nextPrompt = createNextPrompt(progress(), currentPair, practiceDataset());
+    const currentPrompt = prompt();
+    const currentPair = phonemePairFromMatchingPrompt(currentPrompt) ?? activePhonemePair();
+    const nextPrompt = createNextPrompt(progress(), currentPair, practiceDataset(), currentPrompt?.item.id);
     const nextActivePair = currentPair ?? phonemePairFromMatchingPrompt(nextPrompt);
 
     setLockedPhonemePair(currentPair);
@@ -2421,7 +2424,7 @@ function PremadeContrastsPanel(props: {
           >
             <strong class="ipa-heading">{contrast.label}</strong>
             <p>{contrast.description}</p>
-            <small>{contrast.minimalPairs.length} word pairs</small>
+            <small>{perfectContrastCountLabel(props.availableDataset, contrast.phonemeIds)}</small>
           </button>
         )}
       </For>
@@ -5861,7 +5864,26 @@ function phonemeHasAudio(phonemeId: PhonemeId): boolean {
 }
 
 function minimalPairCount(sourceDataset = dataset): number {
-  return sourceDataset.contrasts.reduce((total, contrast) => total + contrast.minimalPairs.length, 0);
+  return sourceDataset.contrasts.reduce(
+    (total, contrast) => total + wordPairCountForPhonemes(sourceDataset, contrast.phonemeIds),
+    0,
+  );
+}
+
+function wordPairCountForPhonemes(
+  sourceDataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+): number {
+  return countResolvedMinimalPairsForPhonemes(sourceDataset, phonemeIds);
+}
+
+function perfectContrastCountLabel(
+  sourceDataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+): string {
+  const count = countPerfectWordPairsForPhonemes(sourceDataset, phonemeIds);
+
+  return `${count} perfect ${count === 1 ? "contrast" : "contrasts"}`;
 }
 
 function collectTermAudioCredits(terms: readonly MinimalPairTerm[]): AudioCredit[] {
@@ -6068,15 +6090,10 @@ function createPracticeDataset(sourceDataset: LanguageDataset, ttsEnabled: boole
   }
 
   const words = sourceDataset.words.filter(hasWordRecording);
-  const wordIds = new Set(words.map((word) => word.id));
-  const contrasts = sourceDataset.contrasts
-    .map((contrast) => ({
-      ...contrast,
-      minimalPairs: contrast.minimalPairs.filter((pair) =>
-        pair.terms.every((term) => wordIds.has(term.wordId))
-      ),
-    }))
-    .filter((contrast) => contrast.minimalPairs.length > 0);
+  const recordedDataset = { ...sourceDataset, words };
+  const contrasts = sourceDataset.contrasts.filter((contrast) =>
+    countResolvedMinimalPairsForPhonemes(recordedDataset, contrast.phonemeIds) > 0
+  );
 
   return {
     ...sourceDataset,
@@ -6451,9 +6468,10 @@ function createNextPrompt(
   currentProgress: ReturnType<typeof loadProgress>,
   phonemePair: PhonemePair | null,
   sourceDataset: LanguageDataset,
+  afterItemId?: string,
 ): MatchingPrompt | undefined {
   const item = phonemePair
-    ? selectNextMinimalPairForPhonemes(sourceDataset, phonemePair, currentProgress)
+    ? selectNextMinimalPairForPhonemes(sourceDataset, phonemePair, currentProgress, afterItemId)
     : selectNextMinimalPair(sourceDataset, currentProgress);
 
   return item ? createMatchingPrompt(item) : undefined;

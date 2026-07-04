@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 
 import { createContributionQueue } from "../src/contributions/queue";
 import { getLanguageDataset, getLanguageSlug, sameLanguageId } from "../src/languages";
+import { getWordsForContrastPhoneme } from "../src/languages/resolve";
 import type { LanguageDataset, WordEntry } from "../src/languages/types";
 import { createCandidateKey, type AudioReviewState } from "./audio-review-state";
 
@@ -378,8 +379,8 @@ function createWordCoverageInfo(
   const targetPhonemesByWord = new Map<string, Set<string>>();
 
   for (const contrast of dataset.contrasts) {
-    for (const pair of contrast.minimalPairs) {
-      for (const term of pair.terms) {
+    for (const phonemeId of contrast.phonemeIds) {
+      for (const term of getWordsForContrastPhoneme(dataset, contrast, phonemeId)) {
         const phonemeIds = targetPhonemesByWord.get(term.wordId) ?? new Set<string>();
 
         phonemeIds.add(term.phonemeId);

@@ -7,11 +7,9 @@ The important units are:
 - `phonemes`: stable IDs and IPA labels for sounds the app can track.
 - `words`: reusable word resources with spelling, IPA, relevant supported phonemes, and audio.
 - `contrasts`: the learner-facing training targets, such as French `/u/ vs /y/`.
-- `contrast.minimalPairs`: two word IDs that differ by one target phoneme.
-- `terms`: the side of a minimal pair, linking a `wordId` to the phoneme it realizes in that contrast.
 - `audio`: one or more recordings for that word.
 
-Sorting drills are generated from `words`: for a contrast, the app finds all words whose `phonemeIds` contain exactly one of that contrast's target phonemes.
+Matching and sorting drills are generated from `words`: for a contrast, the app finds words whose `phonemeIds` contain one target phoneme but not the other, then combines those word groups automatically. Named contrasts define the sound pair and learner-facing copy; they do not list individual word pairs.
 
 Browser text-to-speech should not be treated as an IPA synthesizer. If you want a phoneme heading like `/y/` to play an isolated sound, add a real audio source to that phoneme. Without phoneme audio, the app plays a recorded example word that contains the phoneme.
 
@@ -41,15 +39,15 @@ Example word entry:
 }
 ```
 
-Example minimal pair entry inside a contrast:
+Example contrast entry:
 
 ```ts
 {
-  id: "fr-u-y-roue-rue",
-  terms: [
-    { wordId: "fr-word-roue", phonemeId: "fr-u" },
-    { wordId: "fr-word-rue", phonemeId: "fr-y" }
-  ]
+  id: "fr-u-y",
+  phonemeIds: ["fr-u", "fr-y"],
+  label: "/u/ vs /y/",
+  category: "vowel",
+  description: "Back rounded /u/ against front rounded /y/."
 }
 ```
 

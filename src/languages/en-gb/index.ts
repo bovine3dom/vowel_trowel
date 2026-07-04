@@ -1,4 +1,4 @@
-import type { LanguageDataset, MinimalPairDefinition, PhonemeId, WordEntry } from "../types";
+import type { LanguageDataset, PhonemeId, WordEntry } from "../types";
 import { approvedBritishEnglishAudio } from "./audio";
 
 const words: WordEntry[] = [
@@ -346,146 +346,26 @@ export const britishEnglishDataset: LanguageDataset = {
     { id: "en-gb-w", ipa: "/w/", label: "labial-velar approximant", category: "consonant" },
   ],
   contrasts: [
-    contrast("en-gb-kit-fleece", ["en-gb-kit", "en-gb-fleece"], "/ɪ/ vs /iː/", "KIT against FLEECE.", [
-      pair("en-gb-kit-fleece-ship-sheep", ["ship", "en-gb-kit"], ["sheep", "en-gb-fleece"]),
-      pair("en-gb-kit-fleece-bit-beat", ["bit", "en-gb-kit"], ["beat", "en-gb-fleece"]),
-      pair("en-gb-kit-fleece-sit-seat", ["sit", "en-gb-kit"], ["seat", "en-gb-fleece"]),
-      pair("en-gb-kit-fleece-fill-feel", ["fill", "en-gb-kit"], ["feel", "en-gb-fleece"]),
-      pair("en-gb-kit-fleece-live-leave", ["live", "en-gb-kit"], ["leave", "en-gb-fleece"]),
-      pair("en-gb-kit-fleece-slip-sleep", ["slip", "en-gb-kit"], ["sleep", "en-gb-fleece"]),
-    ]),
-    contrast("en-gb-dress-trap", ["en-gb-dress", "en-gb-trap"], "/e/ vs /æ/", "DRESS against TRAP.", [
-      pair("en-gb-dress-trap-bet-bat", ["bet", "en-gb-dress"], ["bat", "en-gb-trap"]),
-      pair("en-gb-dress-trap-pen-pan", ["pen", "en-gb-dress"], ["pan", "en-gb-trap"]),
-      pair("en-gb-dress-trap-men-man", ["men", "en-gb-dress"], ["man", "en-gb-trap"]),
-      pair("en-gb-dress-trap-lend-land", ["lend", "en-gb-dress"], ["land", "en-gb-trap"]),
-      pair("en-gb-dress-trap-head-had", ["head", "en-gb-dress"], ["had", "en-gb-trap"]),
-    ]),
-    contrast("en-gb-trap-strut", ["en-gb-trap", "en-gb-strut"], "/æ/ vs /ʌ/", "TRAP against STRUT.", [
-      pair("en-gb-trap-strut-cap-cup", ["cap", "en-gb-trap"], ["cup", "en-gb-strut"]),
-      pair("en-gb-trap-strut-bag-bug", ["bag", "en-gb-trap"], ["bug", "en-gb-strut"]),
-      pair("en-gb-trap-strut-ran-run", ["ran", "en-gb-trap"], ["run", "en-gb-strut"]),
-      pair("en-gb-trap-strut-fan-fun", ["fan", "en-gb-trap"], ["fun", "en-gb-strut"]),
-      pair("en-gb-trap-strut-ankle-uncle", ["ankle", "en-gb-trap"], ["uncle", "en-gb-strut"]),
-    ]),
-    contrast("en-gb-strut-palm", ["en-gb-strut", "en-gb-palm"], "/ʌ/ vs /ɑː/", "STRUT against British PALM/START.", [
-      pair("en-gb-strut-palm-cut-cart", ["cut", "en-gb-strut"], ["cart", "en-gb-palm"]),
-      pair("en-gb-strut-palm-luck-lark", ["luck", "en-gb-strut"], ["lark", "en-gb-palm"]),
-      pair("en-gb-strut-palm-bud-bard", ["bud", "en-gb-strut"], ["bard", "en-gb-palm"]),
-      pair("en-gb-strut-palm-hut-heart", ["hut", "en-gb-strut"], ["heart", "en-gb-palm"]),
-      pair("en-gb-strut-palm-bun-barn", ["bun", "en-gb-strut"], ["barn", "en-gb-palm"]),
-    ]),
-    contrast("en-gb-lot-thought", ["en-gb-lot", "en-gb-thought"], "/ɒ/ vs /ɔː/", "LOT against THOUGHT/NORTH.", [
-      pair("en-gb-lot-thought-cot-caught", ["cot", "en-gb-lot"], ["caught", "en-gb-thought"]),
-      pair("en-gb-lot-thought-don-dawn", ["don", "en-gb-lot"], ["dawn", "en-gb-thought"]),
-      pair("en-gb-lot-thought-stock-stork", ["stock", "en-gb-lot"], ["stork", "en-gb-thought"]),
-      pair("en-gb-lot-thought-cod-cord", ["cod", "en-gb-lot"], ["cord", "en-gb-thought"]),
-      pair("en-gb-lot-thought-pot-port", ["pot", "en-gb-lot"], ["port", "en-gb-thought"]),
-    ]),
-    contrast("en-gb-foot-goose", ["en-gb-foot", "en-gb-goose"], "/ʊ/ vs /uː/", "FOOT against GOOSE.", [
-      pair("en-gb-foot-goose-full-fool", ["full", "en-gb-foot"], ["fool", "en-gb-goose"]),
-      pair("en-gb-foot-goose-pull-pool", ["pull", "en-gb-foot"], ["pool", "en-gb-goose"]),
-      pair("en-gb-foot-goose-could-cooed", ["could", "en-gb-foot"], ["cooed", "en-gb-goose"]),
-      pair("en-gb-foot-goose-look-luke", ["look", "en-gb-foot"], ["luke", "en-gb-goose"]),
-      pair("en-gb-foot-goose-hood-whod", ["hood", "en-gb-foot"], ["whod", "en-gb-goose"]),
-    ]),
-    contrast("en-gb-dress-face", ["en-gb-dress", "en-gb-face"], "/e/ vs /eɪ/", "DRESS against FACE.", [
-      pair("en-gb-dress-face-let-late", ["let", "en-gb-dress"], ["late", "en-gb-face"]),
-      pair("en-gb-dress-face-met-mate", ["met", "en-gb-dress"], ["mate", "en-gb-face"]),
-      pair("en-gb-dress-face-pen-pain", ["pen", "en-gb-dress"], ["pain", "en-gb-face"]),
-      pair("en-gb-dress-face-wet-weight", ["wet", "en-gb-dress"], ["weight", "en-gb-face"]),
-      pair("en-gb-dress-face-fell-fail", ["fell", "en-gb-dress"], ["fail", "en-gb-face"]),
-    ]),
-    contrast("en-gb-lot-goat", ["en-gb-lot", "en-gb-goat"], "/ɒ/ vs /əʊ/", "LOT against GOAT.", [
-      pair("en-gb-lot-goat-cot-coat", ["cot", "en-gb-lot"], ["coat", "en-gb-goat"]),
-      pair("en-gb-lot-goat-got-goat", ["got", "en-gb-lot"], ["goat", "en-gb-goat"]),
-      pair("en-gb-lot-goat-not-note", ["not", "en-gb-lot"], ["note", "en-gb-goat"]),
-      pair("en-gb-lot-goat-rod-road", ["rod", "en-gb-lot"], ["road", "en-gb-goat"]),
-      pair("en-gb-lot-goat-hop-hope", ["hop", "en-gb-lot"], ["hope", "en-gb-goat"]),
-    ]),
-    contrast("en-gb-face-price", ["en-gb-face", "en-gb-price"], "/eɪ/ vs /aɪ/", "FACE against PRICE.", [
-      pair("en-gb-face-price-bay-buy", ["bay", "en-gb-face"], ["buy", "en-gb-price"]),
-      pair("en-gb-face-price-late-light", ["late", "en-gb-face"], ["light", "en-gb-price"]),
-      pair("en-gb-face-price-mate-might", ["mate", "en-gb-face"], ["might", "en-gb-price"]),
-      pair("en-gb-face-price-sane-sign", ["sane", "en-gb-face"], ["sign", "en-gb-price"]),
-      pair("en-gb-face-price-lake-like", ["lake", "en-gb-face"], ["like", "en-gb-price"]),
-    ]),
-    contrast("en-gb-s-z", ["en-gb-s", "en-gb-z"], "/s/ vs /z/", "Voiceless against voiced alveolar fricative.", [
-      pair("en-gb-s-z-sip-zip", ["sip", "en-gb-s"], ["zip", "en-gb-z"]),
-      pair("en-gb-s-z-seal-zeal", ["seal", "en-gb-s"], ["zeal", "en-gb-z"]),
-      pair("en-gb-s-z-sue-zoo", ["sue", "en-gb-s"], ["zoo", "en-gb-z"]),
-      pair("en-gb-s-z-bus-buzz", ["bus", "en-gb-s"], ["buzz", "en-gb-z"]),
-      pair("en-gb-s-z-price-prize", ["price", "en-gb-s"], ["prize", "en-gb-z"]),
-    ], "consonant"),
-    contrast("en-gb-theta-s", ["en-gb-theta", "en-gb-s"], "/θ/ vs /s/", "Dental fricative against alveolar /s/.", [
-      pair("en-gb-theta-s-thin-sin", ["thin", "en-gb-theta"], ["sin", "en-gb-s"]),
-      pair("en-gb-theta-s-thick-sick", ["thick", "en-gb-theta"], ["sick", "en-gb-s"]),
-      pair("en-gb-theta-s-think-sink", ["think", "en-gb-theta"], ["sink", "en-gb-s"]),
-      pair("en-gb-theta-s-thumb-sum", ["thumb", "en-gb-theta"], ["sum", "en-gb-s"]),
-      pair("en-gb-theta-s-path-pass", ["path", "en-gb-theta"], ["pass", "en-gb-s"]),
-    ], "consonant"),
-    contrast("en-gb-p-b", ["en-gb-p", "en-gb-b"], "/p/ vs /b/", "Voiceless against voiced bilabial stop.", [
-      pair("en-gb-p-b-pat-bat", ["pat", "en-gb-p"], ["bat", "en-gb-b"]),
-      pair("en-gb-p-b-pin-bin", ["pin", "en-gb-p"], ["bin", "en-gb-b"]),
-      pair("en-gb-p-b-cap-cab", ["cap", "en-gb-p"], ["cab", "en-gb-b"]),
-      pair("en-gb-p-b-peach-beach", ["peach", "en-gb-p"], ["beach", "en-gb-b"]),
-      pair("en-gb-p-b-pack-back", ["pack", "en-gb-p"], ["back", "en-gb-b"]),
-    ], "consonant"),
-    contrast("en-gb-t-d", ["en-gb-t", "en-gb-d"], "/t/ vs /d/", "Voiceless against voiced alveolar stop.", [
-      pair("en-gb-t-d-tie-die", ["tie", "en-gb-t"], ["die", "en-gb-d"]),
-      pair("en-gb-t-d-tin-din", ["tin", "en-gb-t"], ["din", "en-gb-d"]),
-      pair("en-gb-t-d-town-down", ["town", "en-gb-t"], ["down", "en-gb-d"]),
-      pair("en-gb-t-d-bet-bed", ["bet", "en-gb-t"], ["bed", "en-gb-d"]),
-      pair("en-gb-t-d-cart-card", ["cart", "en-gb-t"], ["card", "en-gb-d"]),
-    ], "consonant"),
-    contrast("en-gb-k-g", ["en-gb-k", "en-gb-g"], "/k/ vs /ɡ/", "Voiceless against voiced velar stop.", [
-      pair("en-gb-k-g-came-game", ["came", "en-gb-k"], ["game", "en-gb-g"]),
-      pair("en-gb-k-g-coat-goat", ["coat", "en-gb-k"], ["goat", "en-gb-g"]),
-      pair("en-gb-k-g-cold-gold", ["cold", "en-gb-k"], ["gold", "en-gb-g"]),
-      pair("en-gb-k-g-back-bag", ["back", "en-gb-k"], ["bag", "en-gb-g"]),
-      pair("en-gb-k-g-curl-girl", ["curl", "en-gb-k"], ["girl", "en-gb-g"]),
-    ], "consonant"),
-    contrast("en-gb-f-v", ["en-gb-f", "en-gb-v"], "/f/ vs /v/", "Voiceless against voiced labiodental fricative.", [
-      pair("en-gb-f-v-fan-van", ["fan", "en-gb-f"], ["van", "en-gb-v"]),
-      pair("en-gb-f-v-fine-vine", ["fine", "en-gb-f"], ["vine", "en-gb-v"]),
-      pair("en-gb-f-v-leaf-leave", ["leaf", "en-gb-f"], ["leave", "en-gb-v"]),
-      pair("en-gb-f-v-safe-save", ["safe", "en-gb-f"], ["save", "en-gb-v"]),
-      pair("en-gb-f-v-ferry-very", ["ferry", "en-gb-f"], ["very", "en-gb-v"]),
-    ], "consonant"),
-    contrast("en-gb-sh-ch", ["en-gb-sh", "en-gb-ch"], "/ʃ/ vs /tʃ/", "Postalveolar fricative against affricate.", [
-      pair("en-gb-sh-ch-ship-chip", ["ship", "en-gb-sh"], ["chip", "en-gb-ch"]),
-      pair("en-gb-sh-ch-shop-chop", ["shop", "en-gb-sh"], ["chop", "en-gb-ch"]),
-      pair("en-gb-sh-ch-share-chair", ["share", "en-gb-sh"], ["chair", "en-gb-ch"]),
-      pair("en-gb-sh-ch-cash-catch", ["cash", "en-gb-sh"], ["catch", "en-gb-ch"]),
-      pair("en-gb-sh-ch-mash-match", ["mash", "en-gb-sh"], ["match", "en-gb-ch"]),
-    ], "consonant"),
-    contrast("en-gb-ch-j", ["en-gb-ch", "en-gb-j"], "/tʃ/ vs /dʒ/", "Voiceless against voiced postalveolar affricate.", [
-      pair("en-gb-ch-j-cheap-jeep", ["cheap", "en-gb-ch"], ["jeep", "en-gb-j"]),
-      pair("en-gb-ch-j-chin-gin", ["chin", "en-gb-ch"], ["gin", "en-gb-j"]),
-      pair("en-gb-ch-j-choke-joke", ["choke", "en-gb-ch"], ["joke", "en-gb-j"]),
-      pair("en-gb-ch-j-rich-ridge", ["rich", "en-gb-ch"], ["ridge", "en-gb-j"]),
-      pair("en-gb-ch-j-char-jar", ["char", "en-gb-ch"], ["jar", "en-gb-j"]),
-    ], "consonant"),
-    contrast("en-gb-l-r", ["en-gb-l", "en-gb-r"], "/l/ vs /r/", "Lateral /l/ against British word-initial /r/.", [
-      pair("en-gb-l-r-light-right", ["light", "en-gb-l"], ["right", "en-gb-r"]),
-      pair("en-gb-l-r-lock-rock", ["lock", "en-gb-l"], ["rock", "en-gb-r"]),
-      pair("en-gb-l-r-lace-race", ["lace", "en-gb-l"], ["race", "en-gb-r"]),
-      pair("en-gb-l-r-low-row", ["low", "en-gb-l"], ["row", "en-gb-r"]),
-      pair("en-gb-l-r-lead-read", ["lead", "en-gb-l"], ["read", "en-gb-r"]),
-    ], "consonant"),
-    contrast("en-gb-n-ng", ["en-gb-n", "en-gb-ng"], "/n/ vs /ŋ/", "Alveolar nasal against velar nasal.", [
-      pair("en-gb-n-ng-thin-thing", ["thin", "en-gb-n"], ["thing", "en-gb-ng"]),
-      pair("en-gb-n-ng-sin-sing", ["sin", "en-gb-n"], ["sing", "en-gb-ng"]),
-      pair("en-gb-n-ng-ran-rang", ["ran", "en-gb-n"], ["rang", "en-gb-ng"]),
-      pair("en-gb-n-ng-win-wing", ["win", "en-gb-n"], ["wing", "en-gb-ng"]),
-      pair("en-gb-n-ng-ban-bang", ["ban", "en-gb-n"], ["bang", "en-gb-ng"]),
-    ], "consonant"),
-    contrast("en-gb-v-w", ["en-gb-v", "en-gb-w"], "/v/ vs /w/", "Labiodental /v/ against labial-velar /w/.", [
-      pair("en-gb-v-w-vine-wine", ["vine", "en-gb-v"], ["wine", "en-gb-w"]),
-      pair("en-gb-v-w-veil-whale", ["veil", "en-gb-v"], ["whale", "en-gb-w"]),
-      pair("en-gb-v-w-vet-wet", ["vet", "en-gb-v"], ["wet", "en-gb-w"]),
-      pair("en-gb-v-w-verse-worse", ["verse", "en-gb-v"], ["worse", "en-gb-w"]),
-    ], "consonant"),
+    contrast("en-gb-kit-fleece", ["en-gb-kit", "en-gb-fleece"], "/ɪ/ vs /iː/", "KIT against FLEECE."),
+    contrast("en-gb-dress-trap", ["en-gb-dress", "en-gb-trap"], "/e/ vs /æ/", "DRESS against TRAP."),
+    contrast("en-gb-trap-strut", ["en-gb-trap", "en-gb-strut"], "/æ/ vs /ʌ/", "TRAP against STRUT."),
+    contrast("en-gb-strut-palm", ["en-gb-strut", "en-gb-palm"], "/ʌ/ vs /ɑː/", "STRUT against British PALM/START."),
+    contrast("en-gb-lot-thought", ["en-gb-lot", "en-gb-thought"], "/ɒ/ vs /ɔː/", "LOT against THOUGHT/NORTH."),
+    contrast("en-gb-foot-goose", ["en-gb-foot", "en-gb-goose"], "/ʊ/ vs /uː/", "FOOT against GOOSE."),
+    contrast("en-gb-dress-face", ["en-gb-dress", "en-gb-face"], "/e/ vs /eɪ/", "DRESS against FACE."),
+    contrast("en-gb-lot-goat", ["en-gb-lot", "en-gb-goat"], "/ɒ/ vs /əʊ/", "LOT against GOAT."),
+    contrast("en-gb-face-price", ["en-gb-face", "en-gb-price"], "/eɪ/ vs /aɪ/", "FACE against PRICE."),
+    contrast("en-gb-s-z", ["en-gb-s", "en-gb-z"], "/s/ vs /z/", "Voiceless against voiced alveolar fricative.", "consonant"),
+    contrast("en-gb-theta-s", ["en-gb-theta", "en-gb-s"], "/θ/ vs /s/", "Dental fricative against alveolar /s/.", "consonant"),
+    contrast("en-gb-p-b", ["en-gb-p", "en-gb-b"], "/p/ vs /b/", "Voiceless against voiced bilabial stop.", "consonant"),
+    contrast("en-gb-t-d", ["en-gb-t", "en-gb-d"], "/t/ vs /d/", "Voiceless against voiced alveolar stop.", "consonant"),
+    contrast("en-gb-k-g", ["en-gb-k", "en-gb-g"], "/k/ vs /ɡ/", "Voiceless against voiced velar stop.", "consonant"),
+    contrast("en-gb-f-v", ["en-gb-f", "en-gb-v"], "/f/ vs /v/", "Voiceless against voiced labiodental fricative.", "consonant"),
+    contrast("en-gb-sh-ch", ["en-gb-sh", "en-gb-ch"], "/ʃ/ vs /tʃ/", "Postalveolar fricative against affricate.", "consonant"),
+    contrast("en-gb-ch-j", ["en-gb-ch", "en-gb-j"], "/tʃ/ vs /dʒ/", "Voiceless against voiced postalveolar affricate.", "consonant"),
+    contrast("en-gb-l-r", ["en-gb-l", "en-gb-r"], "/l/ vs /r/", "Lateral /l/ against British word-initial /r/.", "consonant"),
+    contrast("en-gb-n-ng", ["en-gb-n", "en-gb-ng"], "/n/ vs /ŋ/", "Alveolar nasal against velar nasal.", "consonant"),
+    contrast("en-gb-v-w", ["en-gb-v", "en-gb-w"], "/v/ vs /w/", "Labiodental /v/ against labial-velar /w/.", "consonant"),
   ],
 };
 
@@ -509,7 +389,6 @@ function contrast(
   phonemeIds: readonly [PhonemeId, PhonemeId],
   label: string,
   description: string,
-  minimalPairs: readonly MinimalPairDefinition[],
   category: "vowel" | "consonant" = "vowel",
 ) {
   return {
@@ -518,21 +397,5 @@ function contrast(
     label,
     category,
     description,
-    minimalPairs,
-  };
-}
-
-function pair(
-  id: string,
-  first: readonly [string, PhonemeId],
-  second: readonly [string, PhonemeId],
-): MinimalPairDefinition {
-  return {
-    id,
-    terms: [
-      { wordId: `en-gb-word-${first[0]}`, phonemeId: first[1] },
-      { wordId: `en-gb-word-${second[0]}`, phonemeId: second[1] },
-    ] as const,
-    tags: ["starter", "tts-placeholder", "british-english"],
   };
 }
