@@ -3,9 +3,12 @@ import type {
   MinimalPairItem,
   MinimalPairTerm,
   PhonemeId,
-  WordEntry,
 } from "../languages/types";
-import { getResolvedMinimalPairsForPhonemes } from "../languages/resolve";
+import {
+  countPerfectMinimalPairsForPhonemes,
+  getResolvedMinimalPairsForPhonemes,
+  scoreWordPairDistanceForPhonemes,
+} from "../languages/resolve";
 import type { AppProgress } from "../storage/progress";
 import { lockTermAudio } from "./audio";
 
@@ -134,12 +137,7 @@ export function countPerfectWordPairsForPhonemes(
   dataset: LanguageDataset,
   phonemeIds: readonly [PhonemeId, PhonemeId],
 ): number {
-  const contrastId = dataset.contrasts.find((contrast) => samePhonemePair(contrast.phonemeIds, phonemeIds))?.id
-    ?? createCustomContrastId(phonemeIds);
-
-  return getRankedMinimalPairsForPhonemes(dataset, phonemeIds, contrastId, false)
-    .filter((pair) => pair.score === 0)
-    .length;
+  return countPerfectMinimalPairsForPhonemes(dataset, phonemeIds);
 }
 
 export function createMatchingPrompt(item: MinimalPairItem): MatchingPrompt {
@@ -259,17 +257,19 @@ function getRankedMinimalPairsForPhonemes(
   shuffleEqualScores: boolean,
 ): RankedMinimalPair[] {
   const [firstPhonemeId, secondPhonemeId] = phonemeIds;
-  const firstPhonemeIpa = phonemeIpa(dataset, firstPhonemeId);
-  const secondPhonemeIpa = phonemeIpa(dataset, secondPhonemeId);
   const tieBreakerScope = `${dataset.id}:${contrastId}:${firstPhonemeId}:${secondPhonemeId}`;
 
   return getResolvedMinimalPairsForPhonemes(dataset, phonemeIds, contrastId)
     .map((item): RankedMinimalPair => {
       const firstTerm = item.terms[0];
       const secondTerm = item.terms[1];
-      const score = firstPhonemeIpa && secondPhonemeIpa
-        ? scoreWordPairDistance(firstTerm.word, secondTerm.word, firstPhonemeIpa, secondPhonemeIpa)
-        : Number.POSITIVE_INFINITY;
+      const score = scoreWordPairDistanceForPhonemes(
+        dataset,
+        firstTerm.word,
+        firstTerm.phonemeId,
+        secondTerm.word,
+        secondTerm.phonemeId,
+      );
 
       return { item, score };
     })
@@ -314,80 +314,8 @@ function pairTieBreaker(scope: string, itemId: string): number {
   return next;
 }
 
-function candidateWordsForPhoneme(
-  dataset: LanguageDataset,
-  phonemeId: PhonemeId,
-  excludedPhonemeId: PhonemeId,
-): WordEntry[] {
-  const exactWords = dataset.words.filter((word) =>
-    word.phonemeIds.includes(phonemeId) && !word.phonemeIds.includes(excludedPhonemeId)
-  );
-
-  return exactWords.length > 0
-    ? exactWords
-    : dataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
-}
-
-function scoreWordPairDistance(
-  firstWord: WordEntry,
-  secondWord: WordEntry,
-  firstPhonemeIpa: string,
-  secondPhonemeIpa: string,
-): number {
-  const firstShell = ipaShell(firstWord.ipa, firstPhonemeIpa);
-  const secondShell = ipaShell(secondWord.ipa, secondPhonemeIpa);
-
-  return firstShell && secondShell
-    ? levenshteinDistance(firstShell, secondShell)
-    : Number.POSITIVE_INFINITY;
-}
-
 function wordPairLabel(pair: { terms: readonly [MinimalPairTerm, MinimalPairTerm] }): string {
   return `${pair.terms[0].word.written}:${pair.terms[1].word.written}`;
-}
-
-function phonemeIpa(dataset: LanguageDataset, phonemeId: PhonemeId): string | undefined {
-  return dataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.ipa;
-}
-
-function ipaShell(wordIpa: string, targetPhonemeIpa: string): string {
-  const word = normalizeIpaText(wordIpa);
-  const target = normalizeIpaText(targetPhonemeIpa);
-
-  return target ? word.replace(target, "_") : word;
-}
-
-function normalizeIpaText(value: string): string {
-  return value
-    .normalize("NFC")
-    .replace(/[\/\[\]]/g, "")
-    .replace(/[ˈˌ.\s]/g, "");
-}
-
-function levenshteinDistance(left: string, right: string): number {
-  const leftSymbols = [...left];
-  const rightSymbols = [...right];
-  const previous = Array.from({ length: rightSymbols.length + 1 }, (_, index) => index);
-  const current = Array.from({ length: rightSymbols.length + 1 }, () => 0);
-
-  for (let leftIndex = 1; leftIndex <= leftSymbols.length; leftIndex += 1) {
-    current[0] = leftIndex;
-
-    for (let rightIndex = 1; rightIndex <= rightSymbols.length; rightIndex += 1) {
-      const substitutionCost = leftSymbols[leftIndex - 1] === rightSymbols[rightIndex - 1] ? 0 : 1;
-      current[rightIndex] = Math.min(
-        (previous[rightIndex] ?? 0) + 1,
-        (current[rightIndex - 1] ?? 0) + 1,
-        (previous[rightIndex - 1] ?? 0) + substitutionCost,
-      );
-    }
-
-    for (let index = 0; index < previous.length; index += 1) {
-      previous[index] = current[index] ?? 0;
-    }
-  }
-
-  return previous[rightSymbols.length] ?? 0;
 }
 
 function samePhonemePair(

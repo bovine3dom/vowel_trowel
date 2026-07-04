@@ -55,6 +55,51 @@ export function countResolvedMinimalPairsForPhonemes(
   );
 }
 
+export function countPerfectMinimalPairsForPhonemes(
+  dataset: LanguageDataset,
+  phonemeIds: readonly [PhonemeId, PhonemeId],
+): number {
+  return getResolvedMinimalPairsForPhonemes(dataset, phonemeIds)
+    .filter((item) => {
+      const firstTerm = item.terms[0];
+      const secondTerm = item.terms[1];
+
+      return scoreWordPairDistanceForPhonemes(
+        dataset,
+        firstTerm.word,
+        firstTerm.phonemeId,
+        secondTerm.word,
+        secondTerm.phonemeId,
+      ) === 0;
+    })
+    .length;
+}
+
+export function scoreWordPairDistanceForPhonemes(
+  dataset: LanguageDataset,
+  firstWord: WordEntry,
+  firstPhonemeId: PhonemeId,
+  secondWord: WordEntry,
+  secondPhonemeId: PhonemeId,
+): number {
+  const firstShell = getWordPhonemeShell(dataset, firstWord, firstPhonemeId);
+  const secondShell = getWordPhonemeShell(dataset, secondWord, secondPhonemeId);
+
+  return firstShell && secondShell
+    ? levenshteinDistance(firstShell, secondShell)
+    : Number.POSITIVE_INFINITY;
+}
+
+export function getWordPhonemeShell(
+  dataset: LanguageDataset,
+  word: WordEntry,
+  phonemeId: PhonemeId,
+): string | null {
+  const targetIpa = phonemeIpa(dataset, phonemeId);
+
+  return targetIpa ? ipaShell(word.ipa, targetIpa) : null;
+}
+
 export function getWordsForContrastPhoneme(
   dataset: LanguageDataset,
   contrast: PhonemeContrast,
@@ -96,4 +141,48 @@ function createWordTerm(word: WordEntry, phonemeId: PhonemeId): MinimalPairTerm 
     phonemeId,
     word,
   };
+}
+
+function phonemeIpa(dataset: LanguageDataset, phonemeId: PhonemeId): string | undefined {
+  return dataset.phonemes.find((phoneme) => phoneme.id === phonemeId)?.ipa;
+}
+
+function ipaShell(wordIpa: string, targetPhonemeIpa: string): string {
+  const word = normalizeIpaText(wordIpa);
+  const target = normalizeIpaText(targetPhonemeIpa);
+
+  return target ? word.replace(target, "_") : word;
+}
+
+function normalizeIpaText(value: string): string {
+  return value
+    .normalize("NFC")
+    .replace(/[\/\[\]]/g, "")
+    .replace(/[ˈˌ.\s]/g, "");
+}
+
+function levenshteinDistance(left: string, right: string): number {
+  const leftSymbols = [...left];
+  const rightSymbols = [...right];
+  const previous = Array.from({ length: rightSymbols.length + 1 }, (_, index) => index);
+  const current = Array.from({ length: rightSymbols.length + 1 }, () => 0);
+
+  for (let leftIndex = 1; leftIndex <= leftSymbols.length; leftIndex += 1) {
+    current[0] = leftIndex;
+
+    for (let rightIndex = 1; rightIndex <= rightSymbols.length; rightIndex += 1) {
+      const substitutionCost = leftSymbols[leftIndex - 1] === rightSymbols[rightIndex - 1] ? 0 : 1;
+      current[rightIndex] = Math.min(
+        (previous[rightIndex] ?? 0) + 1,
+        (current[rightIndex - 1] ?? 0) + 1,
+        (previous[rightIndex - 1] ?? 0) + substitutionCost,
+      );
+    }
+
+    for (let index = 0; index < previous.length; index += 1) {
+      previous[index] = current[index] ?? 0;
+    }
+  }
+
+  return previous[rightSymbols.length] ?? 0;
 }

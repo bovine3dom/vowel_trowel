@@ -4,19 +4,20 @@
   "private": true,
   "packageManager": "bun@1.3.4",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "tsc --noEmit && vite build",
+    "dev": "bun run scripts/dev.ts",
+    "build": "bun run check && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "check": "tsc --noEmit",
-    "test:e2e": "playwright test",
-    "ui:screenshots": "bun run scripts/capture-ui-screenshots.ts",
+    "check": "bun run generate:contribution-perfect-pairs && tsc --noEmit",
+    "test:e2e": "bun run generate:contribution-perfect-pairs && playwright test",
+    "generate:contribution-perfect-pairs": "bun run scripts/generate-contribution-perfect-pairs.ts",
+    "ui:screenshots": "bun run generate:contribution-perfect-pairs && bun run scripts/capture-ui-screenshots.ts",
     "audio:wiktionary": "bun run scripts/wiktionary-audio-report.ts",
     "audio:mswc": "bun run scripts/mswc-audio-report.ts",
     "audio:review": "bun run scripts/review-audio-candidates.ts",
     "audio:apply-reviewed": "bun run scripts/apply-reviewed-audio.ts",
     "audio:blacklist": "bun run scripts/blacklist-audio.ts",
     "audio:import": "bun run scripts/import-contribution-audio.ts",
-    "audio:wizard": "bun run scripts/audio-review-wizard.ts"
+    "audio:wizard": "bun run generate:contribution-perfect-pairs && bun run scripts/audio-review-wizard.ts"
   },
   "dependencies": {
     "fflate": "^0.8.3",

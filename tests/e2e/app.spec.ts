@@ -459,7 +459,7 @@ test("updates the spectrogram when a reviewed recording plays", async ({ page })
   await expect(explorerFlagButton).toBeVisible();
   await explorerFlagButton.click();
   await expect.poll(() => getMockClipboard(page)).toMatch(/^audio\/fr\/approved\/jeune\//);
-  await jeuneCard.getByRole("button", { name: "Play random recording" }).click();
+  await jeuneCard.getByRole("button", { name: "Play track 1" }).click();
 
   const panel = page.getByLabel("Spectrogram display");
 
