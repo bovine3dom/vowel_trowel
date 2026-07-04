@@ -1,0 +1,47 @@
+{
+  "updatedAt": "2026-07-04T09:15:14.894Z",
+  "candidate": {
+    "key": "en-gb-word-here|File%3AEn-here.oga|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-here.oga",
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-here/En-here--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-here/En-here--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-here/En-here--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-here/En-here--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Matthew Norris",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-here.oga"
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/wiktionary/en-gb-word-here/En-here.oga",
+        "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-here/En-here.oga.metadata.json",
+        "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-here/En-here.oga",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/wiktionary/en-gb-word-here/En-here.oga",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Matthew Norris",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-here.oga"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-here/En-here.oga /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-here/En-here--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/wiktionary/en-gb-word-here/En-here.oga",
+          "outputPath": "public/audio/en-gb/wiktionary/en-gb-word-here/En-here--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-here/En-here--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-here/En-here--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:15:13.829Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

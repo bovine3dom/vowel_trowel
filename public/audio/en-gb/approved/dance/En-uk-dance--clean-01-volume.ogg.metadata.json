@@ -1,0 +1,51 @@
+{
+  "updatedAt": "2026-07-04T09:12:46.693Z",
+  "candidate": {
+    "key": "en-gb-word-dance|File%3AEn-uk-dance.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-dance.ogg",
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-dance.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance.ogg",
+        "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance.ogg.metadata.json",
+        "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 3.0 us",
+          "attribution": "Association Shtooka, Judith Franck",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-dance.ogg",
+          "notes": "Regional candidate: British English"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance.ogg",
+          "outputPath": "public/audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-dance/En-uk-dance--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:12:44.843Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    }
+  }
+}

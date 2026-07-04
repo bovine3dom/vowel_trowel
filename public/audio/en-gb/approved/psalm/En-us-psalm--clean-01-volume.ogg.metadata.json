@@ -1,0 +1,47 @@
+{
+  "updatedAt": "2026-07-04T09:13:15.021Z",
+  "candidate": {
+    "key": "en-gb-word-psalm|File%3AEn-us-psalm.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-us-psalm.ogg",
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "attribution": "Doughaque",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-psalm.ogg"
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm.ogg",
+        "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm.ogg.metadata.json",
+        "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm.ogg",
+          "kind": "wiktionary",
+          "license": "Public domain",
+          "attribution": "Doughaque",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-psalm.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm.ogg",
+          "outputPath": "public/audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-psalm/En-us-psalm--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:13:13.577Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

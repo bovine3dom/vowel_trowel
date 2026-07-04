@@ -1,5 +1,5 @@
 {
-  "downloadedAt": "2026-07-01T13:16:34.662Z",
+  "downloadedAt": "2026-07-04T09:06:07.443Z",
   "word": {
     "id": "en-gb-word-leave",
     "written": "leave",
@@ -27,11 +27,43 @@
       "en.wiktionary.org"
     ],
     "regions": [],
-    "score": 10,
+    "wiktionaryIpaClaims": [
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "leave",
+        "fileTitle": "File:En-au-leave.ogg",
+        "languageCode": "en",
+        "ipa": "/ˈliːv/",
+        "normalizedIpa": "liːv",
+        "context": "* {{IPA|en|/ˈliːv/|[ˈlɪi̯v]}}"
+      },
+      {
+        "wiki": "en.wiktionary.org",
+        "pageTitle": "leave",
+        "fileTitle": "File:En-au-leave.ogg",
+        "languageCode": "en",
+        "ipa": "[ˈlɪi̯v]",
+        "normalizedIpa": "lɪiv",
+        "context": "* {{IPA|en|/ˈliːv/|[ˈlɪi̯v]}}"
+      }
+    ],
+    "ipaCheck": {
+      "status": "match",
+      "expected": "/liːv/",
+      "claimed": [
+        "/ˈliːv/",
+        "[ˈlɪi̯v]"
+      ],
+      "matched": [
+        "/ˈliːv/"
+      ]
+    },
+    "score": 18,
     "reasons": [
       "file metadata/title contains word",
       "metadata suggests English audio",
-      "found on primary Wiktionary page"
+      "found on primary Wiktionary page",
+      "Wiktionary IPA matches /liːv/"
     ],
     "suggestedAudioSource": {
       "src": "audio/en-gb/wiktionary/en-gb-word-leave/En-au-leave.ogg",
@@ -46,5 +78,6 @@
     "localPath": "public/audio/en-gb/wiktionary/en-gb-word-leave/En-au-leave.ogg",
     "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-leave/En-au-leave.ogg.metadata.json",
     "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-leave/En-au-leave.ogg"
-  }
+  },
+  "updatedAt": "2026-07-04T09:11:42.321Z"
 }

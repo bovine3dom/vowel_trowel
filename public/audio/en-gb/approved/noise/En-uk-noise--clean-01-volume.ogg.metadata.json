@@ -1,0 +1,51 @@
+{
+  "updatedAt": "2026-07-04T09:14:43.084Z",
+  "candidate": {
+    "key": "en-gb-word-noise|File%3AEn-uk-noise.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-uk-noise.ogg",
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-noise.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise.ogg",
+        "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise.ogg.metadata.json",
+        "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 3.0 us",
+          "attribution": "Association Shtooka, Judith Franck",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-noise.ogg",
+          "notes": "Regional candidate: British English"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise.ogg",
+          "outputPath": "public/audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-noise/En-uk-noise--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:14:41.515Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    }
+  }
+}

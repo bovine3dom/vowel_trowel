@@ -11,6 +11,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-about-mr5d36v3-d70b8886-c2c7-48c1-8a70-b6f0a10601c6",
       "notes": "Listen before approving. User-contributed recording for about /əˈbaʊt/."
+    },
+    {
+      "src": "audio/en-gb/approved/about/LL-Q1860__eng_-Back_ache-about--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-about.wav"
     }
   ],
   "after": [
@@ -23,6 +30,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3:en-gb-after-mr4ybf6r-e9a9ba30-d578-481e-b56e-7e64a50c58a7",
       "notes": "Listen before approving. User-contributed recording for after /ˈɑːftə/."
+    },
+    {
+      "src": "audio/en-gb/approved/after/LL-Q1860__eng_-Vealhurl-after--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-after.wav"
     }
   ],
   "ankle": [
@@ -73,6 +87,24 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3:en-gb-ask-mr4yboq1-8720982a-9344-4b0d-b1f5-c47d98f5c73c",
       "notes": "Listen before approving. User-contributed recording for ask /ɑːsk/."
+    },
+    {
+      "src": "audio/en-gb/approved/ask/En-uk-to_ask--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_ask.ogg",
+      "notes": "Regional candidate: British English"
+    }
+  ],
+  "aunt": [
+    {
+      "src": "audio/en-gb/approved/aunt/En-us-aunt-2--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-aunt-2.ogg"
     }
   ],
   "bach": [
@@ -85,11 +117,18 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3:en-gb-bach-mr4yc1xb-08952567-9122-42dd-8dcd-d5e80e458868",
       "notes": "Listen before approving. User-contributed recording for Bach /bɑːx/."
+    },
+    {
+      "src": "audio/en-gb/approved/bach/LL-Q1860__eng_-Vealhurl-Bach--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Bach.wav"
     }
   ],
   "back": [
     {
-      "src": "audio/en-gb/approved/back/En-us-back.ogg",
+      "src": "audio/en-gb/approved/back/En-us-back--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
@@ -141,6 +180,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches en-gb-trap, en-gb-g."
+    },
+    {
+      "src": "audio/en-gb/approved/bag/En-us-bag.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bag.ogg"
     }
   ],
   "ban": [
@@ -152,6 +198,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches en-gb-n."
+    },
+    {
+      "src": "audio/en-gb/approved/ban/LL-Q1860__eng_-Vealhurl-ban--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-ban.wav"
     }
   ],
   "bang": [
@@ -194,14 +247,14 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
   ],
   "bat": [
     {
-      "src": "audio/en-gb/approved/bat/En-us-bat.ogg",
+      "src": "audio/en-gb/approved/bat/En-us-bat--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bat.ogg"
     },
     {
-      "src": "audio/en-gb/approved/bat/En-au-bat.ogg",
+      "src": "audio/en-gb/approved/bat/En-au-bat--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
@@ -320,6 +373,22 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4yd1hz-22b265f9-e00b-42fe-b37f-8387a4f27df3:en-gb-beer-mr4ycsnz-ee0a68f1-9141-40d9-94ca-f5d6f14e7527",
       "notes": "Listen before approving. User-contributed recording for beer /bɪə/."
+    },
+    {
+      "src": "audio/en-gb/approved/beer/En-uk-beer--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-beer.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/beer/En-au-beer--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-beer.ogg"
     }
   ],
   "beige": [
@@ -392,6 +461,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5588fb-471061f5-64aa-49dc-9bed-1ab1dba196e9:en-gb-boy-mr5556j8-fb301ab7-0776-4584-9b78-4ccb64692acd",
       "notes": "Listen before approving. User-contributed recording for boy /bɔɪ/."
+    },
+    {
+      "src": "audio/en-gb/approved/boy/LL-Q1860__eng_-Pvanp7-boy--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Pvanp7 Recorder: Pvanp7",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Pvanp7-boy.wav"
     }
   ],
   "breathe": [
@@ -447,6 +523,17 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 4.0",
       "attribution": "ThirteenToThirty",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Buss.ogg"
+    }
+  ],
+  "butter": [
+    {
+      "src": "audio/en-gb/approved/butter/En-uk-butter--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-butter.ogg",
+      "notes": "Regional candidate: British English"
     }
   ],
   "buy": [
@@ -674,6 +761,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-challah-mr5dj8j4-516656ab-b485-4e3d-bae7-367815adee76",
       "notes": "User-contributed recording for challah /ˈxɑːlə/."
+    },
+    {
+      "src": "audio/en-gb/approved/challah/LL-Q1860__eng_-Simplificationalizer-challah--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Simplificationalizer Recorder: Simplificationalizer",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Simplificationalizer-challah.wav"
     }
   ],
   "chanukah": [
@@ -734,6 +828,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC0 1.0",
       "sourceUrl": "vowel-trowel-contribution:en-gb-chutzpah-mr5crhva-c9d95932-7b0a-43a1-aa27-0fdb5059c9c9",
       "notes": "Listen before approving. User-contributed recording for chutzpah /ˈxʊtspə/."
+    },
+    {
+      "src": "audio/en-gb/approved/chutzpah/En-us-chutzpah--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-chutzpah.ogg"
     }
   ],
   "city": [
@@ -746,6 +847,33 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5588fb-471061f5-64aa-49dc-9bed-1ab1dba196e9:en-gb-city-mr5564l2-c43ff094-6088-4434-aa6d-dbddfef140d4",
       "notes": "Listen before approving. User-contributed recording for city /ˈsɪti/."
+    },
+    {
+      "src": "audio/en-gb/approved/city/En-uk-city--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-city.ogg",
+      "notes": "Regional candidate: British English"
+    }
+  ],
+  "class": [
+    {
+      "src": "audio/en-gb/approved/class/En-uk-class--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-class.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/class/En-us-class--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-class.ogg"
     }
   ],
   "clear": [
@@ -770,6 +898,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5588fb-471061f5-64aa-49dc-9bed-1ab1dba196e9:en-gb-cloth-mr556ff3-96b3fd2c-bf1b-4582-b1e6-0a2d030c4a7e",
       "notes": "Listen before approving. User-contributed recording for cloth /klɒθ/."
+    },
+    {
+      "src": "audio/en-gb/approved/cloth/En-us-cloth--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cloth.ogg"
     }
   ],
   "coat": [
@@ -917,6 +1052,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5588fb-471061f5-64aa-49dc-9bed-1ab1dba196e9:en-gb-cough-mr5578q7-67aa2ccb-6964-4906-b804-8df9b9bc4854",
       "notes": "Listen before approving. User-contributed recording for cough /kɒf/."
+    },
+    {
+      "src": "audio/en-gb/approved/cough/LL-Q1860__eng_-Vealhurl-cough--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-cough.wav"
     }
   ],
   "could": [
@@ -1034,6 +1176,24 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-cut.ogg"
     }
   ],
+  "dance": [
+    {
+      "src": "audio/en-gb/approved/dance/En-uk-dance--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-dance.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/dance/En-us-dance--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-dance.ogg"
+    }
+  ],
   "dawn": [
     {
       "src": "audio/en-gb/approved/dawn/common_voice_en_1122.opus",
@@ -1129,6 +1289,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-ear-mr5czybv-3ac38ce1-4d7d-479a-9aee-a5e0a28f00b5",
       "notes": "Listen before approving. User-contributed recording for ear /ɪə/."
+    },
+    {
+      "src": "audio/en-gb/approved/ear/En-uk-ear--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "Public domain",
+      "attribution": "No machine-readable author provided. Chris Melville assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-ear.ogg",
+      "notes": "Regional candidate: British English"
     }
   ],
   "fail": [
@@ -1171,7 +1340,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
   ],
   "fan": [
     {
-      "src": "audio/en-gb/approved/fan/LL-Q1860__eng_-Vealhurl-fan.wav",
+      "src": "audio/en-gb/approved/fan/LL-Q1860__eng_-Vealhurl-fan--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
@@ -1185,6 +1354,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches en-gb-trap, en-gb-f."
+    },
+    {
+      "src": "audio/en-gb/approved/fan/LL-Q1860__eng_-Aquild-fan--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 4.0",
+      "attribution": "Speaker: Aquild Recorder: Aquild",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Aquild-fan.wav"
     }
   ],
   "father": [
@@ -1320,6 +1496,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-funny-mr5d3uod-216bd409-9632-44ef-8ad9-e47d49ed678b",
       "notes": "Listen before approving. User-contributed recording for funny /ˈfʌni/."
+    },
+    {
+      "src": "audio/en-gb/approved/funny/LL-Q1860__eng_-Back_ache-funny--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-funny.wav"
     }
   ],
   "game": [
@@ -1489,6 +1672,29 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC0 1.0",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d:en-gb-happy-mr56r0l2-8e08aee8-2e50-484c-b5d3-a85b03c95326",
       "notes": "Listen before approving. User-contributed recording for happy /ˈhæpi/."
+    },
+    {
+      "src": "audio/en-gb/approved/happy/En-uk-happy--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-happy.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/happy/LL-Q1860__eng_-Naomi_Persephone_Amethyst__NaomiAmethyst_-happy--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Naomi Persephone Amethyst Recorder: NaomiAmethyst",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-happy.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/happy/En-au-happy--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-happy.ogg"
     }
   ],
   "head": [
@@ -1527,6 +1733,33 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-heart.ogg"
+    }
+  ],
+  "here": [
+    {
+      "src": "audio/en-gb/approved/here/En-uk-here--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-here.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/here/En-uk-hear--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "Public domain",
+      "attribution": "No machine-readable author provided. Chris Melville assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-hear.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/here/En-here--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Matthew Norris",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-here.oga"
     }
   ],
   "hood": [
@@ -1573,6 +1806,22 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-house-mr5dktsv-eac2f06f-2f71-41ee-ad22-9190e7cd8172",
       "notes": "User-contributed recording for house /haʊs/."
+    },
+    {
+      "src": "audio/en-gb/approved/house/En-uk-house--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-house.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/house/En-us-house-noun--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-house-noun.ogg"
     }
   ],
   "hut": [
@@ -1917,6 +2166,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-loch-mr5czg45-15e59b8e-e641-44d9-9019-ad2de010a3c8",
       "notes": "Listen before approving. User-contributed recording for loch /lɒx/."
+    },
+    {
+      "src": "audio/en-gb/approved/loch/En-au-loch--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-loch.ogg"
     }
   ],
   "lock": [
@@ -2120,6 +2376,17 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-might.ogg"
     }
   ],
+  "money": [
+    {
+      "src": "audio/en-gb/approved/money/En-uk-money--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-money.ogg",
+      "notes": "Regional candidate: British English"
+    }
+  ],
   "mother": [
     {
       "src": "audio/en-gb/approved/mother/en-gb-mother-mr5cyt6s-ef9d3b8a-9526-4bf5-b650-ff2f2a65fa6d--clean-01-volume.ogg",
@@ -2130,6 +2397,58 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-mother-mr5cyt6s-ef9d3b8a-9526-4bf5-b650-ff2f2a65fa6d",
       "notes": "Listen before approving. User-contributed recording for mother /ˈmʌðə/."
+    },
+    {
+      "src": "audio/en-gb/approved/mother/En-uk-mother--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "Public domain",
+      "attribution": "No machine-readable author provided. Baryonic Being~commonswiki assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-mother.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/mother/En-au-mother--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-mother.ogg"
+    }
+  ],
+  "mouse": [
+    {
+      "src": "audio/en-gb/approved/mouse/En-uk-a_mouse--clean-02-crop.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_mouse.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/mouse/En-us-mouse--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-mouse.ogg"
+    }
+  ],
+  "near": [
+    {
+      "src": "audio/en-gb/approved/near/En-uk-near--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-near.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/near/LL-Q1860__eng_-Back_ache-near--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-near.wav"
     }
   ],
   "noise": [
@@ -2142,6 +2461,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-noise-mr5d443v-cef73b38-309a-4515-b61c-e5d17621f7f9",
       "notes": "Listen before approving. User-contributed recording for noise /nɔɪz/."
+    },
+    {
+      "src": "audio/en-gb/approved/noise/En-uk-noise--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-noise.ogg",
+      "notes": "Regional candidate: British English"
     }
   ],
   "not": [
@@ -2169,6 +2497,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-note.ogg"
+    }
+  ],
+  "off": [
+    {
+      "src": "audio/en-gb/approved/off/En-au-off--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-off.ogg"
     }
   ],
   "pack": [
@@ -2214,6 +2551,17 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-trap. Common Voice accent: England English."
+    }
+  ],
+  "party": [
+    {
+      "src": "audio/en-gb/approved/party/En-gb-party--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Jonathan Hearn",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-gb-party.ogg",
+      "notes": "Regional candidate: British English"
     }
   ],
   "pat": [
@@ -2343,6 +2691,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr4uwgx5-36a51887-1e07-4bd0-9564-f02e91a2d316:en-gb-prize-mr4uvcip-d9161acf-3d1b-4d79-ade9-1cb246f514a2",
       "notes": "User-contributed recording for prize /praɪz/."
+    }
+  ],
+  "psalm": [
+    {
+      "src": "audio/en-gb/approved/psalm/En-us-psalm--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "Public domain",
+      "attribution": "Doughaque",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-psalm.ogg"
     }
   ],
   "pull": [
@@ -2792,7 +3149,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
   ],
   "sin": [
     {
-      "src": "audio/en-gb/approved/sin/En-us-sin.ogg",
+      "src": "audio/en-gb/approved/sin/En-us-sin--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "Public domain",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sin.ogg"
@@ -2929,6 +3286,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-slip.ogg"
     }
   ],
+  "sofa": [
+    {
+      "src": "audio/en-gb/approved/sofa/En-us-sofa--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sofa.ogg"
+    }
+  ],
   "stock": [
     {
       "src": "audio/en-gb/approved/stock/common_voice_en_20592224.opus",
@@ -2988,6 +3354,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-that-mr5d1qja-86d72b17-72ad-4cf9-b626-0ef6f04da5ab",
       "notes": "Listen before approving. User-contributed recording for that /ðæt/."
+    },
+    {
+      "src": "audio/en-gb/approved/that/LL-Q1860__eng_-Back_ache-that--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-that.wav"
     }
   ],
   "then": [
@@ -3012,6 +3385,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-there-mr5dle34-d678fb08-65b0-4236-8ce9-275cfd4e467b",
       "notes": "User-contributed recording for there /ðeə/."
+    },
+    {
+      "src": "audio/en-gb/approved/there/En-uk-there--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-there.ogg",
+      "notes": "Regional candidate: British English"
     }
   ],
   "thick": [
@@ -3110,6 +3492,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-think.wav"
     }
   ],
+  "this": [
+    {
+      "src": "audio/en-gb/approved/this/LL-Q1860__eng_-Back_ache-this--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-this.wav"
+    }
+  ],
   "thumb": [
     {
       "src": "audio/en-gb/approved/thumb/En-us-thumb.ogg",
@@ -3160,6 +3551,13 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-tour-mr5d4pvq-a9fe3623-a385-4a4c-9f6b-0225ad5c8e4f",
       "notes": "Listen before approving. User-contributed recording for tour /tʊə/."
+    },
+    {
+      "src": "audio/en-gb/approved/tour/En-au-tour--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-tour.ogg"
     }
   ],
   "town": [
@@ -3197,6 +3595,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-treasure-mr5dk3qn-8e3c47a1-d838-419f-ab85-db66b60c77b3",
       "notes": "User-contributed recording for treasure /ˈtreʒə/."
+    }
+  ],
+  "turn": [
+    {
+      "src": "audio/en-gb/approved/turn/En-au-turn--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-turn.ogg"
     }
   ],
   "uncle": [
@@ -3238,6 +3645,20 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-unit-mr5cz39p-5af9c19a-9c5d-4227-bf50-76cc9f7a1d4b",
       "notes": "Listen before approving. User-contributed recording for unit /ˈjuːnɪt/."
+    },
+    {
+      "src": "audio/en-gb/approved/unit/En-us-unit--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-unit.ogg"
+    },
+    {
+      "src": "audio/en-gb/approved/unit/En-au-unit--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-unit.ogg"
     }
   ],
   "use": [
@@ -3250,6 +3671,20 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5d4ro0-190b7aee-9f5a-491d-88e3-efebcac05873:en-gb-use-mr5d2vhh-a12b5e04-8993-4149-8198-e7a0a55a7602",
       "notes": "Listen before approving. User-contributed recording for use /juːs/."
+    },
+    {
+      "src": "audio/en-gb/approved/use/LL-Q1860__eng_-Vealhurl-use--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-use.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/use/En-us-use-noun--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-use-noun.ogg"
     }
   ],
   "van": [
@@ -3318,7 +3753,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
   ],
   "wet": [
     {
-      "src": "audio/en-gb/approved/wet/En-au-wet.ogg",
+      "src": "audio/en-gb/approved/wet/En-au-wet--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
@@ -3379,6 +3814,22 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-w. Common Voice accent: England English."
+    }
+  ],
+  "win": [
+    {
+      "src": "audio/en-gb/approved/win/LL-Q1860__eng_-Back_ache-win--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-win.wav"
+    },
+    {
+      "src": "audio/en-gb/approved/win/En-us-win--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Dvortygirl",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-win.ogg"
     }
   ],
   "wine": [
@@ -3468,6 +3919,22 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-year-mr5dkb6f-84bc12e5-9fa7-4f5d-b08f-68fb5c88da8c",
       "notes": "User-contributed recording for year /jɪə/."
+    },
+    {
+      "src": "audio/en-gb/approved/year/En-uk-a_year--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_year.ogg",
+      "notes": "Regional candidate: British English"
+    },
+    {
+      "src": "audio/en-gb/approved/year/LL-Q1860__eng_-Back_ache-year--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-year.wav"
     }
   ],
   "yes": [
@@ -3480,6 +3947,17 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "bovine3dom",
       "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609:en-gb-yes-mr5dlupb-67967ac2-eff8-41d1-a86e-287da216f31b",
       "notes": "User-contributed recording for yes /jes/."
+    }
+  ],
+  "young": [
+    {
+      "src": "audio/en-gb/approved/young/En-uk-young--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "British English",
+      "license": "CC BY 3.0 us",
+      "attribution": "Association Shtooka, Judith Franck",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-young.ogg",
+      "notes": "Regional candidate: British English"
     }
   ],
   "zeal": [

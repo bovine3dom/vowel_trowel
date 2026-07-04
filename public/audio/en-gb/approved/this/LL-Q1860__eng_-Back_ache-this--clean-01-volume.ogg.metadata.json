@@ -1,0 +1,47 @@
+{
+  "updatedAt": "2026-07-04T09:16:45.625Z",
+  "candidate": {
+    "key": "en-gb-word-this|File%3ALL-Q1860%20(eng)-Back%20ache-this.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q1860_(eng)-Back_ache-this.wav",
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Back ache Recorder: Back ache",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-this.wav"
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this.wav",
+        "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this.wav.metadata.json",
+        "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this.wav",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: Back ache Recorder: Back ache",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-this.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this.wav /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this.wav",
+          "outputPath": "public/audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-this/LL-Q1860__eng_-Back_ache-this--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:16:44.173Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}

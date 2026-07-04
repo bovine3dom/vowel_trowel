@@ -1,0 +1,47 @@
+{
+  "updatedAt": "2026-07-04T09:12:18.032Z",
+  "candidate": {
+    "key": "en-gb-word-bat|File%3AEn-au-bat.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEn-au-bat.ogg",
+    "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat--clean-01-volume.ogg",
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Commander Keane",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-bat.ogg"
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat.ogg",
+        "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat.ogg.metadata.json",
+        "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Commander Keane",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-bat.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat.ogg /home/olie/projects/vowel_trowel/public/audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat.ogg",
+          "outputPath": "public/audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/wiktionary/en-gb-word-bat/En-au-bat--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:12:16.400Z"
+        }
+      ],
+      "currentStep": 0
+    },
+    "review": {
+      "status": "approved"
+    }
+  }
+}
