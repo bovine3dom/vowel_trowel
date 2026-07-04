@@ -1,5 +1,5 @@
 import { getLanguageSlug } from "../languages";
-import type { LanguageDataset, PhonemeId, WordEntry } from "../languages/types";
+import type { AudioSource, LanguageDataset, PhonemeId, WordEntry } from "../languages/types";
 
 export const DEFAULT_CONTRIBUTION_TARGET_RECORDINGS = 6;
 
@@ -57,6 +57,26 @@ export function createContributionQueue(
   }
 
   return selectedItems;
+}
+
+export function contributionWordIdsForSpeaker(
+  sourceDataset: LanguageDataset,
+  speakerName: string,
+): Set<string> {
+  const normalizedSpeakerName = normalizeContributionSpeakerName(speakerName);
+  const wordIds = new Set<string>();
+
+  if (!normalizedSpeakerName) {
+    return wordIds;
+  }
+
+  for (const word of sourceDataset.words) {
+    if (word.audio.some((source) => contributionSourceMatchesSpeaker(source, normalizedSpeakerName))) {
+      wordIds.add(word.id);
+    }
+  }
+
+  return wordIds;
 }
 
 function createContributionPhonemeRecordingCounts(
@@ -143,4 +163,16 @@ function stripWordPrefix(wordId: string, languageId: string): string {
   const prefix = `${getLanguageSlug(languageId)}-word-`;
 
   return wordId.startsWith(prefix) ? wordId.slice(prefix.length) : wordId;
+}
+
+function contributionSourceMatchesSpeaker(source: AudioSource, normalizedSpeakerName: string): boolean {
+  return source.kind === "contribution"
+    && (
+      normalizeContributionSpeakerName(source.speaker) === normalizedSpeakerName
+      || normalizeContributionSpeakerName(source.attribution) === normalizedSpeakerName
+    );
+}
+
+function normalizeContributionSpeakerName(speakerName: string | undefined): string {
+  return speakerName?.trim().toLowerCase() ?? "";
 }

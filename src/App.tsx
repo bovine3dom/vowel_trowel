@@ -17,6 +17,7 @@ import {
 import {
   DEFAULT_CONTRIBUTION_TARGET_RECORDINGS as CONTRIBUTION_TARGET_RECORDINGS,
   createContributionQueue,
+  contributionWordIdsForSpeaker,
   type ContributionQueueItem,
 } from "./contributions/queue";
 import { getLanguageDataset, getLanguageSlug, languageDatasets, sameLanguageId } from "./languages";
@@ -128,6 +129,7 @@ export default function App() {
   const initialPracticeDataset = createPracticeDataset(dataset, initialUrlState.ttsEnabled);
   const initialPrompt = createNextPrompt(initialProgress, initialUrlState.phonemePair, initialPracticeDataset);
   const initialSortingPrompt = createNextSortingPrompt(initialProgress, initialUrlState.phonemePair, initialPracticeDataset);
+  const initialContributionDetails = loadContributionDetails();
   const initialActivePhonemePair = initialUrlState.phonemePair
     ?? (initialUrlState.mode === "sort"
       ? phonemePairFromSortingPrompt(initialSortingPrompt)
@@ -166,6 +168,7 @@ export default function App() {
   const [audioError, setAudioError] = createSignal<string | null>(null);
   const [playbackVisualization, setPlaybackVisualization] = createSignal(getPlaybackVisualizationState());
   const [downloadedContributionWordIds, setDownloadedContributionWordIds] = createSignal(loadDownloadedContributionWordIds());
+  const [contributionSpeakerName, setContributionSpeakerName] = createSignal(initialContributionDetails.speakerName);
 
   const languageProgress = createMemo(() => getLanguageProgress(progress(), dataset.id));
   const practiceDataset = createMemo(() => createPracticeDataset(dataset, ttsEnabled()));
@@ -189,7 +192,12 @@ export default function App() {
   );
   const activeSpeechVoice = createMemo(() => selectSpeechVoice(speechVoices(), speechSettings()));
   const downloadedContributionWordIdSet = createMemo(() => new Set(downloadedContributionWordIds()));
-  const contributionQueue = createMemo(() => createContributionQueue(dataset, downloadedContributionWordIdSet()));
+  const speakerContributionWordIdSet = createMemo(() => contributionWordIdsForSpeaker(dataset, contributionSpeakerName()));
+  const excludedContributionWordIdSet = createMemo(() => new Set([
+    ...downloadedContributionWordIdSet(),
+    ...speakerContributionWordIdSet(),
+  ]));
+  const contributionQueue = createMemo(() => createContributionQueue(dataset, excludedContributionWordIdSet()));
   const contributionWord = createMemo(() => {
     const wordId = contributionWordId();
 
@@ -943,6 +951,7 @@ export default function App() {
                 word={word()}
                 onBack={closeContributionPage}
                 onContributionDownloaded={markContributionWordsDownloaded}
+                onContributionSpeakerNameChange={setContributionSpeakerName}
               />
             )}
           </Show>
@@ -953,6 +962,7 @@ export default function App() {
           queue={contributionQueue()}
           onBack={closeContributionMode}
           onContributionDownloaded={markContributionWordsDownloaded}
+          onContributionSpeakerNameChange={setContributionSpeakerName}
         />
       </Show>
 
@@ -2887,6 +2897,7 @@ function ContributionModePage(props: {
   queue: readonly ContributionQueueItem[];
   onBack: () => void;
   onContributionDownloaded: (wordIds: readonly string[]) => void;
+  onContributionSpeakerNameChange: (speakerName: string) => void;
 }) {
   const savedContributionDetails = loadContributionDetails();
   const recorder = createContributionRecorder(() => activeItem()?.word.written ?? "the word");
@@ -3114,6 +3125,7 @@ function ContributionModePage(props: {
 
   const updateSpeakerName = (nextSpeakerName: string) => {
     setSpeakerName(nextSpeakerName);
+    props.onContributionSpeakerNameChange(nextSpeakerName.trim());
     setDownloadStatus("idle");
     setDownloadError(null);
   };
@@ -3555,6 +3567,7 @@ function ContributionPage(props: {
   word: WordEntry;
   onBack: () => void;
   onContributionDownloaded: (wordIds: readonly string[]) => void;
+  onContributionSpeakerNameChange: (speakerName: string) => void;
 }) {
   const savedContributionDetails = loadContributionDetails();
   const recorder = createContributionRecorder(() => props.word.written);
@@ -3627,6 +3640,7 @@ function ContributionPage(props: {
 
   const updateSpeakerName = (nextSpeakerName: string) => {
     setSpeakerName(nextSpeakerName);
+    props.onContributionSpeakerNameChange(nextSpeakerName.trim());
     setDownloadStatus("idle");
     setDownloadError(null);
   };

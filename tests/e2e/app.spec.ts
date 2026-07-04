@@ -1,5 +1,8 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import { createContributionQueue, contributionWordIdsForSpeaker } from "../../src/contributions/queue";
+import { getLanguageDataset } from "../../src/languages";
+
 async function getMockClipboard(page: Page): Promise<string> {
   return page.evaluate(() =>
     (window as Window & { __vowelTrowelClipboard?: string }).__vowelTrowelClipboard ?? ""
@@ -281,6 +284,34 @@ test("opens a contribution recorder for a word", async ({ page }) => {
 
   await page.getByRole("button", { name: "Back to sound library" }).click();
   await expect(page).not.toHaveURL(/contribute=/);
+});
+
+test("skips contribution mode words already recorded by the stored speaker", async ({ page }) => {
+  const language = getLanguageDataset("fr");
+  const speakerName = "Louis";
+  const expectedAvailableWords = createContributionQueue(
+    language,
+    contributionWordIdsForSpeaker(language, speakerName),
+  ).length;
+
+  expect(expectedAvailableWords).toBeLessThan(createContributionQueue(language).length);
+
+  await page.addInitScript((details) => {
+    localStorage.setItem("vowel-trowel:contribution-details:v1", JSON.stringify(details));
+  }, {
+    schemaVersion: 1,
+    licence: "CC0-1.0",
+    speakerName,
+    accent: "",
+  });
+  await page.goto("/?lang=fr&contribute=mode");
+
+  const availableSummary = page.locator(".contribution-queue-summary > div").first();
+
+  await expect(page.getByRole("heading", { name: "Record a batch" })).toBeVisible();
+  await expect(availableSummary.locator("strong")).toHaveText(String(expectedAvailableWords));
+  await expect(availableSummary.locator("span")).toHaveText("words available");
+  await expect(page.getByPlaceholder("How you want to be credited")).toHaveValue(speakerName);
 });
 
 test("can submit a matching answer", async ({ page }) => {
