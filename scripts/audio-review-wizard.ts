@@ -1,5 +1,6 @@
 import { spawnSync } from "node:child_process";
 
+import { createContributionQueue } from "../src/contributions/queue";
 import { getLanguageDataset } from "../src/languages";
 import type { LanguageDataset, WordEntry } from "../src/languages/types";
 
@@ -181,7 +182,6 @@ function createCoveragePlan(
     };
   }
 
-  const requestedIds = new Set(requestedWords.map((word) => word.id));
   const requestedGroupKeys = new Set(
     requestedWords.flatMap((word) => {
       const info = wordInfoById.get(word.id);
@@ -192,7 +192,7 @@ function createCoveragePlan(
   const groups = createCoverageGroups([...wordInfoById.values()], opts.coverageTarget)
     .filter((group) => requestedGroupKeys.size === 0 || requestedGroupKeys.has(group.key));
   const underCoveredGroups = groups.filter((group) => group.deficit > 0);
-  const candidateWords = selectCoverageWords(underCoveredGroups, requestedIds);
+  const candidateWords = selectCoverageWords(underCoveredGroups, requestedWords, dataset, opts.coverageTarget);
   const selectedWords = opts.limit === null ? candidateWords : candidateWords.slice(0, opts.limit);
 
   return {
@@ -266,37 +266,36 @@ function createCoverageGroups(
 
 function selectCoverageWords(
   groups: readonly CoverageGroup[],
-  requestedIds: ReadonlySet<string>,
+  requestedWords: readonly WordEntry[],
+  dataset: LanguageDataset,
+  coverageTarget: number,
 ): WordEntry[] {
-  const selectedById = new Map<string, WordEntry>();
+  const selectionLimit = groups.reduce((total, group) => total + group.deficit, 0);
+  const candidateWordIds = new Set(groups.flatMap((group) => group.words.map((info) => info.word.id)));
+  const requestedCandidateWordIds = new Set(
+    requestedWords
+      .filter((word) => candidateWordIds.has(word.id))
+      .map((word) => word.id),
+  );
+  const requestedQueue = requestedCandidateWordIds.size > 0
+    ? createContributionQueue(dataset, new Set(), {
+      candidateWordIds: requestedCandidateWordIds,
+      limit: Math.min(selectionLimit, requestedCandidateWordIds.size),
+      targetRecordings: coverageTarget,
+    })
+    : [];
+  const requestedQueueWordIds = new Set(requestedQueue.map((item) => item.word.id));
+  const remainingLimit = Math.max(0, selectionLimit - requestedQueue.length);
+  const fillQueue = remainingLimit > 0
+    ? createContributionQueue(dataset, requestedQueueWordIds, {
+      assumedRecordedWordIds: requestedQueueWordIds,
+      candidateWordIds,
+      limit: remainingLimit,
+      targetRecordings: coverageTarget,
+    })
+    : [];
 
-  for (const group of groups) {
-    let remaining = group.deficit;
-    const words = [...group.words].sort((left, right) => {
-      const requestedDifference = Number(requestedIds.has(right.word.id)) - Number(requestedIds.has(left.word.id));
-
-      if (requestedDifference !== 0) {
-        return requestedDifference;
-      }
-
-      const approvedDifference = left.word.audio.length - right.word.audio.length;
-
-      return approvedDifference !== 0 ? approvedDifference : left.word.written.localeCompare(right.word.written);
-    });
-
-    for (const info of words) {
-      if (remaining <= 0) {
-        break;
-      }
-
-      if (!selectedById.has(info.word.id)) {
-        selectedById.set(info.word.id, info.word);
-        remaining -= 1;
-      }
-    }
-  }
-
-  return [...selectedById.values()];
+  return [...requestedQueue, ...fillQueue].map((item) => item.word);
 }
 
 function formatCoverageGroups(groups: readonly CoverageGroup[], coverageTarget: number): string {
