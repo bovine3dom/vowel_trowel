@@ -103,15 +103,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches en-gb-b, en-gb-k."
-    },
-    {
-      "src": "audio/en-gb/approved/back/common_voice_en_3523.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches en-gb-b, en-gb-k."
     }
   ],
   "bad": [
@@ -154,25 +145,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
   ],
   "ban": [
     {
-      "src": "audio/en-gb/approved/ban/common_voice_en_20882373.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches en-gb-n."
-    },
-    {
       "src": "audio/en-gb/approved/ban/common_voice_en_17899530.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches en-gb-n."
-    },
-    {
-      "src": "audio/en-gb/approved/ban/common_voice_en_18915266.opus",
       "kind": "external",
       "accent": "British English",
       "license": "CC0-1.0",
@@ -182,15 +155,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
     }
   ],
   "bang": [
-    {
-      "src": "audio/en-gb/approved/bang/common_voice_en_20676373.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-ng. Common Voice accent: England English|Liverpool English|Lancashire English."
-    },
     {
       "src": "audio/en-gb/approved/bang/common_voice_en_611562.opus",
       "kind": "external",
@@ -202,15 +166,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
     },
     {
       "src": "audio/en-gb/approved/bang/common_voice_en_18308258.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-ng. Common Voice accent: England English."
-    },
-    {
-      "src": "audio/en-gb/approved/bang/common_voice_en_19369541.opus",
       "kind": "external",
       "accent": "British English",
       "license": "CC0-1.0",
@@ -299,13 +254,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-beat.ogg"
-    },
-    {
-      "src": "audio/en-gb/approved/beat/Nl-beat.ogg",
-      "kind": "wiktionary",
-      "license": "CC BY-SA 3.0",
-      "attribution": "Marcel Coenders",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nl-beat.ogg"
     }
   ],
   "bed": [
@@ -572,15 +520,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-trap, en-gb-p. Common Voice accent: Northumbrian British English."
-    },
-    {
-      "src": "audio/en-gb/approved/cap/common_voice_en_20132691.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-trap, en-gb-p. Common Voice accent: England English|New Zealand English."
     },
     {
       "src": "audio/en-gb/approved/cap/common_voice_en_247056.opus",
@@ -881,15 +820,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
     }
   ],
   "cod": [
-    {
-      "src": "audio/en-gb/approved/cod/common_voice_en_20164677.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-lot. Common Voice accent: England English|New Zealand English."
-    },
     {
       "src": "audio/en-gb/approved/cod/common_voice_en_18163955.opus",
       "kind": "external",
@@ -1248,15 +1178,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-fan.wav"
     },
     {
-      "src": "audio/en-gb/approved/fan/common_voice_en_20663033.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches en-gb-trap, en-gb-f."
-    },
-    {
       "src": "audio/en-gb/approved/fan/common_voice_en_20696880.opus",
       "kind": "external",
       "accent": "British English",
@@ -1305,25 +1226,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
   ],
   "fell": [
     {
-      "src": "audio/en-gb/approved/fell/common_voice_en_16229.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress. Common Voice accent: England English."
-    },
-    {
       "src": "audio/en-gb/approved/fell/common_voice_en_40187.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress. Common Voice accent: England English."
-    },
-    {
-      "src": "audio/en-gb/approved/fell/common_voice_en_40254.opus",
       "kind": "external",
       "accent": "British English",
       "license": "CC0-1.0",
@@ -1683,15 +1586,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
   ],
   "jar": [
     {
-      "src": "audio/en-gb/approved/jar/common_voice_en_15735081.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-j. Common Voice accent: England English."
-    },
-    {
       "src": "audio/en-gb/approved/jar/common_voice_en_170787.opus",
       "kind": "external",
       "accent": "British English",
@@ -1907,15 +1801,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-leave.ogg"
-    },
-    {
-      "src": "audio/en-gb/approved/leave/common_voice_en_567442.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-fleece, en-gb-v. Common Voice accent: England English."
     }
   ],
   "leisure": [
@@ -2043,24 +1928,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-l. Common Voice accent: England English|Liverpool English|Lancashire English."
-    },
-    {
-      "src": "audio/en-gb/approved/lock/common_voice_en_20872607.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-l. Common Voice accent: England English|Liverpool English|Lancashire English."
-    },
-    {
-      "src": "audio/en-gb/approved/lock/common_voice_en_18943415.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-l. Common Voice accent: England English."
     }
   ],
   "look": [
@@ -2131,15 +1998,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
     }
   ],
   "mash": [
-    {
-      "src": "audio/en-gb/approved/mash/common_voice_en_18406594.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-sh. Common Voice accent: England English."
-    },
     {
       "src": "audio/en-gb/approved/mash/common_voice_en_22450919.opus",
       "kind": "external",
@@ -2251,15 +2109,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress. Common Voice accent: England English."
-    },
-    {
-      "src": "audio/en-gb/approved/met/common_voice_en_20708206.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress. Common Voice accent: England English|Liverpool English|Lancashire English."
     }
   ],
   "might": [
@@ -2365,15 +2214,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-trap. Common Voice accent: England English."
-    },
-    {
-      "src": "audio/en-gb/approved/pan/common_voice_en_20092337.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-trap. Common Voice accent: England English|New Zealand English."
     }
   ],
   "pat": [
@@ -2562,38 +2402,11 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-ng. Common Voice accent: England English."
-    },
-    {
-      "src": "audio/en-gb/approved/rang/common_voice_en_51350.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-ng. Common Voice accent: England English."
-    },
-    {
-      "src": "audio/en-gb/approved/rang/common_voice_en_51509.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-ng. Common Voice accent: England English."
     }
   ],
   "read": [
     {
       "src": "audio/en-gb/approved/read/common_voice_en_11867.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-r. Common Voice accent: England English."
-    },
-    {
-      "src": "audio/en-gb/approved/read/common_voice_en_12997.opus",
       "kind": "external",
       "accent": "British English",
       "license": "CC0-1.0",
@@ -2688,33 +2501,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
     }
   ],
   "rock": [
-    {
-      "src": "audio/en-gb/approved/rock/common_voice_en_18414.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-r. Common Voice accent: Northumbrian British English."
-    },
-    {
-      "src": "audio/en-gb/approved/rock/common_voice_en_20621649.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-r. Common Voice accent: England English|Liverpool English|Lancashire English."
-    },
-    {
-      "src": "audio/en-gb/approved/rock/common_voice_en_20621717.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-r. Common Voice accent: England English|Liverpool English|Lancashire English."
-    },
     {
       "src": "audio/en-gb/approved/rock/common_voice_en_20669537.opus",
       "kind": "external",
@@ -2898,13 +2684,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-ship.ogg"
-    },
-    {
-      "src": "audio/en-gb/approved/ship/LL-Q150__fra_-LoquaxFR-ship.wav",
-      "kind": "wiktionary",
-      "license": "CC BY-SA 4.0",
-      "attribution": "Speaker: LoquaxFR Recorder: LoquaxFR",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-ship.wav"
     },
     {
       "src": "audio/en-gb/approved/ship/common_voice_en_20601087.opus",
@@ -3475,15 +3254,6 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
   ],
   "van": [
     {
-      "src": "audio/en-gb/approved/van/common_voice_en_18829820.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-v. Common Voice accent: England English|Academic southern English."
-    },
-    {
       "src": "audio/en-gb/approved/van/common_voice_en_8176.opus",
       "kind": "external",
       "accent": "British English",
@@ -3564,25 +3334,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress, en-gb-w. Common Voice accent: England English."
     },
     {
-      "src": "audio/en-gb/approved/wet/common_voice_en_44742.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress, en-gb-w. Common Voice accent: England English."
-    },
-    {
       "src": "audio/en-gb/approved/wet/common_voice_en_51253.opus",
-      "kind": "external",
-      "accent": "British English",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme en-gb-dress, en-gb-w. Common Voice accent: England English."
-    },
-    {
-      "src": "audio/en-gb/approved/wet/common_voice_en_646117.opus",
       "kind": "external",
       "accent": "British English",
       "license": "CC0-1.0",
