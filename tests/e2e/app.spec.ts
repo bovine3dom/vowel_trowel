@@ -211,6 +211,19 @@ test("explores a sound and returns without adding an extra history entry", async
   await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes");
 
   const firstSoundCard = page.locator(".phoneme-card").filter({ hasText: "/u/" }).first();
+  await expect(firstSoundCard.locator(".phoneme-examples")).toBeVisible();
+  const exampleWordCount = await firstSoundCard.locator(".phoneme-example-word").count();
+  expect(exampleWordCount).toBeGreaterThan(0);
+  expect(exampleWordCount).toBeLessThanOrEqual(3);
+  const playableExample = firstSoundCard.locator("button.phoneme-example-word").first();
+  const playableExampleText = (await playableExample.textContent())?.trim();
+  expect(playableExampleText).toBeTruthy();
+  await playableExample.click();
+  await expect(page.getByLabel("Spectrogram display").getByText(playableExampleText ?? "", { exact: true })).toBeVisible();
+
+  await page.getByLabel("Show sounds without recordings").check();
+  await expect(page.locator(".phoneme-card.unrecorded .phoneme-example-word.missing-recording").first()).toBeVisible();
+
   await firstSoundCard.getByRole("button", { name: "Explore words" }).click();
 
   await expect(page).toHaveURL(/explore=fr-u/);

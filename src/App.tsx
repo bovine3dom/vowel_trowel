@@ -59,6 +59,7 @@ const CONTRIBUTION_COUNTDOWN_SECONDS = 3;
 const CONTRIBUTION_COUNTDOWN_DURATION_MS = CONTRIBUTION_COUNTDOWN_SECONDS * 1000;
 const CONTRIBUTION_RECORDING_DURATION_MS = 2000;
 const CONTRIBUTION_TIMELINE_DURATION_MS = CONTRIBUTION_COUNTDOWN_DURATION_MS + CONTRIBUTION_RECORDING_DURATION_MS;
+const PHONEME_CARD_EXAMPLE_WORD_COUNT = 3;
 const renderedSpectrograms = new WeakMap<PrecomputedSpectrogram, HTMLCanvasElement>();
 type TrainingMode = "match" | "sort" | "target";
 type CatalogTab = "phonemes" | "contrasts";
@@ -2202,6 +2203,7 @@ function CatalogPanel(props: {
               onShowUnrecordedPhonemesChange={props.onShowUnrecordedPhonemesChange}
               onPairSelect={props.onPairSelect}
               onPairClear={props.onPairClear}
+              onRandomRecordingPlay={props.onRandomRecordingPlay}
             />
           }
         >
@@ -2235,6 +2237,7 @@ function PhonemePicker(props: {
   onShowUnrecordedPhonemesChange: (showUnrecordedPhonemes: boolean) => void;
   onPairSelect: (phonemePair: PhonemePair, mode?: TrainingMode) => void;
   onPairClear: () => void;
+  onRandomRecordingPlay: (word: WordEntry) => void;
 }) {
   const selectablePhonemes = createMemo(() => dataset.phonemes.filter((phoneme) =>
     props.mode !== "target" || Boolean(formantTargetForPhoneme(phoneme))
@@ -2292,42 +2295,71 @@ function PhonemePicker(props: {
 
       <div class="phoneme-grid">
         <For each={visiblePhonemes()}>
-          {(phoneme) => (
-            <article
-              class={phonemeCardClass(phoneme, props.draftPhonemeIds, props.activePhonemePair, !phonemeHasWordRecording(phoneme.id, props.availableDataset))}
-              role="button"
-              tabindex="0"
-              onClick={() => props.onPhonemeSelect(phoneme.id)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  props.onPhonemeSelect(phoneme.id);
-                }
-              }}
-            >
-              <div class="phoneme-main">
-                <span class="phoneme-ipa">{phoneme.ipa}</span>
-                <strong>{phoneme.label}</strong>
-                <small>{phoneme.category}</small>
-                <Show when={!phonemeHasWordRecording(phoneme.id, props.availableDataset)}>
-                  <small class="phoneme-recording-status">No recordings yet</small>
-                </Show>
-              </div>
-              <Show when={phoneme.notes}>
-                {(notes) => <p>{notes()}</p>}
-              </Show>
-              <button
-                class="text-button compact"
-                type="button"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  props.onPhonemeExplore(phoneme.id);
+          {(phoneme) => {
+            const exampleWords = samplePhonemeCardWords(phoneme.id, dataset);
+
+            return (
+              <article
+                class={phonemeCardClass(phoneme, props.draftPhonemeIds, props.activePhonemePair, !phonemeHasWordRecording(phoneme.id, props.availableDataset))}
+                role="button"
+                tabindex="0"
+                onClick={() => props.onPhonemeSelect(phoneme.id)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    props.onPhonemeSelect(phoneme.id);
+                  }
                 }}
               >
-                Explore words
-              </button>
-            </article>
-          )}
+                <div class="phoneme-main">
+                  <span class="phoneme-ipa">{phoneme.ipa}</span>
+                  <strong>{phoneme.label}</strong>
+                  <small>{phoneme.category}</small>
+                  <Show when={!phonemeHasWordRecording(phoneme.id, props.availableDataset)}>
+                    <small class="phoneme-recording-status">No recordings yet</small>
+                  </Show>
+                </div>
+                <Show when={phoneme.notes}>
+                  {(notes) => <p>{notes()}</p>}
+                </Show>
+                <Show when={exampleWords.length > 0}>
+                  <div class="phoneme-examples" aria-label={`Example words with ${phoneme.ipa}`}>
+                    <span class="phoneme-examples-label">Examples</span>
+                    <For each={exampleWords}>
+                      {(word) => (
+                        <Show
+                          when={hasWordRecording(word)}
+                          fallback={<span class="phoneme-example-word missing-recording" title={`${word.ipa} - no recordings yet`}>{word.written}</span>}
+                        >
+                          <button
+                            class="phoneme-example-word"
+                            type="button"
+                            title={`Play ${word.written} ${word.ipa}`}
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              props.onRandomRecordingPlay(word);
+                            }}
+                          >
+                            {word.written}
+                          </button>
+                        </Show>
+                      )}
+                    </For>
+                  </div>
+                </Show>
+                <button
+                  class="text-button compact"
+                  type="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    props.onPhonemeExplore(phoneme.id);
+                  }}
+                >
+                  Explore words
+                </button>
+              </article>
+            );
+          }}
         </For>
       </div>
       <Show when={unrecordedPhonemes().length > 0}>
@@ -5717,6 +5749,29 @@ function contrastCardClass(
 
 function wordsForPhoneme(phonemeId: PhonemeId, sourceDataset = dataset): WordEntry[] {
   return sourceDataset.words.filter((word) => word.phonemeIds.includes(phonemeId));
+}
+
+function samplePhonemeCardWords(phonemeId: PhonemeId, sourceDataset: LanguageDataset): WordEntry[] {
+  const words = wordsForPhoneme(phonemeId, sourceDataset);
+  const recordedWords = words.filter(hasWordRecording);
+
+  return sampleRandomWords(recordedWords.length > 0 ? recordedWords : words, PHONEME_CARD_EXAMPLE_WORD_COUNT);
+}
+
+function sampleRandomWords(words: readonly WordEntry[], limit: number): WordEntry[] {
+  const remaining = [...words];
+  const sample: WordEntry[] = [];
+
+  while (sample.length < limit && remaining.length > 0) {
+    const index = Math.floor(Math.random() * remaining.length);
+    const [word] = remaining.splice(index, 1);
+
+    if (word) {
+      sample.push(word);
+    }
+  }
+
+  return sample;
 }
 
 function phonemeHasWordRecording(phonemeId: PhonemeId, sourceDataset = dataset): boolean {

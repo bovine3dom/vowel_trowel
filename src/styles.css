@@ -1227,6 +1227,53 @@ h3 {
   line-height: 1.4;
 }
 
+.phoneme-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.phoneme-examples-label {
+  width: 100%;
+  color: #5f584f;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.phoneme-example-word {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border: 1px solid #e2d9c9;
+  border-radius: 999px;
+  background: #f7f2e8;
+  color: #3f372e;
+  font: inherit;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+button.phoneme-example-word:hover {
+  background: #efe4cf;
+  border-color: #cdb98e;
+}
+
+button.phoneme-example-word:focus-visible {
+  outline: 2px solid #866118;
+  outline-offset: 2px;
+}
+
+.phoneme-example-word.missing-recording {
+  background: #efede8;
+  border-color: #d8d0c3;
+  color: #7b6e60;
+  cursor: default;
+}
+
 .phoneme-ipa {
   font-size: 1.55rem;
 }
