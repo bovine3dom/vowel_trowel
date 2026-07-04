@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T10:00:45.640Z",
+  "word": {
+    "id": "fr-word-vache",
+    "written": "vache",
+    "ipa": "/vaʃ/",
+    "phonemeIds": [
+      "fr-v",
+      "fr-a",
+      "fr-sh"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Aemines1-vache.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/LL-Q150_%28fra%29-Aemines1-vache.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Aemines1-vache.wav",
+    "mime": "audio/wav",
+    "size": 99604,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Aemines1 Recorder: Aemines1",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-vache|File%3ALL-Q150%20(fra)-Aemines1-vache.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Aemines1-vache.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/vaʃ/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Aemines1 Recorder: Aemines1",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Aemines1-vache.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: Aemines1 Recorder: Aemines1",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Aemines1-vache.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-vache/LL-Q150__fra_-Aemines1-vache--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:00:45.640Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:29:46.615Z"
+}

@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T10:02:41.351Z",
+  "word": {
+    "id": "fr-word-loi",
+    "written": "loi",
+    "ipa": "/lwa/",
+    "phonemeIds": [
+      "fr-l",
+      "fr-w",
+      "fr-a"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Jordi Pi. (BiblioCanet66)-loi.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/LL-Q150_%28fra%29-Jordi_Pi._%28BiblioCanet66%29-loi.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Jordi_Pi._(BiblioCanet66)-loi.wav",
+    "mime": "audio/wav",
+    "size": 82988,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Jordi Pi. Recorder: BiblioCanet66",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-loi|File%3ALL-Q150%20(fra)-Jordi%20Pi.%20(BiblioCanet66)-loi.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Jordi_Pi._(BiblioCanet66)-loi.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/lwa/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Jordi Pi. Recorder: BiblioCanet66",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Jordi_Pi._(BiblioCanet66)-loi.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: Jordi Pi. Recorder: BiblioCanet66",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Jordi_Pi._(BiblioCanet66)-loi.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-loi/LL-Q150__fra_-Jordi_Pi.__BiblioCanet66_-loi--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:02:41.351Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:31:59.492Z"
+}

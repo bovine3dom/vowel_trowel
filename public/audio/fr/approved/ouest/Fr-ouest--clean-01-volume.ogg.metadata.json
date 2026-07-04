@@ -1,0 +1,89 @@
+{
+  "downloadedAt": "2026-07-04T10:02:40.048Z",
+  "word": {
+    "id": "fr-word-ouest",
+    "written": "ouest",
+    "ipa": "/wɛst/",
+    "phonemeIds": [
+      "fr-w",
+      "fr-epsilon",
+      "fr-s",
+      "fr-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-ouest.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Fr-ouest.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-ouest.ogg",
+    "mime": "application/ogg",
+    "size": 13719,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of \"ouest\" (à l'ouest) in French. Male voice. Speaker from Paris region, France.",
+    "key": "fr-word-ouest|File%3AFr-ouest.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-ouest.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/wɛst/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-ouest/Fr-ouest--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-ouest.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-ouest--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-ouest--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-ouest/Fr-ouest--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-ouest.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-ouest.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-ouest/Fr-ouest.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-ouest/Fr-ouest.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-ouest.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-ouest/Fr-ouest.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-ouest/Fr-ouest--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-ouest.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-ouest--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-ouest/Fr-ouest--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-ouest--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:02:40.048Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:31:55.606Z"
+}

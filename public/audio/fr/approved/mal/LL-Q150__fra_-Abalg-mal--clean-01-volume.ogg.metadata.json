@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T09:56:04.436Z",
+  "word": {
+    "id": "fr-word-mal",
+    "written": "mal",
+    "ipa": "/mal/",
+    "phonemeIds": [
+      "fr-m",
+      "fr-a",
+      "fr-l"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Abalg-mal.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/LL-Q150_%28fra%29-Abalg-mal.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Abalg-mal.wav",
+    "mime": "audio/wav",
+    "size": 83220,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Abalg Recorder: Abalg",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-mal|File%3ALL-Q150%20(fra)-Abalg-mal.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Abalg-mal.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/mal/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Abalg Recorder: Abalg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Abalg-mal.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: Abalg Recorder: Abalg",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Abalg-mal.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-mal/LL-Q150__fra_-Abalg-mal--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:56:04.436Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:25:34.174Z"
+}

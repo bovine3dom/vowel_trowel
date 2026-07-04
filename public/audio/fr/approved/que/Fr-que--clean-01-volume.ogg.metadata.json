@@ -1,0 +1,87 @@
+{
+  "downloadedAt": "2026-07-04T09:55:45.623Z",
+  "word": {
+    "id": "fr-word-que",
+    "written": "que",
+    "ipa": "/kə/",
+    "phonemeIds": [
+      "fr-k",
+      "fr-schwa"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-que.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Fr-que.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-que.ogg",
+    "mime": "application/ogg",
+    "size": 13024,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "French pronunciation for \"que\" — Speaker from Paris, France. male voice.",
+    "key": "fr-word-que|File%3AFr-que.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-que.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/kə/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-que/Fr-que--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-que.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-que/Fr-que--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-que/Fr-que--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-que/Fr-que--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-que/Fr-que.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-que/Fr-que.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-que/Fr-que.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-que/Fr-que.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-que.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-que/Fr-que.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-que/Fr-que--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-que/Fr-que.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-que/Fr-que--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-que/Fr-que--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-que/Fr-que--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:55:45.623Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:25:09.586Z"
+}

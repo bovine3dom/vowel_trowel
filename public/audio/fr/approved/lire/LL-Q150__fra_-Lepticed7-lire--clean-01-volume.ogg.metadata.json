@@ -1,0 +1,89 @@
+{
+  "downloadedAt": "2026-07-04T10:01:06.520Z",
+  "word": {
+    "id": "fr-word-lire",
+    "written": "lire",
+    "ipa": "/liʁ/",
+    "phonemeIds": [
+      "fr-l",
+      "fr-i",
+      "fr-r"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Lepticed7-lire.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/LL-Q150_%28fra%29-Lepticed7-lire.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Lepticed7-lire.wav",
+    "mime": "audio/wav",
+    "size": 84780,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Speaker: Lepticed7 Recorder: Lepticed7",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-lire|File%3ALL-Q150%20(fra)-Lepticed7-lire.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Lepticed7-lire.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/liʁ/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Lepticed7 Recorder: Lepticed7",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Lepticed7-lire.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire.wav",
+          "kind": "wiktionary",
+          "license": "CC0",
+          "attribution": "Speaker: Lepticed7 Recorder: Lepticed7",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Lepticed7-lire.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-lire/LL-Q150__fra_-Lepticed7-lire--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:01:06.520Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:30:16.085Z"
+}

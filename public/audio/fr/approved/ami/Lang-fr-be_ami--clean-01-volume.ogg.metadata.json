@@ -1,0 +1,94 @@
+{
+  "downloadedAt": "2026-07-04T09:54:28.759Z",
+  "word": {
+    "id": "fr-word-ami",
+    "written": "ami",
+    "ipa": "/ami/",
+    "phonemeIds": [
+      "fr-a",
+      "fr-m",
+      "fr-i"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Lang-fr-be ami.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Lang-fr-be_ami.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Lang-fr-be_ami.ogg",
+    "mime": "application/ogg",
+    "size": 10504,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Scribus electronicus",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Prononciation en français de Belgique (Bruxelles)",
+    "key": "fr-word-ami|File%3ALang-fr-be%20ami.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALang-fr-be_ami.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [
+      "Belgian French"
+    ],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ami/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 20,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "regional keyword: Belgian French",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "Belgian French",
+      "license": "CC0",
+      "attribution": "Scribus electronicus",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lang-fr-be_ami.ogg",
+      "notes": "Regional candidate: Belgian French"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Belgian French"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami.ogg",
+          "kind": "wiktionary",
+          "license": "CC0",
+          "attribution": "Scribus electronicus",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lang-fr-be_ami.ogg",
+          "notes": "Regional candidate: Belgian French"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-ami/Lang-fr-be_ami--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:54:28.759Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:24:00.511Z"
+}

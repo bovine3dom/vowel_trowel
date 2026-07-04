@@ -1,0 +1,86 @@
+{
+  "downloadedAt": "2026-07-04T09:53:29.335Z",
+  "word": {
+    "id": "fr-word-vent",
+    "written": "vent",
+    "ipa": "/vɑ̃/",
+    "phonemeIds": [
+      "fr-an"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Eihel-vent.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/LL-Q150_%28fra%29-Eihel-vent.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Eihel-vent.wav",
+    "mime": "audio/wav",
+    "size": 92972,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Speaker: Eihel Recorder: Eihel",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-vent|File%3ALL-Q150%20(fra)-Eihel-vent.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Eihel-vent.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/vɑ̃/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Eihel Recorder: Eihel",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Eihel-vent.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent.wav",
+          "kind": "wiktionary",
+          "license": "CC0",
+          "attribution": "Speaker: Eihel Recorder: Eihel",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Eihel-vent.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-vent/LL-Q150__fra_-Eihel-vent--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:53:29.335Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:23:11.880Z"
+}

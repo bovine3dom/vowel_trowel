@@ -1,0 +1,86 @@
+{
+  "downloadedAt": "2026-07-04T09:53:13.186Z",
+  "word": {
+    "id": "fr-word-mes",
+    "written": "mes",
+    "ipa": "/me/",
+    "phonemeIds": [
+      "fr-e"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-mes.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Fr-mes.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-mes.ogg",
+    "mime": "application/ogg",
+    "size": 13053,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "French pronunciation for \"mes\" — Speaker from Paris, France. male voice.",
+    "key": "fr-word-mes|File%3AFr-mes.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-mes.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/me/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-mes/Fr-mes--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-mes.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-mes/Fr-mes--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-mes/Fr-mes--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-mes/Fr-mes--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-mes/Fr-mes.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-mes/Fr-mes.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-mes/Fr-mes.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-mes/Fr-mes.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-mes.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-mes/Fr-mes.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-mes/Fr-mes--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-mes/Fr-mes.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-mes/Fr-mes--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-mes/Fr-mes--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-mes/Fr-mes--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:53:13.186Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:22:55.139Z"
+}

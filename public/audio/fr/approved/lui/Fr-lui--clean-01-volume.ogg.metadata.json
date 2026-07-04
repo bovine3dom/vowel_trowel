@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T10:01:53.139Z",
+  "word": {
+    "id": "fr-word-lui",
+    "written": "lui",
+    "ipa": "/lɥi/",
+    "phonemeIds": [
+      "fr-l",
+      "fr-hui",
+      "fr-i"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-lui.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Fr-lui.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-lui.ogg",
+    "mime": "application/ogg",
+    "size": 14062,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"lui\" in French. Male voice. Speaker from Paris region, France.",
+    "key": "fr-word-lui|File%3AFr-lui.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-lui.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/lɥi/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-lui/Fr-lui--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-lui.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-lui/Fr-lui--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-lui/Fr-lui--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-lui/Fr-lui--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-lui/Fr-lui.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-lui/Fr-lui.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-lui/Fr-lui.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-lui/Fr-lui.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-lui.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-lui/Fr-lui.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-lui/Fr-lui--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-lui/Fr-lui.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-lui/Fr-lui--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-lui/Fr-lui--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-lui/Fr-lui--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:01:53.139Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:31:07.945Z"
+}

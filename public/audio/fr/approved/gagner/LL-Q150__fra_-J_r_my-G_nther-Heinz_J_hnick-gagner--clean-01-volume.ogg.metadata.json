@@ -1,0 +1,90 @@
+{
+  "downloadedAt": "2026-07-04T09:57:39.762Z",
+  "word": {
+    "id": "fr-word-gagner",
+    "written": "gagner",
+    "ipa": "/ɡaɲe/",
+    "phonemeIds": [
+      "fr-g",
+      "fr-a",
+      "fr-ny",
+      "fr-e"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-gagner.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/LL-Q150_%28fra%29-J%C3%A9r%C3%A9my-G%C3%BCnther-Heinz_J%C3%A4hnick-gagner.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-J%C3%A9r%C3%A9my-G%C3%BCnther-Heinz_J%C3%A4hnick-gagner.wav",
+    "mime": "audio/wav",
+    "size": 86572,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Jérémy-Günther-Heinz Jähnick Recorder: Jérémy-Günther-Heinz Jähnick",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-gagner|File%3ALL-Q150%20(fra)-J%C3%A9r%C3%A9my-G%C3%BCnther-Heinz%20J%C3%A4hnick-gagner.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-J%25C3%25A9r%25C3%25A9my-G%25C3%25BCnther-Heinz_J%25C3%25A4hnick-gagner.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ɡaɲe/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Jérémy-Günther-Heinz Jähnick Recorder: Jérémy-Günther-Heinz Jähnick",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-J%C3%A9r%C3%A9my-G%C3%BCnther-Heinz_J%C3%A4hnick-gagner.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: Jérémy-Günther-Heinz Jähnick Recorder: Jérémy-Günther-Heinz Jähnick",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-J%C3%A9r%C3%A9my-G%C3%BCnther-Heinz_J%C3%A4hnick-gagner.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-gagner/LL-Q150__fra_-J_r_my-G_nther-Heinz_J_hnick-gagner--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:57:39.762Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:27:01.134Z"
+}

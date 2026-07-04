@@ -17,7 +17,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Back ache Recorder: Back ache",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-about.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-about.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "after": [
@@ -36,7 +37,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-after.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-after.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "ankle": [
@@ -95,7 +97,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_ask.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "aunt": [
@@ -104,7 +106,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-aunt-2.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-aunt-2.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "bach": [
@@ -123,7 +126,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC0",
       "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Bach.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Bach.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "back": [
@@ -132,7 +136,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-back.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-back.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/back/common_voice_en_16309.opus",
@@ -251,14 +256,16 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bat.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bat.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/bat/En-au-bat--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-bat.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-bat.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "bath": [
@@ -381,14 +388,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-beer.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/beer/En-au-beer--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-beer.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-beer.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "beige": [
@@ -467,7 +475,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC0",
       "attribution": "Speaker: Pvanp7 Recorder: Pvanp7",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Pvanp7-boy.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Pvanp7-boy.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "breathe": [
@@ -533,7 +542,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-butter.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "buy": [
@@ -597,7 +606,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cap.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cap.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/cap/common_voice_en_18428.opus",
@@ -767,7 +777,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC0",
       "attribution": "Speaker: Simplificationalizer Recorder: Simplificationalizer",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Simplificationalizer-challah.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Simplificationalizer-challah.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "chanukah": [
@@ -834,7 +845,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-chutzpah.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-chutzpah.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "city": [
@@ -855,7 +867,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-city.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "class": [
@@ -866,14 +878,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-class.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/class/En-us-class--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-class.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-class.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "clear": [
@@ -904,7 +917,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cloth.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cloth.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "coat": [
@@ -1058,7 +1072,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-cough.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-cough.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "could": [
@@ -1184,14 +1199,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-dance.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/dance/En-us-dance--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-dance.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-dance.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "dawn": [
@@ -1297,7 +1313,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "Public domain",
       "attribution": "No machine-readable author provided. Chris Melville assumed (based on copyright claims).",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-ear.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "fail": [
@@ -1344,7 +1360,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-fan.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-fan.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/fan/common_voice_en_20696880.opus",
@@ -1360,7 +1377,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY 4.0",
       "attribution": "Speaker: Aquild Recorder: Aquild",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Aquild-fan.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Aquild-fan.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "father": [
@@ -1502,7 +1520,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Back ache Recorder: Back ache",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-funny.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-funny.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "game": [
@@ -1743,7 +1762,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-here.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/here/En-uk-hear--clean-01-volume.ogg",
@@ -1752,14 +1771,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "Public domain",
       "attribution": "No machine-readable author provided. Chris Melville assumed (based on copyright claims).",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-hear.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/here/En-here--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Matthew Norris",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-here.oga"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-here.oga",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "hood": [
@@ -1814,14 +1834,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-house.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/house/En-us-house-noun--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-house-noun.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-house-noun.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "hut": [
@@ -2035,21 +2056,23 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-to_leave.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/leave/En-au-leave.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-leave.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-leave.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/leave/En-us-leave.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-leave.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-leave.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "leisure": [
@@ -2172,7 +2195,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-loch.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-loch.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "lock": [
@@ -2384,7 +2408,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-money.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "mother": [
@@ -2405,14 +2429,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "Public domain",
       "attribution": "No machine-readable author provided. Baryonic Being~commonswiki assumed (based on copyright claims).",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-mother.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/mother/En-au-mother--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-mother.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-mother.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "mouse": [
@@ -2423,14 +2448,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_mouse.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/mouse/En-us-mouse--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-mouse.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-mouse.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "near": [
@@ -2441,14 +2467,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-near.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/near/LL-Q1860__eng_-Back_ache-near--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Back ache Recorder: Back ache",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-near.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-near.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "noise": [
@@ -2469,7 +2496,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-noise.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "not": [
@@ -2505,7 +2532,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-off.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-off.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "pack": [
@@ -2561,7 +2589,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY-SA 4.0",
       "attribution": "Jonathan Hearn",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-gb-party.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "pat": [
@@ -2699,7 +2727,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "Public domain",
       "attribution": "Doughaque",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-psalm.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-psalm.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "pull": [
@@ -3152,7 +3181,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "src": "audio/en-gb/approved/sin/En-us-sin--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "Public domain",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sin.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sin.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/sin/common_voice_en_20623277.opus",
@@ -3292,7 +3322,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sofa.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-sofa.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "stock": [
@@ -3360,7 +3391,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Back ache Recorder: Back ache",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-that.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-that.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "then": [
@@ -3393,7 +3425,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-there.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "thick": [
@@ -3498,7 +3530,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Back ache Recorder: Back ache",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-this.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-this.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "thumb": [
@@ -3557,7 +3590,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-tour.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-tour.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "town": [
@@ -3603,7 +3637,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-turn.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-turn.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "uncle": [
@@ -3651,14 +3686,16 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-unit.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-unit.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/unit/En-au-unit--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-unit.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-unit.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "use": [
@@ -3677,14 +3714,16 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Vealhurl Recorder: Vealhurl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-use.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-use.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/use/En-us-use-noun--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 3.0",
       "attribution": "Dvortygirl",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-use-noun.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-use-noun.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "van": [
@@ -3757,7 +3796,8 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Commander Keane",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-wet.ogg"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-au-wet.ogg",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/wet/common_voice_en_18283314.opus",
@@ -3927,14 +3967,15 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-a_year.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     },
     {
       "src": "audio/en-gb/approved/year/LL-Q1860__eng_-Back_ache-year--clean-01-volume.ogg",
       "kind": "wiktionary",
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: Back ache Recorder: Back ache",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-year.wav"
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Back_ache-year.wav",
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "yes": [
@@ -3957,7 +3998,7 @@ export const approvedBritishEnglishAudio: Record<string, readonly AudioSource[]>
       "license": "CC BY 3.0 us",
       "attribution": "Association Shtooka, Judith Franck",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-uk-young.ogg",
-      "notes": "Regional candidate: British English"
+      "notes": "Listen before approving. Check whether the target contrast is actually preserved."
     }
   ],
   "zeal": [

@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T09:57:20.921Z",
+  "word": {
+    "id": "fr-word-annee",
+    "written": "année",
+    "ipa": "/ane/",
+    "phonemeIds": [
+      "fr-a",
+      "fr-n",
+      "fr-e"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-0x010C-année.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/LL-Q150_%28fra%29-0x010C-ann%C3%A9e.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-0x010C-ann%C3%A9e.wav",
+    "mime": "audio/wav",
+    "size": 77164,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: 0x010C Recorder: 0x010C",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-annee|File%3ALL-Q150%20(fra)-0x010C-ann%C3%A9e.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-0x010C-ann%25C3%25A9e.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ane/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: 0x010C Recorder: 0x010C",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-0x010C-ann%C3%A9e.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: 0x010C Recorder: 0x010C",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-0x010C-ann%C3%A9e.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-annee/LL-Q150__fra_-0x010C-ann_e--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:57:20.921Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:26:37.484Z"
+}

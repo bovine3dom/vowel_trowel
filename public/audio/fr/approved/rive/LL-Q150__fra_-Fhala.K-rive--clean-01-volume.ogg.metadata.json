@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T10:01:01.425Z",
+  "word": {
+    "id": "fr-word-rive",
+    "written": "rive",
+    "ipa": "/ʁiv/",
+    "phonemeIds": [
+      "fr-r",
+      "fr-i",
+      "fr-v"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Fhala.K-rive.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/LL-Q150_%28fra%29-Fhala.K-rive.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Fhala.K-rive.wav",
+    "mime": "audio/wav",
+    "size": 84780,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Speaker: Fhala.K Recorder: Fhala.K",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-rive|File%3ALL-Q150%20(fra)-Fhala.K-rive.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Fhala.K-rive.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ʁiv/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Fhala.K Recorder: Fhala.K",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Fhala.K-rive.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive.wav",
+          "kind": "wiktionary",
+          "license": "CC0",
+          "attribution": "Speaker: Fhala.K Recorder: Fhala.K",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Fhala.K-rive.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-rive/LL-Q150__fra_-Fhala.K-rive--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:01:01.425Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:30:01.287Z"
+}

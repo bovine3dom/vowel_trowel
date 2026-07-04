@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T09:56:03.021Z",
+  "word": {
+    "id": "fr-word-papa",
+    "written": "papa",
+    "ipa": "/papa/",
+    "phonemeIds": [
+      "fr-p",
+      "fr-a"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-GrandCelinien-papa.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/8/88/LL-Q150_%28fra%29-GrandCelinien-papa.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-GrandCelinien-papa.wav",
+    "mime": "audio/wav",
+    "size": 92972,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: GrandCelinien Recorder: GrandCelinien",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-papa|File%3ALL-Q150%20(fra)-GrandCelinien-papa.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-GrandCelinien-papa.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/papa/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: GrandCelinien Recorder: GrandCelinien",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-GrandCelinien-papa.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: GrandCelinien Recorder: GrandCelinien",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-GrandCelinien-papa.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-papa/LL-Q150__fra_-GrandCelinien-papa--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:56:03.021Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:25:29.292Z"
+}

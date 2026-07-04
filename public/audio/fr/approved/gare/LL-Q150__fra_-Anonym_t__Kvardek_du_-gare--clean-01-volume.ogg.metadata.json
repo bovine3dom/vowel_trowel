@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T09:56:19.100Z",
+  "word": {
+    "id": "fr-word-gare",
+    "written": "gare",
+    "ipa": "/ɡaʁ/",
+    "phonemeIds": [
+      "fr-g",
+      "fr-a",
+      "fr-r"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Anonymât (Kvardek du)-gare.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/LL-Q150_%28fra%29-Anonym%C3%A2t_%28Kvardek_du%29-gare.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Anonym%C3%A2t_(Kvardek_du)-gare.wav",
+    "mime": "audio/wav",
+    "size": 84780,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Anonymât Recorder: Kvardek du",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-gare|File%3ALL-Q150%20(fra)-Anonym%C3%A2t%20(Kvardek%20du)-gare.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Anonym%25C3%25A2t_(Kvardek_du)-gare.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ɡaʁ/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Anonymât Recorder: Kvardek du",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Anonym%C3%A2t_(Kvardek_du)-gare.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: Anonymât Recorder: Kvardek du",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Anonym%C3%A2t_(Kvardek_du)-gare.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-gare/LL-Q150__fra_-Anonym_t__Kvardek_du_-gare--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:56:19.100Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:25:43.722Z"
+}

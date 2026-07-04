@@ -1,0 +1,86 @@
+{
+  "downloadedAt": "2026-07-04T09:52:41.202Z",
+  "word": {
+    "id": "fr-word-poux",
+    "written": "poux",
+    "ipa": "/pu/",
+    "phonemeIds": [
+      "fr-u"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-poux.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Fr-poux.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-poux.ogg",
+    "mime": "application/ogg",
+    "size": 15598,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of \"poux\" (des poux) in French. Male voice. Speaker from Paris region, France.",
+    "key": "fr-word-poux|File%3AFr-poux.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-poux.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/pu/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-poux/Fr-poux--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-poux.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-poux/Fr-poux--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-poux/Fr-poux--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-poux/Fr-poux--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-poux/Fr-poux.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-poux/Fr-poux.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-poux/Fr-poux.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-poux/Fr-poux.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-poux.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-poux/Fr-poux.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-poux/Fr-poux--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-poux/Fr-poux.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-poux/Fr-poux--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-poux/Fr-poux--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-poux/Fr-poux--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:52:41.202Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:22:15.514Z"
+}

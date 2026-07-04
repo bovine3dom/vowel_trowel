@@ -1,0 +1,87 @@
+{
+  "downloadedAt": "2026-07-04T09:47:57.916Z",
+  "word": {
+    "id": "fr-word-tas",
+    "written": "tas",
+    "ipa": "/tɑ/",
+    "phonemeIds": [
+      "fr-t",
+      "fr-back-a"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Fabricio Cardenas (Culex)-tas.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/LL-Q150_%28fra%29-Fabricio_Cardenas_%28Culex%29-tas.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Fabricio_Cardenas_(Culex)-tas.wav",
+    "mime": "audio/wav",
+    "size": 58412,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Fabricio Cardenas Recorder: Culex",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-tas|File%3ALL-Q150%20(fra)-Fabricio%20Cardenas%20(Culex)-tas.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Fabricio_Cardenas_(Culex)-tas.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/tɑ/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Fabricio Cardenas Recorder: Culex",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Fabricio_Cardenas_(Culex)-tas.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: Fabricio Cardenas Recorder: Culex",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Fabricio_Cardenas_(Culex)-tas.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-Fabricio_Cardenas__Culex_-tas--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:47:57.916Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T09:49:47.675Z"
+}

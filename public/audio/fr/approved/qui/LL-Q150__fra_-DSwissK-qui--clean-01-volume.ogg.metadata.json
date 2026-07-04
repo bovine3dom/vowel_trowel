@@ -1,0 +1,95 @@
+{
+  "downloadedAt": "2026-07-04T09:59:14.104Z",
+  "word": {
+    "id": "fr-word-qui",
+    "written": "qui",
+    "ipa": "/ki/",
+    "phonemeIds": [
+      "fr-k",
+      "fr-i"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-DSwissK-qui.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6f/LL-Q150_%28fra%29-DSwissK-qui.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-DSwissK-qui.wav",
+    "mime": "audio/wav",
+    "size": 84780,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: DSwissK Recorder: DSwissK",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-qui|File%3ALL-Q150%20(fra)-DSwissK-qui.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-DSwissK-qui.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "Swiss French"
+    ],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ki/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 21,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "regional keyword: Swiss French",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "Swiss French",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: DSwissK Recorder: DSwissK",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-DSwissK-qui.wav",
+      "notes": "Regional candidate: Swiss French"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Swiss French"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: DSwissK Recorder: DSwissK",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-DSwissK-qui.wav",
+          "notes": "Regional candidate: Swiss French"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-qui/LL-Q150__fra_-DSwissK-qui--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:59:14.104Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:28:29.197Z"
+}

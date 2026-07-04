@@ -1,0 +1,91 @@
+{
+  "downloadedAt": "2026-07-04T09:58:11.040Z",
+  "word": {
+    "id": "fr-word-parking",
+    "written": "parking",
+    "ipa": "/paʁkiŋ/",
+    "phonemeIds": [
+      "fr-p",
+      "fr-a",
+      "fr-r",
+      "fr-k",
+      "fr-i",
+      "fr-ng"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Shareculture-parking.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/LL-Q150_%28fra%29-Shareculture-parking.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Shareculture-parking.wav",
+    "mime": "audio/wav",
+    "size": 113708,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Speaker: Shareculture Recorder: Shareculture",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-parking|File%3ALL-Q150%20(fra)-Shareculture-parking.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Shareculture-parking.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/paʁkiŋ/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Shareculture Recorder: Shareculture",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Shareculture-parking.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking.wav",
+          "kind": "wiktionary",
+          "license": "CC0",
+          "attribution": "Speaker: Shareculture Recorder: Shareculture",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Shareculture-parking.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-parking/LL-Q150__fra_-Shareculture-parking--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:58:11.040Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:27:28.703Z"
+}

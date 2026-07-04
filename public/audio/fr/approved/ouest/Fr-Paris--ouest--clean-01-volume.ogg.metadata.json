@@ -1,0 +1,89 @@
+{
+  "downloadedAt": "2026-07-04T10:02:39.674Z",
+  "word": {
+    "id": "fr-word-ouest",
+    "written": "ouest",
+    "ipa": "/wɛst/",
+    "phonemeIds": [
+      "fr-w",
+      "fr-epsilon",
+      "fr-s",
+      "fr-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-Paris--ouest.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Fr-Paris--ouest.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-Paris--ouest.ogg",
+    "mime": "application/ogg",
+    "size": 10589,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Jjackoti",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "French pronunciation \"ouest\"",
+    "key": "fr-word-ouest|File%3AFr-Paris--ouest.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-Paris--ouest.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/wɛst/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Jjackoti",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-Paris--ouest.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 3.0",
+          "attribution": "Jjackoti",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-Paris--ouest.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-ouest/Fr-Paris--ouest--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:02:39.674Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:31:53.854Z"
+}

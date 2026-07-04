@@ -1,0 +1,86 @@
+{
+  "downloadedAt": "2026-07-04T09:52:54.885Z",
+  "word": {
+    "id": "fr-word-pre",
+    "written": "pré",
+    "ipa": "/pʁe/",
+    "phonemeIds": [
+      "fr-e"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Eihel-pré.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/52/LL-Q150_%28fra%29-Eihel-pr%C3%A9.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Eihel-pr%C3%A9.wav",
+    "mime": "audio/wav",
+    "size": 76588,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Speaker: Eihel Recorder: Eihel",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-pre|File%3ALL-Q150%20(fra)-Eihel-pr%C3%A9.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Eihel-pr%25C3%25A9.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/pʁe/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Speaker: Eihel Recorder: Eihel",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Eihel-pr%C3%A9.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 3.0",
+          "attribution": "Speaker: Eihel Recorder: Eihel",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Eihel-pr%C3%A9.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-pre/LL-Q150__fra_-Eihel-pr_--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:52:54.885Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:22:24.490Z"
+}

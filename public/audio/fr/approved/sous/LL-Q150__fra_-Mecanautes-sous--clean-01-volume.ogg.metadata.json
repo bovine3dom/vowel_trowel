@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T09:52:11.293Z",
+  "word": {
+    "id": "fr-word-sous",
+    "written": "sous",
+    "ipa": "/su/",
+    "phonemeIds": [
+      "fr-u",
+      "fr-s"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Mecanautes-sous.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/LL-Q150_%28fra%29-Mecanautes-sous.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Mecanautes-sous.wav",
+    "mime": "audio/wav",
+    "size": 84780,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Speaker: Mecanautes Recorder: Mecanautes",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-sous|File%3ALL-Q150%20(fra)-Mecanautes-sous.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Mecanautes-sous.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/su/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Mecanautes Recorder: Mecanautes",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Mecanautes-sous.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous.wav",
+          "kind": "wiktionary",
+          "license": "CC0",
+          "attribution": "Speaker: Mecanautes Recorder: Mecanautes",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Mecanautes-sous.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-sous/LL-Q150__fra_-Mecanautes-sous--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:52:11.293Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:21:39.446Z"
+}

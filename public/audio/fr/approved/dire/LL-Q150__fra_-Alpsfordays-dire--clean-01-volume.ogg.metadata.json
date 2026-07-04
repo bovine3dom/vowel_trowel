@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T09:59:47.152Z",
+  "word": {
+    "id": "fr-word-dire",
+    "written": "dire",
+    "ipa": "/diʁ/",
+    "phonemeIds": [
+      "fr-d",
+      "fr-i",
+      "fr-r"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Alpsfordays-dire.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/LL-Q150_%28fra%29-Alpsfordays-dire.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Alpsfordays-dire.wav",
+    "mime": "audio/wav",
+    "size": 83220,
+    "license": "cc-by-4.0",
+    "licenseShortName": "CC BY 4.0",
+    "artist": "Speaker: Alpsfordays Recorder: Alpsfordays",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-dire|File%3ALL-Q150%20(fra)-Alpsfordays-dire.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Alpsfordays-dire.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/diʁ/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 4.0",
+      "attribution": "Speaker: Alpsfordays Recorder: Alpsfordays",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Alpsfordays-dire.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire.wav",
+          "kind": "wiktionary",
+          "license": "CC BY 4.0",
+          "attribution": "Speaker: Alpsfordays Recorder: Alpsfordays",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Alpsfordays-dire.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-dire/LL-Q150__fra_-Alpsfordays-dire--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:59:47.152Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:29:02.717Z"
+}

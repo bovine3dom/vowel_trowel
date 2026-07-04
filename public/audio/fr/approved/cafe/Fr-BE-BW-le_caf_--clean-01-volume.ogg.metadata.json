@@ -1,0 +1,96 @@
+{
+  "downloadedAt": "2026-07-04T09:59:16.260Z",
+  "word": {
+    "id": "fr-word-cafe",
+    "written": "café",
+    "ipa": "/kafe/",
+    "phonemeIds": [
+      "fr-k",
+      "fr-a",
+      "fr-f",
+      "fr-e"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-BE-BW-le café.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/Fr-BE-BW-le_caf%C3%A9.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-BE-BW-le_caf%C3%A9.ogg",
+    "mime": "application/ogg",
+    "size": 14584,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Moyogo",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "French pronunciation of \"café\" (le café). Male voice. Brabant wallon, in Belgium.",
+    "key": "fr-word-cafe|File%3AFr-BE-BW-le%20caf%C3%A9.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-BE-BW-le_caf%25C3%25A9.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "Belgian French"
+    ],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/kafe/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 20,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "regional keyword: Belgian French",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "Belgian French",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Moyogo",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-BE-BW-le_caf%C3%A9.ogg",
+      "notes": "Regional candidate: Belgian French"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Belgian French"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Moyogo",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-BE-BW-le_caf%C3%A9.ogg",
+          "notes": "Regional candidate: Belgian French"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-cafe/Fr-BE-BW-le_caf_--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:59:16.260Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:28:35.638Z"
+}

@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T10:02:55.449Z",
+  "word": {
+    "id": "fr-word-toi",
+    "written": "toi",
+    "ipa": "/twa/",
+    "phonemeIds": [
+      "fr-t",
+      "fr-w",
+      "fr-a"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-toi.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Fr-toi.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-toi.ogg",
+    "mime": "application/ogg",
+    "size": 11463,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"toi\" in French. Male voice. Speaker from Paris region, France.",
+    "key": "fr-word-toi|File%3AFr-toi.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-toi.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/twa/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-toi/Fr-toi--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-toi.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-toi/Fr-toi--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-toi/Fr-toi--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-toi/Fr-toi--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-toi/Fr-toi.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-toi/Fr-toi.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-toi/Fr-toi.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-toi/Fr-toi.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-toi.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-toi/Fr-toi.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-toi/Fr-toi--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-toi/Fr-toi.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-toi/Fr-toi--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-toi/Fr-toi--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-toi/Fr-toi--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:02:55.449Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:32:07.954Z"
+}

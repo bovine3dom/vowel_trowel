@@ -1,0 +1,92 @@
+{
+  "downloadedAt": "2026-07-04T09:47:30.705Z",
+  "word": {
+    "id": "fr-word-de-schwa",
+    "written": "de",
+    "ipa": "/də/",
+    "phonemeIds": [
+      "fr-d",
+      "fr-schwa"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Nl-de.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Nl-de.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Nl-de.ogg",
+    "mime": "application/ogg",
+    "size": 11233,
+    "license": "cc-by-sa-3.0",
+    "licenseShortName": "CC BY-SA 3.0",
+    "artist": "Hooiwind",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Belgian standard Dutch pronunciation of \"de\" (the).",
+    "key": "fr-word-de-schwa|File%3ANl-de.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ANl-de.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [
+      "Belgian French"
+    ],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/də/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 17,
+    "reasons": [
+      "file metadata/title contains word",
+      "found on primary Wiktionary page",
+      "regional keyword: Belgian French",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-de-schwa/Nl-de--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "Belgian French",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Hooiwind",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nl-de.ogg",
+      "notes": "Regional candidate: Belgian French"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Belgian French"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-de-schwa/Nl-de--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-de-schwa/Nl-de--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-de-schwa/Nl-de--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-de-schwa/Nl-de.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-de-schwa/Nl-de.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-de-schwa/Nl-de.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-de-schwa/Nl-de.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 3.0",
+          "attribution": "Hooiwind",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nl-de.ogg",
+          "notes": "Regional candidate: Belgian French"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-de-schwa/Nl-de.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-de-schwa/Nl-de--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-de-schwa/Nl-de.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-de-schwa/Nl-de--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-de-schwa/Nl-de--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-de-schwa/Nl-de--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:47:30.705Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T09:48:53.318Z"
+}

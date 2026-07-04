@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T09:47:59.227Z",
+  "word": {
+    "id": "fr-word-tas",
+    "written": "tas",
+    "ipa": "/tɑ/",
+    "phonemeIds": [
+      "fr-t",
+      "fr-back-a"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-LoquaxFR-tas.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/LL-Q150_%28fra%29-LoquaxFR-tas.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-tas.wav",
+    "mime": "audio/wav",
+    "size": 75028,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: LoquaxFR Recorder: LoquaxFR",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-tas|File%3ALL-Q150%20(fra)-LoquaxFR-tas.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-LoquaxFR-tas.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/tɑ/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: LoquaxFR Recorder: LoquaxFR",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-tas.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: LoquaxFR Recorder: LoquaxFR",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-tas.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-tas/LL-Q150__fra_-LoquaxFR-tas--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:47:59.227Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T09:49:52.818Z"
+}

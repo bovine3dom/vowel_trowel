@@ -1,0 +1,87 @@
+{
+  "downloadedAt": "2026-07-04T09:55:32.787Z",
+  "word": {
+    "id": "fr-word-ce",
+    "written": "ce",
+    "ipa": "/sə/",
+    "phonemeIds": [
+      "fr-s",
+      "fr-schwa"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-ce.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Fr-ce.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-ce.ogg",
+    "mime": "application/ogg",
+    "size": 12883,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "French pronunciation for \"ce\" — Speaker from Paris, France. male voice.",
+    "key": "fr-word-ce|File%3AFr-ce.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-ce.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/sə/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-ce/Fr-ce--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-ce.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-ce/Fr-ce--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-ce/Fr-ce--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-ce/Fr-ce--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-ce/Fr-ce.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-ce/Fr-ce.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-ce/Fr-ce.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-ce/Fr-ce.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-ce.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-ce/Fr-ce.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-ce/Fr-ce--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-ce/Fr-ce.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-ce/Fr-ce--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-ce/Fr-ce--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-ce/Fr-ce--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:55:32.787Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:25:04.367Z"
+}

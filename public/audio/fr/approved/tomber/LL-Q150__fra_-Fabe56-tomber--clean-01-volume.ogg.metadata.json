@@ -1,0 +1,89 @@
+{
+  "downloadedAt": "2026-07-04T09:58:58.893Z",
+  "word": {
+    "id": "fr-word-tomber",
+    "written": "tomber",
+    "ipa": "/tɔ̃be/",
+    "phonemeIds": [
+      "fr-t",
+      "fr-on",
+      "fr-b",
+      "fr-e"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Fabe56-tomber.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/LL-Q150_%28fra%29-Fabe56-tomber.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Fabe56-tomber.wav",
+    "mime": "audio/wav",
+    "size": 109356,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Fabe56 Recorder: Fabe56",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-tomber|File%3ALL-Q150%20(fra)-Fabe56-tomber.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Fabe56-tomber.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/tɔ̃be/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Fabe56 Recorder: Fabe56",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Fabe56-tomber.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: Fabe56 Recorder: Fabe56",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Fabe56-tomber.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-tomber/LL-Q150__fra_-Fabe56-tomber--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:58:58.893Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:28:17.139Z"
+}

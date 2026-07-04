@@ -1,0 +1,87 @@
+{
+  "downloadedAt": "2026-07-04T09:54:45.744Z",
+  "word": {
+    "id": "fr-word-nid",
+    "written": "nid",
+    "ipa": "/ni/",
+    "phonemeIds": [
+      "fr-n",
+      "fr-i"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-nid.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/Fr-nid.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-nid.ogg",
+    "mime": "application/ogg",
+    "size": 14884,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "French pronunciation for \"nid\" [un nid] — Speaker from Paris, France. male voice.",
+    "key": "fr-word-nid|File%3AFr-nid.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-nid.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ni/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-nid/Fr-nid--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-nid.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-nid/Fr-nid--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-nid/Fr-nid--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-nid/Fr-nid--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-nid/Fr-nid.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-nid/Fr-nid.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-nid/Fr-nid.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-nid/Fr-nid.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-nid.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-nid/Fr-nid.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-nid/Fr-nid--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-nid/Fr-nid.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-nid/Fr-nid--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-nid/Fr-nid--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-nid/Fr-nid--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:54:45.744Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:24:20.415Z"
+}

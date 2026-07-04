@@ -1,0 +1,86 @@
+{
+  "downloadedAt": "2026-07-04T09:52:55.877Z",
+  "word": {
+    "id": "fr-word-pre",
+    "written": "pré",
+    "ipa": "/pʁe/",
+    "phonemeIds": [
+      "fr-e"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-pré.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Fr-pr%C3%A9.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-pr%C3%A9.ogg",
+    "mime": "application/ogg",
+    "size": 14760,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "French pronunciation for \"pré\" [un pré] — Speaker from Paris, France. male voice.",
+    "key": "fr-word-pre|File%3AFr-pr%C3%A9.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-pr%25C3%25A9.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/pʁe/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-pre/Fr-pr_--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-pr%C3%A9.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-pre/Fr-pr_--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-pre/Fr-pr_--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-pre/Fr-pr_--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-pre/Fr-pr_.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-pre/Fr-pr_.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-pre/Fr-pr_.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-pre/Fr-pr_.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-pr%C3%A9.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-pre/Fr-pr_.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-pre/Fr-pr_--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-pre/Fr-pr_.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-pre/Fr-pr_--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-pre/Fr-pr_--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-pre/Fr-pr_--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:52:55.877Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:22:27.778Z"
+}

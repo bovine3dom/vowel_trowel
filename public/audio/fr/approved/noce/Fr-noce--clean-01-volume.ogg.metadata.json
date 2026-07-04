@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T09:57:09.055Z",
+  "word": {
+    "id": "fr-word-noce",
+    "written": "noce",
+    "ipa": "/nɔs/",
+    "phonemeIds": [
+      "fr-n",
+      "fr-open-o",
+      "fr-s"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-noce.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Fr-noce.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-noce.ogg",
+    "mime": "application/ogg",
+    "size": 17319,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "French pronunciation for \"noce\" [une noce] — Speaker from Paris, France. male voice.",
+    "key": "fr-word-noce|File%3AFr-noce.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-noce.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/nɔs/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-noce/Fr-noce--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-noce.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-noce/Fr-noce--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-noce/Fr-noce--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-noce/Fr-noce--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-noce/Fr-noce.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-noce/Fr-noce.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-noce/Fr-noce.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-noce/Fr-noce.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-noce.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-noce/Fr-noce.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-noce/Fr-noce--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-noce/Fr-noce.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-noce/Fr-noce--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-noce/Fr-noce--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-noce/Fr-noce--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:57:09.055Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:26:34.859Z"
+}

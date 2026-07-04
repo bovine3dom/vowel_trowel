@@ -1,0 +1,91 @@
+{
+  "downloadedAt": "2026-07-04T10:01:51.915Z",
+  "word": {
+    "id": "fr-word-travail",
+    "written": "travail",
+    "ipa": "/tʁavaj/",
+    "phonemeIds": [
+      "fr-t",
+      "fr-r",
+      "fr-a",
+      "fr-v",
+      "fr-j"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-GrandCelinien-travail.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/LL-Q150_%28fra%29-GrandCelinien-travail.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-GrandCelinien-travail.wav",
+    "mime": "audio/wav",
+    "size": 109356,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: GrandCelinien Recorder: GrandCelinien",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-travail|File%3ALL-Q150%20(fra)-GrandCelinien-travail.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-GrandCelinien-travail.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/tʁavaj/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: GrandCelinien Recorder: GrandCelinien",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-GrandCelinien-travail.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: GrandCelinien Recorder: GrandCelinien",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-GrandCelinien-travail.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-travail/LL-Q150__fra_-GrandCelinien-travail--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:01:51.915Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:31:03.694Z"
+}

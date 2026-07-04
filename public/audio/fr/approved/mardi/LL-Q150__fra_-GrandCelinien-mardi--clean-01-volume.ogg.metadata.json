@@ -1,0 +1,91 @@
+{
+  "downloadedAt": "2026-07-04T09:56:50.837Z",
+  "word": {
+    "id": "fr-word-mardi",
+    "written": "mardi",
+    "ipa": "/maʁdi/",
+    "phonemeIds": [
+      "fr-m",
+      "fr-a",
+      "fr-r",
+      "fr-d",
+      "fr-i"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-GrandCelinien-mardi.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/LL-Q150_%28fra%29-GrandCelinien-mardi.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-GrandCelinien-mardi.wav",
+    "mime": "audio/wav",
+    "size": 101164,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: GrandCelinien Recorder: GrandCelinien",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-mardi|File%3ALL-Q150%20(fra)-GrandCelinien-mardi.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-GrandCelinien-mardi.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/maʁdi/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: GrandCelinien Recorder: GrandCelinien",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-GrandCelinien-mardi.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: GrandCelinien Recorder: GrandCelinien",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-GrandCelinien-mardi.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-mardi/LL-Q150__fra_-GrandCelinien-mardi--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:56:50.837Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:26:13.470Z"
+}

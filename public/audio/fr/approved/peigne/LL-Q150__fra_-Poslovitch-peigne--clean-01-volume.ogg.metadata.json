@@ -1,0 +1,89 @@
+{
+  "downloadedAt": "2026-07-04T09:57:57.111Z",
+  "word": {
+    "id": "fr-word-peigne",
+    "written": "peigne",
+    "ipa": "/pɛɲ/",
+    "phonemeIds": [
+      "fr-p",
+      "fr-epsilon",
+      "fr-ny"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Poslovitch-peigne.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/LL-Q150_%28fra%29-Poslovitch-peigne.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Poslovitch-peigne.wav",
+    "mime": "audio/wav",
+    "size": 91412,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Speaker: Poslovitch Recorder: Poslovitch",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-peigne|File%3ALL-Q150%20(fra)-Poslovitch-peigne.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Poslovitch-peigne.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/pɛɲ/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Poslovitch Recorder: Poslovitch",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Poslovitch-peigne.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne.wav",
+          "kind": "wiktionary",
+          "license": "CC0",
+          "attribution": "Speaker: Poslovitch Recorder: Poslovitch",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Poslovitch-peigne.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-peigne/LL-Q150__fra_-Poslovitch-peigne--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:57:57.111Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:27:21.375Z"
+}

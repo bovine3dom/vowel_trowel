@@ -1,0 +1,86 @@
+{
+  "downloadedAt": "2026-07-04T09:51:53.573Z",
+  "word": {
+    "id": "fr-word-vous",
+    "written": "vous",
+    "ipa": "/vu/",
+    "phonemeIds": [
+      "fr-u"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Ash Crow-vous.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/LL-Q150_%28fra%29-Ash_Crow-vous.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Ash_Crow-vous.wav",
+    "mime": "audio/wav",
+    "size": 68396,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: Ash Crow Recorder: Ash Crow",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-vous|File%3ALL-Q150%20(fra)-Ash%20Crow-vous.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Ash_Crow-vous.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/vu/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: Ash Crow Recorder: Ash Crow",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Ash_Crow-vous.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: Ash Crow Recorder: Ash Crow",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Ash_Crow-vous.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-vous/LL-Q150__fra_-Ash_Crow-vous--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:51:53.573Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:21:16.689Z"
+}

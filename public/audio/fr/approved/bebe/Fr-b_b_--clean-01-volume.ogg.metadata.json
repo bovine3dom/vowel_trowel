@@ -1,0 +1,94 @@
+{
+  "downloadedAt": "2026-07-04T09:59:31.866Z",
+  "word": {
+    "id": "fr-word-bebe",
+    "written": "bébé",
+    "ipa": "/bebe/",
+    "phonemeIds": [
+      "fr-b",
+      "fr-e"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-bébé.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Fr-b%C3%A9b%C3%A9.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-b%C3%A9b%C3%A9.ogg",
+    "mime": "application/ogg",
+    "size": 14434,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "French pronunciation for \"bébé\" [un bébé] — Speaker from Paris, France. male voice.",
+    "key": "fr-word-bebe|File%3AFr-b%C3%A9b%C3%A9.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-b%25C3%25A9b%25C3%25A9.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "Belgian French"
+    ],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/bebe/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 20,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "regional keyword: Belgian French",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-bebe/Fr-b_b_--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "Belgian French",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-b%C3%A9b%C3%A9.ogg",
+      "notes": "Regional candidate: Belgian French"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Belgian French"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-bebe/Fr-b_b_--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-bebe/Fr-b_b_--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-bebe/Fr-b_b_--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-bebe/Fr-b_b_.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-bebe/Fr-b_b_.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-bebe/Fr-b_b_.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-bebe/Fr-b_b_.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-b%C3%A9b%C3%A9.ogg",
+          "notes": "Regional candidate: Belgian French"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-bebe/Fr-b_b_.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-bebe/Fr-b_b_--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-bebe/Fr-b_b_.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-bebe/Fr-b_b_--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-bebe/Fr-b_b_--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-bebe/Fr-b_b_--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:59:31.866Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:28:49.710Z"
+}

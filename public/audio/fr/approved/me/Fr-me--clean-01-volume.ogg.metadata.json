@@ -1,0 +1,87 @@
+{
+  "downloadedAt": "2026-07-04T09:55:16.990Z",
+  "word": {
+    "id": "fr-word-me",
+    "written": "me",
+    "ipa": "/mə/",
+    "phonemeIds": [
+      "fr-m",
+      "fr-schwa"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-me.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Fr-me.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-me.ogg",
+    "mime": "application/ogg",
+    "size": 12986,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "Pronunciation of word \"me\" in French. Male voice. Speaker from Paris region, France.",
+    "key": "fr-word-me|File%3AFr-me.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-me.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/mə/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-me/Fr-me--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-me.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-me/Fr-me--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-me/Fr-me--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-me/Fr-me--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-me/Fr-me.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-me/Fr-me.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-me/Fr-me.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-me/Fr-me.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-me.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-me/Fr-me.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-me/Fr-me--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-me/Fr-me.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-me/Fr-me--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-me/Fr-me--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-me/Fr-me--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:55:16.990Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:24:50.747Z"
+}

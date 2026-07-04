@@ -1,0 +1,89 @@
+{
+  "downloadedAt": "2026-07-04T10:00:17.714Z",
+  "word": {
+    "id": "fr-word-glace",
+    "written": "glace",
+    "ipa": "/ɡlas/",
+    "phonemeIds": [
+      "fr-g",
+      "fr-l",
+      "fr-a",
+      "fr-s"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Eihel-glace.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/LL-Q150_%28fra%29-Eihel-glace.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Eihel-glace.wav",
+    "mime": "audio/wav",
+    "size": 109356,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Speaker: Eihel Recorder: Eihel",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-glace|File%3ALL-Q150%20(fra)-Eihel-glace.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Eihel-glace.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ɡlas/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Eihel Recorder: Eihel",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Eihel-glace.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace.wav",
+          "kind": "wiktionary",
+          "license": "CC0",
+          "attribution": "Speaker: Eihel Recorder: Eihel",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Eihel-glace.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-Eihel-glace--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:00:17.714Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:29:28.912Z"
+}

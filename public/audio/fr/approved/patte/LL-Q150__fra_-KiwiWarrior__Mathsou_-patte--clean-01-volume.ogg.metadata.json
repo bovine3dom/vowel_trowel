@@ -1,0 +1,88 @@
+{
+  "downloadedAt": "2026-07-04T09:55:49.161Z",
+  "word": {
+    "id": "fr-word-patte",
+    "written": "patte",
+    "ipa": "/pat/",
+    "phonemeIds": [
+      "fr-p",
+      "fr-a",
+      "fr-t"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-KiwiWarrior (Mathsou)-patte.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/LL-Q150_%28fra%29-KiwiWarrior_%28Mathsou%29-patte.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-KiwiWarrior_(Mathsou)-patte.wav",
+    "mime": "audio/wav",
+    "size": 101164,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: KiwiWarrior Recorder: Mathsou",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-patte|File%3ALL-Q150%20(fra)-KiwiWarrior%20(Mathsou)-patte.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-KiwiWarrior_(Mathsou)-patte.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/pat/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: KiwiWarrior Recorder: Mathsou",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-KiwiWarrior_(Mathsou)-patte.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: KiwiWarrior Recorder: Mathsou",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-KiwiWarrior_(Mathsou)-patte.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-patte/LL-Q150__fra_-KiwiWarrior__Mathsou_-patte--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:55:49.161Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:25:20.694Z"
+}

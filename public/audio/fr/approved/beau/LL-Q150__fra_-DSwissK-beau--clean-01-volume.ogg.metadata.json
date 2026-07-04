@@ -1,0 +1,95 @@
+{
+  "downloadedAt": "2026-07-04T09:59:43.639Z",
+  "word": {
+    "id": "fr-word-beau",
+    "written": "beau",
+    "ipa": "/bo/",
+    "phonemeIds": [
+      "fr-b",
+      "fr-o"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-DSwissK-beau.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/LL-Q150_%28fra%29-DSwissK-beau.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-DSwissK-beau.wav",
+    "mime": "audio/wav",
+    "size": 76588,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: DSwissK Recorder: DSwissK",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-beau|File%3ALL-Q150%20(fra)-DSwissK-beau.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-DSwissK-beau.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [
+      "Swiss French"
+    ],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/bo/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 21,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "regional keyword: Swiss French",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "Swiss French",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: DSwissK Recorder: DSwissK",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-DSwissK-beau.wav",
+      "notes": "Regional candidate: Swiss French"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Swiss French"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: DSwissK Recorder: DSwissK",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-DSwissK-beau.wav",
+          "notes": "Regional candidate: Swiss French"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-beau/LL-Q150__fra_-DSwissK-beau--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:59:43.639Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:28:50.990Z"
+}

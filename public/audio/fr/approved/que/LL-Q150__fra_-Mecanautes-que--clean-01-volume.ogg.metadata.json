@@ -1,0 +1,86 @@
+{
+  "downloadedAt": "2026-07-04T09:55:46.052Z",
+  "word": {
+    "id": "fr-word-que",
+    "written": "que",
+    "ipa": "/kə/",
+    "phonemeIds": [
+      "fr-k",
+      "fr-schwa"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-Mecanautes-que.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f7/LL-Q150_%28fra%29-Mecanautes-que.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Mecanautes-que.wav",
+    "mime": "audio/wav",
+    "size": 76588,
+    "license": "cc0",
+    "licenseShortName": "CC0",
+    "artist": "Speaker: Mecanautes Recorder: Mecanautes",
+    "credit": "Own work",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-que|File%3ALL-Q150%20(fra)-Mecanautes-que.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-Mecanautes-que.wav",
+    "sourceWikis": [
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/kə/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 8,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC0",
+      "attribution": "Speaker: Mecanautes Recorder: Mecanautes",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Mecanautes-que.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que.wav",
+          "kind": "wiktionary",
+          "license": "CC0",
+          "attribution": "Speaker: Mecanautes Recorder: Mecanautes",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Mecanautes-que.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-que/LL-Q150__fra_-Mecanautes-que--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:55:46.052Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:25:10.728Z"
+}

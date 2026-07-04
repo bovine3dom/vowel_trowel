@@ -1,0 +1,96 @@
+{
+  "downloadedAt": "2026-07-04T10:00:16.627Z",
+  "word": {
+    "id": "fr-word-glace",
+    "written": "glace",
+    "ipa": "/ɡlas/",
+    "phonemeIds": [
+      "fr-g",
+      "fr-l",
+      "fr-a",
+      "fr-s"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-LuneMarine (DSwissK)-glace.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/LL-Q150_%28fra%29-LuneMarine_%28DSwissK%29-glace.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LuneMarine_(DSwissK)-glace.wav",
+    "mime": "audio/wav",
+    "size": 92972,
+    "license": "cc-by-4.0",
+    "licenseShortName": "CC BY 4.0",
+    "artist": "Speaker: LuneMarine Recorder: DSwissK",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-glace|File%3ALL-Q150%20(fra)-LuneMarine%20(DSwissK)-glace.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-LuneMarine_(DSwissK)-glace.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org"
+    ],
+    "regions": [
+      "Swiss French"
+    ],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ɡlas/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 21,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "regional keyword: Swiss French",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "accent": "Swiss French",
+      "license": "CC BY 4.0",
+      "attribution": "Speaker: LuneMarine Recorder: DSwissK",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LuneMarine_(DSwissK)-glace.wav",
+      "notes": "Regional candidate: Swiss French"
+    },
+    "review": {
+      "status": "approved",
+      "accent": "Swiss French"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace.wav",
+          "kind": "wiktionary",
+          "license": "CC BY 4.0",
+          "attribution": "Speaker: LuneMarine Recorder: DSwissK",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LuneMarine_(DSwissK)-glace.wav",
+          "notes": "Regional candidate: Swiss French"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-glace/LL-Q150__fra_-LuneMarine__DSwissK_-glace--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:00:16.627Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:29:24.233Z"
+}

@@ -1,0 +1,87 @@
+{
+  "downloadedAt": "2026-07-04T10:01:03.820Z",
+  "word": {
+    "id": "fr-word-rare",
+    "written": "rare",
+    "ipa": "/ʁaʁ/",
+    "phonemeIds": [
+      "fr-r",
+      "fr-a"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-Rare-fr-Paris.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Fr-Rare-fr-Paris.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-Rare-fr-Paris.ogg",
+    "mime": "application/ogg",
+    "size": 22636,
+    "license": "cc-by-sa-2.0-fr",
+    "licenseShortName": "CC BY-SA 2.0 fr",
+    "artist": "No machine-readable author provided. Kipmaster assumed (based on copyright claims).",
+    "credit": "No machine-readable source provided. Own work assumed (based on copyright claims).",
+    "attribution": null,
+    "description": "Author : User:Kipmaster \"rare\" [ʁɑʁ] Prononciation française, accent d'Ile de France. French pronunciation.",
+    "key": "fr-word-rare|File%3AFr-Rare-fr-Paris.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-Rare-fr-Paris.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/ʁaʁ/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 2.0 fr",
+      "attribution": "No machine-readable author provided. Kipmaster assumed (based on copyright claims).",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-Rare-fr-Paris.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 2.0 fr",
+          "attribution": "No machine-readable author provided. Kipmaster assumed (based on copyright claims).",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-Rare-fr-Paris.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-rare/Fr-Rare-fr-Paris--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:01:03.820Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:30:09.760Z"
+}

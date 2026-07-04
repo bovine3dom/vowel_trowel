@@ -1,0 +1,89 @@
+{
+  "downloadedAt": "2026-07-04T10:00:32.336Z",
+  "word": {
+    "id": "fr-word-farce",
+    "written": "farce",
+    "ipa": "/faʁs/",
+    "phonemeIds": [
+      "fr-f",
+      "fr-a",
+      "fr-r",
+      "fr-s"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:Fr-farce.ogg",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Fr-farce.ogg",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Fr-farce.ogg",
+    "mime": "application/ogg",
+    "size": 14649,
+    "license": "cc-by-2.0-fr",
+    "licenseShortName": "CC BY 2.0 fr",
+    "artist": "Vion Nicolas",
+    "credit": "The Shtooka Project",
+    "attribution": null,
+    "description": "French pronunciation for \"farce\" — Speaker from Paris, France. male voice.",
+    "key": "fr-word-farce|File%3AFr-farce.ogg|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFr-farce.ogg",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/faʁs/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 9,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-farce/Fr-farce--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY 2.0 fr",
+      "attribution": "Vion Nicolas",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-farce.ogg"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-farce/Fr-farce--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-farce/Fr-farce--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-farce/Fr-farce--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-farce/Fr-farce.ogg",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-farce/Fr-farce.ogg.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-farce/Fr-farce.ogg",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-farce/Fr-farce.ogg",
+          "kind": "wiktionary",
+          "license": "CC BY 2.0 fr",
+          "attribution": "Vion Nicolas",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fr-farce.ogg"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-farce/Fr-farce.ogg /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-farce/Fr-farce--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-farce/Fr-farce.ogg",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-farce/Fr-farce--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-farce/Fr-farce--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-farce/Fr-farce--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T10:00:32.336Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:29:39.101Z"
+}

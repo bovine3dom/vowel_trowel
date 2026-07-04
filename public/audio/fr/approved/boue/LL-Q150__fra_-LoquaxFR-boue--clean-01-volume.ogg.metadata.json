@@ -1,0 +1,87 @@
+{
+  "downloadedAt": "2026-07-04T09:52:26.685Z",
+  "word": {
+    "id": "fr-word-boue",
+    "written": "boue",
+    "ipa": "/bu/",
+    "phonemeIds": [
+      "fr-u"
+    ]
+  },
+  "candidate": {
+    "fileTitle": "File:LL-Q150 (fra)-LoquaxFR-boue.wav",
+    "audioUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/LL-Q150_%28fra%29-LoquaxFR-boue.wav",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-boue.wav",
+    "mime": "audio/wav",
+    "size": 91412,
+    "license": "cc-by-sa-4.0",
+    "licenseShortName": "CC BY-SA 4.0",
+    "artist": "Speaker: LoquaxFR Recorder: LoquaxFR",
+    "credit": "Own work ( Lingua Libre )",
+    "attribution": null,
+    "description": "Audio pronunciation file from the Lingua Libre project.",
+    "key": "fr-word-boue|File%3ALL-Q150%20(fra)-LoquaxFR-boue.wav|https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ALL-Q150_(fra)-LoquaxFR-boue.wav",
+    "sourceWikis": [
+      "fr.wiktionary.org",
+      "en.wiktionary.org"
+    ],
+    "regions": [],
+    "wiktionaryIpaClaims": [],
+    "ipaCheck": {
+      "status": "unknown",
+      "expected": "/bu/",
+      "claimed": [],
+      "matched": []
+    },
+    "score": 10,
+    "reasons": [
+      "file metadata/title contains word",
+      "metadata suggests French audio",
+      "found on primary Wiktionary page",
+      "audio MIME audio/wav",
+      "no nearby Wiktionary IPA claim found for this audio file"
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue--clean-01-volume.ogg",
+      "kind": "wiktionary",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Speaker: LoquaxFR Recorder: LoquaxFR",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-boue.wav"
+    },
+    "review": {
+      "status": "approved"
+    },
+    "localPath": "public/audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue--clean-01-volume.ogg",
+    "metadataPath": "public/audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue--clean-01-volume.ogg",
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue.wav",
+        "metadataPath": "public/audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue.wav.metadata.json",
+        "datasetSrc": "audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue.wav",
+        "suggestedAudioSource": {
+          "src": "audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue.wav",
+          "kind": "wiktionary",
+          "license": "CC BY-SA 4.0",
+          "attribution": "Speaker: LoquaxFR Recorder: LoquaxFR",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-boue.wav"
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue.wav /home/olie/projects/vowel_trowel/public/audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue.wav",
+          "outputPath": "public/audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue--clean-01-volume.ogg",
+          "datasetSrc": "audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue--clean-01-volume.ogg",
+          "metadataPath": "public/audio/fr/wiktionary/fr-word-boue/LL-Q150__fra_-LoquaxFR-boue--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T09:52:26.685Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T10:21:59.981Z"
+}
