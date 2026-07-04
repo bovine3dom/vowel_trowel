@@ -54,15 +54,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-an. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/banc/common_voice_fr_20376223.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-an. Common Voice accent: Français de Belgique."
     }
   ],
   "base": [
@@ -169,24 +160,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
   ],
   "bleu": [
     {
-      "src": "audio/fr/approved/bleu/common_voice_fr_17787536.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-eu. Common Voice accent: Français de Suisse."
-    },
-    {
-      "src": "audio/fr/approved/bleu/common_voice_fr_18923335.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-eu. Common Voice accent: Français de Belgique."
-    },
-    {
       "src": "audio/fr/approved/bleu/common_voice_fr_20003769.opus",
       "kind": "external",
       "accent": "Swiss French",
@@ -205,24 +178,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
     }
   ],
   "bon": [
-    {
-      "src": "audio/fr/approved/bon/common_voice_fr_17349571.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-on. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/bon/common_voice_fr_17349627.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-on. Common Voice accent: Français de Belgique."
-    },
     {
       "src": "audio/fr/approved/bon/common_voice_fr_17317540.opus",
       "kind": "external",
@@ -271,26 +226,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-sh. Common Voice accent: Français de Belgique."
     }
   ],
-  "boue": [
-    {
-      "src": "audio/fr/approved/boue/common_voice_fr_18076381.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-u. Common Voice accent: Français de Suisse."
-    }
-  ],
   "bouge": [
-    {
-      "src": "audio/fr/approved/bouge/common_voice_fr_17871807.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-zh."
-    },
     {
       "src": "audio/fr/approved/bouge/common_voice_fr_18049922.opus",
       "kind": "external",
@@ -514,26 +450,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "Listen before approving. User-contributed recording for ce /sə/."
     }
   ],
-  "ceux": [
-    {
-      "src": "audio/fr/approved/ceux/common_voice_fr_17311724.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches fr-eu, fr-s."
-    },
-    {
-      "src": "audio/fr/approved/ceux/common_voice_fr_17327715.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "Listen before approving. MSWC is grapheme-based; approve only if the recording clearly matches fr-eu, fr-s."
-    }
-  ],
   "chacun": [
     {
       "src": "audio/fr/approved/chacun/common_voice_fr_17317528.opus",
@@ -628,34 +544,9 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-sh. Common Voice accent: Français du Canada."
-    },
-    {
-      "src": "audio/fr/approved/chou/common_voice_fr_17355101.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-sh."
-    },
-    {
-      "src": "audio/fr/approved/chou/common_voice_fr_17368127.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-sh."
     }
   ],
   "coeur": [
-    {
-      "src": "audio/fr/approved/coeur/common_voice_fr_17311588.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-oe. Common Voice accent: Français de Suisse."
-    },
     {
       "src": "audio/fr/approved/coeur/common_voice_fr_17339196.opus",
       "kind": "external",
@@ -723,13 +614,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC BY-SA 4.0",
       "attribution": "Speaker: LoquaxFR Recorder: LoquaxFR",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-LoquaxFR-commun.wav"
-    },
-    {
-      "src": "audio/fr/approved/commun/LL-Q150__fra_-Poslovitch-commun.wav",
-      "kind": "wiktionary",
-      "license": "CC0",
-      "attribution": "Speaker: Poslovitch Recorder: Poslovitch",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-Poslovitch-commun.wav"
     }
   ],
   "cote": [
@@ -819,22 +703,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
   ],
   "dent": [
     {
-      "src": "audio/fr/approved/dent/common_voice_fr_17342997.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-an."
-    },
-    {
-      "src": "audio/fr/approved/dent/common_voice_fr_17402387.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-an."
-    },
-    {
       "src": "audio/fr/approved/dent/common_voice_fr_17437683.opus",
       "kind": "external",
       "license": "CC0-1.0",
@@ -921,15 +789,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
   ],
   "deux": [
     {
-      "src": "audio/fr/approved/deux/common_voice_fr_19692543.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-eu. Common Voice accent: Français de Suisse."
-    },
-    {
       "src": "audio/fr/approved/deux/common_voice_fr_22019879.opus",
       "kind": "external",
       "accent": "Belgian French",
@@ -972,15 +831,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
   ],
   "don": [
     {
-      "src": "audio/fr/approved/don/common_voice_fr_19447024.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-on. Common Voice accent: Français de Belgique."
-    },
-    {
       "src": "audio/fr/approved/don/common_voice_fr_19477102.opus",
       "kind": "external",
       "license": "CC0-1.0",
@@ -990,14 +840,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
     },
     {
       "src": "audio/fr/approved/don/common_voice_fr_19656381.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-on."
-    },
-    {
-      "src": "audio/fr/approved/don/common_voice_fr_19701995.opus",
       "kind": "external",
       "license": "CC0-1.0",
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
@@ -1017,15 +859,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
     }
   ],
   "doux": [
-    {
-      "src": "audio/fr/approved/doux/common_voice_fr_18538789.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-u. Common Voice accent: Français de Belgique."
-    },
     {
       "src": "audio/fr/approved/doux/common_voice_fr_19443563.opus",
       "kind": "external",
@@ -1048,15 +881,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
     },
     {
       "src": "audio/fr/approved/faim/common_voice_fr_18095781.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-in. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/faim/common_voice_fr_18538985.opus",
       "kind": "external",
       "accent": "Belgian French",
       "license": "CC0-1.0",
@@ -1092,15 +916,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-epsilon. Common Voice accent: Français de Suisse."
-    },
-    {
-      "src": "audio/fr/approved/fait/common_voice_fr_17311626.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-epsilon. Common Voice accent: Français de Suisse."
     }
   ],
   "farce": [
@@ -1114,52 +929,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "Listen before approving. User-contributed recording for farce /faʁs/."
     }
   ],
-  "fee": [
-    {
-      "src": "audio/fr/approved/fee/common_voice_fr_18548660.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-e. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/fee/common_voice_fr_18655878.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-e."
-    },
-    {
-      "src": "audio/fr/approved/fee/common_voice_fr_19457162.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-e."
-    }
-  ],
   "feu": [
-    {
-      "src": "audio/fr/approved/feu/common_voice_fr_17683664.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-eu. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/feu/common_voice_fr_18063843.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-eu. Common Voice accent: Français de Suisse."
-    },
     {
       "src": "audio/fr/approved/feu/common_voice_fr_18076520.opus",
       "kind": "external",
@@ -1368,15 +1138,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-o. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/haute/common_voice_fr_19124369.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-o. Common Voice accent: Français de Suisse."
     }
   ],
   "huile": [
@@ -1452,15 +1213,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-zh. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/joue/common_voice_fr_18545343.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-zh. Common Voice accent: Français de Belgique."
     }
   ],
   "kilo": [
@@ -1485,17 +1237,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "Listen before approving. User-contributed recording for lac /lak/."
     }
   ],
-  "lait": [
-    {
-      "src": "audio/fr/approved/lait/common_voice_fr_18058512.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-epsilon. Common Voice accent: Français de Belgique."
-    }
-  ],
   "le": [
     {
       "src": "audio/fr/approved/le/fr-le-mr509ys6-ebccf8e0-9153-47b6-b2ce-f35bfae94d6b.webm",
@@ -1509,39 +1250,12 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
   ],
   "lent": [
     {
-      "src": "audio/fr/approved/lent/common_voice_fr_19147384.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-an."
-    },
-    {
       "src": "audio/fr/approved/lent/common_voice_fr_19617781.opus",
       "kind": "external",
       "license": "CC0-1.0",
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-an."
-    },
-    {
-      "src": "audio/fr/approved/lent/common_voice_fr_17316806.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-an."
-    }
-  ],
-  "les": [
-    {
-      "src": "audio/fr/approved/les/common_voice_fr_17308614.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-e. Common Voice accent: Français de Belgique."
     }
   ],
   "ligne": [
@@ -1586,27 +1300,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr50h1y8-16462ac5-09fe-4580-b8d1-2ceb52f02a49:fr-loi-mr50bfm1-09d51d59-b21d-4237-b636-e3d92232969f",
       "notes": "Listen before approving. User-contributed recording for loi /lwa/."
-    }
-  ],
-  "long": [
-    {
-      "src": "audio/fr/approved/long/common_voice_fr_18049501.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-on. Common Voice accent: Français de Belgique."
-    }
-  ],
-  "loup": [
-    {
-      "src": "audio/fr/approved/loup/common_voice_fr_19628515.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-u."
     }
   ],
   "lui": [
@@ -1746,17 +1439,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "Listen before approving. User-contributed recording for mer /mɛʁ/."
     }
   ],
-  "mes": [
-    {
-      "src": "audio/fr/approved/mes/common_voice_fr_17339244.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-e. Common Voice accent: Français de Belgique."
-    }
-  ],
   "moi": [
     {
       "src": "audio/fr/approved/moi/fr-moi-mr50ey7p-ef752fa9-19d0-42e4-a9d2-cdf997841a7f.webm",
@@ -1777,23 +1459,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-open-o. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/molle/common_voice_fr_22227728.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-open-o. Common Voice accent: Français de Suisse."
-    },
-    {
-      "src": "audio/fr/approved/molle/common_voice_fr_17332989.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-open-o."
     },
     {
       "src": "audio/fr/approved/molle/common_voice_fr_17364551.opus",
@@ -1846,24 +1511,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-oe. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/neuf/common_voice_fr_17794475.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-oe. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/neuf/common_voice_fr_17311651.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-oe. Common Voice accent: Français de Suisse."
     },
     {
       "src": "audio/fr/approved/neuf/common_voice_fr_17311717.opus",
@@ -2146,24 +1793,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
       "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
       "notes": "MSWC grapheme-only candidate for target phoneme fr-oe, fr-s. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/seul/common_voice_fr_17410459.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-oe, fr-s. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/seul/common_voice_fr_17868567.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-oe, fr-s. Common Voice accent: Français de Belgique."
     }
   ],
   "signal": [
@@ -2237,55 +1866,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "User-contributed recording for soleil /sɔlɛj/."
     }
   ],
-  "son": [
-    {
-      "src": "audio/fr/approved/son/common_voice_fr_17928089.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-on. Common Voice accent: Français de Belgique."
-    }
-  ],
-  "sous": [
-    {
-      "src": "audio/fr/approved/sous/common_voice_fr_19644048.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-u. Common Voice accent: Français de Suisse."
-    },
-    {
-      "src": "audio/fr/approved/sous/common_voice_fr_17311656.opus",
-      "kind": "external",
-      "accent": "Swiss French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-u. Common Voice accent: Français de Suisse."
-    },
-    {
-      "src": "audio/fr/approved/sous/common_voice_fr_17349113.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-u. Common Voice accent: Français de Belgique."
-    },
-    {
-      "src": "audio/fr/approved/sous/common_voice_fr_17349609.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-u. Common Voice accent: Français de Belgique."
-    }
-  ],
   "table": [
     {
       "src": "audio/fr/approved/table/fr-table-mr5fhmjg-662f44f5-f969-46b5-ac07-aa098b13c10d--clean-01-volume.ogg",
@@ -2295,17 +1875,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "attribution": "cube",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-table-mr5fhmjg-662f44f5-f969-46b5-ac07-aa098b13c10d",
       "notes": "User-contributed recording for table /tabl/."
-    }
-  ],
-  "tout": [
-    {
-      "src": "audio/fr/approved/tout/common_voice_fr_17349660.opus",
-      "kind": "external",
-      "accent": "Belgian French",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-u. Common Voice accent: Français de Belgique."
     }
   ],
   "travail": [
