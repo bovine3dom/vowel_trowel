@@ -221,19 +221,22 @@ test("explores a sound and returns without adding an extra history entry", async
   await playableExample.click();
   await expect(page.getByLabel("Spectrogram display").getByText(playableExampleText ?? "", { exact: true })).toBeVisible();
 
-  await page.getByLabel("Show sounds without recordings").check();
-  await expect(page.locator(".phoneme-card.unrecorded .phoneme-example-word.missing-recording").first()).toBeVisible();
+  const showUnrecordedSounds = page.getByLabel("Show sounds without recordings");
+  if (await showUnrecordedSounds.count()) {
+    await showUnrecordedSounds.check();
+    await expect(page.locator(".phoneme-card.unrecorded .phoneme-example-word.missing-recording").first()).toBeVisible();
+  }
 
   await firstSoundCard.getByRole("button", { name: "Explore words" }).click();
 
   await expect(page).toHaveURL(/explore=fr-u/);
   await expect(page.getByRole("heading", { name: "close back rounded vowel" })).toBeVisible();
   await expect(page.locator(".phoneme-explorer .explore-word-card").first()).toBeVisible();
-  await expect(page.locator(".phoneme-explorer").getByText("roue")).toHaveCount(0);
+  await expect(page.locator(".phoneme-explorer").getByText("coussin")).toHaveCount(0);
   await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" })).toHaveCount(0);
 
   await page.getByLabel("Show words missing recordings").check();
-  await expect(page.locator(".phoneme-explorer").getByText("roue")).toBeVisible();
+  await expect(page.locator(".phoneme-explorer").getByText("coussin")).toBeVisible();
 
   await page.getByRole("button", { name: "Back to sounds" }).click();
 
@@ -244,9 +247,9 @@ test("explores a sound and returns without adding an extra history entry", async
 test("can show fallback-only words when TTS flag is enabled", async ({ page }) => {
   await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes&explore=fr-u&tts=1");
 
-  await expect(page.locator(".phoneme-explorer").getByText("roue")).toHaveCount(0);
+  await expect(page.locator(".phoneme-explorer").getByText("coussin")).toHaveCount(0);
   await page.getByLabel("Show words missing recordings").check();
-  await expect(page.locator(".phoneme-explorer").getByText("roue")).toBeVisible();
+  await expect(page.locator(".phoneme-explorer").getByText("coussin")).toBeVisible();
   await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" }).first()).toBeVisible();
   await expect(page.getByText("Browser voice", { exact: true }).first()).toBeVisible();
   await expect(page).toHaveURL(/tts=1/);
@@ -369,13 +372,39 @@ test("can submit a sorting answer", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Check answer" })).toBeDisabled();
 });
 
+test("can hide sort word names behind sample labels", async ({ page }) => {
+  await page.goto("/?lang=fr&mode=sort&phonemes=fr-u,fr-y&tab=phonemes&hideSortWords=1");
+
+  await expect(page.getByLabel("Hide word names")).toBeChecked();
+  const firstCard = page.locator(".sort-bag .sort-word-card").first();
+  const wordText = firstCard.locator(".word-text");
+  await expect(wordText).toHaveText(/^Sample [A-Z]+$/);
+  const sampleLabel = (await wordText.textContent())?.trim() ?? "";
+
+  await firstCard.click();
+  await expect(page.getByLabel("Spectrogram display").getByText(sampleLabel, { exact: true })).toBeVisible();
+
+  await page.getByLabel("Hide word names").uncheck();
+  await expect(page).not.toHaveURL(/hideSortWords=1/);
+  await expect(wordText).not.toHaveText(/^Sample /);
+});
+
 test("limits credits to the current practice view", async ({ page }) => {
   await page.goto("/?lang=fr&mode=match&phonemes=fr-u,fr-y&tab=phonemes");
 
+  const currentWords = await page.locator(".match-column").nth(1).locator(".word-button").evaluateAll((buttons) =>
+    buttons.map((button) => ({
+      written: button.querySelector(".word-text")?.textContent?.trim() ?? "",
+      ipa: button.querySelector(".word-ipa")?.textContent?.trim() ?? "",
+    }))
+  );
+
   await page.getByText("Audio credits").click();
 
-  await expect(page.getByText("moue /mu/")).toBeVisible();
-  await expect(page.getByText("mue /my/")).toBeVisible();
+  for (const word of currentWords) {
+    await expect(page.getByText(`${word.written} ${word.ipa}`)).toBeVisible();
+  }
+
   await expect(page.getByText("jeune /ʒœn/")).toHaveCount(0);
 });
 

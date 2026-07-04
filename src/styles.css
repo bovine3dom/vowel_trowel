@@ -220,6 +220,16 @@ h3 {
   font-weight: 650;
 }
 
+.sort-option {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #3f3c37;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
 .target-practice-status {
   display: flex;
   min-height: 5.1em;

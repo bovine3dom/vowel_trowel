@@ -112,6 +112,7 @@ interface UrlState {
   contributionModeOpen: boolean;
   ttsEnabled: boolean;
   showUnrecordedPhonemes: boolean;
+  hideSortWordNames: boolean;
 }
 
 interface AudioCredit {
@@ -146,6 +147,7 @@ export default function App() {
   const [contributionModeOpen, setContributionModeOpen] = createSignal(initialUrlState.contributionModeOpen);
   const [ttsEnabled, setTtsEnabled] = createSignal(initialUrlState.ttsEnabled);
   const [showUnrecordedPhonemes, setShowUnrecordedPhonemes] = createSignal(initialUrlState.showUnrecordedPhonemes);
+  const [hideSortWordNames, setHideSortWordNames] = createSignal(initialUrlState.hideSortWordNames);
   const [progress, setProgress] = createSignal(initialProgress);
   const [prompt, setPrompt] = createSignal<MatchingPrompt | undefined>(initialPrompt);
   const [selections, setSelections] = createSignal(createPromptSelections(initialPrompt));
@@ -263,6 +265,7 @@ export default function App() {
     setContributionModeOpen(state.contributionModeOpen);
     setTtsEnabled(state.ttsEnabled);
     setShowUnrecordedPhonemes(state.showUnrecordedPhonemes);
+    setHideSortWordNames(state.hideSortWordNames);
 
     setPrompt(nextPrompt);
     setSelections(createPromptSelections(nextPrompt));
@@ -287,6 +290,7 @@ export default function App() {
       contributionModeOpen: patch.contributionModeOpen ?? contributionModeOpen(),
       ttsEnabled: patch.ttsEnabled ?? ttsEnabled(),
       showUnrecordedPhonemes: patch.showUnrecordedPhonemes ?? showUnrecordedPhonemes(),
+      hideSortWordNames: patch.hideSortWordNames ?? hideSortWordNames(),
     }, historyMode);
   };
 
@@ -354,6 +358,11 @@ export default function App() {
   const toggleUnrecordedPhonemes = (nextShowUnrecordedPhonemes: boolean) => {
     setShowUnrecordedPhonemes(nextShowUnrecordedPhonemes);
     updateUrl({ showUnrecordedPhonemes: nextShowUnrecordedPhonemes }, "replace");
+  };
+
+  const toggleSortWordNames = (nextHideSortWordNames: boolean) => {
+    setHideSortWordNames(nextHideSortWordNames);
+    updateUrl({ hideSortWordNames: nextHideSortWordNames }, "replace");
   };
 
   const markContributionWordsDownloaded = (wordIds: readonly string[]) => {
@@ -530,21 +539,6 @@ export default function App() {
     }
   };
 
-  const playWord = async (term: MinimalPairTerm) => {
-    setAudioError(null);
-
-    try {
-      await playTermAudio(
-        term,
-        speechSettings(),
-        undefined,
-        getAudioFeedbackPath(selectedAudioForTerm(term)),
-      );
-    } catch (error) {
-      setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
-    }
-  };
-
   const submit = () => {
     const activePrompt = prompt();
 
@@ -600,7 +594,22 @@ export default function App() {
       setSelectedSortingTermId(term.id);
     }
 
-    await playWord(term);
+    await playSortingWord(term);
+  };
+
+  const playSortingWord = async (term: MinimalPairTerm) => {
+    setAudioError(null);
+
+    try {
+      await playTermAudio(
+        term,
+        speechSettings(),
+        hideSortWordNames() ? sortingSampleLabel(sortingPrompt(), term) : undefined,
+        getAudioFeedbackPath(selectedAudioForTerm(term)),
+      );
+    } catch (error) {
+      setAudioError(error instanceof Error ? error.message : "Audio playback failed.");
+    }
   };
 
   const placeSortingWord = (termId: string, phonemeId: PhonemeId | null) => {
@@ -806,7 +815,9 @@ export default function App() {
                   selectedTermId={selectedSortingTermId()}
                   result={sortingResult()}
                   audioError={audioError()}
+                  hideWordNames={hideSortWordNames()}
                   onWordClick={selectSortingWord}
+                  onHideWordNamesChange={toggleSortWordNames}
                   onPlaceWord={placeSortingWord}
                   onPlaceSelected={placeSelectedSortingWord}
                   onGroupPlay={playSortingGroup}
@@ -1143,7 +1154,9 @@ function SortingPanel(props: {
   selectedTermId: string | null;
   result: PromptResult | null;
   audioError: string | null;
+  hideWordNames: boolean;
   onWordClick: (term: MinimalPairTerm) => void;
+  onHideWordNamesChange: (hideWordNames: boolean) => void;
   onPlaceWord: (termId: string, phonemeId: PhonemeId | null) => void;
   onPlaceSelected: (phonemeId: PhonemeId | null) => void;
   onGroupPlay: (group: SortingGroup) => void;
@@ -1185,9 +1198,17 @@ function SortingPanel(props: {
         Put each word under the sound it contains. Tap a word to hear it; tap a sound heading
         to hear an example.
       </p>
+      <label class="sort-option">
+        <input
+          type="checkbox"
+          checked={props.hideWordNames}
+          onInput={(event) => props.onHideWordNamesChange(event.currentTarget.checked)}
+        />
+        Hide word names
+      </label>
       <p class="interaction-hint">
         <Show when={selectedTerm()} fallback="Tap or drag a word from the bag.">
-          {(term) => <>Selected {term().word.written}. Choose a sound group.</>}
+          {(term) => <>Selected {sortingWordCardLabel(props.prompt, term(), props.hideWordNames)}. Choose a sound group.</>}
         </Show>
       </p>
 
@@ -1230,6 +1251,7 @@ function SortingPanel(props: {
                         selectedTermId={props.selectedTermId}
                         result={props.result}
                         showIpa={Boolean(props.result)}
+                        hideWordName={props.hideWordNames}
                         onWordClick={props.onWordClick}
                         onDragStart={props.onDragStart}
                         onDragEnd={props.onDragEnd}
@@ -1250,7 +1272,7 @@ function SortingPanel(props: {
       >
         <div class="column-title">
           <h3>Word bag</h3>
-          <span>Pronunciation appears after checking</span>
+          <span>{props.hideWordNames ? "Names hidden; samples play the words" : "Pronunciation appears after checking"}</span>
         </div>
         <div class="sort-word-grid">
           <Show when={unplacedTerms().length > 0} fallback={<p class="muted">All words placed.</p>}>
@@ -1263,6 +1285,7 @@ function SortingPanel(props: {
                   selectedTermId={props.selectedTermId}
                   result={props.result}
                   showIpa={Boolean(props.result)}
+                  hideWordName={props.hideWordNames}
                   onWordClick={props.onWordClick}
                   onDragStart={props.onDragStart}
                   onDragEnd={props.onDragEnd}
@@ -1329,6 +1352,7 @@ function SortWordCard(props: {
   selectedTermId: string | null;
   result: PromptResult | null;
   showIpa: boolean;
+  hideWordName: boolean;
   onWordClick: (term: MinimalPairTerm) => void;
   onDragStart: (termId: string) => void;
   onDragEnd: () => void;
@@ -1355,7 +1379,7 @@ function SortWordCard(props: {
       }}
       onDragEnd={props.onDragEnd}
     >
-      <span class="word-text">{props.term.word.written}</span>
+      <span class="word-text">{sortingWordCardLabel(props.prompt, props.term, props.hideWordName)}</span>
       <Show when={props.showIpa}>
         <span class="word-ipa">{props.term.word.ipa}</span>
       </Show>
@@ -5668,6 +5692,28 @@ function sortWordCardClass(
   return classes.join(" ");
 }
 
+function sortingWordCardLabel(prompt: SortingPrompt, term: MinimalPairTerm, hideWordName: boolean): string {
+  return hideWordName ? sortingSampleLabel(prompt, term) : term.word.written;
+}
+
+function sortingSampleLabel(prompt: SortingPrompt | undefined, term: MinimalPairTerm): string {
+  const index = prompt?.wordCards.findIndex((candidate) => candidate.id === term.id) ?? -1;
+
+  return `Sample ${alphabeticSampleLabel(index >= 0 ? index : 0)}`;
+}
+
+function alphabeticSampleLabel(index: number): string {
+  let current = index;
+  let label = "";
+
+  do {
+    label = String.fromCharCode("A".charCodeAt(0) + (current % 26)) + label;
+    current = Math.floor(current / 26) - 1;
+  } while (current >= 0);
+
+  return label;
+}
+
 function slotPairClass(prompt: MatchingPrompt, slotId: string): string {
   const index = prompt.slots.findIndex((slot) => slot.id === slotId);
 
@@ -6400,6 +6446,7 @@ function readUrlState(): UrlState {
       contributionModeOpen: false,
       ttsEnabled: false,
       showUnrecordedPhonemes: false,
+      hideSortWordNames: false,
     };
   }
 
@@ -6419,6 +6466,7 @@ function readUrlState(): UrlState {
     contributionModeOpen,
     ttsEnabled: parseBooleanFlag(params.get("tts")),
     showUnrecordedPhonemes: parseBooleanFlag(params.get("showSounds")),
+    hideSortWordNames: parseBooleanFlag(params.get("hideSortWords")),
   };
 }
 
@@ -6464,6 +6512,12 @@ function writeUrlState(state: UrlState, historyMode: UrlHistoryMode): void {
     params.set("showSounds", "1");
   } else {
     params.delete("showSounds");
+  }
+
+  if (state.hideSortWordNames) {
+    params.set("hideSortWords", "1");
+  } else {
+    params.delete("hideSortWords");
   }
 
   const query = params.toString();
