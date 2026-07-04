@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T20:19:03.460Z",
+  "importedAt": "2026-07-04T11:57:38.265Z",
   "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609.zip",
   "manifest": {
     "version": 2,
@@ -279,8 +279,9 @@
       "notes": "User-contributed recording for vision /ˈvɪʒən/."
     },
     "review": {
-      "status": "approved",
-      "accent": "British English"
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for vision /ˈvɪʒən/."
     },
     "audioProcessing": {
       "original": {
@@ -308,11 +309,10 @@
           "outputPath": "public/audio/en-gb/contributions/vision/en-gb-vision-mr5dlmhr-95f02a0a-9d89-44ec-accb-027155b83312--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/vision/en-gb-vision-mr5dlmhr-95f02a0a-9d89-44ec-accb-027155b83312--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/vision/en-gb-vision-mr5dlmhr-95f02a0a-9d89-44ec-accb-027155b83312--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:19:03.460Z"
+          "appliedAt": "2026-07-04T11:57:38.265Z"
         }
       ],
       "currentStep": 0
     }
-  },
-  "updatedAt": "2026-07-03T20:19:44.767Z"
+  }
 }

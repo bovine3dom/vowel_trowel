@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T20:19:03.393Z",
+  "importedAt": "2026-07-04T11:57:38.188Z",
   "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609.zip",
   "manifest": {
     "version": 2,
@@ -270,8 +270,9 @@
       "notes": "User-contributed recording for there /ðeə/."
     },
     "review": {
-      "status": "approved",
-      "accent": "British English"
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for there /ðeə/."
     },
     "audioProcessing": {
       "original": {
@@ -299,11 +300,10 @@
           "outputPath": "public/audio/en-gb/contributions/there/en-gb-there-mr5dle34-d678fb08-65b0-4236-8ce9-275cfd4e467b--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/there/en-gb-there-mr5dle34-d678fb08-65b0-4236-8ce9-275cfd4e467b--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/there/en-gb-there-mr5dle34-d678fb08-65b0-4236-8ce9-275cfd4e467b--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:19:03.393Z"
+          "appliedAt": "2026-07-04T11:57:38.188Z"
         }
       ],
       "currentStep": 0
     }
-  },
-  "updatedAt": "2026-07-03T20:19:39.791Z"
+  }
 }

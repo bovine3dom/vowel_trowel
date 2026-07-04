@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T20:19:04.008Z",
+  "importedAt": "2026-07-04T11:57:39.387Z",
   "bundlePath": "/home/olie/Downloads/en-gb-batch-mr56rex0-162d91ca-cff0-460d-80da-2bf08669b58d.zip",
   "manifest": {
     "version": 2,
@@ -221,7 +221,7 @@
           "outputPath": "public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/jury/en-gb-jury-mr56r9zw-88fe3054-067e-4f18-8be1-61cff5c29f9d--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:19:04.008Z"
+          "appliedAt": "2026-07-04T11:57:39.387Z"
         }
       ],
       "currentStep": 0

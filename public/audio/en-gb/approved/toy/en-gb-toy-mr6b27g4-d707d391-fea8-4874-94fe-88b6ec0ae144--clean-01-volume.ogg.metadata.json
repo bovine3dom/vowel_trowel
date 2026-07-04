@@ -1,0 +1,230 @@
+{
+  "importedAt": "2026-07-04T11:57:38.577Z",
+  "bundlePath": "/home/olie/Downloads/en-gb-batch-mr6b3cmc-9801d527-4211-4373-83d6-5965700731d6.zip",
+  "manifest": {
+    "version": 2,
+    "type": "vowel-trowel-contribution",
+    "id": "en-gb-batch-mr6b3cmc-9801d527-4211-4373-83d6-5965700731d6",
+    "createdAt": "2026-07-04T11:56:02.342Z",
+    "pageUrl": "http://localhost:5173/?lang=en-GB&mode=match&phonemes=en-gb-theta%2Cen-gb-s&tab=phonemes&contribute=mode",
+    "language": {
+      "id": "en-GB",
+      "slug": "en-gb",
+      "name": "British English",
+      "autonym": "British English"
+    },
+    "contribution": {
+      "licence": "CC0-1.0",
+      "speakerName": "bovine3dom",
+      "accent": "British English"
+    },
+    "recordings": [
+      {
+        "id": "en-gb-bird-mr6b1nt6-4107fb6a-c928-4987-ba7c-94dc04720915",
+        "filename": "recordings/en-gb-bird-mr6b1nt6-4107fb6a-c928-4987-ba7c-94dc04720915.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33797,
+        "recordedAt": "2026-07-04T11:54:43.531Z",
+        "word": {
+          "id": "en-gb-word-bird",
+          "shortId": "bird",
+          "written": "bird",
+          "ipa": "/bɜːd/",
+          "phonemeIds": [
+            "en-gb-b",
+            "en-gb-nurse",
+            "en-gb-d"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-care-mr6b1z50-6e1a87d4-2933-4fda-9991-18f9f5758f8e",
+        "filename": "recordings/en-gb-care-mr6b1z50-6e1a87d4-2933-4fda-9991-18f9f5758f8e.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33786,
+        "recordedAt": "2026-07-04T11:54:58.212Z",
+        "word": {
+          "id": "en-gb-word-care",
+          "shortId": "care",
+          "written": "care",
+          "ipa": "/keə/",
+          "phonemeIds": [
+            "en-gb-k",
+            "en-gb-square"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144",
+        "filename": "recordings/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34141,
+        "recordedAt": "2026-07-04T11:55:08.980Z",
+        "word": {
+          "id": "en-gb-word-toy",
+          "shortId": "toy",
+          "written": "toy",
+          "ipa": "/tɔɪ/",
+          "phonemeIds": [
+            "en-gb-t",
+            "en-gb-choice"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-vision-mr6b2gz9-260b6221-ea12-40d6-ae08-3d152eb0706f",
+        "filename": "recordings/en-gb-vision-mr6b2gz9-260b6221-ea12-40d6-ae08-3d152eb0706f.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34467,
+        "recordedAt": "2026-07-04T11:55:21.333Z",
+        "word": {
+          "id": "en-gb-word-vision",
+          "shortId": "vision",
+          "written": "vision",
+          "ipa": "/ˈvɪʒən/",
+          "phonemeIds": [
+            "en-gb-v",
+            "en-gb-kit",
+            "en-gb-zh",
+            "en-gb-schwa",
+            "en-gb-n"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-prize-mr6b2olg-79e71161-a926-43fc-a794-9a5a27a7fe57",
+        "filename": "recordings/en-gb-prize-mr6b2olg-79e71161-a926-43fc-a794-9a5a27a7fe57.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 34456,
+        "recordedAt": "2026-07-04T11:55:31.204Z",
+        "word": {
+          "id": "en-gb-word-prize",
+          "shortId": "prize",
+          "written": "prize",
+          "ipa": "/praɪz/",
+          "phonemeIds": [
+            "en-gb-p",
+            "en-gb-r",
+            "en-gb-price",
+            "en-gb-z"
+          ]
+        }
+      },
+      {
+        "id": "en-gb-fair-mr6b3bic-816efc5c-8a7b-40f5-a9a3-8d2da04e2328",
+        "filename": "recordings/en-gb-fair-mr6b3bic-816efc5c-8a7b-40f5-a9a3-8d2da04e2328.webm",
+        "mimeType": "audio/webm;codecs=opus",
+        "size": 33811,
+        "recordedAt": "2026-07-04T11:56:00.900Z",
+        "word": {
+          "id": "en-gb-word-fair",
+          "shortId": "fair",
+          "written": "fair",
+          "ipa": "/feə/",
+          "phonemeIds": [
+            "en-gb-f",
+            "en-gb-square"
+          ]
+        }
+      }
+    ]
+  },
+  "recording": {
+    "id": "en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144",
+    "filename": "recordings/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144.webm",
+    "mimeType": "audio/webm;codecs=opus",
+    "size": 34141,
+    "recordedAt": "2026-07-04T11:55:08.980Z",
+    "word": {
+      "id": "en-gb-word-toy",
+      "shortId": "toy",
+      "written": "toy",
+      "ipa": "/tɔɪ/",
+      "phonemeIds": [
+        "en-gb-t",
+        "en-gb-choice"
+      ]
+    }
+  },
+  "word": {
+    "id": "en-gb-word-toy",
+    "written": "toy",
+    "ipa": "/tɔɪ/",
+    "phonemeIds": [
+      "en-gb-t",
+      "en-gb-choice"
+    ]
+  },
+  "candidate": {
+    "key": "en-gb-word-toy|User%20contribution%20toy%20en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144|contribution%3Aen-GB%3Aen-gb-batch-mr6b3cmc-9801d527-4211-4373-83d6-5965700731d6%3Aen-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144",
+    "sourceId": "contribution:en-GB:en-gb-batch-mr6b3cmc-9801d527-4211-4373-83d6-5965700731d6:en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144",
+    "sourceName": "Vowel Trowel user contribution",
+    "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr6b3cmc-9801d527-4211-4373-83d6-5965700731d6:en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144",
+    "fileTitle": "User contribution toy en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144",
+    "audioUrl": null,
+    "localPath": "public/audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144--clean-01-volume.ogg",
+    "metadataPath": "public/audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144--clean-01-volume.ogg.metadata.json",
+    "datasetSrc": "audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144--clean-01-volume.ogg",
+    "license": "CC0 1.0",
+    "licenseShortName": "CC0 1.0",
+    "attribution": "bovine3dom",
+    "regions": [
+      "British English"
+    ],
+    "targetPhonemeIds": [
+      "en-gb-t",
+      "en-gb-choice"
+    ],
+    "reasons": [
+      "User-contributed recording bundle.",
+      "Manifest created at 2026-07-04T11:56:02.342Z.",
+      "Recorded from http://localhost:5173/?lang=en-GB&mode=match&phonemes=en-gb-theta%2Cen-gb-s&tab=phonemes&contribute=mode."
+    ],
+    "suggestedAudioSource": {
+      "src": "audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144--clean-01-volume.ogg",
+      "kind": "contribution",
+      "speaker": "bovine3dom",
+      "accent": "British English",
+      "license": "CC0 1.0",
+      "attribution": "bovine3dom",
+      "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr6b3cmc-9801d527-4211-4373-83d6-5965700731d6:en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144",
+      "notes": "User-contributed recording for toy /tɔɪ/."
+    },
+    "review": {
+      "status": "approved",
+      "accent": "British English"
+    },
+    "audioProcessing": {
+      "original": {
+        "localPath": "public/audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144.webm",
+        "metadataPath": "public/audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144.webm.metadata.json",
+        "datasetSrc": "audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144.webm",
+        "suggestedAudioSource": {
+          "src": "audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144.webm",
+          "kind": "contribution",
+          "speaker": "bovine3dom",
+          "accent": "British English",
+          "license": "CC0 1.0",
+          "attribution": "bovine3dom",
+          "sourceUrl": "vowel-trowel-contribution:en-gb-batch-mr6b3cmc-9801d527-4211-4373-83d6-5965700731d6:en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144",
+          "notes": "User-contributed recording for toy /tɔɪ/."
+        }
+      },
+      "history": [
+        {
+          "filter": "volume",
+          "label": "volume normalization",
+          "tool": "sox",
+          "command": "sox -G /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144.webm /home/olie/projects/vowel_trowel/public/audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144--clean-01-volume.ogg norm -3",
+          "inputPath": "public/audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144.webm",
+          "outputPath": "public/audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144--clean-01-volume.ogg",
+          "datasetSrc": "audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144--clean-01-volume.ogg",
+          "metadataPath": "public/audio/en-gb/contributions/toy/en-gb-toy-mr6b27g4-d707d391-fea8-4874-94fe-88b6ec0ae144--clean-01-volume.ogg.metadata.json",
+          "appliedAt": "2026-07-04T11:57:38.577Z"
+        }
+      ],
+      "currentStep": 0
+    }
+  },
+  "updatedAt": "2026-07-04T11:57:58.969Z"
+}

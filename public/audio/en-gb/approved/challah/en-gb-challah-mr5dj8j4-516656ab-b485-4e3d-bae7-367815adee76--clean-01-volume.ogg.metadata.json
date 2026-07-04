@@ -1,5 +1,5 @@
 {
-  "importedAt": "2026-07-03T20:19:02.912Z",
+  "importedAt": "2026-07-04T11:57:37.647Z",
   "bundlePath": "/home/olie/Downloads/en-gb-batch-mr5dm6i0-25544304-9235-47b6-9d09-cd0ba4e34609.zip",
   "manifest": {
     "version": 2,
@@ -276,8 +276,9 @@
       "notes": "User-contributed recording for challah /ˈxɑːlə/."
     },
     "review": {
-      "status": "approved",
-      "accent": "British English"
+      "status": "pending",
+      "accent": "British English",
+      "notes": "Listen before approving. User-contributed recording for challah /ˈxɑːlə/."
     },
     "audioProcessing": {
       "original": {
@@ -305,11 +306,10 @@
           "outputPath": "public/audio/en-gb/contributions/challah/en-gb-challah-mr5dj8j4-516656ab-b485-4e3d-bae7-367815adee76--clean-01-volume.ogg",
           "datasetSrc": "audio/en-gb/contributions/challah/en-gb-challah-mr5dj8j4-516656ab-b485-4e3d-bae7-367815adee76--clean-01-volume.ogg",
           "metadataPath": "public/audio/en-gb/contributions/challah/en-gb-challah-mr5dj8j4-516656ab-b485-4e3d-bae7-367815adee76--clean-01-volume.ogg.metadata.json",
-          "appliedAt": "2026-07-03T20:19:02.912Z"
+          "appliedAt": "2026-07-04T11:57:37.647Z"
         }
       ],
       "currentStep": 0
     }
-  },
-  "updatedAt": "2026-07-03T20:19:14.983Z"
+  }
 }
