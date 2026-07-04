@@ -1,8 +1,10 @@
 import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 
 import { createContributionQueue } from "../src/contributions/queue";
-import { getLanguageDataset } from "../src/languages";
+import { getLanguageDataset, getLanguageSlug, sameLanguageId } from "../src/languages";
 import type { LanguageDataset, WordEntry } from "../src/languages/types";
+import { createCandidateKey, type AudioReviewState } from "./audio-review-state";
 
 type DownloadMode = "none" | "regional" | "all";
 type AudioCandidateSource = "wiktionary" | "mswc";
@@ -28,6 +30,7 @@ interface CliOptions {
   mswcRoot: string | null;
   cvValidated: string | null;
   dryRun: boolean;
+  ignoreCache: boolean;
 }
 
 interface WordCoverageInfo {
@@ -42,6 +45,36 @@ interface CoverageGroup {
   words: WordCoverageInfo[];
   approvedRecordings: number;
   deficit: number;
+}
+
+interface CachedAudioReport {
+  words?: CachedAudioReportWord[];
+}
+
+interface CachedAudioReportWord {
+  wordId?: string;
+  written?: string;
+  candidates?: CachedAudioCandidate[];
+}
+
+interface CachedAudioCandidate {
+  key?: string;
+  fileTitle?: string;
+  sourceId?: string;
+  sourceUrl?: string;
+  commonsUrl?: string;
+  localPath?: string;
+  audioUrl?: string | null;
+  review?: {
+    status?: string;
+  };
+}
+
+interface SourceCandidateCache {
+  reportPath: string;
+  reviewStatePath: string;
+  wordsById: ReadonlyMap<string, CachedAudioReportWord>;
+  reviewState: AudioReviewState | null;
 }
 
 const options = parseArgs(process.argv.slice(2));
@@ -59,6 +92,10 @@ console.log(`Source: ${options.source}`);
 console.log(`Coverage target: ${options.coverageTarget} approved recording${options.coverageTarget === 1 ? "" : "s"} per target phoneme set.`);
 console.log(`Under-covered sets: ${formatCoverageGroups(coveragePlan.underCoveredGroups, options.coverageTarget)}`);
 console.log(`Words: ${selectedWords.map((word) => word.written).join(", ")}`);
+
+if (coveragePlan.skippedCachedWords.length > 0) {
+  console.log(`Skipped cached ${options.source} words with no pending candidates: ${formatWordList(coveragePlan.skippedCachedWords)}.`);
+}
 
 if (coveragePlan.candidateWords.length > selectedWords.length) {
   console.log(`Showing ${selectedWords.length} of ${coveragePlan.candidateWords.length}. Pass --all or raise --limit to review more.`);
@@ -152,13 +189,14 @@ function parseArgs(args: string[]): CliOptions {
     mswcRoot: getLast(values, "mswc-root") ?? null,
     cvValidated: getLast(values, "cv-validated") ?? null,
     dryRun: values.has("dry-run"),
+    ignoreCache: values.has("ignore-cache"),
   };
 }
 
 function printUsage(): void {
   console.log("Usage: bun run audio:wizard -- [options]");
   console.log("Default: queue words from target phoneme sets with fewer than 4 approved recordings, Wiktionary source, download up to 4 candidates each, review, then apply approvals.");
-  console.log("Options: --source=wiktionary|mswc --language=en-GB --words=ship,sheep --coverage-target=4 --limit=20 --all --download=all|regional|none --max-candidates-per-word=6 --review-limit=20 --target-phoneme=live:en-gb-kit --include-merged-france --include-ipa-mismatches --no-progress --no-play --no-review --no-apply --dry-run");
+  console.log("Options: --source=wiktionary|mswc --language=en-GB --words=ship,sheep --coverage-target=4 --limit=20 --all --download=all|regional|none --max-candidates-per-word=6 --review-limit=20 --target-phoneme=live:en-gb-kit --include-merged-france --include-ipa-mismatches --ignore-cache --no-progress --no-play --no-review --no-apply --dry-run");
 }
 
 function createCoveragePlan(
@@ -167,6 +205,7 @@ function createCoveragePlan(
 ): {
   selectedWords: WordEntry[];
   candidateWords: WordEntry[];
+  skippedCachedWords: WordEntry[];
   underCoveredGroups: CoverageGroup[];
   message: string;
 } {
@@ -177,6 +216,7 @@ function createCoveragePlan(
     return {
       selectedWords: [],
       candidateWords: [],
+      skippedCachedWords: [],
       underCoveredGroups: [],
       message: "No matching words found. Check spelling or word IDs.",
     };
@@ -192,17 +232,143 @@ function createCoveragePlan(
   const groups = createCoverageGroups([...wordInfoById.values()], opts.coverageTarget)
     .filter((group) => requestedGroupKeys.size === 0 || requestedGroupKeys.has(group.key));
   const underCoveredGroups = groups.filter((group) => group.deficit > 0);
-  const candidateWords = selectCoverageWords(underCoveredGroups, requestedWords, dataset, opts.coverageTarget);
+  const queuedWords = selectCoverageWords(underCoveredGroups, requestedWords, dataset, opts.coverageTarget);
+  const cacheFilter = filterWordsBySourceCache(queuedWords, dataset.id, opts);
+  const candidateWords = cacheFilter.candidateWords;
   const selectedWords = opts.limit === null ? candidateWords : candidateWords.slice(0, opts.limit);
 
   return {
     selectedWords,
     candidateWords,
+    skippedCachedWords: cacheFilter.skippedWords,
     underCoveredGroups,
-    message: requestedGroupKeys.size > 0
+    message: cacheFilter.skippedWords.length > 0 && candidateWords.length === 0
+      ? `Every queued ${opts.source} word is already cached with no pending candidates. Pass --include-reviewed to revisit reviewed candidates, or --ignore-cache to search again.`
+      : requestedGroupKeys.size > 0
       ? `Requested target phoneme sets already have at least ${opts.coverageTarget} approved recording${opts.coverageTarget === 1 ? "" : "s"}.`
       : `Every target phoneme set already has at least ${opts.coverageTarget} approved recording${opts.coverageTarget === 1 ? "" : "s"}.`,
   };
+}
+
+function filterWordsBySourceCache(
+  words: readonly WordEntry[],
+  languageId: string,
+  opts: CliOptions,
+): { candidateWords: WordEntry[]; skippedWords: WordEntry[] } {
+  if (opts.ignoreCache || opts.includeReviewed || words.length === 0) {
+    return { candidateWords: [...words], skippedWords: [] };
+  }
+
+  const cache = loadSourceCandidateCache(languageId, opts.source);
+
+  if (!cache) {
+    return { candidateWords: [...words], skippedWords: [] };
+  }
+
+  const candidateWords: WordEntry[] = [];
+  const skippedWords: WordEntry[] = [];
+
+  for (const word of words) {
+    const status = getCachedWordStatus(word, cache, opts);
+
+    if (status === "exhausted" || status === "no-candidates") {
+      skippedWords.push(word);
+      continue;
+    }
+
+    candidateWords.push(word);
+  }
+
+  return { candidateWords, skippedWords };
+}
+
+function getCachedWordStatus(
+  word: WordEntry,
+  cache: SourceCandidateCache,
+  opts: CliOptions,
+): "unknown" | "pending" | "exhausted" | "no-candidates" {
+  const cachedWord = cache.wordsById.get(word.id);
+
+  if (!cachedWord) {
+    return "unknown";
+  }
+
+  const candidates = cachedWord.candidates ?? [];
+
+  if (candidates.length === 0) {
+    return opts.source === "wiktionary" && opts.includeIpaMismatches ? "unknown" : "no-candidates";
+  }
+
+  return candidates.some((candidate) => cachedCandidateStatus(word, candidate, cache) === "pending")
+    ? "pending"
+    : "exhausted";
+}
+
+function cachedCandidateStatus(
+  word: WordEntry,
+  candidate: CachedAudioCandidate,
+  cache: SourceCandidateCache,
+): string {
+  const key = candidate.key ?? createCandidateKey({
+    wordId: word.id,
+    fileTitle: candidate.fileTitle ?? "",
+    sourceId: candidate.sourceId,
+    sourceUrl: candidate.sourceUrl,
+    commonsUrl: candidate.commonsUrl,
+  });
+  const stored = cache.reviewState?.candidates[key];
+
+  return stored?.status ?? candidate.review?.status ?? "pending";
+}
+
+function loadSourceCandidateCache(languageId: string, source: AudioCandidateSource): SourceCandidateCache | null {
+  const paths = getSourceCachePaths(languageId, source);
+  const report = readJsonIfPresent<CachedAudioReport>(paths.report);
+
+  if (!report?.words) {
+    return null;
+  }
+
+  const reviewState = readJsonIfPresent<AudioReviewState>(paths.reviewState);
+
+  return {
+    reportPath: paths.report,
+    reviewStatePath: paths.reviewState,
+    wordsById: new Map(report.words.flatMap((word) => word.wordId ? [[word.wordId, word]] : [])),
+    reviewState: reviewState?.version === 1 && reviewState.candidates ? reviewState : null,
+  };
+}
+
+function getSourceCachePaths(languageId: string, source: AudioCandidateSource): { report: string; reviewState: string } {
+  const slug = getLanguageSlug(languageId);
+
+  if (source === "wiktionary") {
+    const reportPrefix = sameLanguageId(languageId, "fr") ? "wiktionary" : `${slug}-wiktionary`;
+
+    return {
+      report: `reports/${reportPrefix}-audio-candidates.json`,
+      reviewState: sameLanguageId(languageId, "fr")
+        ? "reports/wiktionary-audio-review-state.json"
+        : `reports/${slug}-wiktionary-audio-review-state.json`,
+    };
+  }
+
+  return {
+    report: `reports/${slug}-mswc-audio-candidates.json`,
+    reviewState: `reports/${slug}-mswc-audio-review-state.json`,
+  };
+}
+
+function readJsonIfPresent<T>(filePath: string): T | null {
+  try {
+    return JSON.parse(readFileSync(filePath, "utf8")) as T;
+  } catch (error) {
+    if (isMissingFileError(error)) {
+      return null;
+    }
+
+    throw error;
+  }
 }
 
 function createWordCoverageInfo(
@@ -310,6 +476,14 @@ function formatCoverageGroups(groups: readonly CoverageGroup[], coverageTarget: 
   return groups.length > visible.length
     ? `${visible.join("; ")}; +${groups.length - visible.length} more`
     : visible.join("; ");
+}
+
+function formatWordList(words: readonly WordEntry[]): string {
+  const visible = words.slice(0, 16).map((word) => word.written);
+
+  return words.length > visible.length
+    ? `${visible.join(", ")} and ${words.length - visible.length} more`
+    : visible.join(", ");
 }
 
 function formatPhonemeSet(phonemeIds: readonly string[]): string {
@@ -477,4 +651,8 @@ function normalizeSearchText(value: string): string {
 
 function compactArgs(args: readonly (string | null)[]): string[] {
   return args.filter((arg): arg is string => Boolean(arg));
+}
+
+function isMissingFileError(error: unknown): boolean {
+  return typeof error === "object" && error !== null && "code" in error && error.code === "ENOENT";
 }

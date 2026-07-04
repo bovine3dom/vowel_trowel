@@ -63,6 +63,8 @@ bun run audio:wizard -- --language=en-GB --coverage-target=6 --limit=20 --max-ca
 
 Use `--coverage-target=N` to change the goal from 4 approved recordings per target phoneme set. Use `--limit=N` only when you want to cap how many words are queued from the under-covered sets.
 
+The wizard checks the existing local candidate report before querying Wiktionary/Commons. Words already cached with no pending candidates are skipped by default; use `--include-reviewed` to revisit reviewed candidates or `--ignore-cache` to force a fresh search.
+
 The wizard can also use local MSWC/Common Voice extracts:
 
 ```bash
@@ -84,7 +86,7 @@ For French MSWC/Common Voice metadata, Swiss and Belgian French accents are prio
 
 Use `--include-ipa-mismatches` only when you intentionally want to inspect files that Wiktionary appears to mark with a different pronunciation. Use `--no-progress` for quieter logs.
 
-Review controls are single-key: `a` approve, `r` reject, `s` skip, `p` play again, `u` undo the last decision, `w` skip the rest of the current word, and `q` quit.
+Review controls are single-key: `a` approve, `r` reject, `s` skip, `p` play again, `u` undo the last decision, `w` skip the rest of the current word, and `q` quit. Newly staged candidates are volume-normalised by default; press `v` during review to toggle that normalisation off or back on.
 
 The scraper uses MediaWiki APIs, includes your `git config user.email` in its `User-Agent`, retries transient HTTP failures, and respects `Retry-After`. Pass `--email=you@example.com` if git email is not set.
 

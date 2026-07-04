@@ -6,6 +6,14 @@ import { createInterface } from "node:readline";
 import { getLanguageDataset, getLanguageSlug, sameLanguageId } from "../src/languages";
 import type { AudioSource, LanguageDataset, Phoneme, PhonemeId, WordEntry } from "../src/languages/types";
 import {
+  createDefaultVolumeProcessingState,
+  createOriginalCandidateSnapshot,
+  createProcessedAudioPath,
+  runVolumeNormalization,
+  toDatasetAudioSrc,
+  type AudioProcessingState,
+} from "./audio-processing";
+import {
   createCandidateKey,
   getStoredReview,
   loadReviewState,
@@ -94,6 +102,7 @@ interface MswcCandidate {
   localPath?: string;
   metadataPath?: string;
   datasetSrc?: string;
+  audioProcessing?: AudioProcessingState;
 }
 
 interface WordAudioReport {
@@ -210,6 +219,7 @@ async function buildReport(
         candidate.localPath = paths.localPath;
         candidate.metadataPath = paths.metadataPath;
         candidate.datasetSrc = paths.datasetSrc;
+        candidate.audioProcessing = paths.audioProcessing;
         candidate.suggestedAudioSource = {
           ...candidate.suggestedAudioSource,
           src: paths.datasetSrc,
@@ -519,10 +529,14 @@ async function stageCandidate(
   candidate: MswcCandidate,
   row: MswcRow,
   opts: CliOptions,
-): Promise<{ localPath: string; metadataPath: string; datasetSrc: string }> {
+): Promise<{ localPath: string; metadataPath: string; datasetSrc: string; audioProcessing: AudioProcessingState }> {
   const filename = sanitizeFilename(path.basename(row.link));
   const relativePath = path.join(opts.downloadDir, sanitizeFilename(word.id), filename);
   const metadataRelativePath = `${relativePath}.metadata.json`;
+  const datasetSrc = toDatasetAudioSrc(relativePath);
+  const normalizedRelativePath = createProcessedAudioPath(relativePath, "volume", 1);
+  const normalizedMetadataRelativePath = `${normalizedRelativePath}.metadata.json`;
+  const normalizedDatasetSrc = toDatasetAudioSrc(normalizedRelativePath);
 
   await mkdir(path.dirname(path.resolve(relativePath)), { recursive: true });
   await copyFile(path.resolve(row.clipPath), path.resolve(relativePath));
@@ -534,18 +548,54 @@ async function stageCandidate(
       ipa: word.ipa,
       phonemeIds: word.phonemeIds,
     },
-    candidate: {
-      ...candidate,
+    candidate: createOriginalCandidateSnapshot(candidate, {
       localPath: relativePath,
       metadataPath: metadataRelativePath,
-      datasetSrc: toDatasetAudioSrc(relativePath),
+      datasetSrc,
+    }),
+  });
+
+  const volumeCommand = runVolumeNormalization(relativePath, normalizedRelativePath);
+  const normalizedCandidate: MswcCandidate = {
+    ...candidate,
+    localPath: normalizedRelativePath,
+    metadataPath: normalizedMetadataRelativePath,
+    datasetSrc: normalizedDatasetSrc,
+    suggestedAudioSource: {
+      ...candidate.suggestedAudioSource,
+      src: normalizedDatasetSrc,
     },
+  };
+  normalizedCandidate.audioProcessing = createDefaultVolumeProcessingState(
+    normalizedCandidate,
+    {
+      localPath: relativePath,
+      metadataPath: metadataRelativePath,
+      datasetSrc,
+    },
+    {
+      command: volumeCommand,
+      localPath: normalizedRelativePath,
+      metadataPath: normalizedMetadataRelativePath,
+      datasetSrc: normalizedDatasetSrc,
+    },
+  );
+  await writeJson(normalizedMetadataRelativePath, {
+    stagedAt: new Date().toISOString(),
+    word: {
+      id: word.id,
+      written: word.written,
+      ipa: word.ipa,
+      phonemeIds: word.phonemeIds,
+    },
+    candidate: normalizedCandidate,
   });
 
   return {
-    localPath: relativePath,
-    metadataPath: metadataRelativePath,
-    datasetSrc: toDatasetAudioSrc(relativePath),
+    localPath: normalizedRelativePath,
+    metadataPath: normalizedMetadataRelativePath,
+    datasetSrc: normalizedDatasetSrc,
+    audioProcessing: normalizedCandidate.audioProcessing,
   };
 }
 
@@ -1017,12 +1067,6 @@ function sanitizeFilename(value: string): string {
     .replace(/[^a-zA-Z0-9._-]+/g, "_")
     .replace(/^_+|_+$/g, "")
     || "audio";
-}
-
-function toDatasetAudioSrc(filePath: string): string {
-  const normalized = filePath.replace(/\\/g, "/");
-
-  return normalized.startsWith("public/") ? normalized.slice("public/".length) : normalized;
 }
 
 function compactAudioSource(source: AudioSource): AudioSource {
