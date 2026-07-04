@@ -180,6 +180,18 @@ test("switches language through the selector", async ({ page }) => {
 
   await expect(page).toHaveURL(/lang=en-GB/);
   await expect(page.getByRole("heading", { name: "British English sound library" })).toBeVisible();
+  await expect.poll(() => page.evaluate(() => localStorage.getItem("vowel-trowel:last-language"))).toBe("en-GB");
+});
+
+test("uses last selected language when URL omits language", async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("vowel-trowel:last-language", "en-GB");
+  });
+
+  await page.goto("/?mode=match");
+
+  await expect(page).toHaveURL(/lang=en-GB/);
+  await expect(page.getByRole("heading", { name: "British English sound library" })).toBeVisible();
 });
 
 test("opens sort mode from shareable URL parameters", async ({ page }) => {

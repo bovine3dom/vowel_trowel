@@ -53,6 +53,7 @@ import {
   saveProgress,
 } from "./storage/progress";
 
+const LAST_LANGUAGE_STORAGE_KEY = "vowel-trowel:last-language";
 const dataset = getInitialDataset();
 const SPEECH_VOICE_STORAGE_KEY = "vowel-trowel:tts-voice-uri";
 const CONTRIBUTION_DETAILS_STORAGE_KEY = "vowel-trowel:contribution-details:v1";
@@ -215,6 +216,7 @@ export default function App() {
   });
 
   onMount(() => {
+    saveLastLanguageId(dataset.id);
     const refreshVoices = () => setSpeechVoices(getAvailableSpeechVoices());
 
     refreshVoices();
@@ -739,6 +741,7 @@ export default function App() {
       return;
     }
 
+    saveLastLanguageId(languageId);
     const params = new URLSearchParams(window.location.search);
     params.set("lang", languageId);
     params.delete("phonemes");
@@ -5906,6 +5909,24 @@ function loadSpeechVoiceURI(): string | null {
   return localStorage.getItem(SPEECH_VOICE_STORAGE_KEY);
 }
 
+function loadLastLanguageId(): string | null {
+  if (typeof localStorage === "undefined") {
+    return null;
+  }
+
+  return parseLanguageId(localStorage.getItem(LAST_LANGUAGE_STORAGE_KEY));
+}
+
+function saveLastLanguageId(languageId: string): void {
+  const parsedLanguageId = parseLanguageId(languageId);
+
+  if (!parsedLanguageId || typeof localStorage === "undefined") {
+    return;
+  }
+
+  localStorage.setItem(LAST_LANGUAGE_STORAGE_KEY, parsedLanguageId);
+}
+
 function saveSpeechVoiceURI(voiceURI: string | null): void {
   if (typeof localStorage === "undefined") {
     return;
@@ -6626,7 +6647,10 @@ function getInitialDataset(): LanguageDataset {
     return getLanguageDataset(undefined);
   }
 
-  return getLanguageDataset(new URLSearchParams(window.location.search).get("lang") ?? undefined);
+  const params = new URLSearchParams(window.location.search);
+  const urlLanguageId = parseLanguageId(params.get("lang"));
+
+  return getLanguageDataset(urlLanguageId ?? loadLastLanguageId() ?? undefined);
 }
 
 function voiceMatchesSpeechLang(voice: SpeechSynthesisVoice, lang: string): boolean {
