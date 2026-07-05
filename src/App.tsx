@@ -11,6 +11,7 @@ import {
   selectSpeechVoice,
   subscribePlaybackVisualization,
   type FormantTrack,
+  type LiveFormantEstimate,
   type PrecomputedSpectrogram,
   type PlaybackVisualizationState,
 } from "./audio/playback";
@@ -1433,6 +1434,14 @@ const LIVE_FORMANT_ANALYSIS_HOP_MS = 25;
 const LIVE_FORMANT_TRAIL_SECONDS = 2.4;
 const LIVE_FORMANT_DISPLAY_MAX_HZ = 4000;
 
+interface LiveFormantWorkletEstimateMessage {
+  type: "estimate";
+  time: number;
+  f1: number | null;
+  f2: number | null;
+  energy: number;
+}
+
 function TargetPracticePanel(props: {
   language: LanguageDataset;
   selectedPhonemeIds: readonly PhonemeId[];
@@ -1867,6 +1876,7 @@ function TargetPracticeFormantChart(props: {
 function createLiveFormantTracker() {
   let audioContext: AudioContext | undefined;
   let source: MediaStreamAudioSourceNode | undefined;
+  let workletNode: AudioWorkletNode | undefined;
   let processor: ScriptProcessorNode | undefined;
   let silentGain: GainNode | undefined;
   let stream: MediaStream | undefined;
@@ -1900,9 +1910,16 @@ function createLiveFormantTracker() {
   };
 
   const stopAudio = () => {
+    if (workletNode) {
+      workletNode.port.onmessage = null;
+      workletNode.port.close();
+      workletNode.disconnect();
+    }
+
     processor?.disconnect();
     silentGain?.disconnect();
     source?.disconnect();
+    workletNode = undefined;
     processor = undefined;
     silentGain = undefined;
     source = undefined;
@@ -1920,28 +1937,21 @@ function createLiveFormantTracker() {
     rollingSamples = appendLiveSamples(rollingSamples, samples, maxLength);
   };
 
-  const analyzeFrame = (sampleRate: number) => {
-    const now = performance.now();
-
-    if (rollingSamples.length < frameSampleCount || now - lastAnalysisAt < LIVE_FORMANT_ANALYSIS_HOP_MS) {
-      return;
-    }
-
-    lastAnalysisAt = now;
-    const frame = rollingSamples.slice(rollingSamples.length - frameSampleCount);
-    const estimate = estimateLiveFormants(frame, sampleRate);
+  const commitLiveEstimate = (estimate: LiveFormantEstimate, time: number) => {
     const normalizedEnergy = Math.max(0, Math.min(1, estimate.energy / 0.045));
-    const time = Math.max(0, (now - startedAt) / 1000);
     let f1: number | null = null;
     let f2: number | null = null;
 
     setLevel(normalizedEnergy);
 
     if (estimate.f1 !== null && estimate.f2 !== null) {
-      smoothedF1 = smoothedF1 === null ? estimate.f1 : smoothedF1 * 0.68 + estimate.f1 * 0.32;
-      smoothedF2 = smoothedF2 === null ? estimate.f2 : smoothedF2 * 0.68 + estimate.f2 * 0.32;
-      f1 = Math.round(smoothedF1);
-      f2 = Math.round(smoothedF2);
+      const nextF1 = smoothedF1 === null ? estimate.f1 : smoothedF1 * 0.68 + estimate.f1 * 0.32;
+      const nextF2 = smoothedF2 === null ? estimate.f2 : smoothedF2 * 0.68 + estimate.f2 * 0.32;
+
+      smoothedF1 = nextF1;
+      smoothedF2 = nextF2;
+      f1 = Math.round(nextF1);
+      f2 = Math.round(nextF2);
     } else if (normalizedEnergy < 0.12) {
       smoothedF1 = null;
       smoothedF2 = null;
@@ -1957,6 +1967,35 @@ function createLiveFormantTracker() {
     }));
   };
 
+  const analyzeFrame = (sampleRate: number) => {
+    const now = performance.now();
+
+    if (rollingSamples.length < frameSampleCount || now - lastAnalysisAt < LIVE_FORMANT_ANALYSIS_HOP_MS) {
+      return;
+    }
+
+    lastAnalysisAt = now;
+    const frame = rollingSamples.slice(rollingSamples.length - frameSampleCount);
+    const estimate = estimateLiveFormants(frame, sampleRate);
+    const time = Math.max(0, (now - startedAt) / 1000);
+
+    commitLiveEstimate(estimate, time);
+  };
+
+  const handleWorkletMessage = (event: MessageEvent<unknown>) => {
+    const message = event.data;
+
+    if (!isLiveFormantWorkletEstimateMessage(message)) {
+      return;
+    }
+
+    commitLiveEstimate({
+      f1: message.f1,
+      f2: message.f2,
+      energy: message.energy,
+    }, Math.max(0, message.time));
+  };
+
   const handleAudioProcess = (event: AudioProcessingEvent) => {
     const context = audioContext;
 
@@ -1970,6 +2009,51 @@ function createLiveFormantTracker() {
     output.fill(0);
     appendAudio(input, Math.max(frameSampleCount * 3, input.length));
     analyzeFrame(context.sampleRate);
+  };
+
+  const startWorkletProcessor = async (
+    context: AudioContext,
+    mediaSource: MediaStreamAudioSourceNode,
+    output: GainNode,
+  ): Promise<boolean> => {
+    if (!context.audioWorklet || typeof AudioWorkletNode === "undefined") {
+      return false;
+    }
+
+    try {
+      await context.audioWorklet.addModule(liveFormantWorkletUrl());
+      const node = new AudioWorkletNode(context, "vowel-trowel-live-formants", {
+        numberOfInputs: 1,
+        numberOfOutputs: 1,
+        channelCount: 1,
+        channelCountMode: "explicit",
+        outputChannelCount: [1],
+      });
+
+      node.port.onmessage = handleWorkletMessage;
+      node.port.start();
+      mediaSource.connect(node);
+      node.connect(output);
+      workletNode = node;
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const startScriptProcessor = (
+    context: AudioContext,
+    mediaSource: MediaStreamAudioSourceNode,
+    output: GainNode,
+  ) => {
+    if (typeof context.createScriptProcessor !== "function") {
+      throw new Error("Live microphone analysis is not available in this browser.");
+    }
+
+    processor = context.createScriptProcessor(2048, 1, 1);
+    processor.onaudioprocess = handleAudioProcess;
+    mediaSource.connect(processor);
+    processor.connect(output);
   };
 
   const start = async () => {
@@ -2013,12 +2097,13 @@ function createLiveFormantTracker() {
       startedAt = performance.now();
       lastAnalysisAt = 0;
       source = audioContext.createMediaStreamSource(stream);
-      processor = audioContext.createScriptProcessor(2048, 1, 1);
       silentGain = audioContext.createGain();
       silentGain.gain.value = 0;
-      processor.onaudioprocess = handleAudioProcess;
-      source.connect(processor);
-      processor.connect(silentGain);
+
+      if (!(await startWorkletProcessor(audioContext, source, silentGain))) {
+        startScriptProcessor(audioContext, source, silentGain);
+      }
+
       silentGain.connect(audioContext.destination);
       setStatus("listening");
     } catch (startError) {
@@ -2058,6 +2143,26 @@ function emptyLiveFormantTrack(): FormantTrack {
     minHz: 0,
     maxHz: LIVE_FORMANT_DISPLAY_MAX_HZ,
   };
+}
+
+function isLiveFormantWorkletEstimateMessage(value: unknown): value is LiveFormantWorkletEstimateMessage {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+
+  const candidate = value as Partial<LiveFormantWorkletEstimateMessage>;
+
+  return candidate.type === "estimate"
+    && typeof candidate.time === "number"
+    && Number.isFinite(candidate.time)
+    && (candidate.f1 === null || typeof candidate.f1 === "number")
+    && (candidate.f2 === null || typeof candidate.f2 === "number")
+    && typeof candidate.energy === "number"
+    && Number.isFinite(candidate.energy);
+}
+
+function liveFormantWorkletUrl(): string {
+  return resolveAudioSourceForAnalysis("live-formant-worklet.js");
 }
 
 function appendLiveSamples(
