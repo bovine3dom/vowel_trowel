@@ -3587,7 +3587,6 @@ function ContributionModePage(props: {
           <div class="contribution-session-stats">
             <div><strong>{keptRecordings().length}</strong><span>kept</span></div>
             <div><strong>{skippedWordIds().length}</strong><span>skipped</span></div>
-            <div><strong>{remainingItems().length}</strong><span>remaining</span></div>
           </div>
 
           <label class="field-label">
