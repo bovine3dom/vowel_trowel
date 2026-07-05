@@ -763,11 +763,17 @@ export default function App() {
     }
 
     saveLastLanguageId(languageId);
+    const currentState = readUrlState();
     const params = new URLSearchParams(window.location.search);
-    params.set("lang", languageId);
-    params.delete("phonemes");
-    params.delete("explore");
-    params.delete("contribute");
+
+    setCanonicalAppUrlParams(params, {
+      ...currentState,
+      languageId,
+      phonemePair: null,
+      explorePhonemeId: null,
+      contributionWordId: null,
+      contributionModeOpen: false,
+    });
 
     const query = params.toString();
     window.location.assign(`${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
@@ -6792,22 +6798,25 @@ function readUrlState(): UrlState {
   }
 
   const params = new URLSearchParams(window.location.search);
-  const explorePhonemeId = parsePhonemeId(params.get("explore"));
-  const contributionParam = params.get("contribute");
-  const contributionModeOpen = contributionParam === "mode";
-  const contributionWordId = contributionModeOpen ? null : parseWordId(contributionParam);
+  const parsedMode = parseUrlMode(getUrlParam(params, "m", "mode"));
+  const explorePhonemeId = parsePhonemeId(getUrlParam(params, "x", "explore"));
+  const legacyContributionParam = params.get("contribute");
+  const legacyContributionModeOpen = legacyContributionParam === "mode";
+  const contributionWordId = parseWordId(getUrlParam(params, "w"))
+    ?? (legacyContributionModeOpen ? null : parseWordId(legacyContributionParam));
+  const contributionModeOpen = (parsedMode === "contribute" && !contributionWordId) || legacyContributionModeOpen;
 
   return {
-    languageId: parseLanguageId(params.get("lang")) ?? dataset.id,
-    mode: parseMode(params.get("mode")) ?? "match",
-    phonemePair: parsePhonemePair(params.get("phonemes")),
-    catalogTab: explorePhonemeId ? "phonemes" : parseCatalogTab(params.get("tab")) ?? "phonemes",
+    languageId: parseLanguageId(getUrlParam(params, "l", "lang")) ?? dataset.id,
+    mode: parsedMode === "match" || parsedMode === "sort" || parsedMode === "target" ? parsedMode : "match",
+    phonemePair: parsePhonemePair(getUrlParam(params, "p", "phonemes")),
+    catalogTab: explorePhonemeId ? "phonemes" : parseCatalogTab(getUrlParam(params, "v", "tab")) ?? "phonemes",
     explorePhonemeId,
     contributionWordId,
     contributionModeOpen,
-    ttsEnabled: parseBooleanFlag(params.get("tts")),
-    showUnrecordedPhonemes: parseBooleanFlag(params.get("showSounds")),
-    hideSortWordNames: parseBooleanFlag(params.get("hideSortWords")),
+    ttsEnabled: parseBooleanFlag(getUrlParam(params, "t", "tts")),
+    showUnrecordedPhonemes: parseBooleanFlag(getUrlParam(params, "u", "showSounds")),
+    hideSortWordNames: parseBooleanFlag(getUrlParam(params, "h", "hideSortWords")),
   };
 }
 
@@ -6817,49 +6826,7 @@ function writeUrlState(state: UrlState, historyMode: UrlHistoryMode): void {
   }
 
   const params = new URLSearchParams(window.location.search);
-
-  params.set("lang", state.languageId);
-  params.set("mode", state.mode);
-
-  if (state.phonemePair) {
-    params.set("phonemes", state.phonemePair.join(","));
-  } else {
-    params.delete("phonemes");
-  }
-
-  params.set("tab", state.catalogTab);
-
-  if (state.explorePhonemeId) {
-    params.set("explore", state.explorePhonemeId);
-  } else {
-    params.delete("explore");
-  }
-
-  if (state.contributionModeOpen) {
-    params.set("contribute", "mode");
-  } else if (state.contributionWordId) {
-    params.set("contribute", state.contributionWordId);
-  } else {
-    params.delete("contribute");
-  }
-
-  if (state.ttsEnabled) {
-    params.set("tts", "1");
-  } else {
-    params.delete("tts");
-  }
-
-  if (state.showUnrecordedPhonemes) {
-    params.set("showSounds", "1");
-  } else {
-    params.delete("showSounds");
-  }
-
-  if (state.hideSortWordNames) {
-    params.set("hideSortWords", "1");
-  } else {
-    params.delete("hideSortWords");
-  }
+  setCanonicalAppUrlParams(params, state);
 
   const query = params.toString();
   const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
@@ -6877,12 +6844,130 @@ function writeUrlState(state: UrlState, historyMode: UrlHistoryMode): void {
   window.history.replaceState(null, "", nextUrl);
 }
 
-function parseMode(value: string | null): TrainingMode | null {
-  return value === "match" || value === "sort" || value === "target" ? value : null;
+function setCanonicalAppUrlParams(params: URLSearchParams, state: UrlState): void {
+  const isContributionRoute = state.contributionModeOpen || Boolean(state.contributionWordId);
+  const isExplorerRoute = Boolean(state.explorePhonemeId);
+
+  clearAppUrlParams(params);
+  params.set("l", state.languageId);
+
+  if (isContributionRoute) {
+    params.set("m", "c");
+
+    if (state.contributionWordId) {
+      params.set("w", state.contributionWordId);
+    }
+
+    return;
+  }
+
+  if (state.mode !== "match") {
+    params.set("m", serializeUrlMode(state.mode));
+  }
+
+  if (state.phonemePair) {
+    params.set("p", state.phonemePair.join(","));
+  }
+
+  if (!isExplorerRoute && state.catalogTab !== "phonemes") {
+    params.set("v", "c");
+  }
+
+  if (state.explorePhonemeId) {
+    params.set("x", state.explorePhonemeId);
+  }
+
+  if (state.ttsEnabled) {
+    params.set("t", "1");
+  }
+
+  if (!isExplorerRoute && state.catalogTab === "phonemes" && state.showUnrecordedPhonemes) {
+    params.set("u", "1");
+  }
+
+  if (state.mode === "sort" && state.hideSortWordNames) {
+    params.set("h", "1");
+  }
+}
+
+function clearAppUrlParams(params: URLSearchParams): void {
+  for (const key of [
+    "l",
+    "m",
+    "p",
+    "v",
+    "x",
+    "w",
+    "t",
+    "u",
+    "h",
+    "lang",
+    "mode",
+    "phonemes",
+    "tab",
+    "explore",
+    "contribute",
+    "tts",
+    "showSounds",
+    "hideSortWords",
+  ]) {
+    params.delete(key);
+  }
+}
+
+function getUrlParam(params: URLSearchParams, ...keys: readonly string[]): string | null {
+  for (const key of keys) {
+    const value = params.get(key);
+
+    if (value !== null) {
+      return value;
+    }
+  }
+
+  return null;
+}
+
+function parseUrlMode(value: string | null): TrainingMode | "contribute" | null {
+  switch (value?.toLowerCase()) {
+    case "m":
+    case "match":
+      return "match";
+    case "s":
+    case "sort":
+      return "sort";
+    case "t":
+    case "target":
+      return "target";
+    case "c":
+    case "contribute":
+      return "contribute";
+    default:
+      return null;
+  }
+}
+
+function serializeUrlMode(mode: TrainingMode): string {
+  switch (mode) {
+    case "sort":
+      return "s";
+    case "target":
+      return "t";
+    case "match":
+      return "m";
+  }
 }
 
 function parseCatalogTab(value: string | null): CatalogTab | null {
-  return value === "phonemes" || value === "contrasts" ? value : null;
+  switch (value?.toLowerCase()) {
+    case "p":
+    case "phonemes":
+      return "phonemes";
+    case "c":
+    case "contrasts":
+      return "contrasts";
+    default:
+      return null;
+  }
 }
 
 function parseBooleanFlag(value: string | null): boolean {
@@ -6968,7 +7053,7 @@ function getInitialDataset(): LanguageDataset {
   }
 
   const params = new URLSearchParams(window.location.search);
-  const urlLanguageId = parseLanguageId(params.get("lang"));
+  const urlLanguageId = parseLanguageId(getUrlParam(params, "l", "lang"));
 
   return getLanguageDataset(urlLanguageId ?? loadLastLanguageId() ?? undefined);
 }

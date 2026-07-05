@@ -37,6 +37,10 @@ async function clearMockClipboard(page: Page): Promise<void> {
   });
 }
 
+async function getSearchParams(page: Page): Promise<Record<string, string>> {
+  return page.evaluate(() => Object.fromEntries(new URLSearchParams(window.location.search)));
+}
+
 async function seedContributionDraft(page: Page, draft: ContributionDraftSeed): Promise<void> {
   await page.evaluate(async ({ dbName, storeName, draft }) => {
     const db = await openDraftDb(dbName, storeName);
@@ -267,8 +271,10 @@ test("loads the French matching practice", async ({ page }) => {
     "href",
     "https://github.com/bovine3dom/vowel_trowel",
   );
-  await expect(page).toHaveURL(/lang=fr/);
-  await expect(page).toHaveURL(/mode=match/);
+  await expect(page).toHaveURL(/[?&]l=fr(?:&|$)/);
+  await expect(page).not.toHaveURL(/lang=fr/);
+  await expect(page).not.toHaveURL(/mode=match/);
+  await expect(page).not.toHaveURL(/tab=phonemes/);
 });
 
 test("shows a friendly message when JavaScript is disabled", async ({ browser }) => {
@@ -291,7 +297,15 @@ test("switches language through the selector", async ({ page }) => {
 
   await page.getByRole("combobox", { name: /Language/ }).selectOption("en-GB");
 
-  await expect(page).toHaveURL(/lang=en-GB/);
+  await expect(page).toHaveURL(/[?&]l=en-GB(?:&|$)/);
+  await expect.poll(async () => {
+    const params = await getSearchParams(page);
+
+    return {
+      language: params.l,
+      legacyLanguage: params.lang,
+    };
+  }).toEqual({ language: "en-GB", legacyLanguage: undefined });
   await expect(page.getByRole("heading", { name: "British English sound library" })).toBeVisible();
   await expect.poll(() => page.evaluate(() => localStorage.getItem("vowel-trowel:last-language"))).toBe("en-GB");
 });
@@ -303,7 +317,8 @@ test("uses last selected language when URL omits language", async ({ page }) => 
 
   await page.goto("/?mode=match");
 
-  await expect(page).toHaveURL(/lang=en-GB/);
+  await expect(page).toHaveURL(/[?&]l=en-GB(?:&|$)/);
+  await expect(page).not.toHaveURL(/mode=match/);
   await expect(page.getByRole("heading", { name: "British English sound library" })).toBeVisible();
 });
 
@@ -318,7 +333,70 @@ test("opens sort mode from shareable URL parameters", async ({ page }) => {
   const sortCardCount = await sortCards.count();
   expect(sortCardCount).toBeGreaterThanOrEqual(2);
   expect(sortCardCount).toBeLessThanOrEqual(12);
-  await expect(page).toHaveURL(/phonemes=en-gb-kit%2Cen-gb-fleece|phonemes=en-gb-kit,en-gb-fleece/);
+  await expect.poll(() => getSearchParams(page)).toEqual({
+    l: "en-GB",
+    m: "s",
+    p: "en-gb-kit,en-gb-fleece",
+    v: "c",
+  });
+});
+
+test("keeps old verbose contribution URLs working but canonicalizes them to contribution mode", async ({ page }) => {
+  await page.goto("/?lang=en-GB&mode=match&tab=phonemes&phonemes=en-gb-lot,en-gb-thought&contribute=mode");
+
+  await expect(page.getByRole("heading", { name: "Record a batch" })).toBeVisible();
+  await expect.poll(() => getSearchParams(page)).toEqual({
+    l: "en-GB",
+    m: "c",
+  });
+
+  await page.goto("/?lang=fr&mode=match&tab=phonemes&phonemes=fr-u,fr-y&explore=fr-u&contribute=fr-word-moue&tts=1&showSounds=1");
+
+  await expect(page.getByRole("heading", { name: "Record “moue”" })).toBeVisible();
+  await expect.poll(() => getSearchParams(page)).toEqual({
+    l: "fr",
+    m: "c",
+    w: "fr-word-moue",
+  });
+});
+
+test("opens new short contribution URLs", async ({ page }) => {
+  await page.goto("/?l=en-GB&m=c");
+
+  await expect(page.getByRole("heading", { name: "Record a batch" })).toBeVisible();
+  await expect.poll(() => getSearchParams(page)).toEqual({
+    l: "en-GB",
+    m: "c",
+  });
+
+  await page.goto("/?l=fr&m=c&w=fr-word-moue");
+
+  await expect(page.getByRole("heading", { name: "Record “moue”" })).toBeVisible();
+  await expect.poll(() => getSearchParams(page)).toEqual({
+    l: "fr",
+    m: "c",
+    w: "fr-word-moue",
+  });
+
+  await page.goto("/?lang=fr&mode=contribute");
+
+  await expect(page.getByRole("heading", { name: "Record a batch" })).toBeVisible();
+  await expect.poll(() => getSearchParams(page)).toEqual({
+    l: "fr",
+    m: "c",
+  });
+});
+
+test("keeps old verbose explorer URLs working but drops irrelevant defaults", async ({ page }) => {
+  await page.goto("/?lang=fr&mode=match&phonemes=fr-s,fr-z&tab=phonemes&explore=fr-s&showSounds=1&tts=1");
+
+  await expect(page.getByRole("heading", { name: "voiceless alveolar fricative" })).toBeVisible();
+  await expect.poll(() => getSearchParams(page)).toEqual({
+    l: "fr",
+    p: "fr-s,fr-z",
+    x: "fr-s",
+    t: "1",
+  });
 });
 
 test("opens target vowel practice", async ({ page }) => {
@@ -354,7 +432,7 @@ test("explores a sound and returns without adding an extra history entry", async
 
   await firstSoundCard.getByRole("button", { name: "Explore words" }).click();
 
-  await expect(page).toHaveURL(/explore=fr-s/);
+  await expect(page).toHaveURL(/[?&]x=fr-s(?:&|$)/);
   await expect(page.getByRole("heading", { name: "voiceless alveolar fricative" })).toBeVisible();
   await expect(page.locator(".phoneme-explorer .explore-word-card").first()).toBeVisible();
   await expect(page.locator(".phoneme-explorer").getByText("saule")).toHaveCount(0);
@@ -365,7 +443,7 @@ test("explores a sound and returns without adding an extra history entry", async
 
   await page.getByRole("button", { name: "Back to sounds" }).click();
 
-  await expect(page).not.toHaveURL(/explore=/);
+  await expect(page).not.toHaveURL(/[?&](?:x|explore)=/);
   await expect(page.getByText("Current practice:")).toBeVisible();
 });
 
@@ -377,7 +455,7 @@ test("can show fallback-only words when TTS flag is enabled", async ({ page }) =
   await expect(page.locator(".phoneme-explorer").getByText("saule")).toBeVisible();
   await expect(page.locator(".phoneme-explorer").getByRole("button", { name: "Browser voice" }).first()).toBeVisible();
   await expect(page.getByText("Browser voice", { exact: true }).first()).toBeVisible();
-  await expect(page).toHaveURL(/tts=1/);
+  await expect(page).toHaveURL(/[?&]t=1(?:&|$)/);
 });
 
 test("opens a contribution recorder for a word", async ({ page }) => {
@@ -386,14 +464,18 @@ test("opens a contribution recorder for a word", async ({ page }) => {
   const moueCard = page.locator(".explore-word-card").filter({ hasText: "moue" }).first();
   await moueCard.getByRole("button", { name: "Contribute a recording" }).click();
 
-  await expect(page).toHaveURL(/contribute=fr-word-moue/);
+  await expect.poll(() => getSearchParams(page)).toEqual({
+    l: "fr",
+    m: "c",
+    w: "fr-word-moue",
+  });
   await expect(page.getByRole("heading", { name: "Record “moue”" })).toBeVisible();
   await expect(page.getByRole("combobox", { name: "Licence" })).toHaveValue("CC0-1.0");
   await expect(page.getByPlaceholder("How you want to be credited")).toBeVisible();
   await expect(page.getByRole("button", { name: "Download contribution zip" })).toBeDisabled();
 
   await page.getByRole("button", { name: "Back to sound library" }).click();
-  await expect(page).not.toHaveURL(/contribute=/);
+  await expect(page).not.toHaveURL(/[?&](?:m=c|w=|contribute=)/);
 });
 
 test("skips contribution mode words already recorded by the stored speaker", async ({ page }) => {
@@ -593,7 +675,7 @@ test("can hide sort word names behind sample labels", async ({ page }) => {
   await expect(page.getByLabel("Spectrogram display").getByText(sampleLabel, { exact: true })).toBeVisible();
 
   await page.getByLabel("Hide word names").uncheck();
-  await expect(page).not.toHaveURL(/hideSortWords=1/);
+  await expect(page).not.toHaveURL(/[?&](?:h|hideSortWords)=1/);
   await expect(wordText).not.toHaveText(/^Sample /);
 });
 
