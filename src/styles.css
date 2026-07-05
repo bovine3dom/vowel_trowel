@@ -1495,10 +1495,12 @@ button.phoneme-example-word:focus-visible {
 .draft-status-message {
   margin: 12px 0 0;
   padding: 10px 12px;
-  border: 1px solid #99b58d;
-  background: #eef6e9;
-  color: #2d4c28;
-  font-weight: 650;
+  border: 2px solid #202020;
+  background: #fff6c9;
+  box-shadow: 2px 2px 0 #202020;
+  color: #202020;
+  font-weight: 800;
+  line-height: 1.35;
 }
 
 .contribution-grid {
@@ -1890,6 +1892,14 @@ button.phoneme-example-word:focus-visible {
 
 .recording-preview p {
   margin: 0;
+}
+
+.recording-preview audio[controls] {
+  width: min(100%, 380px);
+  border: 2px solid #202020;
+  border-radius: 0;
+  background: #fffdfa;
+  box-shadow: 2px 2px 0 #202020;
 }
 
 .recording-preview-button {

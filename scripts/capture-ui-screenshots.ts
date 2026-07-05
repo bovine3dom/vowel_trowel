@@ -15,6 +15,8 @@ const projectRoot = process.cwd();
 const port = Number(process.env.UI_SCREENSHOT_PORT ?? 4174);
 const baseUrl = process.env.UI_SCREENSHOT_BASE_URL ?? `http://127.0.0.1:${port}`;
 const outputDir = process.env.UI_SCREENSHOT_DIR ?? join(projectRoot, "reports", "ui-screenshots");
+const contributionDraftDbName = "vowel-trowel-contribution-drafts";
+const contributionDraftStoreName = "drafts";
 
 const scenarios: readonly ScreenshotScenario[] = [
   {
@@ -34,46 +36,78 @@ const scenarios: readonly ScreenshotScenario[] = [
     viewport: { width: 1440, height: 1100 },
   },
   {
-    name: "04-sound-library-desktop",
+    name: "04-target-desktop",
+    url: "/?l=fr&m=t&p=fr-i,fr-y",
+    viewport: { width: 1440, height: 1100 },
+  },
+  {
+    name: "05-sound-library-desktop",
     url: "/?l=fr&p=fr-u,fr-y",
     viewport: { width: 1440, height: 1400 },
   },
   {
-    name: "05-explorer-desktop",
+    name: "06-explorer-desktop",
     url: "/?l=fr&p=fr-oe,fr-eu&x=fr-oe",
     viewport: { width: 1440, height: 1400 },
   },
   {
-    name: "06-match-mobile",
+    name: "07-match-mobile",
     url: "/?l=fr&p=fr-u,fr-y",
     viewport: { width: 390, height: 1000 },
   },
   {
-    name: "07-match-result-mobile",
+    name: "08-match-result-mobile",
     url: "/?l=fr&p=fr-u,fr-y",
     viewport: { width: 390, height: 1000 },
     action: submitMatchingAnswer,
   },
   {
-    name: "08-sort-mobile",
+    name: "09-sort-mobile",
     url: "/?l=en-GB&m=s&p=en-gb-kit,en-gb-fleece&v=c",
     viewport: { width: 390, height: 1000 },
   },
   {
-    name: "09-sort-result-mobile",
+    name: "10-sort-result-mobile",
     url: "/?l=en-GB&m=s&p=en-gb-kit,en-gb-fleece&v=c",
     viewport: { width: 390, height: 1000 },
     action: submitSortingAnswer,
   },
   {
-    name: "10-contribution-desktop",
+    name: "11-target-mobile",
+    url: "/?l=fr&m=t&p=fr-i,fr-y",
+    viewport: { width: 390, height: 1000 },
+  },
+  {
+    name: "12-contribution-desktop",
     url: "/?l=fr&m=c&w=fr-word-moue",
     viewport: { width: 1440, height: 1100 },
   },
   {
-    name: "11-contribution-mobile",
+    name: "13-contribution-mobile",
     url: "/?l=fr&m=c&w=fr-word-moue",
     viewport: { width: 390, height: 1000 },
+  },
+  {
+    name: "14-contribution-mode-desktop",
+    url: "/?l=fr&m=c",
+    viewport: { width: 1440, height: 1100 },
+  },
+  {
+    name: "15-contribution-mode-mobile",
+    url: "/?l=fr&m=c",
+    viewport: { width: 390, height: 1000 },
+  },
+  {
+    name: "16-restored-contribution-desktop",
+    url: "/?l=fr&m=c&w=fr-word-moue",
+    viewport: { width: 1440, height: 1100 },
+    action: restoreMoueContributionDraft,
+  },
+  {
+    name: "17-restored-contribution-mobile",
+    url: "/?l=fr&m=c&w=fr-word-moue",
+    viewport: { width: 390, height: 1000 },
+    action: restoreMoueContributionDraft,
   },
 ];
 
@@ -201,6 +235,68 @@ async function submitSortingAnswer(page: Page): Promise<void> {
   }
 
   await page.getByRole("button", { name: "Check answer" }).click();
+}
+
+async function restoreMoueContributionDraft(page: Page): Promise<void> {
+  await page.evaluate(async ({ dbName, storeName }) => {
+    const db = await openDraftDb(dbName, storeName);
+
+    try {
+      const transaction = db.transaction(storeName, "readwrite");
+      const transactionDone = transactionToPromise(transaction);
+      const blob = new Blob([new Uint8Array([1, 2, 3, 4])], { type: "audio/webm" });
+
+      transaction.objectStore(storeName).put({
+        schemaVersion: 1,
+        id: "fr:single:fr-word-moue",
+        mode: "single",
+        languageId: "fr",
+        wordId: "fr-word-moue",
+        licence: "CC0-1.0",
+        speakerName: "",
+        accent: "",
+        keptRecordings: [],
+        currentRecording: {
+          wordId: "fr-word-moue",
+          blob,
+          mimeType: blob.type,
+          recordedAt: "2026-01-02T03:04:05.000Z",
+        },
+        skippedWordIds: [],
+        updatedAt: "2026-01-02T03:04:05.000Z",
+      });
+      await transactionDone;
+    } finally {
+      db.close();
+    }
+
+    function openDraftDb(dbName: string, storeName: string): Promise<IDBDatabase> {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(dbName, 1);
+
+        request.addEventListener("upgradeneeded", () => {
+          const db = request.result;
+
+          if (!db.objectStoreNames.contains(storeName)) {
+            db.createObjectStore(storeName, { keyPath: "id" });
+          }
+        });
+        request.addEventListener("success", () => resolve(request.result));
+        request.addEventListener("error", () => reject(request.error));
+      });
+    }
+
+    function transactionToPromise(transaction: IDBTransaction): Promise<void> {
+      return new Promise((resolve, reject) => {
+        transaction.addEventListener("complete", () => resolve());
+        transaction.addEventListener("abort", () => reject(transaction.error));
+        transaction.addEventListener("error", () => reject(transaction.error));
+      });
+    }
+  }, { dbName: contributionDraftDbName, storeName: contributionDraftStoreName });
+
+  await page.reload({ waitUntil: "networkidle" });
+  await page.getByText("Restored a saved recording from this browser.").waitFor();
 }
 
 async function settle(page: Page): Promise<void> {
