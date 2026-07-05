@@ -1,76 +1,35 @@
+export const LIVE_FORMANT_FRAME_SECONDS = 0.04;
+export const LIVE_FORMANT_ANALYSIS_HOP_SECONDS = 0.025;
+export const LIVE_FORMANT_ANALYSIS_HOP_MS = LIVE_FORMANT_ANALYSIS_HOP_SECONDS * 1000;
+
 const FORMANT_TARGET_SAMPLE_RATE = 11025;
+const FORMANT_FRAME_SECONDS = 0.03;
+const FORMANT_HOP_SECONDS = 0.01;
 const FORMANT_LPC_ORDER = 12;
-const LIVE_FORMANT_FRAME_SECONDS = 0.04;
-const LIVE_FORMANT_ANALYSIS_HOP_SECONDS = 0.025;
+const FORMANT_MIN_VALID_POINTS = 3;
+const FORMANT_DISPLAY_MAX_HZ = 4000;
 
-class LiveFormantProcessor extends AudioWorkletProcessor {
-  constructor() {
-    super();
-
-    this.sourceSampleRate = sampleRate;
-    this.frameSampleCount = Math.max(512, Math.round(this.sourceSampleRate * LIVE_FORMANT_FRAME_SECONDS));
-    this.hopSampleCount = Math.max(128, Math.round(this.sourceSampleRate * LIVE_FORMANT_ANALYSIS_HOP_SECONDS));
-    this.rollingSamples = new Float32Array(this.frameSampleCount * 3);
-    this.rollingLength = 0;
-    this.totalSamples = 0;
-    this.lastAnalysisSample = 0;
-  }
-
-  process(inputs, outputs) {
-    for (const channel of outputs[0] ?? []) {
-      channel.fill(0);
-    }
-
-    const inputChannels = inputs[0];
-    const input = inputChannels?.[0];
-
-    if (!input || input.length === 0) {
-      return true;
-    }
-
-    this.appendInput(input);
-    this.totalSamples += input.length;
-
-    if (
-      this.rollingLength >= this.frameSampleCount
-      && this.totalSamples - this.lastAnalysisSample >= this.hopSampleCount
-    ) {
-      this.lastAnalysisSample = this.totalSamples;
-      const frame = this.rollingSamples.slice(this.rollingLength - this.frameSampleCount, this.rollingLength);
-      const estimate = estimateLiveFormants(frame, this.sourceSampleRate);
-
-      this.port.postMessage({
-        type: "estimate",
-        time: this.totalSamples / this.sourceSampleRate,
-        f1: estimate.f1,
-        f2: estimate.f2,
-        energy: estimate.energy,
-      });
-    }
-
-    return true;
-  }
-
-  appendInput(input) {
-    if (input.length >= this.rollingSamples.length) {
-      this.rollingSamples.set(input.subarray(input.length - this.rollingSamples.length));
-      this.rollingLength = this.rollingSamples.length;
-      return;
-    }
-
-    const overflow = Math.max(0, this.rollingLength + input.length - this.rollingSamples.length);
-
-    if (overflow > 0) {
-      this.rollingSamples.copyWithin(0, overflow, this.rollingLength);
-      this.rollingLength -= overflow;
-    }
-
-    this.rollingSamples.set(input, this.rollingLength);
-    this.rollingLength += input.length;
-  }
+export interface FormantTrack {
+  points: FormantPoint[];
+  duration: number;
+  minHz: number;
+  maxHz: number;
 }
 
-function estimateLiveFormants(samples, sampleRate) {
+export interface FormantPoint {
+  time: number;
+  f1: number | null;
+  f2: number | null;
+  energy: number;
+}
+
+export interface LiveFormantEstimate {
+  f1: number | null;
+  f2: number | null;
+  energy: number;
+}
+
+export function estimateLiveFormants(samples: Float32Array, sampleRate: number): LiveFormantEstimate {
   if (samples.length < 128 || sampleRate <= 0) {
     return { f1: null, f2: null, energy: 0 };
   }
@@ -90,7 +49,95 @@ function estimateLiveFormants(samples, sampleRate) {
   return { ...estimate, energy };
 }
 
-function resampleSamples(samples, sourceSampleRate, targetSampleRate) {
+export function computeFormantTrack(audioBuffer: AudioBuffer): FormantTrack | undefined {
+  const monoSamples = mixAudioBufferToMono(audioBuffer);
+  const targetSampleRate = Math.min(audioBuffer.sampleRate, FORMANT_TARGET_SAMPLE_RATE);
+  const samples = preEmphasizeSamples(resampleSamples(monoSamples, audioBuffer.sampleRate, targetSampleRate));
+  const frameSize = Math.max(128, Math.round(targetSampleRate * FORMANT_FRAME_SECONDS));
+  const hopSize = Math.max(64, Math.round(targetSampleRate * FORMANT_HOP_SECONDS));
+
+  if (samples.length < frameSize) {
+    return undefined;
+  }
+
+  const frameCount = Math.max(1, Math.floor((samples.length - frameSize) / hopSize) + 1);
+  const window = createHannWindow(frameSize);
+  const frameRms = new Float32Array(frameCount);
+  let maxRms = 0;
+
+  for (let frameIndex = 0; frameIndex < frameCount; frameIndex += 1) {
+    const rms = frameRootMeanSquare(samples, frameIndex * hopSize, frameSize);
+
+    frameRms[frameIndex] = rms;
+    maxRms = Math.max(maxRms, rms);
+  }
+
+  if (maxRms <= 0) {
+    return undefined;
+  }
+
+  const minimumRms = Math.max(0.002, maxRms * 0.08);
+  const points: FormantPoint[] = [];
+  let validPointCount = 0;
+
+  for (let frameIndex = 0; frameIndex < frameCount; frameIndex += 1) {
+    const start = frameIndex * hopSize;
+    const time = (start + frameSize / 2) / targetSampleRate;
+    const energy = Math.min(1, (frameRms[frameIndex] ?? 0) / maxRms);
+
+    if ((frameRms[frameIndex] ?? 0) < minimumRms) {
+      points.push({ time, f1: null, f2: null, energy });
+      continue;
+    }
+
+    const frame = createWindowedFrame(samples, start, frameSize, window);
+    const estimate = estimateFrameFormants(frame, targetSampleRate);
+
+    if (estimate.f1 !== null || estimate.f2 !== null) {
+      validPointCount += 1;
+    }
+
+    points.push({ time, f1: estimate.f1, f2: estimate.f2, energy });
+  }
+
+  if (validPointCount < FORMANT_MIN_VALID_POINTS) {
+    return undefined;
+  }
+
+  return {
+    points: smoothFormantPoints(points),
+    duration: audioBuffer.duration,
+    minHz: 0,
+    maxHz: Math.min(FORMANT_DISPLAY_MAX_HZ, targetSampleRate / 2),
+  };
+}
+
+export function mixAudioBufferToMono(audioBuffer: AudioBuffer): Float32Array {
+  const samples = new Float32Array(audioBuffer.length);
+  const channels = Math.max(1, audioBuffer.numberOfChannels);
+
+  for (let channel = 0; channel < channels; channel += 1) {
+    const data = audioBuffer.getChannelData(channel);
+
+    for (let index = 0; index < samples.length; index += 1) {
+      samples[index] = (samples[index] ?? 0) + (data[index] ?? 0) / channels;
+    }
+  }
+
+  return samples;
+}
+
+export function createHannWindow(size: number): Float32Array {
+  const window = new Float32Array(size);
+
+  for (let index = 0; index < size; index += 1) {
+    window[index] = 0.5 * (1 - Math.cos((2 * Math.PI * index) / Math.max(1, size - 1)));
+  }
+
+  return window;
+}
+
+function resampleSamples(samples: Float32Array, sourceSampleRate: number, targetSampleRate: number): Float32Array {
   if (Math.abs(sourceSampleRate - targetSampleRate) < 1) {
     return samples;
   }
@@ -113,7 +160,7 @@ function resampleSamples(samples, sourceSampleRate, targetSampleRate) {
   return resampled;
 }
 
-function preEmphasizeSamples(samples) {
+function preEmphasizeSamples(samples: Float32Array): Float32Array {
   const emphasized = new Float32Array(samples.length);
   let previous = 0;
 
@@ -127,7 +174,7 @@ function preEmphasizeSamples(samples) {
   return emphasized;
 }
 
-function frameRootMeanSquare(samples, start, frameSize) {
+function frameRootMeanSquare(samples: Float32Array, start: number, frameSize: number): number {
   let total = 0;
 
   for (let index = 0; index < frameSize; index += 1) {
@@ -139,7 +186,12 @@ function frameRootMeanSquare(samples, start, frameSize) {
   return Math.sqrt(total / frameSize);
 }
 
-function createWindowedFrame(samples, start, frameSize, window) {
+function createWindowedFrame(
+  samples: Float32Array,
+  start: number,
+  frameSize: number,
+  window: Float32Array,
+): Float32Array {
   const frame = new Float32Array(frameSize);
   let mean = 0;
 
@@ -156,17 +208,7 @@ function createWindowedFrame(samples, start, frameSize, window) {
   return frame;
 }
 
-function createHannWindow(size) {
-  const window = new Float32Array(size);
-
-  for (let index = 0; index < size; index += 1) {
-    window[index] = 0.5 * (1 - Math.cos((2 * Math.PI * index) / Math.max(1, size - 1)));
-  }
-
-  return window;
-}
-
-function estimateFrameFormants(frame, sampleRate) {
+function estimateFrameFormants(frame: Float32Array, sampleRate: number): { f1: number | null; f2: number | null } {
   const coefficients = computeLpcCoefficients(frame, FORMANT_LPC_ORDER);
 
   if (!coefficients) {
@@ -208,7 +250,7 @@ function estimateFrameFormants(frame, sampleRate) {
   };
 }
 
-function computeLpcCoefficients(frame, order) {
+function computeLpcCoefficients(frame: Float32Array, order: number): Float64Array | undefined {
   const autocorrelation = new Float64Array(order + 1);
 
   for (let lag = 0; lag <= order; lag += 1) {
@@ -260,7 +302,12 @@ function computeLpcCoefficients(frame, order) {
   return coefficients;
 }
 
-function findPolynomialRoots(coefficients) {
+interface ComplexNumber {
+  re: number;
+  im: number;
+}
+
+function findPolynomialRoots(coefficients: readonly number[]): ComplexNumber[] {
   const degree = coefficients.length - 1;
 
   if (degree <= 0) {
@@ -309,7 +356,7 @@ function findPolynomialRoots(coefficients) {
   return roots;
 }
 
-function evaluatePolynomial(coefficients, value) {
+function evaluatePolynomial(coefficients: readonly number[], value: ComplexNumber): ComplexNumber {
   let result = { re: coefficients[0] ?? 0, im: 0 };
 
   for (let index = 1; index < coefficients.length; index += 1) {
@@ -319,22 +366,22 @@ function evaluatePolynomial(coefficients, value) {
   return result;
 }
 
-function addComplex(left, right) {
+function addComplex(left: ComplexNumber, right: ComplexNumber): ComplexNumber {
   return { re: left.re + right.re, im: left.im + right.im };
 }
 
-function subtractComplex(left, right) {
+function subtractComplex(left: ComplexNumber, right: ComplexNumber): ComplexNumber {
   return { re: left.re - right.re, im: left.im - right.im };
 }
 
-function multiplyComplex(left, right) {
+function multiplyComplex(left: ComplexNumber, right: ComplexNumber): ComplexNumber {
   return {
     re: left.re * right.re - left.im * right.im,
     im: left.re * right.im + left.im * right.re,
   };
 }
 
-function divideComplex(left, right) {
+function divideComplex(left: ComplexNumber, right: ComplexNumber): ComplexNumber {
   const denominator = Math.max(1e-18, complexMagnitudeSquared(right));
 
   return {
@@ -343,8 +390,49 @@ function divideComplex(left, right) {
   };
 }
 
-function complexMagnitudeSquared(value) {
+function complexMagnitudeSquared(value: ComplexNumber): number {
   return value.re * value.re + value.im * value.im;
 }
 
-registerProcessor("vowel-trowel-live-formants", LiveFormantProcessor);
+function smoothFormantPoints(points: readonly FormantPoint[]): FormantPoint[] {
+  const f1 = smoothNullableSeries(points.map((point) => point.f1));
+  const f2 = smoothNullableSeries(points.map((point) => point.f2));
+
+  return points.map((point, index) => ({
+    ...point,
+    f1: f1[index] ?? null,
+    f2: f2[index] ?? null,
+  }));
+}
+
+function smoothNullableSeries(values: readonly (number | null)[]): (number | null)[] {
+  const medianed = values.map((value, index) => {
+    if (value === null) {
+      return null;
+    }
+
+    const neighbors = values
+      .slice(Math.max(0, index - 1), Math.min(values.length, index + 2))
+      .filter((candidate): candidate is number => candidate !== null)
+      .sort((left, right) => left - right);
+
+    return neighbors[Math.floor(neighbors.length / 2)] ?? value;
+  });
+  const smoothed: (number | null)[] = [];
+  let previous: number | null = null;
+
+  for (const value of medianed) {
+    if (value === null) {
+      smoothed.push(null);
+      previous = null;
+      continue;
+    }
+
+    const nextValue: number = previous === null ? value : previous * 0.55 + value * 0.45;
+
+    smoothed.push(Math.round(nextValue));
+    previous = nextValue;
+  }
+
+  return smoothed;
+}

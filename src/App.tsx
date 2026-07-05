@@ -2,7 +2,6 @@ import { For, Show, createEffect, createMemo, createSignal, onCleanup, onMount }
 import { strToU8, zipSync } from "fflate";
 
 import {
-  estimateLiveFormants,
   getAvailableSpeechVoices,
   getPlaybackVisualizationState,
   getPrecomputedSpectrogram,
@@ -10,11 +9,18 @@ import {
   playTermAudio,
   selectSpeechVoice,
   subscribePlaybackVisualization,
-  type FormantTrack,
-  type LiveFormantEstimate,
   type PrecomputedSpectrogram,
   type PlaybackVisualizationState,
 } from "./audio/playback";
+import {
+  LIVE_FORMANT_ANALYSIS_HOP_MS,
+  LIVE_FORMANT_FRAME_SECONDS,
+  estimateLiveFormants,
+  type FormantTrack,
+  type LiveFormantEstimate,
+} from "./audio/formants";
+import liveFormantWorkletUrl from "./audio/live-formant-worklet.ts?worker&url";
+import { resolveAudioSource } from "./audio/sources";
 import {
   DEFAULT_CONTRIBUTION_TARGET_RECORDINGS as CONTRIBUTION_TARGET_RECORDINGS,
   createContributionQueue,
@@ -1429,8 +1435,6 @@ interface TargetPracticeVowel extends FormantTarget {
 
 type TargetPracticeSelectionId = `vowel:${string}` | `pair:${string}`;
 
-const LIVE_FORMANT_FRAME_SECONDS = 0.04;
-const LIVE_FORMANT_ANALYSIS_HOP_MS = 25;
 const LIVE_FORMANT_TRAIL_SECONDS = 2.4;
 const LIVE_FORMANT_DISPLAY_MAX_HZ = 4000;
 
@@ -1660,7 +1664,7 @@ function TargetPracticePanel(props: {
     setExampleLabel(label);
     setExampleProgress(0);
 
-    void getPrecomputedSpectrogram(resolveAudioSourceForAnalysis(source.src))
+    void getPrecomputedSpectrogram(resolveAudioSource(source.src))
       .then(setExampleSpectrogram)
       .catch((error) => {
         setExampleSpectrogram(null);
@@ -2021,7 +2025,7 @@ function createLiveFormantTracker() {
     }
 
     try {
-      await context.audioWorklet.addModule(liveFormantWorkletUrl());
+      await context.audioWorklet.addModule(liveFormantWorkletUrl);
       const node = new AudioWorkletNode(context, "vowel-trowel-live-formants", {
         numberOfInputs: 1,
         numberOfOutputs: 1,
@@ -2159,10 +2163,6 @@ function isLiveFormantWorkletEstimateMessage(value: unknown): value is LiveForma
     && (candidate.f2 === null || typeof candidate.f2 === "number")
     && typeof candidate.energy === "number"
     && Number.isFinite(candidate.energy);
-}
-
-function liveFormantWorkletUrl(): string {
-  return resolveAudioSourceForAnalysis("live-formant-worklet.js");
 }
 
 function appendLiveSamples(
@@ -6850,17 +6850,6 @@ function getAudioFeedbackPath(source: AudioSource | undefined): string | undefin
   }
 
   return source.src;
-}
-
-function resolveAudioSourceForAnalysis(src: string): string {
-  if (/^(https?:|data:|blob:|\/)/.test(src)) {
-    return src;
-  }
-
-  const base = import.meta.env.BASE_URL || "./";
-  const normalizedBase = base.endsWith("/") ? base : `${base}/`;
-
-  return `${normalizedBase}${src}`;
 }
 
 function createNextPrompt(
