@@ -645,6 +645,8 @@ test("can submit a sorting answer", async ({ page }) => {
   const wordBag = page.locator(".sort-bag");
   const groupTarget = page.locator(".sort-groups .sort-group").first();
 
+  await expect(wordBag.locator(".sort-word-card").first()).toBeVisible();
+
   while (await wordBag.locator(".sort-word-card").count()) {
     await wordBag.locator(".sort-word-card").first().click();
     await groupTarget.click({ position: { x: 10, y: 170 } });

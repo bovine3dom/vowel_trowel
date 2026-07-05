@@ -1,6 +1,4 @@
-export const LIVE_FORMANT_FRAME_SECONDS = 0.04;
-export const LIVE_FORMANT_ANALYSIS_HOP_SECONDS = 0.025;
-export const LIVE_FORMANT_ANALYSIS_HOP_MS = LIVE_FORMANT_ANALYSIS_HOP_SECONDS * 1000;
+import { mixAudioBufferToMono, createHannWindow } from "./waveform";
 
 const FORMANT_TARGET_SAMPLE_RATE = 11025;
 const FORMANT_FRAME_SECONDS = 0.03;
@@ -110,31 +108,6 @@ export function computeFormantTrack(audioBuffer: AudioBuffer): FormantTrack | un
     minHz: 0,
     maxHz: Math.min(FORMANT_DISPLAY_MAX_HZ, targetSampleRate / 2),
   };
-}
-
-export function mixAudioBufferToMono(audioBuffer: AudioBuffer): Float32Array {
-  const samples = new Float32Array(audioBuffer.length);
-  const channels = Math.max(1, audioBuffer.numberOfChannels);
-
-  for (let channel = 0; channel < channels; channel += 1) {
-    const data = audioBuffer.getChannelData(channel);
-
-    for (let index = 0; index < samples.length; index += 1) {
-      samples[index] = (samples[index] ?? 0) + (data[index] ?? 0) / channels;
-    }
-  }
-
-  return samples;
-}
-
-export function createHannWindow(size: number): Float32Array {
-  const window = new Float32Array(size);
-
-  for (let index = 0; index < size; index += 1) {
-    window[index] = 0.5 * (1 - Math.cos((2 * Math.PI * index) / Math.max(1, size - 1)));
-  }
-
-  return window;
 }
 
 function resampleSamples(samples: Float32Array, sourceSampleRate: number, targetSampleRate: number): Float32Array {

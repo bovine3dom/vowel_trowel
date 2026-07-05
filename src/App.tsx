@@ -12,13 +12,8 @@ import {
   type PrecomputedSpectrogram,
   type PlaybackVisualizationState,
 } from "./audio/playback";
-import {
-  LIVE_FORMANT_ANALYSIS_HOP_MS,
-  LIVE_FORMANT_FRAME_SECONDS,
-  estimateLiveFormants,
-  type FormantTrack,
-  type LiveFormantEstimate,
-} from "./audio/formants";
+import { estimateLiveFormants, type FormantTrack, type LiveFormantEstimate } from "./audio/formants";
+import { LIVE_FORMANT_ANALYSIS_HOP_MS, LIVE_FORMANT_FRAME_SECONDS } from "./audio/live-formant-config";
 import liveFormantWorkletUrl from "./audio/live-formant-worklet.ts?worker&url";
 import { resolveAudioSource } from "./audio/sources";
 import {
@@ -37,7 +32,7 @@ import {
   type PersistedContributionDraft,
   type PersistedContributionRecording,
 } from "./contributions/drafts";
-import { getLanguageDataset, getLanguageSlug, languageDatasets, sameLanguageId } from "./languages";
+import { LAST_LANGUAGE_STORAGE_KEY, getLanguageSlug, languageOptions, resolveLanguageId, sameLanguageId } from "./languages/metadata";
 import { countResolvedMinimalPairsForPhonemes } from "./languages/resolve";
 import type { AudioSource, LanguageDataset, MinimalPairTerm, Phoneme, PhonemeContrast, PhonemeId, WordEntry } from "./languages/types";
 import {
@@ -73,8 +68,7 @@ import {
   saveProgress,
 } from "./storage/progress";
 
-const LAST_LANGUAGE_STORAGE_KEY = "vowel-trowel:last-language";
-const dataset = getInitialDataset();
+let dataset: LanguageDataset;
 const SPEECH_VOICE_STORAGE_KEY = "vowel-trowel:tts-voice-uri";
 const CONTRIBUTION_DETAILS_STORAGE_KEY = "vowel-trowel:contribution-details:v1";
 const CONTRIBUTION_HISTORY_STORAGE_KEY = "vowel-trowel:contribution-history:v1";
@@ -142,7 +136,8 @@ interface AudioCredit {
   source: AudioSource;
 }
 
-export default function App() {
+export default function App(props: { dataset: LanguageDataset }) {
+  dataset = props.dataset;
   const initialUrlState = readUrlState();
   const initialProgress = loadProgress();
   const initialPracticeDataset = createPracticeDataset(dataset, initialUrlState.ttsEnabled);
@@ -803,7 +798,7 @@ export default function App() {
             value={dataset.id}
             onInput={(event) => chooseLanguage(event.currentTarget.value)}
           >
-            <For each={languageDatasets}>
+            <For each={languageOptions}>
               {(language) => <option value={language.id}>{language.name}</option>}
             </For>
           </select>
@@ -3300,7 +3295,13 @@ function ContributionModePage(props: {
     const keptIds = keptWordIds();
     const skippedIds = skippedWordIdSet();
 
-    setSessionItems((current) => fillContributionSessionQueue(current, allowedWordIds, keptIds, skippedIds, props.language));
+    setSessionItems((current) => fillContributionSessionQueue(
+      current,
+      allowedWordIds,
+      keptIds,
+      skippedIds,
+      props.language,
+    ));
   });
 
   const recordingPreviewTracker = createAudioPlaybackProgressTracker(
@@ -6344,14 +6345,6 @@ function loadSpeechVoiceURI(): string | null {
   return localStorage.getItem(SPEECH_VOICE_STORAGE_KEY);
 }
 
-function loadLastLanguageId(): string | null {
-  if (typeof localStorage === "undefined") {
-    return null;
-  }
-
-  return parseLanguageId(localStorage.getItem(LAST_LANGUAGE_STORAGE_KEY));
-}
-
 function saveLastLanguageId(languageId: string): void {
   const parsedLanguageId = parseLanguageId(languageId);
 
@@ -7069,9 +7062,7 @@ function parseBooleanFlag(value: string | null): boolean {
 }
 
 function parseLanguageId(value: string | null): string | null {
-  return languageDatasets.some((language) => sameLanguageId(language.id, value ?? undefined))
-    ? getLanguageDataset(value ?? undefined).id
-    : null;
+  return resolveLanguageId(value);
 }
 
 function parsePhonemeId(value: string | null): PhonemeId | null {
@@ -7139,17 +7130,6 @@ function phonemePairFromSortingPrompt(prompt: SortingPrompt | undefined): Phonem
   const second = prompt.groups[1]?.phonemeId;
 
   return first && second && first !== second ? [first, second] : null;
-}
-
-function getInitialDataset(): LanguageDataset {
-  if (typeof window === "undefined") {
-    return getLanguageDataset(undefined);
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  const urlLanguageId = parseLanguageId(getUrlParam(params, "l", "lang"));
-
-  return getLanguageDataset(urlLanguageId ?? loadLastLanguageId() ?? undefined);
 }
 
 function voiceMatchesSpeechLang(voice: SpeechSynthesisVoice, lang: string): boolean {

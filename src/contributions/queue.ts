@@ -1,4 +1,4 @@
-import { getLanguageSlug } from "../languages";
+import { getLanguageSlug } from "../languages/metadata";
 import { contributionPerfectPairDataByLanguage } from "../generated/contribution-perfect-pairs";
 import type { AudioSource, LanguageDataset, PhonemeId, WordEntry } from "../languages/types";
 import {

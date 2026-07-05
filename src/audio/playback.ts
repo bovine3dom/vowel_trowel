@@ -1,17 +1,8 @@
 import type { AudioSource, MinimalPairTerm } from "../languages/types";
-import {
-  computeFormantTrack,
-  createHannWindow,
-  mixAudioBufferToMono,
-  type FormantTrack,
-} from "./formants";
-export {
-  estimateLiveFormants,
-  type FormantPoint,
-  type FormantTrack,
-  type LiveFormantEstimate,
-} from "./formants";
+import { computeFormantTrack, type FormantTrack } from "./formants";
+export type { FormantPoint, FormantTrack, LiveFormantEstimate } from "./formants";
 import { resolveAudioSource } from "./sources";
+import { createHannWindow, mixAudioBufferToMono } from "./waveform";
 
 let activeAudio: HTMLAudioElement | undefined;
 let sharedAudioContext: AudioContext | undefined;

@@ -1,8 +1,7 @@
 import {
-  LIVE_FORMANT_ANALYSIS_HOP_SECONDS,
-  LIVE_FORMANT_FRAME_SECONDS,
   estimateLiveFormants,
 } from "./formants";
+import { LIVE_FORMANT_ANALYSIS_HOP_SECONDS, LIVE_FORMANT_FRAME_SECONDS } from "./live-formant-config";
 
 declare const sampleRate: number;
 declare function registerProcessor(name: string, processorCtor: typeof AudioWorkletProcessor): void;
