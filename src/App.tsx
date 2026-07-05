@@ -20,6 +20,16 @@ import {
   contributionWordIdsForSpeaker,
   type ContributionQueueItem,
 } from "./contributions/queue";
+import {
+  contributionBatchDraftId,
+  contributionSingleDraftId,
+  deleteContributionDraft,
+  loadContributionDraft,
+  saveContributionDraft,
+  type ContributionDraftLicence,
+  type PersistedContributionDraft,
+  type PersistedContributionRecording,
+} from "./contributions/drafts";
 import { getLanguageDataset, getLanguageSlug, languageDatasets, sameLanguageId } from "./languages";
 import { countResolvedMinimalPairsForPhonemes } from "./languages/resolve";
 import type { AudioSource, LanguageDataset, MinimalPairTerm, Phoneme, PhonemeContrast, PhonemeId, WordEntry } from "./languages/types";
@@ -73,7 +83,7 @@ type TrainingMode = "match" | "sort" | "target";
 type CatalogTab = "phonemes" | "contrasts";
 type PhonemePair = readonly [PhonemeId, PhonemeId];
 type UrlHistoryMode = "push" | "replace";
-type ContributionLicence = "CC0-1.0" | "CC-BY-4.0";
+type ContributionLicence = ContributionDraftLicence;
 type ContributionDownloadStatus = "idle" | "downloading" | "downloaded";
 type ContributionRecorderStatus = "idle" | "preparing" | "countdown" | "recording" | "recorded";
 
@@ -2576,6 +2586,7 @@ function createContributionRecorder(getWordWritten: () => string) {
   const [timelineElapsedMs, setTimelineElapsedMs] = createSignal(0);
   const [recordingBlob, setRecordingBlob] = createSignal<Blob | null>(null);
   const [recordingUrl, setRecordingUrl] = createSignal<string | null>(null);
+  const [recordingRecordedAt, setRecordingRecordedAt] = createSignal<string | null>(null);
   const [error, setError] = createSignal<string | null>(null);
 
   const recorderAvailable = () =>
@@ -2656,6 +2667,7 @@ function createContributionRecorder(getWordWritten: () => string) {
     setError(null);
     setRecordingBlob(null);
     setRecordingUrl(null);
+    setRecordingRecordedAt(null);
     setTimelineElapsedMs(0);
     setStatus("preparing");
     chunks = [];
@@ -2690,6 +2702,7 @@ function createContributionRecorder(getWordWritten: () => string) {
         recorder = undefined;
         setRecordingBlob(blob);
         setRecordingUrl(URL.createObjectURL(blob));
+        setRecordingRecordedAt(new Date().toISOString());
         setStatus("recorded");
         debugContributionAudio("recorder stopped", {
           blobSize: blob.size,
@@ -2814,6 +2827,7 @@ function createContributionRecorder(getWordWritten: () => string) {
     stopRecording();
     setRecordingBlob(null);
     setRecordingUrl(null);
+    setRecordingRecordedAt(null);
     setTimelineElapsedMs(0);
     setStatus("idle");
     setError(null);
@@ -2824,7 +2838,7 @@ function createContributionRecorder(getWordWritten: () => string) {
     await startRecording();
   };
 
-  const restoreRecording = (blob: Blob) => {
+  const restoreRecording = (blob: Blob, recordedAt?: string) => {
     clearRecordingTimers();
     stopStream(activeStream);
     activeStream = undefined;
@@ -2833,6 +2847,7 @@ function createContributionRecorder(getWordWritten: () => string) {
     setError(null);
     setRecordingBlob(blob);
     setRecordingUrl(URL.createObjectURL(blob));
+    setRecordingRecordedAt(recordedAt ?? new Date().toISOString());
     setTimelineElapsedMs(CONTRIBUTION_TIMELINE_DURATION_MS);
     setStatus("recorded");
   };
@@ -2842,6 +2857,7 @@ function createContributionRecorder(getWordWritten: () => string) {
     timelineElapsedMs,
     recordingBlob,
     recordingUrl,
+    recordingRecordedAt,
     error,
     recorderAvailable,
     recordingInProgress,
@@ -2895,6 +2911,122 @@ function RecordingTimeline(props: {
   );
 }
 
+function createContributionDraftWriter(setError: (message: string | null) => void) {
+  let writeQueue = Promise.resolve();
+  let latestSaveId = 0;
+
+  const queueWrite = (write: () => Promise<void>, options: { warnOnError: boolean }) => {
+    const saveId = ++latestSaveId;
+
+    writeQueue = writeQueue
+      .then(write)
+      .then(() => {
+        if (saveId === latestSaveId) {
+          setError(null);
+        }
+      })
+      .catch((error) => {
+        if (options.warnOnError && saveId === latestSaveId) {
+          setError(contributionDraftSaveErrorMessage(error));
+        }
+      });
+
+    return writeQueue;
+  };
+
+  return {
+    save(draft: PersistedContributionDraft) {
+      return queueWrite(() => saveContributionDraft(draft), { warnOnError: true });
+    },
+    delete(id: string) {
+      return queueWrite(() => deleteContributionDraft(id), { warnOnError: false });
+    },
+  };
+}
+
+function contributionDraftSaveErrorMessage(error: unknown): string {
+  const detail = error instanceof Error ? ` ${error.message}` : "";
+
+  return `Could not save this contribution draft in your browser.${detail} Download before leaving this page.`;
+}
+
+function contributionDraftRestoreErrorMessage(error: unknown): string {
+  const detail = error instanceof Error ? ` ${error.message}` : "";
+
+  return `Could not restore the saved contribution draft.${detail}`;
+}
+
+function createPersistedKeptRecording(recording: KeptContributionRecording): PersistedContributionRecording {
+  return {
+    id: recording.id,
+    wordId: recording.word.id,
+    blob: recording.blob,
+    mimeType: recording.mimeType,
+    recordedAt: recording.recordedAt,
+  };
+}
+
+function createPersistedCurrentRecording(
+  word: WordEntry,
+  blob: Blob | null,
+  recordedAt: string | null,
+): PersistedContributionRecording | undefined {
+  if (!blob) {
+    return undefined;
+  }
+
+  return {
+    wordId: word.id,
+    blob,
+    mimeType: blob.type || "audio/webm",
+    recordedAt: recordedAt ?? new Date().toISOString(),
+  };
+}
+
+function restoreKeptContributionRecording(
+  language: LanguageDataset,
+  recording: PersistedContributionRecording,
+): KeptContributionRecording | null {
+  const word = language.words.find((candidate) => candidate.id === recording.wordId);
+
+  if (!word) {
+    return null;
+  }
+
+  return {
+    id: recording.id ?? createContributionId(language.id, stripWordPrefix(word.id, language.id)),
+    word,
+    blob: recording.blob,
+    mimeType: recording.mimeType || recording.blob.type || "audio/webm",
+    recordedAt: recording.recordedAt,
+  };
+}
+
+function restoreContributionDetailsFromDraft(
+  draft: PersistedContributionDraft,
+  setLicence: (licence: ContributionLicence) => void,
+  setSpeakerName: (speakerName: string) => void,
+  setAccent: (accent: string) => void,
+  onContributionSpeakerNameChange: (speakerName: string) => void,
+): void {
+  setLicence(draft.licence);
+  setSpeakerName(draft.speakerName);
+  setAccent(draft.accent);
+  onContributionSpeakerNameChange(draft.speakerName.trim());
+}
+
+function contributionQueueItemForWordId(
+  language: LanguageDataset,
+  queue: readonly ContributionQueueItem[],
+  wordId: string,
+): ContributionQueueItem | undefined {
+  return queue.find((item) => item.word.id === wordId)
+    ?? createContributionQueue(language, new Set(), {
+      candidateWordIds: new Set([wordId]),
+      limit: 1,
+    })[0];
+}
+
 function ContributionModePage(props: {
   language: LanguageDataset;
   queue: readonly ContributionQueueItem[];
@@ -2903,6 +3035,7 @@ function ContributionModePage(props: {
   onContributionSpeakerNameChange: (speakerName: string) => void;
 }) {
   const savedContributionDetails = loadContributionDetails();
+  const draftId = contributionBatchDraftId(props.language.id);
   const recorder = createContributionRecorder(() => activeItem()?.word.written ?? "the word");
   const [keptRecordings, setKeptRecordings] = createSignal<KeptContributionRecording[]>([]);
   const [skippedWordIds, setSkippedWordIds] = createSignal<string[]>([]);
@@ -2911,9 +3044,13 @@ function ContributionModePage(props: {
   const [accent, setAccent] = createSignal(savedContributionDetails.accent);
   const [downloadStatus, setDownloadStatus] = createSignal<ContributionDownloadStatus>("idle");
   const [downloadError, setDownloadError] = createSignal<string | null>(null);
+  const [draftRestored, setDraftRestored] = createSignal(false);
+  const [draftNotice, setDraftNotice] = createSignal<string | null>(null);
+  const [draftError, setDraftError] = createSignal<string | null>(null);
   const [recordingPreviewProgress, setRecordingPreviewProgress] = createSignal(0);
   const [recordingPreviewRequested, setRecordingPreviewRequested] = createSignal(false);
   const [recordingPreviewPlayed, setRecordingPreviewPlayed] = createSignal(false);
+  const draftWriter = createContributionDraftWriter(setDraftError);
   const initialCandidateWordIds = new Set(props.queue.map((item) => item.word.id));
   const [sessionItems, setSessionItems] = createSignal<ContributionQueueItem[]>(createContributionQueue(
     props.language,
@@ -2942,7 +3079,7 @@ function ContributionModePage(props: {
     && !recorder.recordingInProgress()
     && !recorder.recordingBlob()
   );
-  const pageError = createMemo(() => recorder.error() ?? downloadError());
+  const pageError = createMemo(() => recorder.error() ?? downloadError() ?? draftError());
   const downloadButtonText = createMemo(() => {
     if (downloadStatus() === "downloading") {
       return "Downloading...";
@@ -2961,6 +3098,89 @@ function ContributionModePage(props: {
       licence: licence(),
       speakerName: speakerName().trim(),
       accent: accent().trim(),
+    });
+  });
+
+  onMount(() => {
+    void loadContributionDraft(draftId)
+      .then((draft) => {
+        if (!draft || draft.mode !== "batch" || draft.languageId !== props.language.id) {
+          return;
+        }
+
+        restoreContributionDetailsFromDraft(
+          draft,
+          setLicence,
+          setSpeakerName,
+          setAccent,
+          props.onContributionSpeakerNameChange,
+        );
+
+        const restoredKeptRecordings = draft.keptRecordings
+          .map((recording) => restoreKeptContributionRecording(props.language, recording))
+          .filter((recording): recording is KeptContributionRecording => recording !== null);
+        const restoredKeptWordIds = new Set(restoredKeptRecordings.map((recording) => recording.word.id));
+        const languageWordIds = new Set(props.language.words.map((word) => word.id));
+        const restoredSkippedWordIds = draft.skippedWordIds.filter((wordId) =>
+          languageWordIds.has(wordId) && !restoredKeptWordIds.has(wordId)
+        );
+        const currentRecording = draft.currentRecording;
+        const currentItem = currentRecording
+          && !restoredKeptWordIds.has(currentRecording.wordId)
+          && !restoredSkippedWordIds.includes(currentRecording.wordId)
+          ? contributionQueueItemForWordId(props.language, props.queue, currentRecording.wordId)
+          : undefined;
+
+        setKeptRecordings(restoredKeptRecordings);
+        setSkippedWordIds(restoredSkippedWordIds);
+
+        if (currentRecording && currentItem) {
+          setSessionItems((current) => [
+            currentItem,
+            ...current.filter((item) => item.word.id !== currentItem.word.id),
+          ]);
+          recorder.restoreRecording(currentRecording.blob, currentRecording.recordedAt);
+        }
+
+        const restoredRecordingCount = restoredKeptRecordings.length + (currentItem ? 1 : 0);
+
+        if (restoredRecordingCount > 0) {
+          setDraftNotice(`Restored ${restoredRecordingCount} saved ${restoredRecordingCount === 1 ? "recording" : "recordings"} from this browser.`);
+        }
+      })
+      .catch((error) => setDraftError(contributionDraftRestoreErrorMessage(error)))
+      .finally(() => setDraftRestored(true));
+  });
+
+  createEffect(() => {
+    if (!draftRestored() || downloadStatus() !== "idle") {
+      return;
+    }
+
+    const item = activeItem();
+    const currentRecording = item
+      ? createPersistedCurrentRecording(item.word, recorder.recordingBlob(), recorder.recordingRecordedAt())
+      : undefined;
+    const kept = keptRecordings().map(createPersistedKeptRecording);
+    const skipped = skippedWordIds();
+
+    if (kept.length === 0 && !currentRecording) {
+      void draftWriter.delete(draftId);
+      return;
+    }
+
+    void draftWriter.save({
+      schemaVersion: 1,
+      id: draftId,
+      mode: "batch",
+      languageId: props.language.id,
+      licence: licence(),
+      speakerName: speakerName().trim(),
+      accent: accent().trim(),
+      keptRecordings: kept,
+      currentRecording,
+      skippedWordIds: skipped,
+      updatedAt: new Date().toISOString(),
     });
   });
 
@@ -3020,7 +3240,7 @@ function ContributionModePage(props: {
       word: item.word,
       blob,
       mimeType: blob.type || "audio/webm",
-      recordedAt: new Date().toISOString(),
+      recordedAt: recorder.recordingRecordedAt() ?? new Date().toISOString(),
     };
 
     return recording;
@@ -3070,7 +3290,7 @@ function ContributionModePage(props: {
         ? [restoredItem, ...current.filter((item) => item.word.id !== recording.word.id)]
         : current;
     });
-    recorder.restoreRecording(recording.blob);
+    recorder.restoreRecording(recording.blob, recording.recordedAt);
     setDownloadStatus("idle");
     setDownloadError(null);
   };
@@ -3186,6 +3406,7 @@ function ContributionModePage(props: {
         new Blob([archive], { type: "application/zip" }),
         `${manifest.id}.zip`,
       );
+      void draftWriter.delete(draftId);
       props.onContributionDownloaded(recordings.map((recording) => recording.word.id));
       setDownloadStatus("downloaded");
     } catch (downloadError) {
@@ -3209,6 +3430,9 @@ function ContributionModePage(props: {
           Record one word at a time. Listen back before keeping each recording.
         </p>
       </div>
+      <Show when={draftNotice()}>
+        {(message) => <p class="draft-status-message">{message()}</p>}
+      </Show>
 
       <section class="contribution-queue-summary">
         <div>
@@ -3573,13 +3797,18 @@ function ContributionPage(props: {
   onContributionSpeakerNameChange: (speakerName: string) => void;
 }) {
   const savedContributionDetails = loadContributionDetails();
+  const draftId = contributionSingleDraftId(props.language.id, props.word.id);
   const recorder = createContributionRecorder(() => props.word.written);
   const [licence, setLicence] = createSignal<ContributionLicence>(savedContributionDetails.licence);
   const [speakerName, setSpeakerName] = createSignal(savedContributionDetails.speakerName);
   const [accent, setAccent] = createSignal(savedContributionDetails.accent);
   const [downloadStatus, setDownloadStatus] = createSignal<ContributionDownloadStatus>("idle");
   const [downloadError, setDownloadError] = createSignal<string | null>(null);
+  const [draftRestored, setDraftRestored] = createSignal(false);
+  const [draftNotice, setDraftNotice] = createSignal<string | null>(null);
+  const [draftError, setDraftError] = createSignal<string | null>(null);
   const [recordingPreviewProgress, setRecordingPreviewProgress] = createSignal(0);
+  const draftWriter = createContributionDraftWriter(setDraftError);
 
   const requiresAttributionName = createMemo(() => licence() === "CC-BY-4.0");
   const canDownload = createMemo(() =>
@@ -3596,7 +3825,7 @@ function ContributionPage(props: {
 
     return "Download contribution zip";
   });
-  const pageError = createMemo(() => recorder.error() ?? downloadError());
+  const pageError = createMemo(() => recorder.error() ?? downloadError() ?? draftError());
   const recordingStepActive = createMemo(() => !recorder.recordingBlob() || recorder.recordingInProgress());
   const detailsStepActive = createMemo(() => Boolean(recorder.recordingBlob()) && downloadStatus() !== "downloaded");
   const sendStepActive = createMemo(() => downloadStatus() === "downloaded");
@@ -3607,6 +3836,62 @@ function ContributionPage(props: {
       licence: licence(),
       speakerName: speakerName().trim(),
       accent: accent().trim(),
+    });
+  });
+
+  onMount(() => {
+    void loadContributionDraft(draftId)
+      .then((draft) => {
+        if (!draft || draft.mode !== "single" || draft.languageId !== props.language.id || draft.wordId !== props.word.id) {
+          return;
+        }
+
+        restoreContributionDetailsFromDraft(
+          draft,
+          setLicence,
+          setSpeakerName,
+          setAccent,
+          props.onContributionSpeakerNameChange,
+        );
+
+        if (draft.currentRecording?.wordId === props.word.id) {
+          recorder.restoreRecording(draft.currentRecording.blob, draft.currentRecording.recordedAt);
+          setDraftNotice("Restored a saved recording from this browser.");
+        }
+      })
+      .catch((error) => setDraftError(contributionDraftRestoreErrorMessage(error)))
+      .finally(() => setDraftRestored(true));
+  });
+
+  createEffect(() => {
+    if (!draftRestored() || downloadStatus() !== "idle") {
+      return;
+    }
+
+    const currentRecording = createPersistedCurrentRecording(
+      props.word,
+      recorder.recordingBlob(),
+      recorder.recordingRecordedAt(),
+    );
+
+    if (!currentRecording) {
+      void draftWriter.delete(draftId);
+      return;
+    }
+
+    void draftWriter.save({
+      schemaVersion: 1,
+      id: draftId,
+      mode: "single",
+      languageId: props.language.id,
+      wordId: props.word.id,
+      licence: licence(),
+      speakerName: speakerName().trim(),
+      accent: accent().trim(),
+      keptRecordings: [],
+      currentRecording,
+      skippedWordIds: [],
+      updatedAt: new Date().toISOString(),
     });
   });
 
@@ -3685,6 +3970,7 @@ function ContributionPage(props: {
         new Blob([archive], { type: "application/zip" }),
         `${manifest.id}.zip`,
       );
+      void draftWriter.delete(draftId);
       props.onContributionDownloaded([props.word.id]);
       setDownloadStatus("downloaded");
     } catch (downloadError) {
@@ -3709,6 +3995,9 @@ function ContributionPage(props: {
           Download the ZIP when you are happy with the recording.
         </p>
       </div>
+      <Show when={draftNotice()}>
+        {(message) => <p class="draft-status-message">{message()}</p>}
+      </Show>
 
       <dl class="contribution-summary">
         <div>

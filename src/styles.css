@@ -1492,6 +1492,15 @@ button.phoneme-example-word:focus-visible {
   line-height: 1.5;
 }
 
+.draft-status-message {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border: 1px solid #99b58d;
+  background: #eef6e9;
+  color: #2d4c28;
+  font-weight: 650;
+}
+
 .contribution-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);

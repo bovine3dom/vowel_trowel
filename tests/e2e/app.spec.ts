@@ -3,6 +3,28 @@ import { expect, test, type Page } from "@playwright/test";
 import { createContributionQueue, contributionWordIdsForSpeaker } from "../../src/contributions/queue";
 import { getLanguageDataset } from "../../src/languages";
 
+const CONTRIBUTION_DRAFT_DB_NAME = "vowel-trowel-contribution-drafts";
+const CONTRIBUTION_DRAFT_STORE_NAME = "drafts";
+
+interface ContributionDraftSeedRecording {
+  id?: string;
+  wordId: string;
+  recordedAt: string;
+}
+
+interface ContributionDraftSeed {
+  id: string;
+  mode: "single" | "batch";
+  languageId: string;
+  wordId?: string;
+  licence: "CC0-1.0" | "CC-BY-4.0";
+  speakerName: string;
+  accent: string;
+  keptRecordings: ContributionDraftSeedRecording[];
+  currentRecording?: ContributionDraftSeedRecording;
+  skippedWordIds: string[];
+}
+
 async function getMockClipboard(page: Page): Promise<string> {
   return page.evaluate(() =>
     (window as Window & { __vowelTrowelClipboard?: string }).__vowelTrowelClipboard ?? ""
@@ -13,6 +35,94 @@ async function clearMockClipboard(page: Page): Promise<void> {
   await page.evaluate(() => {
     (window as Window & { __vowelTrowelClipboard?: string }).__vowelTrowelClipboard = "";
   });
+}
+
+async function seedContributionDraft(page: Page, draft: ContributionDraftSeed): Promise<void> {
+  await page.evaluate(async ({ dbName, storeName, draft }) => {
+    const db = await openDraftDb(dbName, storeName);
+
+    try {
+      const transaction = db.transaction(storeName, "readwrite");
+      const transactionDone = transactionToPromise(transaction);
+      const store = transaction.objectStore(storeName);
+      const toStoredRecording = (recording: ContributionDraftSeedRecording, index: number) => {
+        const blob = new Blob([new Uint8Array([index + 1, 20, 30, 40])], { type: "audio/webm" });
+
+        return {
+          ...recording,
+          blob,
+          mimeType: blob.type,
+        };
+      };
+
+      store.put({
+        schemaVersion: 1,
+        ...draft,
+        keptRecordings: draft.keptRecordings.map(toStoredRecording),
+        currentRecording: draft.currentRecording
+          ? toStoredRecording(draft.currentRecording, draft.keptRecordings.length)
+          : undefined,
+        updatedAt: "2026-01-02T03:04:05.000Z",
+      });
+      await transactionDone;
+    } finally {
+      db.close();
+    }
+
+    function openDraftDb(dbName: string, storeName: string): Promise<IDBDatabase> {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(dbName, 1);
+
+        request.addEventListener("upgradeneeded", () => {
+          const db = request.result;
+
+          if (!db.objectStoreNames.contains(storeName)) {
+            db.createObjectStore(storeName, { keyPath: "id" });
+          }
+        });
+        request.addEventListener("success", () => resolve(request.result));
+        request.addEventListener("error", () => reject(request.error));
+      });
+    }
+
+    function transactionToPromise(transaction: IDBTransaction): Promise<void> {
+      return new Promise((resolve, reject) => {
+        transaction.addEventListener("complete", () => resolve());
+        transaction.addEventListener("abort", () => reject(transaction.error));
+        transaction.addEventListener("error", () => reject(transaction.error));
+      });
+    }
+  }, { dbName: CONTRIBUTION_DRAFT_DB_NAME, storeName: CONTRIBUTION_DRAFT_STORE_NAME, draft });
+}
+
+async function contributionDraftExists(page: Page, id: string): Promise<boolean> {
+  return page.evaluate(async ({ dbName, storeName, id }) => {
+    const db = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open(dbName, 1);
+
+      request.addEventListener("upgradeneeded", () => {
+        const db = request.result;
+
+        if (!db.objectStoreNames.contains(storeName)) {
+          db.createObjectStore(storeName, { keyPath: "id" });
+        }
+      });
+      request.addEventListener("success", () => resolve(request.result));
+      request.addEventListener("error", () => reject(request.error));
+    });
+
+    try {
+      return await new Promise<boolean>((resolve, reject) => {
+        const transaction = db.transaction(storeName, "readonly");
+        const request = transaction.objectStore(storeName).get(id);
+
+        request.addEventListener("success", () => resolve(Boolean(request.result)));
+        request.addEventListener("error", () => reject(request.error));
+      });
+    } finally {
+      db.close();
+    }
+  }, { dbName: CONTRIBUTION_DRAFT_DB_NAME, storeName: CONTRIBUTION_DRAFT_STORE_NAME, id });
 }
 
 test.beforeEach(async ({ page }) => {
@@ -312,6 +422,61 @@ test("skips contribution mode words already recorded by the stored speaker", asy
   await expect(availableSummary.locator("strong")).toHaveText(String(expectedAvailableWords));
   await expect(availableSummary.locator("span")).toHaveText("words available");
   await expect(page.getByPlaceholder("How you want to be credited")).toHaveValue(speakerName);
+});
+
+test("restores contribution batch drafts across reloads and clears them after download", async ({ page }) => {
+  const language = getLanguageDataset("fr");
+  const queue = createContributionQueue(language);
+  const keptItem = queue[0];
+  const currentItem = queue.find((item) => item.word.id !== keptItem?.word.id);
+
+  expect(keptItem).toBeTruthy();
+  expect(currentItem).toBeTruthy();
+
+  const draftId = "fr:batch";
+
+  await page.goto("/");
+  await seedContributionDraft(page, {
+    id: draftId,
+    mode: "batch",
+    languageId: "fr",
+    licence: "CC0-1.0",
+    speakerName: "Saved Speaker",
+    accent: "Saved Accent",
+    keptRecordings: [{
+      id: "fr-saved-kept-recording",
+      wordId: keptItem!.word.id,
+      recordedAt: "2026-01-02T03:04:05.000Z",
+    }],
+    currentRecording: {
+      wordId: currentItem!.word.id,
+      recordedAt: "2026-01-02T03:05:06.000Z",
+    },
+    skippedWordIds: [],
+  });
+
+  await page.goto("/?lang=fr&contribute=mode");
+
+  await expect(page.getByRole("heading", { name: "Record a batch" })).toBeVisible();
+  await expect(page.getByText("Restored 2 saved recordings from this browser.")).toBeVisible();
+  await expect(page.getByPlaceholder("How you want to be credited")).toHaveValue("Saved Speaker");
+  await expect(page.getByPlaceholder("e.g. Belgian French")).toHaveValue("Saved Accent");
+  await expect(page.getByRole("heading", { name: currentItem!.word.written })).toBeVisible();
+  await expect(page.locator(".contribution-queue-summary > div").nth(1).locator("strong")).toHaveText("1");
+  await expect(page.getByRole("button", { name: "Finish and download ZIP" })).toBeEnabled();
+
+  await page.reload();
+
+  await expect(page.getByText("Restored 2 saved recordings from this browser.")).toBeVisible();
+  await expect(page.getByRole("heading", { name: currentItem!.word.written })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Finish and download ZIP" })).toBeEnabled();
+
+  const downloadPromise = page.waitForEvent("download");
+
+  await page.getByRole("button", { name: "Finish and download ZIP" }).click();
+  await downloadPromise;
+  await expect(page.getByRole("button", { name: "Downloaded" })).toBeDisabled();
+  await expect.poll(() => contributionDraftExists(page, draftId)).toBe(false);
 });
 
 test("can submit a matching answer", async ({ page }) => {
