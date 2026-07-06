@@ -849,7 +849,7 @@ export default function App(props: { dataset: LanguageDataset }) {
                   audioError={audioError()}
                   hideWordNames={hideSortWordNames()}
                   onWordClick={selectSortingWord}
-                  onHideWordNamesChange={toggleSortWordNames}
+                  onShowWordNamesChange={(showWordNames) => toggleSortWordNames(!showWordNames)}
                   onPlaceWord={placeSortingWord}
                   onPlaceSelected={placeSelectedSortingWord}
                   onGroupPlay={playSortingGroup}
@@ -1190,7 +1190,7 @@ function SortingPanel(props: {
   audioError: string | null;
   hideWordNames: boolean;
   onWordClick: (term: MinimalPairTerm) => void;
-  onHideWordNamesChange: (hideWordNames: boolean) => void;
+  onShowWordNamesChange: (showWordNames: boolean) => void;
   onPlaceWord: (termId: string, phonemeId: PhonemeId | null) => void;
   onPlaceSelected: (phonemeId: PhonemeId | null) => void;
   onGroupPlay: (group: SortingGroup) => void;
@@ -1235,10 +1235,10 @@ function SortingPanel(props: {
       <label class="sort-option">
         <input
           type="checkbox"
-          checked={props.hideWordNames}
-          onInput={(event) => props.onHideWordNamesChange(event.currentTarget.checked)}
+          checked={!props.hideWordNames}
+          onInput={(event) => props.onShowWordNamesChange(event.currentTarget.checked)}
         />
-        Hide word names
+        Show word names
       </label>
       <p class="interaction-hint">
         <Show when={selectedTerm()} fallback="Tap or drag a word from the bag.">
@@ -7461,7 +7461,7 @@ function readUrlState(): UrlState {
       contributionModeOpen: false,
       ttsEnabled: false,
       showUnrecordedPhonemes: false,
-      hideSortWordNames: false,
+      hideSortWordNames: true,
     };
   }
 
@@ -7473,6 +7473,11 @@ function readUrlState(): UrlState {
   const contributionWordId = parseWordId(getUrlParam(params, "w"))
     ?? (legacyContributionModeOpen ? null : parseWordId(legacyContributionParam));
   const contributionModeOpen = (parsedMode === "contribute" && !contributionWordId) || legacyContributionModeOpen;
+  const showSortWordNamesParam = getUrlParam(params, "s", "showSortWords");
+  const hideSortWordNamesParam = getUrlParam(params, "h", "hideSortWords");
+  const hideSortWordNames = showSortWordNamesParam
+    ? !parseBooleanFlag(showSortWordNamesParam)
+    : !hideSortWordNamesParam || parseBooleanFlag(hideSortWordNamesParam);
 
   return {
     languageId: parseLanguageId(getUrlParam(params, "l", "lang")) ?? dataset.id,
@@ -7484,7 +7489,7 @@ function readUrlState(): UrlState {
     contributionModeOpen,
     ttsEnabled: parseBooleanFlag(getUrlParam(params, "t", "tts")),
     showUnrecordedPhonemes: parseBooleanFlag(getUrlParam(params, "u", "showSounds")),
-    hideSortWordNames: parseBooleanFlag(getUrlParam(params, "h", "hideSortWords")),
+    hideSortWordNames,
   };
 }
 
@@ -7553,8 +7558,8 @@ function setCanonicalAppUrlParams(params: URLSearchParams, state: UrlState): voi
     params.set("u", "1");
   }
 
-  if (state.mode === "sort" && state.hideSortWordNames) {
-    params.set("h", "1");
+  if (state.mode === "sort" && !state.hideSortWordNames) {
+    params.set("s", "1");
   }
 }
 
