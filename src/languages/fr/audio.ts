@@ -1618,14 +1618,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-on."
     },
     {
-      "src": "audio/fr/approved/don/common_voice_fr_19656381.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-on."
-    },
-    {
       "src": "audio/fr/approved/don/fr-don-mr6gw9qt-72253f47-8122-4e5f-93fe-3e51b4687725--clean-01-volume.ogg",
       "kind": "contribution",
       "speaker": "Louis",
