@@ -792,12 +792,21 @@ h3 {
   margin-bottom: 16px;
 }
 
+.target-practice-main {
+  display: grid;
+  gap: 12px;
+}
+
 .target-practice-chart {
   margin-bottom: 0;
 }
 
 .target-practice-chart .contribution-formant-frame {
   width: min(100%, 460px);
+}
+
+.target-practice-chart canvas {
+  cursor: crosshair;
 }
 
 .target-practice-controls {
@@ -848,6 +857,86 @@ h3 {
   height: 100%;
   background: #b83252;
   transition: width 80ms linear;
+}
+
+.lip-visualization {
+  display: grid;
+  gap: 12px;
+  border: 2px solid #202020;
+  background: #fffdfa;
+  box-shadow: 3px 3px 0 #202020;
+  padding: 12px;
+}
+
+.lip-visualization-heading {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.lip-visualization-heading h3,
+.lip-visualization-heading p {
+  margin-bottom: 0;
+}
+
+.lip-face-trajectory {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  border: 2px solid #202020;
+  background: #f4f1ea;
+  padding: 10px;
+}
+
+.lip-shape-figure {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  margin: 0;
+}
+
+.lip-shape-svg {
+  display: block;
+  justify-self: center;
+  width: min(100%, 260px);
+  height: auto;
+}
+
+.lip-lineart-stage {
+  fill: #fffdfa;
+  stroke: transparent;
+}
+
+.lip-outer {
+  fill: #fffdfa;
+  stroke: #202020;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5;
+}
+
+.lip-inner {
+  fill: #202020;
+  stroke: #202020;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.lip-trajectory-readout {
+  display: grid;
+  gap: 4px;
+  color: #5f584f;
+  font-size: 0.86rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.lip-trajectory-readout strong {
+  color: #202020;
+  font-size: 1rem;
 }
 
 .target-vowel-grid {
@@ -2119,6 +2208,15 @@ button.phoneme-example-word:focus-visible {
 
   .target-vowel-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lip-visualization-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lip-face-trajectory {
+    grid-template-columns: 1fr;
   }
 
   .target-word-grid {

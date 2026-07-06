@@ -1,4 +1,4 @@
-import { For, Show, createEffect, createMemo, createSignal, onCleanup, onMount } from "solid-js";
+import { For, Show, createEffect, createMemo, createSignal, onCleanup, onMount, untrack } from "solid-js";
 import { strToU8, zipSync } from "fflate";
 
 import {
@@ -1430,6 +1430,11 @@ interface TargetPracticeVowel extends FormantTarget {
 
 type TargetPracticeSelectionId = `vowel:${string}` | `pair:${string}`;
 
+interface FormantChartPreviewPoint {
+  f1: number;
+  f2: number;
+}
+
 const LIVE_FORMANT_TRAIL_SECONDS = 2.4;
 const LIVE_FORMANT_DISPLAY_MAX_HZ = 4000;
 
@@ -1453,6 +1458,7 @@ function TargetPracticePanel(props: {
   const [exampleLabel, setExampleLabel] = createSignal<string | null>(null);
   const [exampleError, setExampleError] = createSignal<string | null>(null);
   const [exampleProgress, setExampleProgress] = createSignal(0);
+  const [chartPreviewPoint, setChartPreviewPoint] = createSignal<FormantChartPreviewPoint | null>(null);
   const selectedTargets = createMemo((): TargetPracticeVowel[] =>
     props.selectedPhonemeIds
       .slice(0, 2)
@@ -1616,6 +1622,11 @@ function TargetPracticePanel(props: {
   });
 
   createEffect(() => {
+    props.selectedPhonemeIds.join(",");
+    setChartPreviewPoint(null);
+  });
+
+  createEffect(() => {
     const visualization = props.playbackVisualization;
     const label = exampleLabel();
 
@@ -1718,7 +1729,7 @@ function TargetPracticePanel(props: {
 
       <Show when={targets().length > 0} fallback={<p class="muted">This language does not have vowel targets yet.</p>}>
         <div class="target-practice-layout">
-          <div>
+          <div class="target-practice-main">
             <TargetPracticeFormantChart
               targets={selectedTargets()}
               targetPaths={selectedTargetPaths()}
@@ -1727,6 +1738,18 @@ function TargetPracticePanel(props: {
               exampleProgress={exampleProgress()}
               selectedLabel={selectedPracticeLabel()}
               exampleLabel={exampleLabel()}
+              previewPoint={chartPreviewPoint()}
+              onPreviewPoint={setChartPreviewPoint}
+            />
+            <TargetPracticeLipVisualization
+              targets={selectedTargets()}
+              targetPaths={selectedTargetPaths()}
+              liveFormants={tracker.track()}
+              exampleFormants={exampleSpectrogram()?.formants}
+              exampleProgress={exampleProgress()}
+              selectedLabel={selectedPracticeLabel()}
+              exampleLabel={exampleLabel()}
+              previewPoint={chartPreviewPoint()}
             />
           </div>
 
@@ -1824,6 +1847,8 @@ function TargetPracticeFormantChart(props: {
   exampleProgress: number;
   selectedLabel: string;
   exampleLabel: string | null;
+  previewPoint: FormantChartPreviewPoint | null;
+  onPreviewPoint: (point: FormantChartPreviewPoint) => void;
 }) {
   let canvas: HTMLCanvasElement | undefined;
   const draw = () => paintFormantTargetChart(
@@ -1833,7 +1858,11 @@ function TargetPracticeFormantChart(props: {
     props.exampleFormants ? props.exampleProgress : 0,
     props.liveFormants,
     props.targetPaths,
+    props.previewPoint,
   );
+  const handleClick = (event: MouseEvent & { currentTarget: HTMLCanvasElement }) => {
+    props.onPreviewPoint(formantPointForCanvasEvent(event.currentTarget, event.clientX, event.clientY));
+  };
 
   createEffect(draw);
 
@@ -1860,6 +1889,7 @@ function TargetPracticeFormantChart(props: {
         <canvas
           ref={(element) => { canvas = element; }}
           aria-label="Live target vowel formant positions"
+          onClick={handleClick}
         />
       </div>
       <Show when={props.targets.length > 0 || props.targetPaths.length > 0} fallback={<p class="muted">Pick a vowel target.</p>}>
@@ -1870,6 +1900,510 @@ function TargetPracticeFormantChart(props: {
       </Show>
     </div>
   );
+}
+
+function formantPointForCanvasEvent(
+  canvas: HTMLCanvasElement,
+  clientX: number,
+  clientY: number,
+): FormantChartPreviewPoint {
+  const rect = canvas.getBoundingClientRect();
+  const width = canvas.width || Math.max(280, Math.floor(rect.width || 420));
+  const height = canvas.height || Math.max(280, Math.floor(rect.height || width));
+  const range = formantChartRange(undefined);
+  const area = formantPlotArea(width, height);
+  const x = rect.width > 0 ? (clientX - rect.left) * (width / rect.width) : width / 2;
+  const y = rect.height > 0 ? (clientY - rect.top) * (height / rect.height) : height / 2;
+
+  return {
+    f1: formantF1AtY(y, range, area),
+    f2: formantF2AtX(x, range, area),
+  };
+}
+
+interface LipShapeState {
+  id: string;
+  label: string;
+  openness: number;
+  tightness: number;
+}
+
+interface LipTrajectoryPoint {
+  id: string;
+  label: string;
+  f1: number;
+  f2: number;
+}
+
+interface LipTrajectory {
+  label: string;
+  points: readonly LipTrajectoryPoint[];
+}
+
+interface LipShapeGeometry {
+  innerRx: number;
+  innerRy: number;
+  outerRx: number;
+  outerRy: number;
+  puckerRx: number;
+  puckerRy: number;
+}
+
+interface LipShapePaths {
+  outerPath: string;
+  innerPath: string;
+}
+
+const LIP_REFERENCE_FORMANTS = {
+  spreadClosed: { f1: 280, f2: 2400 },
+  roundedClosed: { f1: 320, f2: 850 },
+  open: { f1: 850, f2: 1450 },
+};
+
+function TargetPracticeLipVisualization(props: {
+  targets: readonly FormantTarget[];
+  targetPaths: readonly FormantTargetPath[];
+  liveFormants: FormantTrack;
+  exampleFormants?: FormantTrack;
+  exampleProgress: number;
+  selectedLabel: string;
+  exampleLabel: string | null;
+  previewPoint: FormantChartPreviewPoint | null;
+}) {
+  const trajectory = createMemo(() => lipTrajectoryForChart({
+    targets: props.targets,
+    targetPaths: props.targetPaths,
+    liveFormants: props.liveFormants,
+    exampleFormants: props.exampleFormants,
+    exampleProgress: props.exampleProgress,
+    selectedLabel: props.selectedLabel,
+    exampleLabel: props.exampleLabel,
+    previewPoint: props.previewPoint,
+  }));
+
+  return (
+    <section class="lip-visualization" aria-label="Lip shape">
+      <div class="lip-visualization-heading">
+        <div>
+          <p class="eyebrow">Mouth shape</p>
+          <h3>Lips</h3>
+        </div>
+      </div>
+      <Show when={trajectory()} fallback={<p class="muted">Pick a vowel target to see the mouth shape.</p>}>
+        {(currentTrajectory) => <LipFaceTrajectory trajectory={currentTrajectory()} />}
+      </Show>
+    </section>
+  );
+}
+
+function LipFaceTrajectory(props: {
+  trajectory: LipTrajectory;
+}) {
+  const activeShape = createMemo(() => {
+    const points = props.trajectory.points;
+    const activePoint = points[points.length - 1];
+
+    return activePoint
+      ? lipShapeForPosition(activePoint.id, activePoint.label, activePoint.f1, activePoint.f2)
+      : undefined;
+  });
+  const smoothedShape = createSmoothedLipShape(activeShape);
+
+  return (
+    <div class="lip-face-trajectory">
+      <LipShapeFigure
+        shape={smoothedShape()}
+      />
+      <div class="lip-trajectory-readout">
+        <strong>{props.trajectory.label}</strong>
+        <span>{smoothedShape() ? lipShapeDescription(smoothedShape()) : "No vowel shape"}</span>
+      </div>
+    </div>
+  );
+}
+
+function LipShapeFigure(props: {
+  shape: LipShapeState | undefined;
+}) {
+  const paths = createMemo(() => props.shape ? lipShapePaths(props.shape) : undefined);
+  const description = createMemo(() => lipShapeDescription(props.shape));
+
+  return (
+    <figure class="lip-shape-figure">
+      <svg
+        class="lip-shape-svg"
+        viewBox="0 0 220 120"
+        role="img"
+        aria-label={`Lips: ${description()}`}
+      >
+        <rect class="lip-lineart-stage" x="8" y="16" width="204" height="88" rx="18" />
+        <Show when={paths()}>
+          {(currentPaths) => <>
+            <path class="lip-outer" d={currentPaths().outerPath} />
+            <path class="lip-inner" d={currentPaths().innerPath} />
+          </>}
+        </Show>
+      </svg>
+    </figure>
+  );
+}
+
+function lipTrajectoryForChart(props: {
+  targets: readonly FormantTarget[];
+  targetPaths: readonly FormantTargetPath[];
+  liveFormants: FormantTrack;
+  exampleFormants?: FormantTrack;
+  exampleProgress: number;
+  selectedLabel: string;
+  exampleLabel: string | null;
+  previewPoint: FormantChartPreviewPoint | null;
+}): LipTrajectory | undefined {
+  const previewPoints = props.previewPoint
+    ? [{ id: "chart-preview", label: "", f1: props.previewPoint.f1, f2: props.previewPoint.f2 }]
+    : undefined;
+  const withPreview = (trajectory: LipTrajectory): LipTrajectory => previewPoints
+    ? { ...trajectory, points: previewPoints }
+    : trajectory;
+  const livePoints = lipTrajectoryPointsForFormants(props.liveFormants, 1, "live", "voice");
+
+  if (livePoints.length > 0) {
+    return withPreview({
+      label: "Your voice",
+      points: livePoints,
+    });
+  }
+
+  const examplePoints = props.exampleFormants && props.exampleProgress > 0
+    ? lipTrajectoryPointsForFormants(props.exampleFormants, props.exampleProgress, "example", props.exampleLabel ?? "example")
+    : [];
+
+  if (examplePoints.length > 0) {
+    return withPreview({
+      label: props.exampleLabel ? `Example: ${props.exampleLabel}` : "Example recording",
+      points: examplePoints,
+    });
+  }
+
+  const targetPathPoints = props.targetPaths.flatMap((path) => lipTrajectoryPointsForTargetPath(path));
+
+  if (targetPathPoints.length > 0) {
+    return withPreview({
+      label: props.selectedLabel,
+      points: targetPathPoints,
+    });
+  }
+
+  const targetPoints = props.targets.flatMap((target) => lipTrajectoryPointsForTarget(target));
+
+  if (targetPoints.length > 0) {
+    return withPreview({
+      label: props.selectedLabel,
+      points: targetPoints,
+    });
+  }
+
+  if (previewPoints) {
+    return {
+      label: props.selectedLabel,
+      points: previewPoints,
+    };
+  }
+
+  return undefined;
+}
+
+function lipTrajectoryPointsForFormants(
+  formants: FormantTrack,
+  progress: number,
+  idPrefix: string,
+  label: string,
+): LipTrajectoryPoint[] {
+  const clampedProgress = clampUnit(progress);
+  const maxTime = Math.max(0.001, formants.duration * clampedProgress);
+  const points = formants.points
+    .filter((point) => point.time <= maxTime && point.f1 !== null && point.f2 !== null)
+    .map((point, index): LipTrajectoryPoint => ({
+      id: `${idPrefix}:${index}`,
+      label,
+      f1: point.f1 ?? 0,
+      f2: point.f2 ?? 0,
+    }));
+
+  return sampleLipTrajectoryPoints(points, 18);
+}
+
+function lipTrajectoryPointsForTarget(target: FormantTarget): LipTrajectoryPoint[] {
+  const targetPath = formantTargetPathFromTarget(target);
+
+  if (targetPath) {
+    return lipTrajectoryPointsForTargetPath(targetPath);
+  }
+
+  return [{
+    id: target.id,
+    label: target.label,
+    f1: target.f1,
+    f2: target.f2,
+  }];
+}
+
+function lipTrajectoryPointsForTargetPath(path: FormantTargetPath): LipTrajectoryPoint[] {
+  return path.points.map((point, index) => ({
+    id: `${path.id}:${index}`,
+    label: point.label,
+    f1: point.f1,
+    f2: point.f2,
+  }));
+}
+
+function sampleLipTrajectoryPoints<T>(points: readonly T[], maxPoints = 6): T[] {
+  if (points.length <= maxPoints) {
+    return [...points];
+  }
+
+  const fallback = points[points.length - 1];
+
+  if (!fallback) {
+    return [];
+  }
+
+  return Array.from({ length: maxPoints }, (_, index): T => {
+    const pointIndex = Math.round(index * (points.length - 1) / (maxPoints - 1));
+
+    return points[pointIndex] ?? fallback;
+  });
+}
+
+function createSmoothedLipShape(target: () => LipShapeState | undefined): () => LipShapeState | undefined {
+  const [displayShape, setDisplayShape] = createSignal<LipShapeState | undefined>(target());
+  let targetShape = target();
+  let animationFrame: number | undefined;
+
+  const cancelAnimation = () => {
+    if (animationFrame !== undefined) {
+      if (typeof window !== "undefined") {
+        window.cancelAnimationFrame(animationFrame);
+      }
+
+      animationFrame = undefined;
+    }
+  };
+
+  const scheduleAnimation = () => {
+    if (animationFrame !== undefined || typeof window === "undefined") {
+      return;
+    }
+
+    animationFrame = window.requestAnimationFrame(tick);
+  };
+
+  const tick = () => {
+    animationFrame = undefined;
+
+    if (!targetShape) {
+      setDisplayShape(undefined);
+      return;
+    }
+
+    const currentShape = untrack(displayShape);
+
+    if (!currentShape) {
+      setDisplayShape(targetShape);
+      return;
+    }
+
+    const nextShape = interpolateLipShape(currentShape, targetShape, 0.28);
+
+    if (lipShapesAreClose(nextShape, targetShape)) {
+      setDisplayShape(targetShape);
+      return;
+    }
+
+    setDisplayShape(nextShape);
+    scheduleAnimation();
+  };
+
+  createEffect(() => {
+    targetShape = target();
+
+    if (!targetShape) {
+      cancelAnimation();
+      setDisplayShape(undefined);
+      return;
+    }
+
+    if (!untrack(displayShape)) {
+      setDisplayShape(targetShape);
+      return;
+    }
+
+    scheduleAnimation();
+  });
+
+  onCleanup(cancelAnimation);
+
+  return displayShape;
+}
+
+function interpolateLipShape(current: LipShapeState, target: LipShapeState, amount: number): LipShapeState {
+  return {
+    id: target.id,
+    label: target.label,
+    openness: current.openness + (target.openness - current.openness) * amount,
+    tightness: current.tightness + (target.tightness - current.tightness) * amount,
+  };
+}
+
+function lipShapesAreClose(current: LipShapeState, target: LipShapeState): boolean {
+  return Math.abs(current.openness - target.openness) < 0.004
+    && Math.abs(current.tightness - target.tightness) < 0.004;
+}
+
+function lipShapeForPosition(id: string, label: string, f1: number, f2: number): LipShapeState {
+  const weights = vowelTriangleWeights(f1, f2);
+  const heightOpenness = (f1 - 300) / Math.max(1, 760 - 300);
+  const scaledOpenness = Math.pow(clampUnit(heightOpenness), 0.78);
+  const openness = clampUnit(Math.max(weights.open, scaledOpenness));
+  const roundedHint = roundedLipHintForLabel(label);
+  const lowF2Pursing = Math.pow(clampUnit((1900 - f2) / 1250), 0.82);
+  const tightness = clampUnit(Math.max(weights.rounded, roundedHint, lowF2Pursing) * (1 - openness * 0.1));
+
+  return {
+    id,
+    label,
+    openness,
+    tightness,
+  };
+}
+
+function vowelTriangleWeights(f1: number, f2: number): { spread: number; rounded: number; open: number } {
+  const spread = { x: LIP_REFERENCE_FORMANTS.spreadClosed.f2, y: LIP_REFERENCE_FORMANTS.spreadClosed.f1 };
+  const rounded = { x: LIP_REFERENCE_FORMANTS.roundedClosed.f2, y: LIP_REFERENCE_FORMANTS.roundedClosed.f1 };
+  const open = { x: LIP_REFERENCE_FORMANTS.open.f2, y: LIP_REFERENCE_FORMANTS.open.f1 };
+  const x = f2;
+  const y = f1;
+  const denominator = (rounded.y - open.y) * (spread.x - open.x)
+    + (open.x - rounded.x) * (spread.y - open.y);
+
+  if (denominator === 0) {
+    return { spread: 0, rounded: 0, open: 0 };
+  }
+
+  const spreadWeight = ((rounded.y - open.y) * (x - open.x) + (open.x - rounded.x) * (y - open.y)) / denominator;
+  const roundedWeight = ((open.y - spread.y) * (x - open.x) + (spread.x - open.x) * (y - open.y)) / denominator;
+  const openWeight = 1 - spreadWeight - roundedWeight;
+
+  return {
+    spread: clampUnit(spreadWeight),
+    rounded: clampUnit(roundedWeight),
+    open: clampUnit(openWeight),
+  };
+}
+
+function roundedLipHintForLabel(label: string): number {
+  const normalized = normalizePhonemeIpa(label);
+
+  // Front rounded vowels need an IPA hint because their F2 remains relatively high.
+  if (/[yøœ]/u.test(normalized)) {
+    return 0.78;
+  }
+
+  if (/[uʊoɔɒ]/u.test(normalized)) {
+    return 0.68;
+  }
+
+  return 0;
+}
+
+function lipShapeGeometry(shape: LipShapeState): LipShapeGeometry {
+  const innerRx = 8 + (1 - shape.tightness) * 42 - shape.openness * 7;
+  const innerRy = 2 + shape.openness * 38 + shape.tightness * (1 - shape.openness) * 4;
+  const outerRx = innerRx + 8 + (1 - shape.tightness) * 4;
+  const outerRy = innerRy + 7 + shape.tightness * 4;
+
+  return {
+    innerRx: Math.max(6, innerRx),
+    innerRy: Math.max(2, innerRy),
+    outerRx: Math.max(14, outerRx),
+    outerRy: Math.max(9, outerRy),
+    puckerRx: Math.max(8, outerRx * 0.56),
+    puckerRy: Math.max(8, outerRy * 0.62),
+  };
+}
+
+function lipShapePaths(shape: LipShapeState): LipShapePaths {
+  const geometry = lipShapeGeometry(shape);
+  const centerX = 110;
+  const centerY = 62;
+  const outerHalfWidth = Math.max(34, Math.min(100, geometry.outerRx * (1.24 + (1 - shape.tightness) * 0.32) + 18 + (1 - shape.tightness) * 14));
+  const upperRise = Math.max(9, Math.min(36, geometry.outerRy * 0.74 + (1 - shape.tightness) * 4));
+  const lowerDrop = Math.max(9, Math.min(46, geometry.outerRy * 0.8 + shape.openness * 12));
+  const bowWidth = Math.max(7, outerHalfWidth * 0.1);
+  const bowDrop = Math.max(4, Math.min(13, upperRise * (0.28 + shape.tightness * 0.12)));
+  const left = centerX - outerHalfWidth;
+  const right = centerX + outerHalfWidth;
+  const innerHalfWidth = Math.max(12, Math.min(outerHalfWidth - 12, geometry.innerRx * (1.28 + (1 - shape.tightness) * 0.28) + 8));
+  const innerHalfHeight = Math.max(1.2, Math.min(28, 1.2 + shape.openness * 24));
+  const innerLeft = centerX - innerHalfWidth;
+  const innerRight = centerX + innerHalfWidth;
+  const innerY = centerY + shape.openness * 2;
+
+  return {
+    outerPath: [
+      `M ${left} ${centerY}`,
+      `C ${centerX - outerHalfWidth * 0.62} ${centerY - upperRise}, ${centerX - outerHalfWidth * 0.25} ${centerY - upperRise * 1.05}, ${centerX - bowWidth} ${centerY - bowDrop}`,
+      `C ${centerX - bowWidth * 0.45} ${centerY + bowDrop * 0.55}, ${centerX + bowWidth * 0.45} ${centerY + bowDrop * 0.55}, ${centerX + bowWidth} ${centerY - bowDrop}`,
+      `C ${centerX + outerHalfWidth * 0.25} ${centerY - upperRise * 1.05}, ${centerX + outerHalfWidth * 0.62} ${centerY - upperRise}, ${right} ${centerY}`,
+      `C ${centerX + outerHalfWidth * 0.62} ${centerY + lowerDrop}, ${centerX - outerHalfWidth * 0.62} ${centerY + lowerDrop}, ${left} ${centerY}`,
+      "Z",
+    ].join(" "),
+    innerPath: [
+      `M ${innerLeft} ${innerY}`,
+      `C ${centerX - innerHalfWidth * 0.46} ${innerY - innerHalfHeight}, ${centerX + innerHalfWidth * 0.46} ${innerY - innerHalfHeight}, ${innerRight} ${innerY}`,
+      `C ${centerX + innerHalfWidth * 0.46} ${innerY + innerHalfHeight}, ${centerX - innerHalfWidth * 0.46} ${innerY + innerHalfHeight}, ${innerLeft} ${innerY}`,
+      "Z",
+    ].join(" "),
+  };
+}
+
+function lipShapeDescription(shape: LipShapeState | undefined): string {
+  if (!shape) {
+    return "No shape";
+  }
+
+  return `${lipOpeningLabel(shape.openness)}, ${lipTightnessLabel(shape.tightness)}`;
+}
+
+function lipOpeningLabel(openness: number): string {
+  if (openness < 0.2) {
+    return "mostly closed";
+  }
+
+  if (openness < 0.48) {
+    return "slightly open";
+  }
+
+  if (openness < 0.74) {
+    return "open";
+  }
+
+  return "wide open";
+}
+
+function lipTightnessLabel(tightness: number): string {
+  if (tightness < 0.28) {
+    return "loose/spread lips";
+  }
+
+  if (tightness < 0.58) {
+    return "neutral lips";
+  }
+
+  return "rounded/tight lips";
+}
+
+function clampUnit(value: number): number {
+  return Math.max(0, Math.min(1, value));
 }
 
 function createLiveFormantTracker() {
@@ -4995,6 +5529,7 @@ function paintFormantTargetChart(
   measuredProgress: number,
   liveFormants?: FormantTrack,
   targetPaths: readonly FormantTargetPath[] = [],
+  previewPoint?: FormantChartPreviewPoint | null,
 ): void {
   if (!canvas?.isConnected) {
     return;
@@ -5022,6 +5557,10 @@ function paintFormantTargetChart(
 
   if (liveFormants?.points.some((point) => point.f1 !== null && point.f2 !== null)) {
     paintFormantPath(ctx, liveFormants, 1, width, height, range, LIVE_FORMANT_PATH_STYLE);
+  }
+
+  if (previewPoint) {
+    paintFormantPreviewPoint(ctx, width, height, range, previewPoint);
   }
 }
 
@@ -5125,6 +5664,36 @@ function paintReferenceVowels(ctx: CanvasRenderingContext2D, width: number, heig
     ctx.fillText(vowel.label, x, y + 0.5);
   }
 
+  ctx.restore();
+}
+
+function paintFormantPreviewPoint(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  range: FormantChartRange,
+  point: FormantChartPreviewPoint,
+): void {
+  const area = formantPlotArea(width, height);
+  const scale = formantScale(width, height);
+  const x = formantX(point.f2, range, area);
+  const y = formantY(point.f1, range, area);
+  const radius = Math.max(6, Math.min(18, Math.floor(scale / 45)));
+
+  ctx.save();
+  ctx.fillStyle = "#fffdfa";
+  ctx.strokeStyle = "#202020";
+  ctx.lineWidth = Math.max(2, Math.floor(scale / 360));
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x - radius * 0.58, y);
+  ctx.lineTo(x + radius * 0.58, y);
+  ctx.moveTo(x, y - radius * 0.58);
+  ctx.lineTo(x, y + radius * 0.58);
+  ctx.stroke();
   ctx.restore();
 }
 
@@ -5704,10 +6273,22 @@ function formantX(f2: number, range: FormantChartRange, area: { right: number; l
   return area.left + Math.max(0, Math.min(1, normalized)) * (area.right - area.left);
 }
 
+function formantF2AtX(x: number, range: FormantChartRange, area: { right: number; left: number }): number {
+  const normalized = (x - area.left) / Math.max(1, area.right - area.left);
+
+  return range.maxF2 - Math.max(0, Math.min(1, normalized)) * (range.maxF2 - range.minF2);
+}
+
 function formantY(f1: number, range: FormantChartRange, area: { top: number; bottom: number }): number {
   const normalized = (f1 - range.minF1) / Math.max(1, range.maxF1 - range.minF1);
 
   return area.top + Math.max(0, Math.min(1, normalized)) * (area.bottom - area.top);
+}
+
+function formantF1AtY(y: number, range: FormantChartRange, area: { top: number; bottom: number }): number {
+  const normalized = (y - area.top) / Math.max(1, area.bottom - area.top);
+
+  return range.minF1 + Math.max(0, Math.min(1, normalized)) * (range.maxF1 - range.minF1);
 }
 
 function getRenderedSpectrogram(spectrogram: PrecomputedSpectrogram): HTMLCanvasElement {

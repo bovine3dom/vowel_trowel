@@ -404,6 +404,9 @@ test("opens target vowel practice", async ({ page }) => {
 
   await expect(page.getByRole("button", { name: "Target vowels" })).toHaveClass(/selected/);
   await expect(page.getByRole("heading", { name: "Live vowel space" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Lip shape" })).toBeVisible();
+  await page.getByLabel("Live target vowel formant positions").click({ position: { x: 180, y: 260 } });
+  await expect(page.locator(".lip-shape-svg")).toHaveAttribute("aria-label", /wide open/);
   await expect(page.getByRole("button", { name: "Start microphone" })).toBeVisible();
   await expect(page.getByRole("button", { name: /^Play / }).first()).toBeVisible();
   await expect(page.getByText("Choose one vowel to practise it, or choose two to practise a contrast.")).toBeVisible();
