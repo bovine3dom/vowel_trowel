@@ -634,14 +634,6 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "notes": "MSWC grapheme-only candidate for target phoneme fr-sh. Common Voice accent: Français de Belgique."
     },
     {
-      "src": "audio/fr/approved/cache/common_voice_fr_17306328.opus",
-      "kind": "external",
-      "license": "CC0-1.0",
-      "attribution": "Mozilla Common Voice via MLCommons Multilingual Spoken Words Corpus",
-      "sourceUrl": "https://mlcommons.org/en/multilingual-spoken-words",
-      "notes": "MSWC grapheme-only candidate for target phoneme fr-sh."
-    },
-    {
       "src": "audio/fr/approved/cache/common_voice_fr_17306454.opus",
       "kind": "external",
       "license": "CC0-1.0",
