@@ -469,6 +469,14 @@ export default function App(props: { dataset: LanguageDataset }) {
     updateUrl({ phonemePair: nextActivePair }, "replace");
   };
 
+  const chooseTrickyPhonemePair = (phonemePair: PhonemePair) => {
+    const nextMode = mode() === "target" ? "match" : mode();
+
+    setCatalogTab("phonemes");
+    setExplorePhonemeId(null);
+    choosePhonemePair(phonemePair, nextMode);
+  };
+
   const playRandomWordRecording = async (word: WordEntry) => {
     const source = chooseRandomAudioSource(word.audio);
 
@@ -914,15 +922,24 @@ export default function App(props: { dataset: LanguageDataset }) {
               fallback={<p class="muted">Patterns will appear here as you practise.</p>}
             >
               <For each={topConfusions()}>
-                {(confusion) => (
-                  <div class="confusion-row">
-                    <span>
-                      <span class="ipa-text">{phonemeLabel(confusion.heardPhonemeId)}</span> {"->"}{" "}
-                      <span class="ipa-text">{phonemeLabel(confusion.chosenPhonemeId)}</span>
-                    </span>
-                    <strong>{confusion.count}</strong>
-                  </div>
-                )}
+                {(confusion) => {
+                  const phonemePair: PhonemePair = [confusion.heardPhonemeId, confusion.chosenPhonemeId];
+
+                  return (
+                    <button
+                      class={confusionRowClass(phonemePair, activePhonemePair())}
+                      type="button"
+                      aria-label={`${phonemePairLabel(phonemePair)}: ${confusion.count} ${confusion.count === 1 ? "miss" : "misses"}`}
+                      onClick={() => chooseTrickyPhonemePair(phonemePair)}
+                    >
+                      <span>
+                        <span class="ipa-text">{phonemeLabel(confusion.heardPhonemeId)}</span> vs{" "}
+                        <span class="ipa-text">{phonemeLabel(confusion.chosenPhonemeId)}</span>
+                      </span>
+                      <strong>{confusion.count}</strong>
+                    </button>
+                  );
+                }}
               </For>
             </Show>
           </div>
@@ -6781,6 +6798,15 @@ function contrastCardClass(
   }
 
   return classes.join(" ");
+}
+
+function confusionRowClass(
+  phonemePair: PhonemePair,
+  activePhonemePair: PhonemePair | null,
+): string {
+  return activePhonemePair && samePhonemePair(activePhonemePair, phonemePair)
+    ? "confusion-row active"
+    : "confusion-row";
 }
 
 function wordsForPhoneme(phonemeId: PhonemeId, sourceDataset = dataset): WordEntry[] {

@@ -112,11 +112,10 @@ export function recordPromptResult(progress: AppProgress, result: PromptResult):
     const direction = getOrCreateDirectionStats(contrast, directionKey, answer.heardPhonemeId);
 
     updateSpacedRepetition(direction, answer.correct, now);
+  }
 
-    if (!answer.correct) {
-      const confusionKey = createConfusionKey(answer.heardPhonemeId, answer.chosenPhonemeId);
-      contrast.confusions[confusionKey] = (contrast.confusions[confusionKey] ?? 0) + 1;
-    }
+  for (const [confusionKey, count] of promptConfusionCounts(result)) {
+    contrast.confusions[confusionKey] = (contrast.confusions[confusionKey] ?? 0) + count;
   }
 
   next.updatedAt = now;
@@ -134,7 +133,10 @@ export function getTopConfusions(
     return [];
   }
 
-  const summaries: ConfusionSummary[] = [];
+  const summaries = new Map<string, {
+    summary: ConfusionSummary;
+    directionCounts: Map<string, number>;
+  }>();
 
   for (const [contrastId, contrast] of Object.entries(language.contrastStats)) {
     for (const [key, count] of Object.entries(contrast.confusions)) {
@@ -144,11 +146,32 @@ export function getTopConfusions(
         continue;
       }
 
-      summaries.push({ key, contrastId, heardPhonemeId, chosenPhonemeId, count });
+      const [firstPhonemeId, secondPhonemeId] = orderPhonemePair(heardPhonemeId, chosenPhonemeId);
+      const pairKey = createConfusionKey(firstPhonemeId, secondPhonemeId);
+      const summaryKey = `${contrastId}:${pairKey}`;
+      const existing = summaries.get(summaryKey);
+
+      if (existing) {
+        existing.directionCounts.set(key, (existing.directionCounts.get(key) ?? 0) + count);
+        existing.summary.count = countConfusionPairMisses(existing.directionCounts);
+      } else {
+        summaries.set(summaryKey, {
+          summary: {
+            key: pairKey,
+            contrastId,
+            heardPhonemeId: firstPhonemeId,
+            chosenPhonemeId: secondPhonemeId,
+            count,
+          },
+          directionCounts: new Map([[key, count]]),
+        });
+      }
     }
   }
 
-  return summaries.sort((a, b) => b.count - a.count).slice(0, limit);
+  return [...summaries.values()].map(({ summary }) => summary)
+    .sort((a, b) => b.count - a.count || a.key.localeCompare(b.key))
+    .slice(0, limit);
 }
 
 export function getLanguageProgress(
@@ -164,6 +187,62 @@ export function createDirectionKey(contrastId: string, phonemeId: PhonemeId): st
 
 function createConfusionKey(heardPhonemeId: PhonemeId, chosenPhonemeId: PhonemeId): string {
   return `${heardPhonemeId}->${chosenPhonemeId}`;
+}
+
+function promptConfusionCounts(result: PromptResult): Map<string, number> {
+  const incorrectAnswers = result.answers.filter((answer) => !answer.correct);
+
+  if (isTwoChoiceSwap(incorrectAnswers)) {
+    const answer = incorrectAnswers[0];
+
+    if (!answer) {
+      return new Map();
+    }
+
+    const [firstPhonemeId, secondPhonemeId] = orderPhonemePair(answer.heardPhonemeId, answer.chosenPhonemeId);
+
+    return new Map([[createConfusionKey(firstPhonemeId, secondPhonemeId), 1]]);
+  }
+
+  const counts = new Map<string, number>();
+
+  for (const answer of incorrectAnswers) {
+    const confusionKey = createConfusionKey(answer.heardPhonemeId, answer.chosenPhonemeId);
+
+    counts.set(confusionKey, (counts.get(confusionKey) ?? 0) + 1);
+  }
+
+  return counts;
+}
+
+function isTwoChoiceSwap(answers: PromptResult["answers"]): boolean {
+  const first = answers[0];
+  const second = answers[1];
+
+  if (answers.length !== 2 || !first || !second) {
+    return false;
+  }
+
+  return first.heardPhonemeId === second.chosenPhonemeId
+    && first.chosenPhonemeId === second.heardPhonemeId
+    && first.heardPhonemeId !== first.chosenPhonemeId;
+}
+
+function countConfusionPairMisses(directionCounts: Map<string, number>): number {
+  const counts = [...directionCounts.values()];
+  const total = counts.reduce((sum, count) => sum + count, 0);
+  const reciprocalDuplicateCount = counts.length > 1 ? Math.min(...counts) : 0;
+
+  return total - reciprocalDuplicateCount;
+}
+
+function orderPhonemePair(
+  leftPhonemeId: PhonemeId,
+  rightPhonemeId: PhonemeId,
+): readonly [PhonemeId, PhonemeId] {
+  return leftPhonemeId.localeCompare(rightPhonemeId) <= 0
+    ? [leftPhonemeId, rightPhonemeId]
+    : [rightPhonemeId, leftPhonemeId];
 }
 
 function updateSpacedRepetition(

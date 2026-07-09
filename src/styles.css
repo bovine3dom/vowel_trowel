@@ -327,6 +327,7 @@ h3 {
 .sound-button:hover,
 .word-button:hover:not(:disabled),
 .sort-word-card:hover:not(:disabled),
+.confusion-row:hover,
 .text-button:hover:not(:disabled),
 .small-button:hover:not(:disabled),
 .audio-feedback-button:hover:not(:disabled),
@@ -348,6 +349,7 @@ h3 {
 .sound-button:active,
 .word-button:active:not(:disabled),
 .sort-word-card:active:not(:disabled),
+.confusion-row:active,
 .primary-button:active:not(:disabled),
 .text-button:active:not(:disabled),
 .small-button:active:not(:disabled),
@@ -395,6 +397,7 @@ h3 {
 .sound-button:focus-visible,
 .word-button:focus-visible,
 .sort-word-card:focus-visible,
+.confusion-row:focus-visible,
 .mode-tab:focus-visible,
 .catalog-tab:focus-visible,
 .primary-button:focus-visible,
@@ -1194,10 +1197,27 @@ h3 {
 
 .confusion-row {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   gap: 12px;
-  padding: 11px 0;
+  border: 0;
+  padding: 11px 8px;
   border-top: 1px solid #d6cec2;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.confusion-row:hover,
+.confusion-row:focus-visible {
+  box-shadow: inset 3px 0 0 #202020;
+}
+
+.confusion-row.active {
+  background: #f8f0d5;
+  box-shadow: inset 3px 0 0 #8a6814;
+  font-weight: 750;
 }
 
 .text-button {
