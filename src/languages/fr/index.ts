@@ -177,7 +177,7 @@ const words: WordEntry[] = [
   word("peigne", "peigne", "/pɛɲ/", ["fr-p", "fr-epsilon", "fr-ny"]),
   word("parking", "parking", "/paʁkiŋ/", ["fr-p", "fr-a", "fr-r", "fr-k", "fr-i", "fr-ng"]),
   word("camping", "camping", "/kɑ̃piŋ/", ["fr-k", "fr-an", "fr-p", "fr-i", "fr-ng"]),
-  word("smoking", "smoking", "/smɔkiŋ/", ["fr-s", "fr-m", "fr-open-o", "fr-k", "fr-i", "fr-ng"]),
+  word("smoking", "smoking", "/smokiŋ/", ["fr-s", "fr-m", "fr-o", "fr-k", "fr-i", "fr-ng"]),
   word("meeting", "meeting", "/mitiŋ/", ["fr-m", "fr-i", "fr-t", "fr-ng"]),
   word("gong", "gong", "/ɡɔ̃ɡ/", ["fr-g", "fr-on", "fr-g"]),
   word("pont", "pont", "/pɔ̃/", ["fr-p", "fr-on"]),

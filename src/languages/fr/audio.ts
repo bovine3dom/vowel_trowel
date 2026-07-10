@@ -5325,7 +5325,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "cube",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr5fhyeb-7cbcc619-629c-45bc-ad65-2be01f910da7:fr-smoking-mr5fd4bo-7a520491-ed37-4486-8c7e-509fc8414c5e",
-      "notes": "User-contributed recording for smoking /smɔkiŋ/."
+      "notes": "User-contributed recording for smoking /smokiŋ/."
     },
     {
       "src": "audio/fr/approved/smoking/LL-Q150__fra_-VictorDtmtc-smoking--clean-01-volume.ogg",
@@ -5341,7 +5341,7 @@ export const approvedFrenchAudio: Record<string, readonly AudioSource[]> = {
       "license": "CC0 1.0",
       "attribution": "Louis",
       "sourceUrl": "vowel-trowel-contribution:fr-batch-mr6hk39u-02002b0e-f5f4-471b-9131-cef840e026c7:fr-smoking-mr6gm7xv-8be8ee36-2db0-4a4e-9f8e-5a670843e067",
-      "notes": "User-contributed recording for smoking /smɔkiŋ/."
+      "notes": "User-contributed recording for smoking /smokiŋ/."
     }
   ],
   "soeur": [
