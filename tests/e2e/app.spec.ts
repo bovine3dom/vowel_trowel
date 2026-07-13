@@ -643,16 +643,21 @@ test("copies distinct filepaths for distinct explorer recordings", async ({ page
 });
 
 test("can submit a sorting answer", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/?lang=fr&mode=sort&phonemes=fr-u,fr-y&tab=phonemes");
 
   const wordBag = page.locator(".sort-bag");
-  const groupTarget = page.locator(".sort-groups .sort-group").first();
+  const placeTargets = page.getByRole("button", { name: "Tap here to place sample" });
+  const placeTarget = placeTargets.first();
 
   await expect(wordBag.locator(".sort-word-card").first()).toBeVisible();
+  await expect(placeTargets).toHaveCount(2);
+  await expect(placeTarget).toBeVisible();
+  expect((await placeTarget.boundingBox())?.height).toBeGreaterThanOrEqual(70);
 
   while (await wordBag.locator(".sort-word-card").count()) {
     await wordBag.locator(".sort-word-card").first().click();
-    await groupTarget.click({ position: { x: 10, y: 170 } });
+    await placeTarget.click();
   }
 
   await page.getByRole("button", { name: "Check answer" }).click();

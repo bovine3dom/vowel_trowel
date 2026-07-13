@@ -397,6 +397,7 @@ h3 {
 .sound-button:focus-visible,
 .word-button:focus-visible,
 .sort-word-card:focus-visible,
+.sort-place-target:focus-visible,
 .confusion-row:focus-visible,
 .mode-tab:focus-visible,
 .catalog-tab:focus-visible,
@@ -515,6 +516,25 @@ h3 {
 .sort-word-card {
   min-height: 78px;
   align-content: center;
+}
+
+.sort-place-target {
+  width: 100%;
+  min-height: 78px;
+  padding: 14px;
+  border: 2px dashed #8b8378;
+  background: #f4f1ea;
+  color: #5f584f;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.sort-place-target:hover,
+.sort-group.ready .sort-place-target {
+  border-color: var(--pair-border, #202020);
+  background: var(--pair-bg, #fff8df);
+  color: #202020;
 }
 
 .sort-word-card.selected {

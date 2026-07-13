@@ -1310,6 +1310,18 @@ function SortingPanel(props: {
                     )}
                   </For>
                 </Show>
+                <Show when={!props.result}>
+                  <button
+                    class="sort-place-target"
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      props.onPlaceSelected(group.phonemeId);
+                    }}
+                  >
+                    Tap here to place sample
+                  </button>
+                </Show>
               </div>
             </section>
           )}
